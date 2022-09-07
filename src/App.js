@@ -8,6 +8,7 @@ import {
 
 // import logo from './logo.svg';
 import './App.css';
+import MainNavigation from './shared/Navigation/MainNavigation';
 
 function App() {
   let routes;
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <Router>
+      <MainNavigation />
       Hello
       <main>{routes}</main>
     </Router>

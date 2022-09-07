@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navlink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './NavLinks.css';
 
@@ -7,16 +7,18 @@ const NavLinks = (props) => {
   return (
     <ul className="nav-links">
       <li>
-        <Navlink to="/">Home</Navlink>
+        <NavLink to="/" exact>
+          Home
+        </NavLink>
       </li>
       <li>
-        <Navlink to="/products/new">Add Product Item</Navlink>
+        <NavLink to="/products/new">Add Product Item</NavLink>
       </li>
       <li>
-        <Navlink to="/auth">Login</Navlink>
+        <NavLink to="/auth">Login</NavLink>
       </li>
       <li>
-        <Navlink to="/auth">Logout</Navlink>
+        <NavLink to="/auth">Logout</NavLink>
       </li>
     </ul>
   );
