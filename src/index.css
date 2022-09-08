@@ -1,3 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&display=swap');
+
+:root {
+  --bp-large: 78.15em; /* 1250px */
+  --bp-medium: 61.25em; /* 980px */
+  --bp-medium-sm: 45em /* 860px */
+  --bp-small: 37.5em; /* 715px */
+  --bp-smallest: 31.25em; /* 600px */
+
+  /* --heading1: rgb(252, 207, 95);
+  --heading2: rgb(252, 207, 95); */
+
+  /* --button-main: rgb(1, 107, 1);
+  --button-main-hover: rgb(0, 139, 0); */
+
+  --button-main: rgb(74, 143, 77);
+  --button-main-hover: rgb(105, 172, 106);
+  --button-main-text: rgb(243, 243, 243);
+
+  --bottom-border: rgb(74, 143, 77);
+  --bottom-border-cart-item: rgba(74, 143, 77, 0.274);
+
+  --img-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --modal-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  --text-color: rgb(39, 39, 39);
+  --text-info: rgb(74, 143, 77);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  color: var(--text-color);
+}
+
+@media only screen and (max-width: 980px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 65%;
+  }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

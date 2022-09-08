@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
-import './SideDrawer.css';
+import classes from './SideDrawer.module.css';
 
 const SideDrawer = (props) => {
   const content = (
@@ -13,7 +13,7 @@ const SideDrawer = (props) => {
       mountOnEnter
       unmountOnExit
     >
-      <aside className="side-drawer" onClick={props.onClick}>
+      <aside className={classes['side-drawer']} onClick={props.onClick}>
         {props.children}
       </aside>
     </CSSTransition>

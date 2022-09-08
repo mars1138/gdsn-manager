@@ -8,7 +8,7 @@ import {
 
 // import logo from './logo.svg';
 import './App.css';
-import MainNavigation from './shared/Navigation/MainNavigation';
+import MainNav from './shared/Navigation/MainNav';
 
 function App() {
   let routes;
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <Router>
-      <MainNavigation />
+      <MainNav />
       Hello
       <main>{routes}</main>
     </Router>

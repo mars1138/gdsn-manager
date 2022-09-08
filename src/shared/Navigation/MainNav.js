@@ -6,9 +6,9 @@ import NavLinks from './NavLinks';
 import SideDrawer from './SideDrawer';
 import Logo from './Logo';
 import Backdrop from '../UIElements/Backdrop';
-import './MainNavigation.css';
+import classes from './MainNav.module.css';
 
-const MainNavigation = (props) => {
+const MainNav = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const openDrawerHandler = () => {
@@ -22,14 +22,14 @@ const MainNavigation = (props) => {
     <React.Fragment>
       {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} />}
       <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
-        <nav className="main-navigation__drawer-nav">
+        <nav className={classes['main-navigation__drawer-nav']}>
           <NavLinks />
         </nav>
       </SideDrawer>
 
       <MainHeader>
         <button
-          className="main-navigation__menu-btn"
+          className={classes['main-navigation__menu-btn']}
           onClick={openDrawerHandler}
         >
           <span />
@@ -37,10 +37,10 @@ const MainNavigation = (props) => {
           <span />
         </button>
         <Logo />
-        <h1 className="main-navigation__title">
+        <h1 className={classes['main-navigation__title']}>
           <Link to="/">GDSN-Plus</Link>
         </h1>
-        <nav className="main-navigation__header-nav">
+        <nav className={classes['main-navigation__header-nav']}>
           <NavLinks />
         </nav>
       </MainHeader>
@@ -48,4 +48,4 @@ const MainNavigation = (props) => {
   );
 };
 
-export default MainNavigation;
+export default MainNav;
