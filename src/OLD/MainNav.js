@@ -8,7 +8,7 @@ import Logo from './Logo';
 import Backdrop from '../UIElements/Backdrop';
 import classes from './MainNav.module.css';
 
-const MainNav = (props) => {
+const MainNavi = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const openDrawerHandler = () => {
@@ -48,4 +48,4 @@ const MainNav = (props) => {
   );
 };
 
-export default MainNav;
+export default MainNavi;

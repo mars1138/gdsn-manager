@@ -8,7 +8,8 @@ import {
 
 // import logo from './logo.svg';
 import './App.css';
-import MainNav from './shared/Navigation/MainNav';
+import MainHeader from './shared/Navigation/MainHeader';
+import ScrollToTop from './shared/utilities/ScrollToTop';
 
 function App() {
   let routes;
@@ -25,9 +26,11 @@ function App() {
 
   return (
     <Router>
-      <MainNav />
+      <MainHeader />
       Hello
-      <main>{routes}</main>
+      <main>
+        <ScrollToTop>{routes}</ScrollToTop>
+      </main>
     </Router>
   );
 }
