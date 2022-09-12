@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import Button from '../UIElements/Button';
 import NavLinks from './NavLinks';
 import SideDrawer from './SideDrawer';
 import Logo from './Logo';
@@ -36,6 +37,8 @@ const MainHeader = (props) => {
         <h1 className={classes['header-title']}>
           <Link to="/">GDSN-Plus</Link>
         </h1>
+        <Button>hello</Button>
+        <Button inverse>hello</Button>
         <nav className={classes['header-nav']}>
           <NavLinks />
         </nav>

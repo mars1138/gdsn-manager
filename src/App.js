@@ -27,7 +27,6 @@ function App() {
   return (
     <Router>
       <MainHeader />
-      Hello
       <main>
         <ScrollToTop>{routes}</ScrollToTop>
       </main>

@@ -1,0 +1,29 @@
+.button {
+  color: var(--button-main-text);
+  background: var(--button-main);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--button-main);
+  box-shadow: var(--button-shadow);
+  transition: all 0.2s;
+}
+
+.button:hover {
+  background: var(--button-main-hover);
+  border: 1px solid var(--button-main-hover);
+  box-shadow: var(--button-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.inverse {
+  color: var(--button-main);
+  background: whitesmoke;
+}
+.inverse:hover {
+  background: var(--button-main);
+  border: 1px solid var(--button-main);
+}
+
+.inverse:hover {
+  color: whitesmoke;
+}
