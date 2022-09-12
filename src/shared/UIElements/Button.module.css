@@ -1,4 +1,5 @@
 .button {
+  font-size: 1.25rem;
   color: var(--button-main-text);
   background: var(--button-main);
   padding: 0.5rem 1rem;
@@ -6,6 +7,8 @@
   border: 1px solid var(--button-main);
   box-shadow: var(--button-shadow);
   transition: all 0.2s;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .button:hover {
