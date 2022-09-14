@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Button from '../UIElements/Button';
 import classes from './NavLinks.module.css';
 
-const NavLinks = (props) => {
+const NavLinks = props => {
   return (
     <React.Fragment>
       <div className={classes['nav-container']}>
@@ -31,7 +31,9 @@ const NavLinks = (props) => {
           </li>
         </ul>
         <Button to="/auth">Login</Button>
-        <Button inverse>Logout</Button>
+        <Button to="/auth" inverse>
+          Logout
+        </Button>
       </div>
     </React.Fragment>
   );

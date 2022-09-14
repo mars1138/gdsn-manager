@@ -1,0 +1,28 @@
+.container {
+  width: 50%;
+  margin: 300px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  /* border: 1px solid green; */
+}
+
+.tabs {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid green; */
+}
+
+.content {
+  padding-top: 3rem;
+  transition: all 0.2s;
+  /* font-size: 2rem; */
+  border-radius: 3px;
+  border: 1px solid var(--content-border);
+}
+
+

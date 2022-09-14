@@ -1,14 +1,17 @@
 .button {
+  display: flex;
+  align-items: center;
   font-size: 1.25rem;
   color: var(--button-main-text);
   background: var(--button-main);
   padding: 0.5rem 1rem;
-  border-radius: 5px;
+  border-radius: var(--borderRadius-button);
   border: 1px solid var(--button-main);
   box-shadow: var(--button-shadow);
   transition: all 0.2s;
   margin-left: 1rem;
   margin-right: 1rem;
+  text-decoration: none;
 }
 
 .button:hover {

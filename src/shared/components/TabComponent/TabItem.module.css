@@ -1,11 +1,17 @@
 .tab {
   display: flex;
-  padding: 1rem;
-  
+  margin: 0 .75rem;
+  padding: 1rem 1.5rem;
+  border-radius: var(--borderRadius-button);
+  background: rgb(139, 193, 243);
+  color: white;
+  transform: translateY(40%);
+  transition: all 0.2s;
+  cursor: pointer;
 }
 
 .active {
   display: block;
-  background: green;
-  color: white;
+  background: var(--button-main);
+  transform: translateY(23%);
 }
