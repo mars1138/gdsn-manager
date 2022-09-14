@@ -38,7 +38,7 @@ const MainNavi = (props) => {
         </button>
         <Logo />
         <h1 className={classes['main-navigation__title']}>
-          <Link to="/">GDSN-Plus</Link>
+          <Link to="/auth">GDSN-Plus</Link>
         </h1>
         <nav className={classes['main-navigation__header-nav']}>
           <NavLinks />

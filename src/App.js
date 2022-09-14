@@ -9,6 +9,7 @@ import {
 // import logo from './logo.svg';
 import './App.css';
 import MainHeader from './shared/Navigation/MainHeader';
+import TabComponent from './shared/components/TabComponent/Tabs';
 import ScrollToTop from './shared/utilities/ScrollToTop';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
   return (
     <Router>
       <MainHeader />
+      <TabComponent />
       <main>
         <ScrollToTop>{routes}</ScrollToTop>
       </main>

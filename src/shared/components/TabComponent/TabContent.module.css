@@ -1,0 +1,9 @@
+.content {
+    transition: all .2s;
+    opacity: 0
+}
+
+.active {
+    display: flex;
+    opacity: 1;
+}

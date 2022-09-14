@@ -1,0 +1,11 @@
+.tab {
+  display: flex;
+  padding: 1rem;
+  
+}
+
+.active {
+  display: block;
+  background: green;
+  color: white;
+}

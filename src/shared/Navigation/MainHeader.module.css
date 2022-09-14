@@ -40,6 +40,19 @@
 
 .header-title {
   color: green;
+  font-size: 3.75rem;
+  letter-spacing: 1px;
+}
+
+.header-title a {
+  color: var(--button-main);
+}
+
+.header-title a:link,
+.header-title a:active,
+.header-title a:hover,
+.header-title a:visited {
+  text-decoration: none;
 }
 
 .drawer-nav {
