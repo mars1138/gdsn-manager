@@ -7,7 +7,7 @@ import Logo from './Logo';
 import Backdrop from '../UIElements/Backdrop';
 import classes from './MainHeader.module.css';
 
-const MainHeader = (props) => {
+const MainHeader = props => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const openDrawerHandler = () => {
@@ -32,7 +32,9 @@ const MainHeader = (props) => {
           <span />
           <span />
         </button>
-        <Logo />
+        <div className={classes.logo}>
+          <Logo />
+        </div>
         <h1 className={classes['header-title']}>
           <Link to="/">GDSN-Plus</Link>
         </h1>

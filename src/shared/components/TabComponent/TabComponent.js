@@ -27,7 +27,7 @@ const TabComponent = props => {
     );
 
     contentData.push(
-      <TabContent id={tab.id} activeTab={activeTab} imageSrc={tab.imgUrl} heading={tab.contentHeading} text={tab.content} />
+      <TabContent key={tab.id} id={tab.id} activeTab={activeTab} imageSrc={tab.imgUrl} heading={tab.contentHeading} text={tab.content} />
     );
   });
 

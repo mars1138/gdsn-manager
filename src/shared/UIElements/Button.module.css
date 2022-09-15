@@ -1,7 +1,8 @@
 .button {
   display: flex;
   align-items: center;
-  font-size: 1.4rem;
+  justify-content: center;
+  font-size: 1.5rem;
   color: var(--button-main-text);
   background: var(--button-main);
   padding: 0.5rem 1rem;
@@ -32,4 +33,12 @@
 
 .inverse:hover {
   color: whitesmoke;
+}
+
+@media only screen and (max-width: 768px) {
+  .button {
+    font-size: 2.5rem;
+    margin-top: 3rem;
+    padding: 1rem 1rem;
+  }
 }

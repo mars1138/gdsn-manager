@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 
 import classes from './Button.module.css';
 
-const Button = (props) => {
+const Button = props => {
   const buttonClasses = `${classes.button} ${props.inverse && classes.inverse}`;
 
   if (props.to) {
-    return <Link className={buttonClasses}>{props.children}</Link>;
+    return (
+      <Link to="/" className={buttonClasses}>
+        {props.children}
+      </Link>
+    );
   }
 
   if (props.href) {
