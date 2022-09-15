@@ -1,12 +1,12 @@
 .container {
-  padding: 1.5rem;
+  padding: 1.5rem 2.5rem;
   font-size: 1.5rem;
   display: none;
 }
 
 .active {
   display: flex;
-  animation: fadeIn 1.3s;
+  animation: fadeIn 1s;
 }
 
 .image {
@@ -20,7 +20,8 @@
 
 .content {
     width: 65%;
-    padding: 0 1rem;
+    padding: 0 0 0 2rem;
+    /* border: 1px solid blue */
 }
 
 @keyframes fadeIn {

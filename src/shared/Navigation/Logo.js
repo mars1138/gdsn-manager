@@ -1,4 +1,4 @@
-import logo from '../../assets/shutterstock-152854481.webp';
+import logo from '../../assets/icons8-face-64.png';
 import classes from './Logo.module.css';
 
 const Logo = () => {

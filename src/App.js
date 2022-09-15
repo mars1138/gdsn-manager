@@ -6,52 +6,43 @@ import {
   Switch,
 } from 'react-router-dom';
 
-// import logo from './logo.svg';
 import './App.css';
 import MainHeader from './shared/Navigation/MainHeader';
-import TabComponent from './shared/components/TabComponent/TabComponent';
 import ScrollToTop from './shared/utilities/ScrollToTop';
-import img1 from './assets/shutterstock-152854481.webp';
 
-const tabContent = [
-  {
-    id: 1,
-    tabTitle: 'Tab1',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 1 Heading',
-    imgUrl: img1,
-  },
-  {
-    id: 2,
-    tabTitle: 'Tab2',
-    content: 'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 2 Heading',
-    imgUrl: img1,
-  },
-  {
-    id: 3,
-    tabTitle: 'Tab3',
-    content: 'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 3 Heading',
-    imgUrl: img1,
-  },
-  {
-    id: 4,
-    tabTitle: 'Tab4',
-    content: 'Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 4 Heading',
-    imgUrl: img1,
-  },
-];
+import HomePage from './shared/pages/HomePage';
+import ProductsPage from './products/pages/ProductsPage';
+import AboutPage from './shared/pages/AboutPage';
+import ResourcesPage from './shared/pages/ResourcesPage';
+import SolutionsPage from './shared/pages/SolutionsPage';
+import PlansPage from './shared/pages/PlansPage';
 
 function App() {
   let routes;
 
   routes = (
     <Switch>
-      <Route path="/" exact></Route>
-      <Route path="/about"></Route>
-      <Route path="/resources"></Route>
+      <Route path="/" exact>
+        <Redirect to="/home" />
+      </Route>
+      <Route path="/home">
+        <HomePage />
+      </Route>
+      <Route path="/products">
+        <ProductsPage />
+      </Route>
+      <Route path="/solutions">
+        <SolutionsPage />
+      </Route>
+      <Route path="/resources">
+        <ResourcesPage />
+      </Route>
+      <Route path="/plans">
+        <PlansPage />
+      </Route>
+      <Route path="/about">
+        <AboutPage />
+      </Route>
       <Route path="/auth"></Route>
       <Redirect to="/auth" />
     </Switch>
@@ -60,7 +51,6 @@ function App() {
   return (
     <Router>
       <MainHeader />
-      <TabComponent>{tabContent}</TabComponent>
       <main>
         <ScrollToTop>{routes}</ScrollToTop>
       </main>
