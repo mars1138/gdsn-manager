@@ -9,6 +9,7 @@ import {
 import './App.css';
 import MainHeader from './shared/Navigation/MainHeader';
 import ScrollToTop from './shared/utilities/ScrollToTop';
+import Footer from './shared/components/footer/Footer'
 
 import HomePage from './shared/pages/HomePage';
 import ProductsPage from './products/pages/ProductsPage';
@@ -54,6 +55,7 @@ function App() {
       <main>
         <ScrollToTop>{routes}</ScrollToTop>
       </main>
+      <Footer/>
     </Router>
   );
 }

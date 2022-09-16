@@ -16,6 +16,8 @@
 
   --background-main: rgb(250, 250, 250);
   --background-header: rgb(247, 247, 247);
+  --background-card: rgba(238, 238, 238, 0.322);
+  --background-footer: rgb(41, 141, 235);
 
   --button-main: rgb(41, 141, 235);
   --button-main-hover: rgb(93, 172, 247);
@@ -38,6 +40,7 @@
 
   --borderRadius-button: 6px;
   --borderRadius-img: 2px;
+  --borderRadius-card: 4px;
 }
 
 *,
@@ -81,6 +84,8 @@ body {
   background-color: var(--background-main);
 
   text-align: justify;
+
+  /* padding-top: 70px; */
 }
 
 code {
@@ -88,19 +93,18 @@ code {
     monospace;
 }
 
-/* h1,
-h2 {
-  font-family: 'Oleo Script', cursive;
-} */
+h1 {
+  font-size: 2.5rem;
+}
 
 img {
   box-shadow: var(--img-shadow);
 }
 
 /* Temporary */
-section {
+/* section {
   padding-top: 100px;
-}
+} */
 
 
 .slide-in-left-enter {

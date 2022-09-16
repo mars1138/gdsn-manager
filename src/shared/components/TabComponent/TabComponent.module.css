@@ -1,6 +1,7 @@
 .container {
-  width: 40%;
-  margin: 300px auto;
+  width: 500px;
+  height: 200px;
+  margin: 50px auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
