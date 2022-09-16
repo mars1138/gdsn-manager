@@ -1,0 +1,13 @@
+.cards {
+  width: 70%;
+  position: relative;
+  /* display: flex; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chapter {
+  position: absolute;
+  top: 0;
+  left: 0%;
+}

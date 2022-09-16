@@ -1,6 +1,13 @@
+.section {
+  padding: 50px 50px 30px 50px;
+}
+
 .section:first-of-type {
-margin-top: 70px;
+  margin-top: 70px;
   /* border: 1px solid green; */
+}
+.section:last-of-type {
+  padding-bottom: 70px;
 }
 
 /* .section:last-of-type {
@@ -8,9 +15,9 @@ margin-top: 70px;
 } */
 
 .container {
-  padding: 50px 50px;
   width: 1080px;
   margin: 0 auto 0 auto;
   display: flex;
   flex-direction: column;
+  /* border: 1px solid blue; */
 }

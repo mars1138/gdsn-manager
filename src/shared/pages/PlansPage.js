@@ -44,7 +44,7 @@ const PlansPage = () => {
         <h1>Price Plans</h1>
         <div className={classes.cards}>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h2>Basic</h2>
             <div className={classes['card-image']}>
               <img src={img1} alt="" />
             </div>
@@ -59,12 +59,12 @@ const PlansPage = () => {
             </p>
           </Card>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h2>Pro</h2>
             <div className={classes['card-image']}>
               <img src={img2} alt="" />
             </div>
             <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
               tempora provident explicabo inventore pariatur, nobis cumque a
               culpa quod, alias voluptate veniam quae qui ut at, nostrum est
               porro enim. Lorem ipsum dolor sit amet consectetur adipisicing
@@ -74,12 +74,12 @@ const PlansPage = () => {
             </p>
           </Card>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h2>Enterprise</h2>
             <div className={classes['card-image']}>
               <img src={img3} alt="" />
             </div>
             <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
               tempora provident explicabo inventore pariatur, nobis cumque a
               culpa quod, alias voluptate veniam quae qui ut at, nostrum est
               porro enim. Lorem ipsum dolor sit amet consectetur adipisicing

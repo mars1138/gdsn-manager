@@ -10,8 +10,13 @@
   cursor: pointer;
 }
 
-.active {
-  display: block;
+.tab:hover {
   background: var(--button-main);
+
+}
+
+.active {
+  background: var(--button-main);
+  display: block;
   transform: translateY(23%);
 }
