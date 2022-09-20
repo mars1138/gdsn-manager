@@ -1,6 +1,7 @@
 .nav-container {
   display: flex;
   justify-content: space-between;
+  position: relative;
   /* border: 1px solid black; */
 }
 
@@ -35,6 +36,23 @@
 .nav-links a:hover,
 .nav-links a.active {
   border-bottom: 2px solid var(--text-nav);
+}
+
+.nav-link:first-child:hover div:last-child {
+  top: 150%;
+  opacity: 1;
+}
+
+.nav-menu {
+  display: flex;
+  position: absolute;
+  top: -20%;
+  left: -100%;
+  border-top: 1rem solid transparent;
+  background: rgb(252, 252, 175);
+  opacity: 0;
+  z-index: -5;
+  transition: all 0.3s;
 }
 
 @media only screen and (max-width: 768px) {

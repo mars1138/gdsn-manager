@@ -9,15 +9,43 @@ const NavLinks = props => {
     <React.Fragment>
       <div className={classes['nav-container']}>
         <ul className={classes['nav-links']}>
-          <li>
+          <li className={classes['nav-link']}>
             <NavLink activeClassName={classes.active} to="/home">
               Home
             </NavLink>
+            <div className={classes['nav-menu']}>
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+            </div>
           </li>
-          <li>
+          <li className={classes['nav-link']}>
             <NavLink activeClassName={classes.active} to="/products/">
               My Products
             </NavLink>
+            <div className={classes['nav-menu']}>
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+            </div>
           </li>
           <li>
             <NavLink activeClassName={classes.active} to="/solutions">
@@ -42,8 +70,8 @@ const NavLinks = props => {
           {/* <li>
           </li> */}
         </ul>
-            <Button to="/auth">Login</Button>
-            {/* <Button to="/auth" inverse>
+        <Button to="/auth">Login</Button>
+        {/* <Button to="/auth" inverse>
               Logout
             </Button> */}
       </div>
