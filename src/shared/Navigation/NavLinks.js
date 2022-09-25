@@ -1,51 +1,34 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
 import Button from '../UIElements/Button';
+import NavMenuItems from './NavMenuItems';
+import { navMenuData } from './navMenuData';
 import classes from './NavLinks.module.css';
 
-const NavLinks = props => {
+const NavLinks = (props) => {
+  const menuLinks = navMenuData.map((menu, index) => {
+    const depthLevel = 0;
+    return <NavMenuItems items={menu} key={index} depthLevel={depthLevel} />;
+  });
+
   return (
     <React.Fragment>
-      <div className={classes['nav-container']}>
+      <nav className={classes['nav-container']}>
         <ul className={classes['nav-links']}>
-          <li className={classes['nav-link']}>
+          {menuLinks}
+
+          {/* <li className={classes['nav-link']}>
             <NavLink activeClassName={classes.active} to="/home">
               Home
             </NavLink>
-            <div className={classes['nav-menu']}>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-            </div>
+            
           </li>
           <li className={classes['nav-link']}>
             <NavLink activeClassName={classes.active} to="/products/">
               My Products
             </NavLink>
-            <div className={classes['nav-menu']}>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-            </div>
+            
           </li>
           <li>
             <NavLink activeClassName={classes.active} to="/solutions">
@@ -66,15 +49,13 @@ const NavLinks = props => {
             <NavLink activeClassName={classes.active} to="/about">
               About Us
             </NavLink>
-          </li>
-          {/* <li>
           </li> */}
         </ul>
         <Button to="/auth">Login</Button>
         {/* <Button to="/auth" inverse>
               Logout
             </Button> */}
-      </div>
+      </nav>
     </React.Fragment>
   );
 };

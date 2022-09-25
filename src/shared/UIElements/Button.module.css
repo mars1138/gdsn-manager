@@ -5,13 +5,14 @@
   font-size: 1.5rem;
   color: var(--button-main-text);
   background: var(--button-main);
-  padding: 0.5rem 1rem;
+  padding: 0.35rem 1rem 0.5rem 1rem;
   border-radius: var(--borderRadius-button);
   border: 1px solid var(--button-main);
   box-shadow: var(--button-shadow);
   transition: all 0.2s;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  /* margin-left: 1rem;
+  margin-right: 1rem; */
+  margin: 0.75rem;
   text-decoration: none;
 }
 
