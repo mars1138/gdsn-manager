@@ -9,23 +9,23 @@ export const navMenuData = [
     submenu: [
       {
         title: 'Active Products',
-        url: '/products/user',
+        url: '/products',
         submenu: [
-            {
-                title: 'Published Items',
-                url: '/products/user/published'
-            }
-        ]
+          {
+            title: 'Published Items',
+            url: '/products',
+          },
+        ],
       },
       {
         title: 'Deleted Products',
-        url: '/products/user',
+        url: '/products',
       },
     ],
   },
   {
     title: 'Solutions',
-    url: '/',
+    url: '/solutions',
   },
   {
     title: 'Resources',
@@ -33,15 +33,15 @@ export const navMenuData = [
     submenu: [
       {
         title: 'Resource1',
-        url: '/resources1',
+        url: '/plans',
       },
       {
         title: 'Resource1',
-        url: '/resources2',
+        url: '/plans',
       },
       {
         title: 'Resource1',
-        url: '/resources3',
+        url: '/plans',
       },
     ],
   },
@@ -51,6 +51,6 @@ export const navMenuData = [
   },
   {
     title: 'About',
-    url: '/',
+    url: '/about',
   },
 ];

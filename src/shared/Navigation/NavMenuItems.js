@@ -48,7 +48,7 @@ const NavMenuItems = (props) => {
       onMouseLeave={mouseLeaveHandler}
       onClick={closeDropdownHandler}
     >
-      {items.submenu && items.url ? (
+      {items.submenu && items.url && (
         <>
           <button
             type="button"
@@ -65,7 +65,7 @@ const NavMenuItems = (props) => {
                     0 && window.innerWidth > 960 ? (
                   <span>&raquo;</span>
                 ) : (
-                  <span className="arrow" />
+                  <span className={classes.arrow} />
                 )}
               </NavLink>
             )}
@@ -76,7 +76,8 @@ const NavMenuItems = (props) => {
             dropdown={dropdown}
           />
         </>
-      ) : !items.url && items.submenu ? (
+      )}
+      {!items.url && items.submenu && (
         <>
           <button
             type="button"
@@ -85,7 +86,11 @@ const NavMenuItems = (props) => {
             onClick={() => setDropdown((prev) => !prev)}
           >
             {items.title}{' '}
-            {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
+            {depthLevel > 0 ? (
+              <span>&raquo;</span>
+            ) : (
+              <span className={classes.arrow} />
+            )}
           </button>
           <NavDropdown
             depthLevel={depthLevel}
@@ -93,9 +98,10 @@ const NavMenuItems = (props) => {
             dropdown={dropdown}
           />
         </>
-      ) : (
+      )}
+      {items.url && !items.submenu && (
         <button>
-          <NavLink to={items.url}>{items.title}</NavLink>
+          <NavLink to={items.url}>{items.title}{' '}</NavLink>
         </button>
       )}
     </li>

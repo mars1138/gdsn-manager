@@ -49,7 +49,7 @@ const ProductsPage = () => {
   return (
     <React.Fragment>
       <Section>
-        <h1>Home</h1>
+        <h1>Products</h1>
         <div className={classes.cards}>
           <Card>
             <h2>CARD CONTENT</h2>
