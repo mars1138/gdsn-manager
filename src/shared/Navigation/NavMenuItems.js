@@ -59,7 +59,7 @@ const NavMenuItems = (props) => {
             {window.innerWidth < 960 && depthLevel === 0 ? (
               items.title
             ) : (
-              <NavLink to={items.url}>
+              <NavLink activeClassName={classes.active} to={items.url}>
                 {items.title}
                 {depthLevel > 0 && window.innerWidth < 960 ? null : depthLevel >
                     0 && window.innerWidth > 960 ? (
@@ -101,7 +101,7 @@ const NavMenuItems = (props) => {
       )}
       {items.url && !items.submenu && (
         <button>
-          <NavLink to={items.url}>{items.title}{' '}</NavLink>
+          <NavLink activeClassName={classes.active} to={items.url}>{items.title} </NavLink>
         </button>
       )}
     </li>

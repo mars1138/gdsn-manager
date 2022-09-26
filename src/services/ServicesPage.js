@@ -1,14 +1,14 @@
 import React from 'react';
 
-import TabComponent from '../components/TabComponent/TabComponent';
-import Card from '../UIElements/Card';
-import Section from '../components/layout/Section';
-import classes from './SolutionsPage.module.css';
+import TabComponent from '../shared/components/TabComponent/TabComponent';
+import Card from '../shared/UIElements/Card';
+import Section from '../shared/components/layout/Section';
+import classes from './ServicesPage.module.css';
 
-import img1 from '../../assets/pexels-antonius-natan-11835350.jpg';
-import img2 from '../../assets/pexels-fauxels-3183197.jpg';
-import img3 from '../../assets/pexels-fauxels-3184418.jpg';
-import img4 from '../../assets/pexels-tiger-lily-4483942.jpg';
+import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
+import img2 from '../assets/pexels-fauxels-3183197.jpg';
+import img3 from '../assets/pexels-fauxels-3184418.jpg';
+import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
 
 const tabContent = [
   {
@@ -45,11 +45,11 @@ const tabContent = [
   },
 ];
 
-const SolutionsPage = () => {
+const ServicesPage = () => {
   return (
     <React.Fragment>
       <Section>
-        <h1>Solutions</h1>
+        <h1>Services</h1>
         <div className={classes.cards}>
           <div className={classes.first}>
             <Card>
@@ -104,4 +104,4 @@ const SolutionsPage = () => {
   );
 };
 
-export default SolutionsPage;
+export default ServicesPage;

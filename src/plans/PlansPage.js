@@ -1,14 +1,14 @@
 import React from 'react';
 
-import TabComponent from '../components/TabComponent/TabComponent';
-import Card from '../UIElements/Card';
-import Section from '../components/layout/Section';
+import TabComponent from '../shared/components/TabComponent/TabComponent';
+import Card from '../shared/UIElements/Card';
+import Section from '../shared/components/layout/Section';
 
 import classes from './PlansPage.module.css';
 
-import img1 from '../../assets/pexels-tiger-lily-4483942.jpg';
-import img2 from '../../assets/pexels-fauxels-3183197.jpg';
-import img3 from '../../assets/pexels-fauxels-3184418.jpg';
+import img1 from '../assets/pexels-tiger-lily-4483942.jpg';
+import img2 from '../assets/pexels-fauxels-3183197.jpg';
+import img3 from '../assets/pexels-fauxels-3184418.jpg';
 
 const tabContent = [
   {

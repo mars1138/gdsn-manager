@@ -22,6 +22,7 @@
   background-color: transparent;
   cursor: pointer;
   width: 100%;
+  /* border-radius: .5rem; */
 }
 
 button span {
@@ -33,9 +34,22 @@ button span {
   padding: 1rem 0.5rem;
 }
 
+.menu-items a:link,
+.menu-items a:visited,
+.menu-items a:active {
+  width: 90%;
+  color: var(--text-nav);
+  padding: 0.5rem 0;
+  text-decoration: none;
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
 .menu-items a:hover,
-.menu-items button:hover {
-  /* background-color: #f2f2f2; */
+.menu-items a.active {
+  /* background-color: #929292; */
+  border-bottom: 2px solid var(--text-nav);
 }
 
 .arrow::after {
@@ -46,4 +60,10 @@ button span {
   border-top: 0.42em solid;
   border-right: 0.32em solid transparent;
   border-left: 0.32em solid transparent;
+  transition: all 0.2s;
+}
+
+.menu-items a:hover .arrow::after,
+.menu-items a.active .arrow::after, {
+  transform: rotate(-90deg);
 }

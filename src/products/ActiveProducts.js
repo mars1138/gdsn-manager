@@ -1,14 +1,14 @@
 import React from 'react';
 
-import TabComponent from '../../shared/components/TabComponent/TabComponent';
-import Card from '../../shared/UIElements/Card';
-import Section from '../../shared/components/layout/Section';
-import classes from './ProductsPage.module.css';
+import TabComponent from '../shared/components/TabComponent/TabComponent';
+import Card from '../shared/UIElements/Card';
+import Section from '../shared/components/layout/Section';
+import classes from './ActiveProducts.module.css';
 
-import img1 from '../../assets/pexels-antonius-natan-11835350.jpg';
-import img2 from '../../assets/pexels-fauxels-3183197.jpg';
-import img3 from '../../assets/pexels-fauxels-3184418.jpg';
-import img4 from '../../assets/pexels-tiger-lily-4483942.jpg';
+import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
+import img2 from '../assets/pexels-fauxels-3183197.jpg';
+import img3 from '../assets/pexels-fauxels-3184418.jpg';
+import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
 
 const tabContent = [
   {
@@ -45,11 +45,11 @@ const tabContent = [
   },
 ];
 
-const ProductsPage = () => {
+const ActiveProducts = () => {
   return (
     <React.Fragment>
       <Section>
-        <h1>Products</h1>
+        <h1>Active Products</h1>
         <div className={classes.cards}>
           <Card>
             <h2>CARD CONTENT</h2>
@@ -97,4 +97,4 @@ const ProductsPage = () => {
   );
 };
 
-export default ProductsPage;
+export default ActiveProducts;

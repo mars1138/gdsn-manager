@@ -1,7 +1,7 @@
 export const navMenuData = [
   {
     title: 'Home',
-    url: '/',
+    url: '/home',
   },
   {
     title: 'My Products',
@@ -9,39 +9,43 @@ export const navMenuData = [
     submenu: [
       {
         title: 'Active Products',
-        url: '/products',
+        url: '/active-products',
         submenu: [
           {
             title: 'Published Items',
-            url: '/products',
+            url: '/published-items',
           },
         ],
       },
       {
+        title: 'Add Product',
+        url: '/add-product',
+      },
+      {
         title: 'Deleted Products',
-        url: '/products',
+        url: '/deleted-products',
       },
     ],
   },
   {
-    title: 'Solutions',
-    url: '/solutions',
+    title: 'Services',
+    url: '/services',
   },
   {
     title: 'Resources',
     url: '/resources',
     submenu: [
       {
-        title: 'Resource1',
-        url: '/plans',
+        title: 'Webinars',
+        url: '/webinars',
       },
       {
-        title: 'Resource1',
-        url: '/plans',
+        title: 'Training',
+        url: '/training',
       },
       {
-        title: 'Resource1',
-        url: '/plans',
+        title: 'Support',
+        url: '/support',
       },
     ],
   },
