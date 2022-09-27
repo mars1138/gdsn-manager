@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 import classes from './HomePage.module.css';
+
+import Modal from '../shared/UIElements/Modal';
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
@@ -46,8 +48,20 @@ const tabContent = [
 ];
 
 const HomePage = () => {
+  const [show, setShow] = useState(true);
+
+  const cancelHandler = () => {
+    setShow(false);
+  };
+
   return (
     <React.Fragment>
+      <Modal msgHeader="Modal Header" show={show} onClear={cancelHandler}>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque voluptas
+        quaerat iste ratione illo soluta, obcaecati, porro perferendis magni
+        velit quos, deserunt aut molestias vero explicabo aperiam. Accusamus,
+        nisi nobis.
+      </Modal>
       <Section>
         <h1>Home</h1>
         <div className={classes.cards}>
@@ -62,8 +76,7 @@ const HomePage = () => {
           </Card>
           <Card>
             <h2>CARD CONTENT</h2>
-            <div className={classes.image}>
-            </div>
+            <div className={classes.image}></div>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
               tempora provident explicabo inventore pariatur, nobis cumque a

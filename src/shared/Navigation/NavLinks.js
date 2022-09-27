@@ -15,10 +15,10 @@ const NavLinks = (props) => {
   return (
     <React.Fragment>
       <nav className={classes['nav-container']}>
-        <ul className={classes['nav-links']}>
-          {menuLinks}
-        </ul>
-        <Button to="/auth">Login</Button>
+        <ul className={classes['nav-links']}>{menuLinks}</ul>
+        <div className={classes.button}>
+          <Button to="/auth">Login</Button>
+        </div>
         {/* <Button to="/auth" inverse>
               Logout
             </Button> */}

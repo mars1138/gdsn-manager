@@ -26,6 +26,10 @@
   margin: 1rem 1.5rem;
 }
 
+.button {
+  padding: 1rem;
+}
+
 /* .nav-links a:link,
 .nav-links a:visited,
 .nav-links a:active {

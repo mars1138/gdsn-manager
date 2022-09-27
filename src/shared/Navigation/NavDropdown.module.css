@@ -1,5 +1,6 @@
 .dropdown {
   position: absolute;
+  top: 84%;
   right: auto;
   left: 0;
   box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08),
