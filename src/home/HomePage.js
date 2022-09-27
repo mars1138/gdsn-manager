@@ -6,6 +6,7 @@ import Section from '../shared/components/layout/Section';
 import classes from './HomePage.module.css';
 
 import Modal from '../shared/UIElements/Modal';
+import LoadingSpinnner from '../shared/UIElements/LoadingSpinner';
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
@@ -64,6 +65,7 @@ const HomePage = () => {
       </Modal>
       <Section>
         <h1>Home</h1>
+        <LoadingSpinnner />
         <div className={classes.cards}>
           <Card>
             <h2>CARD CONTENT</h2>
