@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import classes from './Button.module.css';
 
 const Button = (props) => {
-  const buttonClasses = `${classes.button} ${props.inverse && classes.inverse}`;
+  const buttonClasses = `${classes.button} ${
+    props.inverse && classes.inverse
+  } ${props.disabled && classes.disabled}`;
 
   if (props.to) {
     return (
@@ -23,8 +25,12 @@ const Button = (props) => {
   }
 
   return (
-    <button className={buttonClasses} onClick={props.onClick}>
-      {props.children}
+    <button
+      className={buttonClasses}
+      onClick={props.onClick}
+      disabled={props.disabled}
+    >
+      <div>{props.children}</div>
     </button>
   );
 };

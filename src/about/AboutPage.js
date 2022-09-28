@@ -4,6 +4,7 @@ import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 import classes from './AboutPage.module.css';
+import Contact from '../shared/components/contact/Contact';
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
@@ -92,6 +93,9 @@ const AboutPage = () => {
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>
+      </Section>
+      <Section>
+        <Contact />
       </Section>
     </React.Fragment>
   );

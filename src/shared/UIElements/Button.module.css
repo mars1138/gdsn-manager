@@ -5,7 +5,7 @@
   font-size: 1.5rem;
   color: var(--button-main-text);
   background: var(--button-main);
-  padding: 0.5rem 1.15rem 0.75rem 1.15rem;
+  padding: 0.5rem 1.15rem;
   border-radius: var(--borderRadius-button);
   border: 1px solid var(--button-main);
   box-shadow: var(--button-shadow);
@@ -34,6 +34,19 @@
 
 .inverse:hover {
   color: whitesmoke;
+}
+
+.disabled,
+.disabled:hover {
+  background: gray;
+  cursor: not-allowed;
+  transform: translateY(0);
+  border: none;
+  box-shadow: none;
+}
+
+.disabled * {
+  color: rgb(88, 88, 88);
 }
 
 @media only screen and (max-width: 768px) {
