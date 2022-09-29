@@ -5,6 +5,7 @@ import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 import classes from './AboutPage.module.css';
 import Contact from '../shared/components/contact/Contact';
+// import SetRevealSections from '../shared/utilities/SetRevealSections';
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
@@ -47,6 +48,10 @@ const tabContent = [
 ];
 
 const AboutPage = () => {
+  // useEffect(() => {
+  //   SetRevealSections();
+  // }, []);
+
   return (
     <React.Fragment>
       <Section>
