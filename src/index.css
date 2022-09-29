@@ -105,13 +105,13 @@ img {
 /* section {
   padding-top: 100px;
 } */
-section {
+/* section {
   transition: all .8s;
 }
 
 .hidden {
   opacity: 0;
-}
+} */
 
 .slide-in-left-enter {
   transform: translateX(-100%);
