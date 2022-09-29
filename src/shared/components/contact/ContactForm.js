@@ -11,7 +11,7 @@ const isTenChars = (value) =>
   value.trim().length === 10 && Number.isInteger(+value);
 const isValidEmail = (value) => /^\S+@\S+\.\S+$/.test(value);
 
-const ContactForm = () => {
+const ContactForm = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
   const [error, setError] = useState();
@@ -62,6 +62,7 @@ const ContactForm = () => {
     if (!formIsValid) return;
 
     try {
+      props.toggleSubmitting();
       setIsSubmitting(true);
 
       // const response = await fetch(
@@ -85,13 +86,15 @@ const ContactForm = () => {
       // if (!response.ok) {
       //     throw new Error(responseData.message);
       // }
-
-      setIsSubmitting(false);
-      setDidSubmit(true);
-      resetName();
-      resetEmail();
-      resetPhone();
-      resetComments();
+      setTimeout(() => {
+        setIsSubmitting(false);
+        props.toggleSubmitting();
+        setDidSubmit(true);
+        resetName();
+        resetEmail();
+        resetPhone();
+        resetComments();
+      }, 3000);
     } catch (err) {
       setIsSubmitting(false);
       setError(err.message || 'An unknown error occurred, please try again');
@@ -115,7 +118,7 @@ const ContactForm = () => {
   const phoneControlClasses = setControlClasses(phoneInputInvalid);
   const commentsControlClasses = setControlClasses(commentsInputInvalid);
 
-//   const buttonClasses = `${!formIsValid ? classes['btn-disabled'] : ''}`;
+  //   const buttonClasses = `${!formIsValid ? classes['btn-disabled'] : ''}`;
   const formClasses = `${classes['contact-form']} ${
     isSubmitting ? classes.submitting : ''
   }`;

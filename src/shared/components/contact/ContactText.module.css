@@ -5,14 +5,18 @@
 }
 
 .contact-text {
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
+  font-size: 1.75rem;
 }
 
+/* 
 .contact-text h3 {
   font-size: 14px;
-}
+} */
 
 .contact-text p {
   margin: 1rem 0 0 0;
