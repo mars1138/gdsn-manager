@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.cards > *:hover {
+  border: 1px solid var(--button-main-hover);
+}
+
 .cards h2 {
   margin-bottom: 1rem;
   text-transform: uppercase;

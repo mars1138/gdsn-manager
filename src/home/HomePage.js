@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 import classes from './HomePage.module.css';
-
-import Modal from '../shared/UIElements/Modal';
-import LoadingSpinnner from '../shared/UIElements/LoadingSpinner';
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
@@ -18,7 +15,7 @@ const tabContent = [
     id: 1,
     tabTitle: 'Tab1',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequitempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
     contentHeading: 'Tab 1 Heading',
     imgUrl: img1,
   },
@@ -26,7 +23,7 @@ const tabContent = [
     id: 2,
     tabTitle: 'Tab2',
     content:
-      'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequitempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
     contentHeading: 'Tab 2 Heading',
     imgUrl: img2,
   },
@@ -34,7 +31,7 @@ const tabContent = [
     id: 3,
     tabTitle: 'Tab3',
     content:
-      'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequitempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
     contentHeading: 'Tab 3 Heading',
     imgUrl: img3,
   },
@@ -42,30 +39,17 @@ const tabContent = [
     id: 4,
     tabTitle: 'Tab4',
     content:
-      'Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequitempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
     contentHeading: 'Tab 4 Heading',
     imgUrl: img4,
   },
 ];
 
 const HomePage = () => {
-  const [show, setShow] = useState(true);
-
-  const cancelHandler = () => {
-    setShow(false);
-  };
-
   return (
     <React.Fragment>
-      <Modal msgHeader="Modal Header" show={show} onClear={cancelHandler}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque voluptas
-        quaerat iste ratione illo soluta, obcaecati, porro perferendis magni
-        velit quos, deserunt aut molestias vero explicabo aperiam. Accusamus,
-        nisi nobis.
-      </Modal>
       <Section>
         <h1>Home</h1>
-        <LoadingSpinnner />
         <div className={classes.cards}>
           <Card>
             <h2>CARD CONTENT</h2>

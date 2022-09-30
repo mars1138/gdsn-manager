@@ -1,5 +1,5 @@
 .container {
-  padding: 1.5rem 2.5rem;
+  padding: 2.5rem 3rem;
   font-size: 1.5rem;
   display: none;
 }
@@ -11,6 +11,7 @@
 
 .image {
   width: 35%;
+  height: 100%;
 }
 
 .image img {
@@ -20,7 +21,7 @@
 
 .content {
     width: 65%;
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 3rem;
     /* border: 1px solid blue */
 }
 

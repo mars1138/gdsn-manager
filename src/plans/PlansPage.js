@@ -3,6 +3,7 @@ import React from 'react';
 import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
+import Button from '../shared/UIElements/Button';
 
 import classes from './PlansPage.module.css';
 
@@ -57,6 +58,7 @@ const PlansPage = () => {
               temporibus reiciendis veritatis possimus quae explicabo doloremque
               fuga quis harum, ipsa voluptatum, facilis neque.
             </p>
+            <Button to="/about/#contact-form">Get Quote</Button>
           </Card>
           <Card>
             <h2>Pro</h2>

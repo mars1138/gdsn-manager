@@ -10,7 +10,7 @@ const Button = (props) => {
 
   if (props.to) {
     return (
-      <Link to="/" className={buttonClasses}>
+      <Link to={props.to} className={buttonClasses}>
         {props.children}
       </Link>
     );
