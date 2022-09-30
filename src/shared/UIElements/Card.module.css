@@ -1,12 +1,12 @@
 .card {
   height: 100%;
   margin: 1rem;
-  padding: 2rem;
+  padding: 3rem;
   background-color: var(--background-card);
   border-radius: var(--borderRadius-card);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   overflow: hidden;
   border: 1px solid var(--content-border);

@@ -1,14 +1,25 @@
 .cards {
   display: flex;
-}
-
-.cards > *:hover {
-  border: 1px solid var(--button-main-hover);
+  justify-content: space-evenly;
 }
 
 .cards h2 {
+  font-size: 2rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
+}
+
+.plan {
+  width: 30%;
+}
+
+.plan > *:hover {
+  border: 1px solid var(--button-main-hover);
+}
+
+.plan p,
+.plan ul {
+  margin-bottom: 3rem;
 }
 
 .card-image {
@@ -21,4 +32,16 @@
 .card-image img {
   height: 100%;
   width: 100%;
+}
+
+.info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info h2 {
+  text-align: center;
 }

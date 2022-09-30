@@ -16,9 +16,12 @@ const Contact = () => {
   }`;
 
   return (
-    <div className={contactClasses} id="contact-form">
-      <ContactForm toggleSubmitting={setSubmittingHandler} />
-      <ContactText />
+    <div id="contact-form">
+      <h1>Contact us today for more information!</h1>
+      <div className={contactClasses}>
+        <ContactForm toggleSubmitting={setSubmittingHandler} />
+        <ContactText />
+      </div>
     </div>
   );
 };

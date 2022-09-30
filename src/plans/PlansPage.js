@@ -44,52 +44,66 @@ const PlansPage = () => {
       <Section>
         <h1>Price Plans</h1>
         <div className={classes.cards}>
-          <Card>
-            <h2>Basic</h2>
-            <div className={classes['card-image']}>
-              <img src={img1} alt="" />
-            </div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim. Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Quisquam, blanditiis aspernatur nobis voluptas quam cum amet
-              temporibus reiciendis veritatis possimus quae explicabo doloremque
-              fuga quis harum, ipsa voluptatum, facilis neque.
-            </p>
-            <Button to="/about/#contact-form">Get Quote</Button>
-          </Card>
-          <Card>
-            <h2>Pro</h2>
-            <div className={classes['card-image']}>
-              <img src={img2} alt="" />
-            </div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim. Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Quisquam, blanditiis aspernatur nobis voluptas quam cum amet
-              temporibus reiciendis veritatis possimus quae explicabo doloremque
-              fuga quis harum, ipsa voluptatum, facilis neque.
-            </p>
-          </Card>
-          <Card>
-            <h2>Enterprise</h2>
-            <div className={classes['card-image']}>
-              <img src={img3} alt="" />
-            </div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim. Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Quisquam, blanditiis aspernatur nobis voluptas quam cum amet
-              temporibus reiciendis veritatis possimus quae explicabo doloremque
-              fuga quis harum, ipsa voluptatum, facilis neque.
-            </p>
-          </Card>
+          <div className={classes.plan}>
+            <Card>
+              <div className={classes.info}>
+                <div>
+                  <h2>Basic</h2>
+                  <div className={classes['card-image']}>
+                    <img src={img1} alt="" />
+                  </div>
+                  <ul>
+                    <li>asdf</li>
+                    <li>asdfasdfa</li>
+                    <li>fdsafasd</li>
+                    <li>fasdfa</li>
+                    <li>afas</li>
+                  </ul>
+                </div>
+                <Button to="/about/#contact-form">Get Quote</Button>
+              </div>
+            </Card>
+          </div>
+          <div className={classes.plan}>
+            <Card>
+              <div className={classes.info}>
+                <div>
+                  <h2>Pro</h2>
+                  <div className={classes['card-image']}>
+                    <img src={img2} alt="" />
+                  </div>
+                  <ul>
+                    <li>asdf</li>
+                    <li>asdfasdfa</li>
+                    <li>fdsafasd</li>
+                    <li>fasdfa</li>
+                    <li>afas</li>
+                  </ul>
+                </div>
+                <Button to="/about/#contact-form">Get Quote</Button>
+              </div>
+            </Card>
+          </div>
+          <div className={classes.plan}>
+            <Card>
+              <div className={classes.info}>
+                <div>
+                  <h2>Enterprise</h2>
+                  <div className={classes['card-image']}>
+                    <img src={img3} alt="" />
+                  </div>
+                  <ul>
+                    <li>asdf</li>
+                    <li>asdfasdfa</li>
+                    <li>fdsafasd</li>
+                    <li>fasdfa</li>
+                    <li>afas</li>
+                  </ul>
+                </div>
+                <Button to="/about/#contact-form">Get Quote</Button>
+              </div>
+            </Card>
+          </div>
         </div>
       </Section>
       <Section>

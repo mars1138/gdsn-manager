@@ -16,7 +16,7 @@ const ScrollToTop = (props) => {
         if (element) {
           element.scrollIntoView();
         }
-      }, 100);
+      }, 50);
     }
   }, [pathname, hash]);
 
