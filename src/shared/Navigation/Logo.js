@@ -1,4 +1,4 @@
-import logo from '../../assets/icons8-face-64.png';
+import logo from '../../assets/GP-logo.png';
 import classes from './Logo.module.css';
 
 const Logo = () => {

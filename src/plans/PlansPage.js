@@ -46,18 +46,47 @@ const PlansPage = () => {
         <div className={classes.cards}>
           <div className={classes.plan}>
             <Card>
-              <div className={classes.info}>
+              <div className={classes['plan-info']}>
                 <div>
                   <h2>Basic</h2>
-                  <div className={classes['card-image']}>
+                  <div className={classes['plan-image']}>
                     <img src={img1} alt="" />
                   </div>
-                  <ul>
-                    <li>asdf</li>
-                    <li>asdfasdfa</li>
-                    <li>fdsafasd</li>
-                    <li>fasdfa</li>
-                    <li>afas</li>
+                  <ul className={classes['plan-list']}>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/bookmark-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/bookmark-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform. Access to Peer
+                        Community Platforma
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/bookmark-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform
+                      </div>
+                    </li>
                   </ul>
                 </div>
                 <Button to="/about/#contact-form">Get Quote</Button>
@@ -66,18 +95,70 @@ const PlansPage = () => {
           </div>
           <div className={classes.plan}>
             <Card>
-              <div className={classes.info}>
+              <div className={classes['plan-info']}>
                 <div>
                   <h2>Pro</h2>
-                  <div className={classes['card-image']}>
+                  <div className={classes['plan-image']}>
                     <img src={img2} alt="" />
                   </div>
-                  <ul>
-                    <li>asdf</li>
-                    <li>asdfasdfa</li>
-                    <li>fdsafasd</li>
-                    <li>fasdfa</li>
-                    <li>afas</li>
+                  <ul className={classes['plan-list']}>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/bookmark-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/bookmark-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community PlatformAccess to Peer
+                        Community Platforma
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/bookmark-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/checkmark-circle-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community PlatformAccess to Peer
+                        Community Platforma
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/checkmark-circle-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform
+                      </div>
+                    </li>
                   </ul>
                 </div>
                 <Button to="/about/#contact-form">Get Quote</Button>
@@ -86,18 +167,92 @@ const PlansPage = () => {
           </div>
           <div className={classes.plan}>
             <Card>
-              <div className={classes.info}>
+              <div className={classes['plan-info']}>
                 <div>
                   <h2>Enterprise</h2>
-                  <div className={classes['card-image']}>
+                  <div className={classes['plan-image']}>
                     <img src={img3} alt="" />
                   </div>
-                  <ul>
-                    <li>asdf</li>
-                    <li>asdfasdfa</li>
-                    <li>fdsafasd</li>
-                    <li>fasdfa</li>
-                    <li>afas</li>
+                  <ul className={classes['plan-list']}>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/bookmark-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/bookmark-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community PlatformAccess to Peer
+                        Community Platforma
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/bookmark-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/checkmark-circle-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community PlatformAccess to Peer
+                        Community Platforma
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/checkmark-circle-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/diamond-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform
+                      </div>
+                    </li>
+                    <li>
+                      <div className={classes['plan-icon']}>
+                        <ion-icon
+                          size="medium"
+                          src="/icons/diamond-outline.svg"
+                        ></ion-icon>
+                      </div>
+                      <div className={classes['plan-detail']}>
+                        Access to Peer Community Platform
+                      </div>
+                    </li>
                   </ul>
                 </div>
                 <Button to="/about/#contact-form">Get Quote</Button>

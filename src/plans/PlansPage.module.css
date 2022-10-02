@@ -17,24 +17,7 @@
   border: 1px solid var(--button-main-hover);
 }
 
-.plan p,
-.plan ul {
-  margin-bottom: 3rem;
-}
-
-.card-image {
-  width: 100%;
-  height: 170px;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-
-.card-image img {
-  height: 100%;
-  width: 100%;
-}
-
-.info {
+.plan-info {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -42,6 +25,40 @@
   align-items: center;
 }
 
-.info h2 {
+.plan-info h2 {
   text-align: center;
+}
+.plan-image {
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.plan-image img {
+  height: 100%;
+  width: 100%;
+}
+
+.plan-list {
+  margin-bottom: 3rem;
+  list-style-type: none;
+  font-size: 1.4rem;
+}
+
+.plan-list li {
+  display: flex;
+  justify-content: center;
+  margin: 1.25rem 0;
+}
+
+.plan-icon {
+  width: 10%;
+  padding-top: .25rem;
+}
+
+.plan-detail {
+  width: 85%;
+  text-align: left;
+  /* border: 1px solid blue; */
 }

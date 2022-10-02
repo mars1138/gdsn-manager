@@ -1,7 +1,7 @@
 .card {
   height: 100%;
   margin: 1rem;
-  padding: 3rem;
+  padding: 2rem;
   background-color: var(--background-card);
   border-radius: var(--borderRadius-card);
   display: flex;
@@ -10,6 +10,7 @@
   align-items: center;
   overflow: hidden;
   border: 1px solid var(--content-border);
+  box-shadow: var(--card-shadow);
 }
 
 .card img {
