@@ -8,7 +8,7 @@ const Contact = () => {
   const [formSubmitting, setFormSubmitting] = useState(false);
 
   const setSubmittingHandler = () => {
-    setFormSubmitting((prev) => !prev);
+    setFormSubmitting(prev => !prev);
   };
 
   const contactClasses = `${classes.contact} ${
@@ -16,7 +16,7 @@ const Contact = () => {
   }`;
 
   return (
-    <div id="contact-form">
+    <div id="contact-form" className={classes.form}>
       <h1>Contact us today for more information!</h1>
       <div className={contactClasses}>
         <ContactForm toggleSubmitting={setSubmittingHandler} />
