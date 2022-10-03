@@ -28,6 +28,15 @@ const ContactForm = (props) => {
   } = useInput(isNotEmpty);
 
   const {
+    enteredInput: enteredCompany,
+    enteredInputValid: enteredCompanyValid,
+    inputInvalid: companyInputInvalid,
+    inputChangeHandler: companyChangeHandler,
+    inputBlurHandler: companyBlurHandler,
+    reset: resetCompany,
+  } = useInput(isNotEmpty);
+
+  const {
     enteredInput: enteredPhone,
     enteredInputValid: enteredPhoneValid,
     inputInvalid: phoneInputInvalid,
@@ -54,7 +63,11 @@ const ContactForm = (props) => {
 
   let formIsValid = false;
 
-  formIsValid = enteredNameValid && enteredEmailValid && enteredPhoneValid;
+  formIsValid =
+    enteredNameValid &&
+    enteredEmailValid &&
+    enteredPhoneValid &&
+    enteredCompanyValid;
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -94,6 +107,7 @@ const ContactForm = (props) => {
         resetEmail();
         resetPhone();
         resetComments();
+        resetCompany();
       }, 3000);
     } catch (err) {
       setIsSubmitting(false);
@@ -114,6 +128,7 @@ const ContactForm = (props) => {
   };
 
   const nameControlClasses = setControlClasses(nameInputInvalid);
+  const companyControlClasses = setControlClasses(companyInputInvalid);
   const emailControlClasses = setControlClasses(emailInputInvalid);
   const phoneControlClasses = setControlClasses(phoneInputInvalid);
   const commentsControlClasses = setControlClasses(commentsInputInvalid);
@@ -174,6 +189,17 @@ const ContactForm = (props) => {
               value={enteredPhone}
             />
             {phoneInputInvalid && <p>Please enter a phone number!</p>}
+          </div>
+          <div className={companyControlClasses}>
+            <label htmlFor="company">Company</label>
+            <input
+              type="text"
+              id="company"
+              onChange={companyChangeHandler}
+              onBlur={companyBlurHandler}
+              value={enteredCompany}
+            />
+            {companyInputInvalid && <p>Please enter name of your company!</p>}
           </div>
           <div className={commentsControlClasses}>
             <label htmlFor="name">Comments</label>

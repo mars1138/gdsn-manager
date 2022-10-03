@@ -1,99 +1,97 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import TabComponent from '../shared/components/TabComponent/TabComponent';
+import Modal from '../shared/UIElements/Modal';
+import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
+import Button from '../shared/UIElements/Button';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
+import FormInput from '../shared/components/FormElements/FormInput';
+
+import { useForm } from '../shared/components/hooks/form-hook';
+
 import classes from './AddProduct.module.css';
 
-import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
-import img2 from '../assets/pexels-fauxels-3183197.jpg';
-import img3 from '../assets/pexels-fauxels-3184418.jpg';
-import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
-
-const tabContent = [
-  {
-    id: 1,
-    tabTitle: 'Products 1',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 1 Heading',
-    imgUrl: img1,
-  },
-  {
-    id: 2,
-    tabTitle: 'Products 2',
-    content:
-      'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 2 Heading',
-    imgUrl: img2,
-  },
-  {
-    id: 3,
-    tabTitle: 'Products 3',
-    content:
-      'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 3 Heading',
-    imgUrl: img3,
-  },
-  {
-    id: 4,
-    tabTitle: 'Products 4',
-    content:
-      'Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 4 Heading',
-    imgUrl: img4,
-  },
-];
-
 const AddProduct = () => {
+  const [error, setError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const clearError = () => {
+    setError(false);
+  };
+
+  const [formState, inputHandler] = useForm({
+    name: {
+      value: '',
+      isValid: false,
+    },
+    description: {
+      value: '',
+      isValid: false,
+    },
+    GTIN14: {
+      value: '',
+      isValid: false,
+    },
+  });
+
+  const history = useHistory();
+
+  const productSubmitHandler = async (event) => {
+    event.preventDefault();
+    setIsSubmitting();
+
+    try {
+      history.push('/');
+    } catch (err) {}
+  };
+
+  const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
+
   return (
-    <React.Fragment>
-      <Section>
-        <h1>Add Product</h1>
-        <div className={classes.cards}>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <div className={classes.image}></div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-        </div>
-      </Section>
-      <Section>
-        <TabComponent>{tabContent}</TabComponent>
-      </Section>
-    </React.Fragment>
+    <Section>
+      <Modal show={error} onClear={clearError} />
+      <h1>Add Product</h1>
+      <Card>
+        <form className={classes.form}>
+          {isSubmitting && <LoadingSpinner />}
+          <FormInput
+            id="name"
+            element="input"
+            label="Name"
+            // validators={}
+            errorText="Please enter a valid name"
+            onInput={inputHandler}
+          />
+          <FormInput
+            id="description"
+            element="textarea"
+            label="Product Description"
+            // validators={}
+            errorText="Please enter a description (min 10 characters)"
+            onInput={inputHandler}
+          />
+          <FormInput
+            id="GTIN14"
+            element="input"
+            label="GTIN-14 Global Trade Identification Number"
+            // validators={}
+            errorText="Please enter a valid 14 digit GTIN"
+            onInput={inputHandler}
+          />
+          <FormInput
+            id="category"
+            element="select"
+            selectOptions={categoryOptions}
+            label="Global Product Category Code"
+            // validators={}
+            errorText="Please select a category"
+            onInput={inputHandler}
+          />
+        </form>
+        <Button>Submit</Button>
+      </Card>
+    </Section>
   );
 };
 
