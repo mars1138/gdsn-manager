@@ -1,0 +1,13 @@
+.category {
+  margin: 2rem auto 5rem auto;
+}
+
+.inputs {
+  padding: 0 5rem;
+}
+
+.category h3 {
+  /* display: block; */
+  padding: 0.5rem;
+  background: var(--content-border);
+}

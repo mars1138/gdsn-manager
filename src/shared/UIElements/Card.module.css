@@ -2,6 +2,7 @@
   height: 100%;
   margin: 1rem;
   padding: 2rem;
+  padding-bottom: 4rem;
   background-color: var(--background-card);
   border-radius: var(--borderRadius-card);
   display: flex;

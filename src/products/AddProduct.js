@@ -6,7 +6,10 @@ import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 import Button from '../shared/UIElements/Button';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
-import FormInput from '../shared/components/FormElements/FormInput';
+
+import Main from './formCategories/Main';
+import Dimensions from './formCategories/Dimensions';
+import PackagingHandling from './formCategories/PackagingHandling';
 
 import { useForm } from '../shared/components/hooks/form-hook';
 
@@ -46,50 +49,22 @@ const AddProduct = () => {
     } catch (err) {}
   };
 
-  const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
+  // const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
 
   return (
     <Section>
       <Modal show={error} onClear={clearError} />
       <h1>Add Product</h1>
       <Card>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={productSubmitHandler}>
           {isSubmitting && <LoadingSpinner />}
-          <FormInput
-            id="name"
-            element="input"
-            label="Name"
-            // validators={}
-            errorText="Please enter a valid name"
-            onInput={inputHandler}
-          />
-          <FormInput
-            id="description"
-            element="textarea"
-            label="Product Description"
-            // validators={}
-            errorText="Please enter a description (min 10 characters)"
-            onInput={inputHandler}
-          />
-          <FormInput
-            id="GTIN14"
-            element="input"
-            label="GTIN-14 Global Trade Identification Number"
-            // validators={}
-            errorText="Please enter a valid 14 digit GTIN"
-            onInput={inputHandler}
-          />
-          <FormInput
-            id="category"
-            element="select"
-            selectOptions={categoryOptions}
-            label="Global Product Category Code"
-            // validators={}
-            errorText="Please select a category"
-            onInput={inputHandler}
-          />
+          <Main inputHandler={inputHandler} />
+          <Dimensions inputHandler={inputHandler} />
+          <PackagingHandling inputHandler={inputHandler} />
         </form>
-        <Button>Submit</Button>
+        <Button type="submit" disabled={formState}>
+          Submit
+        </Button>
       </Card>
     </Section>
   );
