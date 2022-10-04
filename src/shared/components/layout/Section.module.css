@@ -15,6 +15,11 @@
   margin-bottom: 20vh;
 } */
 
+.section h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 .container {
   width: 1080px;
   margin: 0 auto 0 auto;
@@ -25,4 +30,4 @@
 
 .hidden {
   opacity: 0;
-} 
+}

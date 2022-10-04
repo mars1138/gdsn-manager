@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 
-// import {validate} from '../../utilities/validators';
+import { validate } from '../../utilities/validators';
 import classes from './FormInput.module.css';
 
 const inputReducer = (state, action) => {
@@ -9,7 +9,7 @@ const inputReducer = (state, action) => {
       return {
         ...state,
         value: action.val,
-        isValid: ValidityState(action.val, action.validators),
+        isValid: validate(action.val, action.validators),
       };
     case 'TOUCH': {
       return {
@@ -77,14 +77,10 @@ const FormInput = (props) => {
     );
 
   if (props.element === 'select') {
-    console.log(props.selectOptions);
-
     const optionsArray = [];
 
-    props.selectOptions.forEach((option) => {
-      console.log(option);
-
-      optionsArray.push(<option value={option}>{option}</option>);
+    props.selectOptions.forEach((option, index) => {
+      optionsArray.push(<option key={index} value={option}>{option}</option>);
     });
 
     element = <select>{optionsArray}</select>;

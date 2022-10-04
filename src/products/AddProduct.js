@@ -36,6 +36,18 @@ const AddProduct = () => {
       value: '',
       isValid: false,
     },
+    category: {
+      value: '',
+      isValid: false,
+    },
+    productType: {
+      value: '',
+      isValid: false,
+    },
+    image: {
+      value: null,
+      isValid: false,
+    },
   });
 
   const history = useHistory();
@@ -49,23 +61,23 @@ const AddProduct = () => {
     } catch (err) {}
   };
 
-  // const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
-
   return (
     <Section>
       <Modal show={error} onClear={clearError} />
       <h1>Add Product</h1>
-      <Card>
-        <form className={classes.form} onSubmit={productSubmitHandler}>
-          {isSubmitting && <LoadingSpinner />}
-          <Main inputHandler={inputHandler} />
-          <Dimensions inputHandler={inputHandler} />
-          <PackagingHandling inputHandler={inputHandler} />
-        </form>
-        <Button type="submit" disabled={formState}>
-          Submit
-        </Button>
-      </Card>
+      <div className={classes['card-container']}>
+        <Card>
+          <form className={classes.form} onSubmit={productSubmitHandler}>
+            {isSubmitting && <LoadingSpinner />}
+            <Main inputHandler={inputHandler} />
+            {/* <Dimensions inputHandler={inputHandler} />
+            <PackagingHandling inputHandler={inputHandler} /> */}
+          </form>
+          <Button type="submit" disabled={!formState.isValid}>
+            Submit
+          </Button>
+        </Card>
+      </div>
     </Section>
   );
 };
