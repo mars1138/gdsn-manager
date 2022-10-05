@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FormInput from '../../shared/components/FormElements/FormInput';
+import { VALIDATOR_REQUIRE } from '../../shared/utilities/validators';
 
 import classes from './Categories.module.css';
 
@@ -14,7 +15,7 @@ const Dimensions = (props) => {
             id="height"
             element="input"
             label="Height (inches)"
-            // validators={}
+            validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter height in inches"
             onInput={props.inputHandler}
           />
@@ -22,7 +23,7 @@ const Dimensions = (props) => {
             id="width"
             element="input"
             label="Width (inches)"
-            // validators={}
+            validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter width in inches"
             onInput={props.inputHandler}
           />
@@ -30,7 +31,7 @@ const Dimensions = (props) => {
             id="depth"
             element="input"
             label="Depth (inches)"
-            // validators={}
+            validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter depth in inches"
             onInput={props.inputHandler}
           />
@@ -38,7 +39,7 @@ const Dimensions = (props) => {
             id="weight"
             element="input"
             label="Weight (inches)"
-            // validators={}
+            validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter weight in pounds"
             onInput={props.inputHandler}
           />

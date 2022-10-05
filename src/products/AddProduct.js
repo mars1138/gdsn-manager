@@ -7,29 +7,29 @@ import Button from '../shared/UIElements/Button';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 
-import ImageUpload from '../shared/components/FormElements/ImageUpload';
+// import ImageUpload from '../shared/components/FormElements/ImageUpload';
 
-import {
-  VALIDATOR_REQUIRE,
-  VALIDATOR_MINLENGTH,
-} from '../shared/utilities/validators';
+// import {
+//   VALIDATOR_REQUIRE,
+//   VALIDATOR_MINLENGTH,
+// } from '../shared/utilities/validators';
 
 import Main from './formCategories/Main';
-// import Dimensions from './formCategories/Dimensions';
-// import PackagingHandling from './formCategories/PackagingHandling';
+import Dimensions from './formCategories/Dimensions';
+import PackagingHandling from './formCategories/PackagingHandling';
 
 import { useForm } from '../shared/components/hooks/form-hook';
-import FormInput from '../shared/components/FormElements/FormInput';
+// import FormInput from '../shared/components/FormElements/FormInput';
 
 import classes from './AddProduct.module.css';
 
 const AddProduct = () => {
-  // const [error, setError] = useState(false);
+  const [error, setError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // const clearError = () => {
-  //   setError(false);
-  // };
+  const clearError = () => {
+    setError(false);
+  };
 
   const [formState, inputHandler] = useForm(
     {
@@ -57,16 +57,44 @@ const AddProduct = () => {
       //   value: null,
       //   isValid: false,
       // },
+      height: {
+        value: '',
+        isValid: false,
+      },
+      width: {
+        value: '',
+        isValid: false,
+      },
+      depth: {
+        value: '',
+        isValid: false,
+      },
+      weight: {
+        value: '',
+        isValid: false,
+      },
+      minTemp: {
+        value: '',
+        isValid: false,
+      },
+      maxTemp: {
+        value: '',
+        isValid: false,
+      },
+      storageInstructions: {
+        value: '',
+        isValid: false,
+      },
     },
-    false
+    false,
   );
 
-  // const history = useHistory();
+  const history = useHistory();
 
-  const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
-  const typeOptions = ['', 'Case', 'Display', 'Each', 'Pallet'];
+  // const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
+  // const typeOptions = ['', 'Case', 'Display', 'Each', 'Pallet'];
 
-  const productSubmitHandler = (event) => {
+  const productSubmitHandler = event => {
     event.preventDefault();
     console.log('submitting...');
     setIsSubmitting(true);
@@ -75,9 +103,9 @@ const AddProduct = () => {
       setIsSubmitting(false);
     }, 2000);
 
-    // try {
-    //   history.push('/');
-    // } catch (err) {}
+    try {
+      history.push('/');
+    } catch (err) {}
   };
 
   return (
@@ -85,7 +113,7 @@ const AddProduct = () => {
       <h1>Add Product</h1>
       <div className={classes['card-container']}>
         <Card>
-          {/* <Modal show={error} onClear={clearError} /> */}
+          <Modal show={error} onClear={clearError} />
           <form className={classes.form} onSubmit={productSubmitHandler}>
             {isSubmitting && <LoadingSpinner />}
             {/* <div className={classes['block-container']}>
@@ -149,8 +177,8 @@ const AddProduct = () => {
               </div>
             </div> */}
             <Main inputHandler={inputHandler} />
-            {/* <Dimensions inputHandler={inputHandler} />
-            <PackagingHandling inputHandler={inputHandler} /> */}
+            <Dimensions inputHandler={inputHandler} />
+            <PackagingHandling inputHandler={inputHandler} />
             <Button type="submit" disabled={!formState.isValid}>
               Add Item
             </Button>

@@ -9,7 +9,7 @@ import {
 } from '../../shared/utilities/validators';
 import classes from './Categories.module.css';
 
-const Main = (props) => {
+const Main = props => {
   const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
   const typeOptions = ['', 'Case', 'Display', 'Each', 'Pallet'];
 
@@ -30,7 +30,7 @@ const Main = (props) => {
             id="description"
             element="textarea"
             label="Product Description"
-            validators={[VALIDATOR_MINLENGTH(10)]}
+            validators={[VALIDATOR_MINLENGTH(5)]}
             errorText="Please enter a description (min 10 characters)"
             onInput={props.inputHandler}
           />
