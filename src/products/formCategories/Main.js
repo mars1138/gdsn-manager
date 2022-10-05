@@ -46,7 +46,7 @@ const Main = (props) => {
             errorText="Please enter a valid 14 digit GTIN"
             onInput={props.inputHandler}
           />
-          <FormInput
+          {/* <FormInput
             id="category"
             element="select"
             selectOptions={categoryOptions}
@@ -63,15 +63,15 @@ const Main = (props) => {
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please select a type"
             onInput={props.inputHandler}
-          />
+          /> */}
         </div>
         <div className={classes['block-50']}>
-          <ImageUpload
+          {/* <ImageUpload
             center
             id="image"
             onInput={props.inputHandler}
             errorText="Please provide an image"
-          />
+          /> */}
         </div>
       </div>
     </div>

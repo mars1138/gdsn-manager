@@ -80,7 +80,11 @@ const FormInput = (props) => {
     const optionsArray = [];
 
     props.selectOptions.forEach((option, index) => {
-      optionsArray.push(<option key={index} value={option}>{option}</option>);
+      optionsArray.push(
+        <option key={index} value={option}>
+          {option}
+        </option>
+      );
     });
 
     element = <select>{optionsArray}</select>;
