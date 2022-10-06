@@ -87,7 +87,11 @@ const FormInput = (props) => {
       );
     });
 
-    element = <select>{optionsArray}</select>;
+    element = (
+      <select id={props.id} onChange={changeHandler} onBlur={touchHandler}>
+        {optionsArray}
+      </select>
+    );
   }
 
   return (

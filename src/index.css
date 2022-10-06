@@ -1,22 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&display=swap');
 
+
 :root {
   --bp-large: 78.15em; /* 1250px */
   --bp-medium: 61.25em; /* 980px */
   --bp-medium-sm: 45em /* 860px */
   --bp-small: 37.5em; /* 715px */
   --bp-smallest: 31.25em; /* 600px */
+  
+  --primary: rgb(41, 141, 235);
+  --primary-light: rgb(37,157,242);
+  --secondary: rgb(93,180,242);	
+  --secondary-light: rgb(154,208,245);
 
-  /* --heading1: rgb(252, 207, 95);
-  --heading2: rgb(252, 207, 95); */
+  --white-1: rgb(250, 250, 250);
+  --white-2: rgb(247, 247, 247);
+  --white-3: rgb(249, 249, 249);
 
-  /* --button-main: rgb(1, 107, 1);
-  --button-main-hover: rgb(0, 139, 0); */
+  --black-1: #363b49;
+  --black-2: #282c37;
 
-  --background-main: rgb(250, 250, 250);
-  --background-header: rgb(247, 247, 247);
-  --background-card: rgb(249, 249, 249);
+  --gray-1: #9baec8;
+  --gray-2: #d9e1e8;
+  --gray-3:  rgba(207, 207, 207, 1);
+  --gray-4:  rgba(207, 207, 207, 0.534);
+  --content-border:  rgba(207, 207, 207, 0.534);
+
+  --red-1: #b84a39;
+
   --background-footer: rgb(41, 141, 235);
 
   --button-main: rgb(41, 141, 235);
@@ -26,14 +38,13 @@
   --bottom-border: rgb(74, 143, 77);
   --bottom-border-cart-item: rgba(74, 143, 77, 0.274);
 
-  --content-border:  rgba(207, 207, 207, 0.534);
 
-  --img-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --button-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.35);
+  
   --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   --modal-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   --button-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  --button-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.35);
-
   --text-color: rgb(39, 39, 39);
   --text-nav: rgb(41, 141, 235);
   --text-info: rgb(74, 143, 77);
@@ -53,7 +64,7 @@
 
 html {
   font-size: 62.5%;
-  color: var(--text-color);
+  color: var(--black-1);
 }
 
 @media only screen and (max-width: 980px) {
@@ -81,7 +92,7 @@ body {
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
-  background-color: var(--background-main);
+  background-color: var(--white-3);
 
   text-align: justify;
 

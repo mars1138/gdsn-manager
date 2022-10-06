@@ -9,7 +9,7 @@ import {
 } from '../../shared/utilities/validators';
 import classes from './Categories.module.css';
 
-const Main = props => {
+const Main = (props) => {
   const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
   const typeOptions = ['', 'Case', 'Display', 'Each', 'Pallet'];
 
@@ -17,7 +17,7 @@ const Main = props => {
     <div className={classes.category}>
       <h3>Main</h3>
       <div className={classes['block-container']}>
-        <div className={classes['block-100']}>
+        <div className={classes['block-50']}>
           <FormInput
             id="name"
             element="input"
@@ -34,10 +34,6 @@ const Main = props => {
             errorText="Please enter a description (min 10 characters)"
             onInput={props.inputHandler}
           />
-        </div>
-      </div>
-      <div className={classes['block-container']}>
-        <div className={classes['block-50']}>
           <FormInput
             id="GTIN14"
             element="input"
@@ -46,7 +42,7 @@ const Main = props => {
             errorText="Please enter a valid 14 digit GTIN"
             onInput={props.inputHandler}
           />
-          {/* <FormInput
+          <FormInput
             id="category"
             element="select"
             selectOptions={categoryOptions}
@@ -63,15 +59,16 @@ const Main = props => {
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please select a type"
             onInput={props.inputHandler}
-          /> */}
+          />
         </div>
         <div className={classes['block-50']}>
-          {/* <ImageUpload
+          <ImageUpload
             center
             id="image"
+            validators={[VALIDATOR_REQUIRE()]}
             onInput={props.inputHandler}
             errorText="Please provide an image"
-          /> */}
+          />
         </div>
       </div>
     </div>

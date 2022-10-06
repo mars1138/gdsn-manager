@@ -10,7 +10,7 @@ const Dimensions = (props) => {
     <div className={classes.category}>
       <h3>Dimensions</h3>
       <div className={classes['block-container']}>
-        <div className={classes.inputs25}>
+        <div className={classes['block-25']}>
           <FormInput
             id="height"
             element="input"
@@ -27,6 +27,8 @@ const Dimensions = (props) => {
             errorText="Please enter width in inches"
             onInput={props.inputHandler}
           />
+        </div>
+        <div className={classes['block-25']}>
           <FormInput
             id="depth"
             element="input"

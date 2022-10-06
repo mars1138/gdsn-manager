@@ -14,7 +14,7 @@ const PackagingHandling = props => {
       <h3>PackagingHandling</h3>
       <div className={classes['block-container']}>
         <div className={classes['block-25']}>
-          {/* <FormInput
+          <FormInput
             id="packagingType"
             element="select"
             selectOptions={typeOptions}
@@ -22,10 +22,10 @@ const PackagingHandling = props => {
             // validators={}
             errorText="Please select a packaging type"
             onInput={props.inputHandler}
-          /> */}
+          />
         </div>
         <div className={classes['block-25']}>
-          {/* <FormInput
+          <FormInput
             id="tempUnits"
             element="select"
             selectOptions={categoryOptions}
@@ -33,14 +33,14 @@ const PackagingHandling = props => {
             // validators={}
             errorText="Please select a unit of measure"
             onInput={props.inputHandler}
-          /> */}
+          />
           <FormInput
             id="maxTemp"
             element="input"
             type="text"
             label="Maximum Temperature"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a maximum temperature"
+            errorText="Please enter max temperature"
             onInput={props.inputHandler}
           />
           <FormInput
@@ -49,13 +49,11 @@ const PackagingHandling = props => {
             type="text"
             label="Minimum Temperature"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a minimum temperature"
+            errorText="Please enter min temperature"
             onInput={props.inputHandler}
           />
         </div>
-      </div>
-      <div className={classes['block-container']}>
-        <div className={classes['block-100']}>
+        <div className={classes['block-50']}>
           <FormInput
             id="storageInstructions"
             element="textarea"
