@@ -17,32 +17,36 @@
 .form-control textarea {
   width: 100%;
   font: inherit;
-  border: 1px solid #ccc;
-  background: #f8f8f8;
+  border: 1px solid var(--gray-3);
+  background: var(--white-2);
   padding: 0.15rem 0.25rem;
 }
 
 .form-control input:focus,
 .form-control textarea:focus {
   outline: none;
-  background: #ebebeb;
-  border-color: var(--button-main);
+  background: var(--white-4);
+  border-color: var(--secondary-light);
 }
 
-.form-control--invalid label,
-.form-control--invalid p {
-  color: red;
+.invalid label,
+.invalid p {
+  color: var(--red-1);
 }
 
-.form-control--invalid input,
-.form-control--invalid textarea {
-  border-color: red;
-  background: #ffd1d1;
+.invalid input,
+.invalid textarea {
+  border-color: var(--red-1);
+  background: var(--red-2);
 }
 
 .form-control select {
   font: inherit;
-  border: 1px solid #ccc;
-  background: #f8f8f8;
+  border: 1px solid var(--gray-3);
+  background: var(--white-2);
   padding: 0.15rem 0.25rem;
+}
+
+.form-control select:focus {
+  outline: none;
 }

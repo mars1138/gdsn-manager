@@ -5,7 +5,11 @@
 .category h3 {
   /* display: block; */
   padding: 0.5rem;
-  background: var(--content-border);
+  background: var(--secondary-light-2);
+}
+
+.category button {
+  font-size: 1rem;
 }
 
 .block-container {

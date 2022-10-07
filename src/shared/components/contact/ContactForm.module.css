@@ -33,7 +33,7 @@
 .control textarea {
   font: inherit;
   font-size: 1.25rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray-3);
   border-radius: 4px;
   height: 2.5rem;
   width: 100%;
@@ -45,12 +45,12 @@
 }
 
 .invalid label {
-  color: #ca3e51;
+  color: var(--red-1);
 }
 
 .invalid input {
-  border-color: #aa0b20;
-  background-color: #ffeff1;
+  border-color: var(--red-1);
+  background-color: var(--red-2);
 }
 
 @media only screen and (max-width: 715px) {

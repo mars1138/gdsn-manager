@@ -9,7 +9,7 @@
 .preview {
   width: 13rem;
   height: 13rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray-3);
   display: flex;
   justify-content: center;
   align-items: center;

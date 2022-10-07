@@ -22,5 +22,5 @@
   transition: all 0.2s;
   /* font-size: 2rem; */
   border-radius: 3px;
-  border: 1px solid var(--content-border);
+  border: 1px solid var(--gray-4);
 }

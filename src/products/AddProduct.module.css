@@ -9,31 +9,3 @@
 
 /*=======================================*/
 
-.category {
-  margin: 2rem auto 5rem auto;
-}
-
-.category h3 {
-  /* display: block; */
-  padding: 0.5rem;
-  background: var(--content-border);
-}
-
-.block-container {
-  padding: 1rem;
-  display: flex;
-  width: 100%;
-}
-
-.block-100 {
-  width: 100%;
-  /* display: flex; */
-}
-
-.block-50 {
-  width: 50%;
-}
-
-.block-25 {
-  width: 25%;
-}

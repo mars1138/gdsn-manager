@@ -38,7 +38,7 @@ button span {
 .menu-items a:visited,
 .menu-items a:active {
   width: 90%;
-  color: var(--text-nav);
+  color: var(--primary);
   padding: 0.75rem 0;
   text-decoration: none;
   border-top: 2px solid transparent;
@@ -48,8 +48,7 @@ button span {
 
 .menu-items a:hover,
 .menu-items a.active {
-  /* background-color: #929292; */
-  border-bottom: 2px solid var(--text-nav);
+  border-bottom: 2px solid var(--primary);
 }
 
 .arrow::after {
@@ -64,6 +63,6 @@ button span {
 }
 
 .menu-items a:hover .arrow::after,
-.menu-items a.active .arrow::after, {
+.menu-items a.active .arrow::after {
   transform: rotate(-90deg);
 }

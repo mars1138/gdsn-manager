@@ -14,7 +14,7 @@
 }
 
 .plan > *:hover {
-  border: 1px solid var(--button-main-hover);
+  border: 1px solid var(--primary-light);
 }
 
 .plan-info {
@@ -54,11 +54,10 @@
 
 .plan-icon {
   width: 10%;
-  padding-top: .25rem;
+  padding-top: 0.25rem;
 }
 
 .plan-detail {
   width: 85%;
   text-align: left;
-  /* border: 1px solid blue; */
 }

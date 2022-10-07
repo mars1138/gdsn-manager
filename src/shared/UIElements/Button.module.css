@@ -35,16 +35,16 @@
 
 .disabled,
 .disabled:hover {
-  background: gray;
+  background: var(--gray-4);
   cursor: not-allowed;
   transform: translateY(0);
   border: none;
   box-shadow: none;
-  border: 1px solid gray;
+  border: 1px solid var(--gray-4);
 }
 
 .disabled * {
-  color: var(--gray-4);
+  color: var(--gray-3);
 }
 
 @media only screen and (max-width: 768px) {

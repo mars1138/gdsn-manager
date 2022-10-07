@@ -1,9 +1,9 @@
 .tab {
   display: flex;
-  margin: 0 .75rem;
+  margin: 0 0.75rem;
   padding: 1rem 1.5rem;
   border-radius: var(--borderRadius-button);
-  background: rgb(139, 193, 243);
+  background: var(--secondary-light-2);
   color: white;
   transform: translateY(40%);
   transition: all 0.2s;
@@ -11,12 +11,11 @@
 }
 
 .tab:hover {
-  background: var(--button-main);
-
+  background: var(--primary);
 }
 
 .active {
-  background: var(--button-main);
+  background: var(--primary);
   display: block;
   transform: translateY(23%);
 }

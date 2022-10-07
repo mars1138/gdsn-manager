@@ -15,6 +15,7 @@ import { useForm } from '../shared/components/hooks/form-hook';
 // import FormInput from '../shared/components/FormElements/FormInput';
 
 import classes from './AddProduct.module.css';
+import classes2 from './formCategories/Categories.module.css';
 
 const AddProduct = () => {
   const [error, setError] = useState(false);
@@ -108,7 +109,7 @@ const AddProduct = () => {
             <Main inputHandler={inputHandler} />
             <Dimensions inputHandler={inputHandler} />
             <PackagingHandling inputHandler={inputHandler} />
-            <div className={classes['block-container']}>
+            <div className={classes2['block-container']}>
               <Button type="submit" disabled={!formState.isValid}>
                 Add Item
               </Button>
