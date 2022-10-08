@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Button from '../../UIElements/Button';
 import classes from './ImageUpload.module.css';
 
-const ImageUpload = props => {
+const ImageUpload = (props) => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
@@ -22,7 +22,7 @@ const ImageUpload = props => {
     fileReader.readAsDataURL(file);
   }, [file]);
 
-  const pickedHandler = event => {
+  const pickedHandler = (event) => {
     let pickedFile;
     let fileIsValid = isValid;
 
@@ -60,10 +60,10 @@ const ImageUpload = props => {
       >
         <div className={classes.preview}>
           {previewUrl && <img src={previewUrl} alt="Preview" />}
-          {!previewUrl && <p>Please pick an image.</p>}
+          {!previewUrl && <p>Please select an image.</p>}
         </div>
         <Button type="button" onClick={pickImageHandler}>
-          PICK IMAGE
+          Browse Image
         </Button>
         {!isValid && <p>{props.errorText}</p>}
       </div>
