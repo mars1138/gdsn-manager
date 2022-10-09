@@ -3,6 +3,8 @@ import React from 'react';
 import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
+import Slider from '../shared/components/Slider/Slider';
+
 import classes from './HomePage.module.css';
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
@@ -89,6 +91,9 @@ const HomePage = () => {
             </p>
           </Card>
         </div>
+      </Section>
+      <Section>
+        <Slider type="description" />
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>

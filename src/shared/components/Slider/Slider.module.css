@@ -1,0 +1,50 @@
+.slider {
+  display: flex;
+  margin: 0 auto;
+  width: 50%;
+  border: 3px solid aqua;
+  /* overflow: hidden; */
+}
+
+.slide {
+  /* display: block; */
+  transition: all 0.3s;
+  border: 5px solid greenyellow;
+  width: 100%;
+  /* height: 100%; */
+  margin: 0;
+}
+
+.slide-content {
+  width: 100%;
+  height: 100%;
+  border: 3px solid peru;
+}
+
+.content {
+  padding: 0;
+  margin: 0;
+}
+
+.description {
+}
+
+.image {
+  /* width: 100%; */
+  height: 100%;
+  overflow: hidden;
+}
+
+.image img {
+  /* width: 100%; */
+  height: 50%;
+  object-fit: contain;
+}
+
+.dots {
+  margin: 0 auto;
+}
+
+.dot {
+  margin: 1rem;
+}
