@@ -47,6 +47,60 @@ const tabContent = [
   },
 ];
 
+const sliderHome = [
+  {
+    title: 'Content Header 1',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
+  },
+  {
+    title: 'Content Header 2',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Content Header 3',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: '/media/pexels-fauxels-3184418.jpg',
+  },
+];
+
+const sliderGallery = [
+  {
+    imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
+  },
+  {
+    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    imgUrl: '/media/pexels-fauxels-3184418.jpg',
+  },
+];
+
+const sliderTestimonial = [
+  {
+    author: 'Author Name 1',
+    quote:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
+  },
+  {
+    author: 'Author Name 2',
+    quote:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    author: 'Author Name 3',
+    quote:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: '/media/pexels-fauxels-3184418.jpg',
+  },
+];
+
 const HomePage = () => {
   return (
     <React.Fragment>
@@ -93,7 +147,10 @@ const HomePage = () => {
         </div>
       </Section>
       <Section>
-        <Slider type="description" />
+        <h1>Slider Gallery</h1>
+        <Slider type="description" content={sliderHome} />
+        <Slider type="gallery" content={sliderGallery} />
+        <Slider type="testimonial" content={sliderTestimonial} />
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>

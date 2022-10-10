@@ -111,6 +111,7 @@ h1 {
 
 img {
   box-shadow: var(--img-shadow);
+  border-radius: var(--borderRadius-img);
 }
 
 /* Temporary */

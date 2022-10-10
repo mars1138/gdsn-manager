@@ -4,6 +4,7 @@ import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 import Button from '../shared/UIElements/Button';
+import Slider from '../shared/components/Slider/Slider';
 
 import classes from './PlansPage.module.css';
 
@@ -35,6 +36,27 @@ const tabContent = [
       'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 3 Heading',
     imgUrl: img3,
+  },
+];
+
+const sliderTestimonial = [
+  {
+    author: 'Author Name 1',
+    quote:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
+  },
+  {
+    author: 'Author Name 2',
+    quote:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    author: 'Author Name 3',
+    quote:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: '/media/pexels-fauxels-3184418.jpg',
   },
 ];
 
@@ -263,6 +285,9 @@ const PlansPage = () => {
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>
+      </Section>
+      <Section>
+        <Slider type="testimonial" content={sliderTestimonial} />
       </Section>
     </React.Fragment>
   );
