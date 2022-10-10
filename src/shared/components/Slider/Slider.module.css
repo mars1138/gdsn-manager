@@ -12,6 +12,7 @@
 }
 .slider--gallery {
   height: 40rem;
+  padding: 1rem 1rem 3rem 1rem;
 }
 .slider--testimonial {
   width: 60%;
@@ -122,6 +123,14 @@
   /* transform: scale(1.05); */
   object-fit: contain;
   border-radius: var(--borderRadius-img);
+}
+
+.gallery {
+  width: 100%;
+}
+
+.gallery img {
+  width: 100%;
 }
 
 .quote {
