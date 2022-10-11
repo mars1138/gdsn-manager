@@ -1,16 +1,16 @@
-.container {
+.tabscontainer {
   width: 80%;
-  margin: 50px auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   font-size: 1.5rem;
-  /* border: 1px solid green; */
+  /* border: 1px solid rgb(243, 235, 118); */
 }
 
 .tabs {
-  margin-right: auto;
-  margin-left: auto;
+  /* margin-right: auto;
+  margin-left: auto; */
   width: 100%;
   display: flex;
   justify-content: center;

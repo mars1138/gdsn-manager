@@ -146,7 +146,7 @@ const HomePage = () => {
           </Card>
         </div>
       </Section>
-      <Section>
+      <Section trigger="0.1">
         <h1>Slider Gallery</h1>
         <Slider type="description" content={sliderHome} />
         <Slider type="gallery" content={sliderGallery} />

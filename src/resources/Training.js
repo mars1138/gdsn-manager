@@ -1,7 +1,7 @@
 import React from 'react';
 
 import TabComponent from '../shared/components/TabComponent/TabComponent';
-import Card from '../shared/UIElements/Card';
+import TrainingCard from './TrainingCard';
 import Section from '../shared/components/layout/Section';
 import classes from './Training.module.css';
 
@@ -9,6 +9,33 @@ import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
 import img3 from '../assets/pexels-fauxels-3184418.jpg';
 import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
+
+const trainingContent = [
+  {
+    title: 'Training 1',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Training 2',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Training 3',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Training 4',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+];
 
 const tabContent = [
   {
@@ -46,52 +73,20 @@ const tabContent = [
 ];
 
 const Training = () => {
+  const cards = [];
+
+  trainingContent.forEach((topic, index) => {
+    cards.push(<TrainingCard training={topic} index={index} key={index} />);
+  });
+
   return (
     <React.Fragment>
       <Section>
         <h1>Training</h1>
-        <div className={classes.cards}>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <div className={classes.image}></div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-        </div>
-      </Section>
-      <Section>
         <TabComponent>{tabContent}</TabComponent>
+      </Section>
+      <Section trigger=".1">
+        <div className={classes.cards}>{cards}</div>
       </Section>
     </React.Fragment>
   );

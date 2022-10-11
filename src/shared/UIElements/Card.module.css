@@ -2,7 +2,7 @@
   height: 100%;
   margin: 1rem;
   padding: 2rem;
-  padding-bottom: 4rem;
+  /* padding-bottom: 4rem; */
   background-color: var(--white-2);
   border-radius: var(--borderRadius-card);
   display: flex;

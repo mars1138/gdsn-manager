@@ -27,14 +27,20 @@ const TabComponent = props => {
     );
 
     contentData.push(
-      <TabContent key={tab.id} id={tab.id} activeTab={activeTab} imageSrc={tab.imgUrl} heading={tab.contentHeading} text={tab.content} />
+      <TabContent
+        key={tab.id}
+        id={tab.id}
+        activeTab={activeTab}
+        imageSrc={tab.imgUrl}
+        heading={tab.contentHeading}
+        text={tab.content}
+      />,
     );
   });
 
   return (
-    <div className={classes.container}>
+    <div className={classes.tabscontainer}>
       <ul className={classes.tabs}>{tabsData}</ul>
-
       <div className={classes.content}>{contentData}</div>
     </div>
   );
