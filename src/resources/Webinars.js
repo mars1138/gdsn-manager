@@ -1,14 +1,72 @@
 import React from 'react';
 
 import TabComponent from '../shared/components/TabComponent/TabComponent';
-import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
+
+import WebinarCard from './WebinarCard';
 import classes from './Webinars.module.css';
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
 import img3 from '../assets/pexels-fauxels-3184418.jpg';
 import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
+
+const webinarContent = [
+  {
+    title: 'Webinar 1',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Webinar 2',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Webinar 3',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Webinar 4',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Webinar 5',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Webinar 6',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Webinar 7',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Webinar 8',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+  {
+    title: 'Webinar 9',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+  },
+];
 
 const tabContent = [
   {
@@ -46,49 +104,17 @@ const tabContent = [
 ];
 
 const Webinars = () => {
+  const webinars = [];
+
+  webinarContent.forEach((topic, index) => {
+    webinars.push(<WebinarCard webinar={topic} key={index} />);
+  });
+
   return (
     <React.Fragment>
       <Section>
         <h1>Webinars</h1>
-        <div className={classes.cards}>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <div className={classes.image}></div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h2>CARD CONTENT</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-        </div>
+        <div className={classes.webinars}>{webinars}</div>
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>

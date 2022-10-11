@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './Slider.module.css';
 
-const Slide = props => {
+const Slide = (props) => {
   let slide;
 
   if (props.type === 'description') {

@@ -2,17 +2,18 @@ import React from 'react';
 
 import classes from './Slider.module.css';
 
-const SlideNav = props => {
+const SlideNav = (props) => {
+  const prev = '/icons/chevron-back-outline.svg';
+  const next = '/icons/chevron-forward-outline.svg';
+  const navClass = `${props.type === 'left' ? classes.left : classes.right}`;
+
   return (
-    <div className={classes.left} onClick={prevSlide}>
-      <ion-icon size="medium" src="/icons/chevron-back-outline.svg"></ion-icon>
+    <div className={navClass} onClick={props.slideAction}>
+      <ion-icon
+        size="medium"
+        src={props.type === 'left' ? prev : next}
+      ></ion-icon>
     </div>
-    //     <div className={classes.right} onClick={nextSlide}>
-    //     <ion-icon
-    //       size="medium"
-    //       src="/icons/chevron-forward-outline.svg"
-    //     ></ion-icon>
-    //   </div>
   );
 };
 

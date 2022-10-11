@@ -10,9 +10,9 @@
   padding-bottom: 70px;
 }
 
-/* .section:last-of-type {
-  margin-bottom: 20vh;
-} */
+.section:last-of-type {
+  margin-bottom: 12vh;
+}
 
 .section h1 {
   text-align: center;

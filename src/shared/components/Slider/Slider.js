@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 
 import Slide from './Slide';
 import SlideDot from './SlideDot';
+import SlideNav from './SlideNav';
 import classes from './Slider.module.css';
 
-const Slider = props => {
+const Slider = (props) => {
   const [translate, setTranslate] = useState([0, 100, 200]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const maxSlide = props.content.length - 1;
   const sliderContent = props.content;
+
   let slideElements = [];
   let dotElements = [];
 
-  const goToSlide = slide => {
+  const goToSlide = (slide) => {
     const tempTrans = [];
 
     for (let i = 0; i <= maxSlide; i++) {
@@ -36,7 +38,7 @@ const Slider = props => {
 
   sliderContent.forEach((slide, index) => {
     slideElements.push(
-      <Slide index={index} slide={slide} type={props.type} shift={translate} />,
+      <Slide index={index} slide={slide} type={props.type} shift={translate} />
     );
 
     dotElements.push(
@@ -44,7 +46,7 @@ const Slider = props => {
         index={index}
         goToSlide={goToSlide}
         currentSlide={currentSlide}
-      />,
+      />
     );
   });
 
@@ -57,18 +59,8 @@ const Slider = props => {
       <div className={classes.container}>
         <div className={classes.slides}>{slideElements}</div>
         <div className={classes.dots}>{dotElements}</div>
-        {/* <div className={classes.left} onClick={prevSlide}>
-          <ion-icon
-            size="medium"
-            src="/icons/chevron-back-outline.svg"
-          ></ion-icon>
-        </div>
-        <div className={classes.right} onClick={nextSlide}>
-          <ion-icon
-            size="medium"
-            src="/icons/chevron-forward-outline.svg"
-          ></ion-icon>
-        </div> */}
+        <SlideNav type="left" slideAction={prevSlide} />
+        <SlideNav type="right" slideAction={nextSlide} />
       </div>
     </div>
   );

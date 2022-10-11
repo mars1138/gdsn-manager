@@ -1,0 +1,14 @@
+.title {
+  margin-bottom: 1rem;
+}
+
+.image {
+  height: 18rem;
+  margin-bottom: 1rem;
+  /* cursor: pointer; */
+}
+
+.text {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
