@@ -1,15 +1,4 @@
-.cards {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.cards h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
-
-/* .plan {
+.plan {
   width: 30%;
 }
 
@@ -27,11 +16,14 @@
 }
 
 .plan-info h2 {
+  display: block;
+  color: var(--white-3);
+  background-color: var(--secondary);
   text-align: center;
 }
 .plan-image {
   width: 100%;
-  height: 170px;
+  height: 100px;
   overflow: hidden;
   margin-bottom: 1rem;
 }
@@ -39,6 +31,7 @@
 .plan-image img {
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 .plan-list {
@@ -61,4 +54,4 @@
 .plan-detail {
   width: 85%;
   text-align: left;
-} */
+}

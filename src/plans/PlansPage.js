@@ -1,10 +1,10 @@
 import React from 'react';
 
 import TabComponent from '../shared/components/TabComponent/TabComponent';
-import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
-import Button from '../shared/UIElements/Button';
 import Slider from '../shared/components/Slider/Slider';
+import PlanCard from './PlanCard';
+import { planCards } from '../assets/data/plansData';
 
 import classes from './PlansPage.module.css';
 
@@ -61,11 +61,18 @@ const sliderTestimonial = [
 ];
 
 const PlansPage = () => {
+  const plansArray = [];
+
+  planCards.forEach((plan, index) => {
+    plansArray.push(<PlanCard plan={plan} id={index} key={index} />);
+  });
+
   return (
     <React.Fragment>
       <Section>
         <h1>Price Plans</h1>
-        <div className={classes.cards}>
+        <div className={classes.cards}>{plansArray}</div>
+        {/* <div className={classes.cards}>
           <div className={classes.plan}>
             <Card>
               <div className={classes['plan-info']}>
@@ -281,7 +288,7 @@ const PlansPage = () => {
               </div>
             </Card>
           </div>
-        </div>
+        </div> */}
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>
