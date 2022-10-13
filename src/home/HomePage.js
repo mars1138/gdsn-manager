@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Hero from '../shared/components/layout/Hero';
 import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
@@ -104,6 +105,9 @@ const sliderTestimonial = [
 const HomePage = () => {
   return (
     <React.Fragment>
+      <Section>
+        <Hero />
+      </Section>
       <Section>
         <h1>Home</h1>
         <div className={classes.cards}>
