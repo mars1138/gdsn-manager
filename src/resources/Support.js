@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Hero from '../shared/components/layout/Hero';
 import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
@@ -49,10 +50,13 @@ const Support = () => {
   return (
     <React.Fragment>
       <Section>
-        <h1>Support</h1>
+        <Hero type="center" />
+      </Section>
+      <Section>
+        {/* <h2>Support</h2> */}
         <div className={classes.cards}>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h3>CARD CONTENT</h3>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
               tempora provident explicabo inventore pariatur, nobis cumque a
@@ -61,7 +65,7 @@ const Support = () => {
             </p>
           </Card>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h3>CARD CONTENT</h3>
             <div className={classes.image}></div>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
@@ -71,7 +75,7 @@ const Support = () => {
             </p>
           </Card>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h3>CARD CONTENT</h3>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
               tempora provident explicabo inventore pariatur, nobis cumque a
@@ -80,7 +84,7 @@ const Support = () => {
             </p>
           </Card>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h3>CARD CONTENT</h3>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
               tempora provident explicabo inventore pariatur, nobis cumque a

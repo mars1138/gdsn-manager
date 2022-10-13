@@ -5,7 +5,6 @@ import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 import Slider from '../shared/components/Slider/Slider';
-
 import classes from './HomePage.module.css';
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
@@ -106,13 +105,13 @@ const HomePage = () => {
   return (
     <React.Fragment>
       <Section>
-        <Hero />
+        <Hero type="right" />
       </Section>
       <Section>
-        <h1>Home</h1>
+        {/* <h2>Home</h2> */}
         <div className={classes.cards}>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h3>CARD CONTENT</h3>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
               tempora provident explicabo inventore pariatur, nobis cumque a
@@ -121,7 +120,7 @@ const HomePage = () => {
             </p>
           </Card>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h3>CARD CONTENT</h3>
             <div className={classes.image}></div>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
@@ -131,7 +130,7 @@ const HomePage = () => {
             </p>
           </Card>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h3>CARD CONTENT</h3>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
               tempora provident explicabo inventore pariatur, nobis cumque a
@@ -140,7 +139,7 @@ const HomePage = () => {
             </p>
           </Card>
           <Card>
-            <h2>CARD CONTENT</h2>
+            <h3>CARD CONTENT</h3>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
               tempora provident explicabo inventore pariatur, nobis cumque a
@@ -151,7 +150,7 @@ const HomePage = () => {
         </div>
       </Section>
       <Section trigger="0.1">
-        <h1>Slider Gallery</h1>
+        <h2>Slider Gallery</h2>
         <Slider type="description" content={sliderHome} />
         <Slider type="gallery" content={sliderGallery} />
         <Slider type="testimonial" content={sliderTestimonial} />

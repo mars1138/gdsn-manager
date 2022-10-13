@@ -15,7 +15,8 @@
   margin-bottom: 12vh;
 }
 
-.section h1 {
+.section h2 {
+  font-size: 3rem;
   text-align: center;
   margin-bottom: 3rem;
 }

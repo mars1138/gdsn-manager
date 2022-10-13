@@ -1,0 +1,17 @@
+.hero {
+  width: 100%;
+  height: 40vh;
+  padding: 4rem;
+
+  background-image: url('../../../assets/pexels-fauxels-3183197.jpg');
+  background-size: cover;
+  background-position-y: 30%;
+  /* background-blend-mode: color-burn; */
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: flex-start;
+  border-radius: var(--borderRadius-card);
+  box-shadow: var(--shadow);
+  /* border: 1px solid blue; */
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Hero from '../shared/components/layout/Hero';
 import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Section from '../shared/components/layout/Section';
 import Slider from '../shared/components/Slider/Slider';
@@ -70,7 +71,10 @@ const PlansPage = () => {
   return (
     <React.Fragment>
       <Section>
-        <h1>Price Plans</h1>
+        <Hero type="center" />
+      </Section>
+      <Section>
+        {/* <h2>Price Plans</h2> */}
         <div className={classes.cards}>{plansArray}</div>
         {/* <div className={classes.cards}>
           <div className={classes.plan}>

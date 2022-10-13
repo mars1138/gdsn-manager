@@ -1,9 +1,9 @@
 import React from 'react';
 
+import Hero from '../shared/components/layout/Hero';
 import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Section from '../shared/components/layout/Section';
 import Slider from '../shared/components/Slider/Slider';
-
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
@@ -82,7 +82,10 @@ const ServicesPage = () => {
   return (
     <React.Fragment>
       <Section>
-        <h1>Services</h1>
+        <Hero />
+      </Section>
+      <Section>
+        {/* <h2>Services</h2> */}
         <TabComponent>{tabContent}</TabComponent>
       </Section>
       <Section trigger="0.1">
