@@ -16,7 +16,7 @@ const Webinars = () => {
   return (
     <React.Fragment>
       <Section>
-        <h1>Webinars</h1>
+        <h2>Webinars</h2>
         <div className={classes.webinars}>{webinars}</div>
       </Section>
       <Section>

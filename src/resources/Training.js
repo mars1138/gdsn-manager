@@ -16,7 +16,7 @@ const Training = () => {
   return (
     <React.Fragment>
       <Section>
-        <h1>Training</h1>
+        <h2>Training</h2>
         <TabComponent>{trainingTabs}</TabComponent>
       </Section>
       <Section trigger=".1">

@@ -6,8 +6,8 @@ import classes from './WebinarCard.module.css';
 
 const WebinarCard = (props) => {
   return (
-    <Card width="30" margin="medium" >
-      <h2 className={classes.title}>{props.webinar.title}</h2>
+    <Card width="30" margin="medium">
+      <h3 className={classes.title}>{props.webinar.title}</h3>
       <img
         className={classes.image}
         src={props.webinar.imgUrl}
