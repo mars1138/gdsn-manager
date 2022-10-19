@@ -12,6 +12,8 @@ import img2 from '../assets/pexels-fauxels-3183197.jpg';
 import img3 from '../assets/pexels-fauxels-3184418.jpg';
 import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
 
+import video from '../assets/File - 9772.mp4';
+
 const tabContent = [
   {
     id: 1,
@@ -154,6 +156,11 @@ const HomePage = () => {
         <Slider type="description" content={sliderHome} />
         <Slider type="gallery" content={sliderGallery} />
         <Slider type="testimonial" content={sliderTestimonial} />
+      </Section>
+      <Section>
+        <video width="600" height="360" src={video} type="/video/mp4" controls>
+          Your browser does not support the video tag.
+        </video>
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>

@@ -10,6 +10,7 @@ import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
 import img3 from '../assets/pexels-fauxels-3184418.jpg';
 import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
+import video from '../assets/File - 9772.mp4';
 
 const tabContent = [
   {
@@ -96,6 +97,11 @@ const ResourcesPage = () => {
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>
+      </Section>
+      <Section>
+        <video width="600" height="360" src={video} type="/video/mp4" controls>
+          Your browser does not support the video tag.
+        </video>
       </Section>
     </React.Fragment>
   );
