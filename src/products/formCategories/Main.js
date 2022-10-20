@@ -52,7 +52,7 @@ const Main = (props) => {
             onInput={props.inputHandler}
           />
           <FormInput
-            id="productType"
+            id="type"
             element="select"
             selectOptions={typeOptions}
             label="Product Type"

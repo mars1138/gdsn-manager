@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
+
 const catalogSlice = createSlice({
   name: 'catalog',
   initialState: {

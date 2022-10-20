@@ -43,7 +43,7 @@ const AddProduct = () => {
         value: '',
         isValid: false,
       },
-      productType: {
+      type: {
         value: '',
         isValid: false,
       },
