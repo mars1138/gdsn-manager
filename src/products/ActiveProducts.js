@@ -9,10 +9,31 @@ import { catalog } from '../assets/data/test-catalog';
 import { productsTabs } from '../assets/data/productsData';
 
 const ActiveProducts = () => {
+  console.log(catalog);
+
+  const productsList = [];
+
+  catalog.forEach((item, index) => {
+    console.log(item);
+
+    productsList.push(
+      <li key={index}>
+        <h3>{item.name}</h3>
+        <p>{item.GTIN14}</p>
+        <p>{item.description}</p>
+      </li>,
+    );
+  });
+
+  console.log(productsList);
+
   return (
     <React.Fragment>
       <Section>
         <h1>Active Products</h1>
+        <div className={classes.cards}>
+          <ul>{productsList}</ul>
+        </div>
         <div className={classes.cards}>
           <Card>
             <h2>CARD CONTENT</h2>
