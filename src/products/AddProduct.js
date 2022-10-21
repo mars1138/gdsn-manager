@@ -35,7 +35,7 @@ const AddProduct = () => {
         value: '',
         isValid: false,
       },
-      GTIN14: {
+      gtin: {
         value: '',
         isValid: false,
       },

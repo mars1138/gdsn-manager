@@ -6,7 +6,9 @@ import classes from './Button.module.css';
 const Button = (props) => {
   const buttonClasses = `${classes.button} ${
     props.inverse && classes.inverse
-  } ${props.disabled && classes.disabled}`;
+  } ${props.disabled && classes.disabled} ${props.go && classes.go} ${
+    props.danger && classes.danger
+  }`;
 
   if (props.to) {
     return (

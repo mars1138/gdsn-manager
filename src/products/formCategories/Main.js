@@ -35,7 +35,7 @@ const Main = (props) => {
             onInput={props.inputHandler}
           />
           <FormInput
-            id="GTIN14"
+            id="gtin"
             element="input"
             label="GTIN-14 Global Trade Identification Number"
             validators={[VALIDATOR_REQUIRE()]}
