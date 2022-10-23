@@ -1,7 +1,7 @@
 table {
   border-collapse: collapse;
   width: 100%;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
 th,
@@ -18,11 +18,23 @@ input {
   width: 30%;
 }
 
+.headers {
+  font-size: 1.2rem;
+  background-color: var(--secondary-light);
+}
+.arrow {
+  display: flex;
+}
+
+.row {
+  font-size: 1.25rem;
+}
+
 .buttons {
   display: flex;
   justify-content: flex-start;
 }
 
-.buttons button {
-  margin-left: 1rem;
+.buttons button:not(:last-of-type) {
+  margin-right: 1rem;
 }

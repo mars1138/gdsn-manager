@@ -31,7 +31,7 @@ const ProductsTable = (props) => {
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize: 5 },
+      initialState: { pageIndex: 0, pageSize: 10 },
     },
     useFilters, // adding the useFilters hook to the table; can add as many hooks as needed
     useSortBy,
@@ -44,6 +44,8 @@ const ProductsTable = (props) => {
     setFilterInput(value);
   };
 
+  console.log('headergroups: ', headerGroups);
+
   return (
     <React.Fragment>
       <input
@@ -54,33 +56,45 @@ const ProductsTable = (props) => {
       />
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr
-              className={classes.headers}
-              {...headerGroup.getHeaderGroupProps()}
-            >
-              {headerGroup.headers.map((column) => (
-                <th
-                  className={classes.header}
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-                >
-                  {column.render('Header')}
-                  <div className={classes.arrow}>
-                    <ion-icon
-                      size="small"
-                      src={
-                        column.isSorted
-                          ? column.isSortedDesc
-                            ? '/caret-down-outline.svg'
-                            : '/caret-up-outline.svg'
-                          : ''
-                      }
-                    ></ion-icon>
-                  </div>
-                </th>
-              ))}
-            </tr>
-          ))}
+          {headerGroups.map((headerGroup, i) => {
+            if (i === 0) {
+              return null;
+            } else {
+              return(
+
+              <tr
+                className={classes.headers}
+                {...headerGroup.getHeaderGroupProps()}
+              >
+                {headerGroup.headers.map((column) => (
+                  <th
+                    className={classes.header}
+                    {...column.getHeaderProps(column.getSortByToggleProps(), {
+                      style: {
+                        width: column.width,
+                      },
+                    })}
+                  >
+                    <div className={classes.arrow}>
+                      {column.render('Header')}
+                      <ion-icon
+                        size="small"
+                        src={
+                          column.isSorted
+                            ? column.isSortedDesc
+                              ? '/icons/caret-down-outline.svg'
+                              : '/icons/caret-up-outline.svg'
+                            : ''
+                        }
+                      ></ion-icon>
+                    </div>
+                  </th>
+                ))}
+              </tr>
+              )
+
+            }
+          })}
         </thead>
         <tbody {...getTableBodyProps()}>
           {rows.map((row, i) => {
@@ -93,18 +107,27 @@ const ProductsTable = (props) => {
               prepareRow(row);
 
               return (
-                <tr {...row.getRowProps()}>
+                <tr className={classes.row} {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     console.log('cell: ', cell);
                     if (cell.column.accessor) {
                       return (
-                        <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                        <td
+                          {...cell.getCellProps({
+                            style: {
+                              width: cell.column.width,
+                            },
+                          })}
+                        >
+                          {cell.render('Cell')}
+                        </td>
                       );
                     } else {
                       return (
                         <td>
                           <div className={classes.buttons}>
                             <Button>Edit</Button>
+                            <Button>Publish</Button>
                             <Button>Delete</Button>
                           </div>
                         </td>

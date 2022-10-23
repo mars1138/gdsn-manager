@@ -40,7 +40,7 @@ export const productsTabs = [
 
 export const activeColumns = [
   {
-    Header: 'Active Products',
+    Header: ' ',
     columns: [
       {
         Header: 'GTIN',
@@ -49,6 +49,7 @@ export const activeColumns = [
       {
         Header: 'Name',
         accessor: 'name',
+        width: '20%',
       },
       {
         Header: 'Type',
@@ -63,8 +64,13 @@ export const activeColumns = [
         accessor: 'dateAdded',
       },
       {
+        Header: 'Published',
+        accessor: 'datePublished',
+      },
+      {
         Header: 'Actions',
         accessor: undefined,
+        width: '20%',
       },
     ],
   },
