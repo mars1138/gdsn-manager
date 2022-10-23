@@ -1,7 +1,6 @@
 import React from 'react';
 
 // import Card from '../shared/UIElements/Card';
-import Button from '../shared/UIElements/Button';
 
 import classes from './ProductItem.module.css';
 

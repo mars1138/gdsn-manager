@@ -1,0 +1,28 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: var(--gray-2);
+}
+
+input {
+  width: 30%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.buttons button {
+  margin-left: 1rem;
+}

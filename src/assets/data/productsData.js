@@ -37,3 +37,35 @@ export const productsTabs = [
     imgUrl: img4,
   },
 ];
+
+export const activeColumns = [
+  {
+    Header: 'Active Products',
+    columns: [
+      {
+        Header: 'GTIN',
+        accessor: 'gtin',
+      },
+      {
+        Header: 'Name',
+        accessor: 'name',
+      },
+      {
+        Header: 'Type',
+        accessor: 'type',
+      },
+      {
+        Header: 'Category',
+        accessor: 'category',
+      },
+      {
+        Header: 'Date Added',
+        accessor: 'dateAdded',
+      },
+      {
+        Header: 'Actions',
+        accessor: undefined,
+      },
+    ],
+  },
+];
