@@ -8,7 +8,7 @@ const Button = (props) => {
     props.inverse && classes.inverse
   } ${props.disabled && classes.disabled} ${props.go && classes.go} ${
     props.danger && classes.danger
-  }`;
+  } ${props.edit && classes.edit}`;
 
   if (props.to) {
     return (

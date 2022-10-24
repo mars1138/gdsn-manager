@@ -60,39 +60,37 @@ const ProductsTable = (props) => {
             if (i === 0) {
               return null;
             } else {
-              return(
-
-              <tr
-                className={classes.headers}
-                {...headerGroup.getHeaderGroupProps()}
-              >
-                {headerGroup.headers.map((column) => (
-                  <th
-                    className={classes.header}
-                    {...column.getHeaderProps(column.getSortByToggleProps(), {
-                      style: {
-                        width: column.width,
-                      },
-                    })}
-                  >
-                    <div className={classes.arrow}>
-                      {column.render('Header')}
-                      <ion-icon
-                        size="small"
-                        src={
-                          column.isSorted
-                            ? column.isSortedDesc
-                              ? '/icons/caret-down-outline.svg'
-                              : '/icons/caret-up-outline.svg'
-                            : ''
-                        }
-                      ></ion-icon>
-                    </div>
-                  </th>
-                ))}
-              </tr>
-              )
-
+              return (
+                <tr
+                  className={classes.headers}
+                  {...headerGroup.getHeaderGroupProps()}
+                >
+                  {headerGroup.headers.map((column) => (
+                    <th
+                      className={classes.header}
+                      {...column.getHeaderProps(column.getSortByToggleProps(), {
+                        style: {
+                          width: column.width,
+                        },
+                      })}
+                    >
+                      <div className={classes.arrow}>
+                        {column.render('Header')}
+                        <ion-icon
+                          size="small"
+                          src={
+                            column.isSorted
+                              ? column.isSortedDesc
+                                ? '/icons/caret-down-outline.svg'
+                                : '/icons/caret-up-outline.svg'
+                              : ''
+                          }
+                        ></ion-icon>
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              );
             }
           })}
         </thead>
@@ -126,9 +124,30 @@ const ProductsTable = (props) => {
                       return (
                         <td>
                           <div className={classes.buttons}>
-                            <Button>Edit</Button>
-                            <Button>Publish</Button>
-                            <Button>Delete</Button>
+                            <Button edit>
+                              <span title="edit">
+                                <ion-icon
+                                  size="small"
+                                  src="/icons/build-outline.svg"
+                                ></ion-icon>
+                              </span>
+                            </Button>
+                            <Button edit>
+                              <span title="publish">
+                                <ion-icon
+                                  size="small"
+                                  src="/icons/exit-outline.svg"
+                                ></ion-icon>
+                              </span>
+                            </Button>
+                            <Button edit>
+                              <span title="delete">
+                                <ion-icon
+                                  size="small"
+                                  src="/icons/trash-outline.svg"
+                                ></ion-icon>
+                              </span>
+                            </Button>
                           </div>
                         </td>
                       );
