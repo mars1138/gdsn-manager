@@ -47,6 +47,10 @@ export const activeColumns = [
         accessor: 'gtin',
       },
       {
+        Header: 'Image',
+        accessor: 'image',
+      },
+      {
         Header: 'Name',
         accessor: 'name',
         width: '25%',
