@@ -33,7 +33,12 @@ input {
 .buttons {
   display: flex;
   justify-content: flex-start;
+  /* border: 1px solid blue; */
 }
+
+/* .buttons > * {
+  border: 1px solid green;
+} */
 
 .buttons button:not(:last-of-type) {
   margin-right: 1rem;

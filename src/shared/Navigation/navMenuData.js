@@ -9,21 +9,21 @@ export const navMenuData = [
     submenu: [
       {
         title: 'Active Products',
-        url: '/active-products',
+        url: '/products/active',
         submenu: [
           {
             title: 'Published Items',
-            url: '/published-items',
+            url: '/products/published',
           },
         ],
       },
       {
         title: 'Add Product',
-        url: '/add-product',
+        url: '/products/add',
       },
       {
-        title: 'Deleted Products',
-        url: '/deleted-products',
+        title: 'Inactive Products',
+        url: '/products/inactive',
       },
     ],
   },

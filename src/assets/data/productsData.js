@@ -49,7 +49,7 @@ export const activeColumns = [
       {
         Header: 'Name',
         accessor: 'name',
-        width: '20%',
+        width: '25%',
       },
       {
         Header: 'Type',
@@ -66,6 +66,43 @@ export const activeColumns = [
       {
         Header: 'Published',
         accessor: 'datePublished',
+      },
+      {
+        Header: 'Actions',
+        accessor: undefined,
+        width: '20%',
+      },
+    ],
+  },
+];
+export const inactiveColumns = [
+  {
+    Header: ' ',
+    columns: [
+      {
+        Header: 'GTIN',
+        accessor: 'gtin',
+      },
+      {
+        Header: 'Name',
+        accessor: 'name',
+        width: '25%',
+      },
+      {
+        Header: 'Type',
+        accessor: 'type',
+      },
+      {
+        Header: 'Category',
+        accessor: 'category',
+      },
+      {
+        Header: 'Date Added',
+        accessor: 'dateAdded',
+      },
+      {
+        Header: 'Date Inactivated',
+        accessor: 'dateInactive',
       },
       {
         Header: 'Actions',

@@ -1,35 +1,46 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
-// import Card from '../shared/UIElements/Card';
+import Button from '../shared/UIElements/Button';
+import Section from '../shared/components/layout/Section';
+
+import { catalog } from '../assets/data/test-catalog';
 
 import classes from './ProductItem.module.css';
 
-const ProductItem = (props) => {
-  const { index, image, name, gtin, description } = props;
+const ProductItem = () => {
+  const params = useParams();
+
+  console.log(params.pid, typeof params.pid);
+
+  const product = catalog.filter((item) => item.gtin === params.pid)[0];
+
+  console.log('product: ', product);
 
   return (
     // <Card>
-    <div className={classes.product}>
-      <div className={classes.number}>{index + 1}</div>
-      <div className={classes.image}>
+    <Section>
+      <div key={params.pid} className={classes.product}>
+        {/* <div className={classes.image}>
         <img src={image} alt={name} />
       </div>
       <div className={classes.description}>
         <h3>{name}</h3>
         <p>{description}</p>
-      </div>
-      <div className={classes.gtin}>
-        <p>GTIN: {gtin}</p>
-      </div>
-      <div>
+      </div> */}
+        <div className={classes.gtin}>
+          <h2>GTIN: {params.pid}</h2>
+        </div>
+        <div>
           <p></p>
+        </div>
+        <div className={classes.button}>
+          <Button>Edit</Button>
+          <Button go>Publish</Button>
+          <Button danger>Delete</Button>
+        </div>
       </div>
-      <div className={classes.button}>
-        <Button>Edit</Button>
-        <Button go>Publish</Button>
-        <Button danger>Delete</Button>
-      </div>
-    </div>
+    </Section>
     // </Card>
   );
 };

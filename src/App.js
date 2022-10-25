@@ -14,10 +14,9 @@ import Footer from './shared/components/footer/Footer';
 import HomePage from './home/HomePage';
 
 import ProductsPage from './products/ProductsPage';
-import ActiveProducts from './products/ActiveProducts';
-import PublishedItems from './products/PublishedItems';
+import ProductItem from './products/ProductItem';
+import ProductsList from './products/ProductsList';
 import AddProduct from './products/AddProduct';
-import DeletedProducts from './products/DeletedProducts';
 
 import AboutPage from './about/AboutPage';
 
@@ -40,20 +39,23 @@ function App() {
       <Route path="/home" exact>
         <HomePage />
       </Route>
-      <Route path="/products">
+      <Route path="/products" exact>
         <ProductsPage />
       </Route>
-      <Route path="/active-products">
-        <ActiveProducts />
+      <Route path="/products/active" exact>
+        <ProductsList status="active" />
       </Route>
-      <Route path="/published-items">
-        <PublishedItems />
+      <Route path="/products/published" exact>
+        <ProductsList status="published" />
       </Route>
-      <Route path="/add-product">
+      <Route path="/products/inactive" exact>
+        <ProductsList status="inactive" />
+      </Route>
+      <Route path="/products/add" exact>
         <AddProduct />
       </Route>
-      <Route path="/deleted-products">
-        <DeletedProducts />
+      <Route path="/products/:pid">
+        <ProductItem />
       </Route>
       <Route path="/services">
         <ServicesPage />

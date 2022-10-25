@@ -8,7 +8,7 @@ import classes from './ProductsTable.module.css';
 const ProductsTable = (props) => {
   const [filterInput, setFilterInput] = useState('');
 
-  const { columns, data } = props;
+  const { columns, data, status } = props;
 
   const {
     getTableProps, // table props from react-table
@@ -44,8 +44,6 @@ const ProductsTable = (props) => {
     setFilterInput(value);
   };
 
-  console.log('headergroups: ', headerGroups);
-
   return (
     <React.Fragment>
       <input
@@ -62,6 +60,7 @@ const ProductsTable = (props) => {
             } else {
               return (
                 <tr
+                  key={i}
                   className={classes.headers}
                   {...headerGroup.getHeaderGroupProps()}
                 >
@@ -105,9 +104,9 @@ const ProductsTable = (props) => {
               prepareRow(row);
 
               return (
-                <tr className={classes.row} {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    console.log('cell: ', cell);
+                <tr key={i} className={classes.row} {...row.getRowProps()}>
+                  {row.cells.map((cell, i) => {
+                    // console.log('cell: ', cell);
                     if (cell.column.accessor) {
                       return (
                         <td
@@ -122,33 +121,70 @@ const ProductsTable = (props) => {
                       );
                     } else {
                       return (
-                        <td>
-                          <div className={classes.buttons}>
-                            <Button edit>
-                              <span title="edit">
-                                <ion-icon
-                                  size="small"
-                                  src="/icons/build-outline.svg"
-                                ></ion-icon>
-                              </span>
-                            </Button>
-                            <Button edit>
-                              <span title="publish">
-                                <ion-icon
-                                  size="small"
-                                  src="/icons/exit-outline.svg"
-                                ></ion-icon>
-                              </span>
-                            </Button>
-                            <Button edit>
-                              <span title="delete">
-                                <ion-icon
-                                  size="small"
-                                  src="/icons/trash-outline.svg"
-                                ></ion-icon>
-                              </span>
-                            </Button>
-                          </div>
+                        <td key={i}>
+                          {status !== 'inactive' && (
+                            <div className={classes.buttons}>
+                              <Button
+                                to={`/products/${cell.row.original.gtin}`}
+                                action
+                              >
+                                <span title="edit">
+                                  <ion-icon
+                                    size="small"
+                                    src="/icons/build-outline.svg"
+                                  ></ion-icon>
+                                </span>
+                              </Button>
+                              <Button
+                                to={`/products/${cell.row.original.gtin}`}
+                                action
+                              >
+                                <span title="publish">
+                                  <ion-icon
+                                    size="small"
+                                    src="/icons/exit-outline.svg"
+                                  ></ion-icon>
+                                </span>
+                              </Button>
+                              <Button
+                                to={`/products/${cell.row.original.gtin}`}
+                                action
+                              >
+                                <span title="deactivate">
+                                  <ion-icon
+                                    size="small"
+                                    src="/icons/stop-circle-outline.svg"
+                                  ></ion-icon>
+                                </span>
+                              </Button>
+                            </div>
+                          )}
+                          {status === 'inactive' && (
+                            <div className={classes.buttons}>
+                              <Button
+                                action
+                                to={`/products/${cell.row.original.gtin}`}
+                              >
+                                <span title="reactivate">
+                                  <ion-icon
+                                    size="small"
+                                    src="/icons/play-circle-outline.svg"
+                                  ></ion-icon>
+                                </span>
+                              </Button>
+                              <Button
+                                to={`/products/${cell.row.original.gtin}`}
+                                action
+                              >
+                                <span title="permanent delete">
+                                  <ion-icon
+                                    size="small"
+                                    src="/icons/trash-outline.svg"
+                                  ></ion-icon>
+                                </span>
+                              </Button>
+                            </div>
+                          )}
                         </td>
                       );
                     }
