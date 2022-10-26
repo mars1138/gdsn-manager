@@ -14,7 +14,7 @@ import Footer from './shared/components/footer/Footer';
 import HomePage from './home/HomePage';
 
 import ProductsPage from './products/ProductsPage';
-import ProductItem from './products/ProductItem';
+import UpdateProduct from './products/UpdateProduct';
 import ProductsList from './products/ProductsList';
 import AddProduct from './products/AddProduct';
 
@@ -55,7 +55,7 @@ function App() {
         <AddProduct />
       </Route>
       <Route path="/products/:pid">
-        <ProductItem />
+        <UpdateProduct />
       </Route>
       <Route path="/services">
         <ServicesPage />

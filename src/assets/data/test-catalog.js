@@ -25,7 +25,7 @@ export const catalog = [
   {
     name: 'Ham Sandwich INACTIVE TEST',
     description: 'Ham and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '12355678901234',
+    gtin: '12355678901235',
     category: 'Food',
     type: 'Case',
     image: '/media/pexels-fauxels-3184418.jpg',
@@ -46,7 +46,7 @@ export const catalog = [
   {
     name: 'Ham Sandwich',
     description: 'Ham and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '12345678901234',
+    gtin: '12345678901236',
     category: 'Food',
     type: 'Case',
     image: '/media/pexels-fauxels-3184418.jpg',
@@ -67,7 +67,7 @@ export const catalog = [
   {
     name: 'Ham Sandwich NOT PUBLISHED',
     description: 'Ham and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '12345678901234',
+    gtin: '12345678901237',
     category: 'Food',
     type: 'Case',
     image: '/media/pexels-fauxels-3184418.jpg',
