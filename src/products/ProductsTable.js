@@ -5,7 +5,7 @@ import Button from '../shared/UIElements/Button';
 
 import classes from './ProductsTable.module.css';
 
-const ProductsTable = (props) => {
+const ProductsTable = props => {
   const [filterInput, setFilterInput] = useState('');
 
   const { columns, data, status } = props;
@@ -35,10 +35,10 @@ const ProductsTable = (props) => {
     },
     useFilters, // adding the useFilters hook to the table; can add as many hooks as needed
     useSortBy,
-    usePagination
+    usePagination,
   );
 
-  const handleFilterChange = (event) => {
+  const handleFilterChange = event => {
     const value = event.target.value || undefined;
     setFilter('name', value);
     setFilterInput(value);
@@ -64,7 +64,7 @@ const ProductsTable = (props) => {
                   className={classes.headers}
                   {...headerGroup.getHeaderGroupProps()}
                 >
-                  {headerGroup.headers.map((column) => (
+                  {headerGroup.headers.map(column => (
                     <th
                       className={classes.header}
                       {...column.getHeaderProps(column.getSortByToggleProps(), {
@@ -116,7 +116,13 @@ const ProductsTable = (props) => {
                             },
                           })}
                         >
-                          {cell.render('Cell')}
+                          {cell.column.Header === 'Image' && (
+                            <div className={classes.thumbnail}>
+                              <img src={cell.value} alt={cell.value} />
+                            </div>
+                          )}
+                          {cell.column.Header !== 'Image' &&
+                            cell.render('Cell')}
                         </td>
                       );
                     } else {
@@ -221,7 +227,7 @@ const ProductsTable = (props) => {
           <input
             type="number"
             defaultValue={pageIndex + 1}
-            onChange={(e) => {
+            onChange={e => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
             }}
@@ -230,11 +236,11 @@ const ProductsTable = (props) => {
         </span>{' '}
         <select
           value={pageSize}
-          onChange={(e) => {
+          onChange={e => {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
+          {[5, 10, 20, 30, 40, 50].map(pageSize => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>

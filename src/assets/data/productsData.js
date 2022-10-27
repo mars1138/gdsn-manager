@@ -43,12 +43,12 @@ export const activeColumns = [
     Header: ' ',
     columns: [
       {
-        Header: 'GTIN',
-        accessor: 'gtin',
-      },
-      {
         Header: 'Image',
         accessor: 'image',
+      },
+      {
+        Header: 'GTIN',
+        accessor: 'gtin',
       },
       {
         Header: 'Name',
