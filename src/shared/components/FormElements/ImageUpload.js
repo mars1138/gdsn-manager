@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Button from '../../UIElements/Button';
 import classes from './ImageUpload.module.css';
 
-const ImageUpload = (props) => {
+const ImageUpload = props => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
@@ -13,6 +13,8 @@ const ImageUpload = (props) => {
   useEffect(() => {
     if (!file) return;
 
+    if (props.initialValue) setPreviewUrl(props.initialValue);
+
     const fileReader = new FileReader();
 
     fileReader.onload = () => {
@@ -20,9 +22,9 @@ const ImageUpload = (props) => {
     };
 
     fileReader.readAsDataURL(file);
-  }, [file]);
+  }, [file, props.initialValue]);
 
-  const pickedHandler = (event) => {
+  const pickedHandler = event => {
     let pickedFile;
     let fileIsValid = isValid;
 
@@ -59,8 +61,11 @@ const ImageUpload = (props) => {
         }`}
       >
         <div className={classes.preview}>
-          {previewUrl && <img src={previewUrl} alt="Preview" />}
-          {!previewUrl && <p>Please select an image.</p>}
+          {props.initialValue && <img src={props.initialValue} alt="Preview" />}
+          {previewUrl && (
+            <img src={props.initialValue || previewUrl} alt="Preview" />
+          )}
+          {!props.initialValue && !previewUrl && <p>Please select an image.</p>}
         </div>
         <Button type="button" onClick={pickImageHandler}>
           Browse Image

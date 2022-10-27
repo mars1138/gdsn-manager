@@ -33,58 +33,58 @@ const UpdateProduct = () => {
     {
       name: {
         value: '',
-        isValid: false,
+        isValid: true,
       },
       description: {
         value: '',
-        isValid: false,
+        isValid: true,
       },
-      gtin: {
-        value: '',
-        isValid: false,
-      },
+      // gtin: {
+      //   value: '',
+      //   isValid: true,
+      // },
       category: {
         value: '',
-        isValid: false,
+        isValid: true,
       },
       type: {
         value: '',
-        isValid: false,
+        isValid: true,
       },
       image: {
         value: null,
-        isValid: false,
+        isValid: true,
       },
-      // height: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // width: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // depth: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // weight: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // minTemp: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // maxTemp: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // storageInstructions: {
-      //   value: '',
-      //   isValid: false,
-      // },
+      height: {
+        value: '',
+        isValid: true,
+      },
+      width: {
+        value: '',
+        isValid: true,
+      },
+      depth: {
+        value: '',
+        isValid: true,
+      },
+      weight: {
+        value: '',
+        isValid: true,
+      },
+      minTemp: {
+        value: '',
+        isValid: true,
+      },
+      maxTemp: {
+        value: '',
+        isValid: true,
+      },
+      storageInstructions: {
+        value: '',
+        isValid: true,
+      },
     },
-    false
+    true,
   );
 
   const history = useHistory();
@@ -93,15 +93,15 @@ const UpdateProduct = () => {
     let product;
 
     const fetchProduct = () => {
-      product = catalog.filter((item) => item.gtin === params.pid);
-      console.log('fetchedProduct: ', product);
+      product = catalog.filter(item => item.gtin === params.pid);
+      // console.log('fetchedProduct: ', product);
     };
 
     fetchProduct();
     setLoadedProduct(product[0]);
   }, [params.pid]);
 
-  const updateSubmitHandler = (event) => {
+  const updateSubmitHandler = event => {
     event.preventDefault();
     console.log('submitting...');
 
@@ -128,12 +128,18 @@ const UpdateProduct = () => {
               product={loadedProduct}
               edit
             />
-            <PackagingHandling inputHandler={inputHandler} edit />
+            <PackagingHandling
+              inputHandler={inputHandler}
+              product={loadedProduct}
+              edit
+            />
             <div className={classes2['block-container']}>
               <Button type="submit" disabled={!formState.isValid}>
                 Update
               </Button>
-              <Button to="/products/active">Cancel</Button>
+              <Button to="/products/active" danger>
+                Cancel
+              </Button>
             </div>
           </form>
         </Card>

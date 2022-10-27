@@ -9,7 +9,7 @@ import {
 } from '../../shared/utilities/validators';
 import classes from './Categories.module.css';
 
-const Main = (props) => {
+const Main = props => {
   // const [productItem, setProductItem] = useState();
   const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
   const typeOptions = ['', 'Case', 'Display', 'Each', 'Pallet'];
@@ -47,8 +47,9 @@ const Main = (props) => {
             validators={[VALIDATOR_MINLENGTH(5)]}
             errorText="Please enter a description (min 10 characters)"
             initialValue={product ? product.description : ''}
-            onInput={props.inputHandler}
-            />
+            initialValid={true}
+            onInput={inputHandler}
+          />
           <FormInput
             key={product ? product.gtin : 'gtin'}
             id="gtin"
@@ -57,8 +58,9 @@ const Main = (props) => {
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid 14 digit GTIN"
             initialValue={product ? product.gtin : ''}
-            onInput={props.inputHandler}
-            />
+            initialValid={true}
+            onInput={inputHandler}
+          />
           <FormInput
             key={product ? product.category : 'category'}
             id="category"
@@ -68,27 +70,32 @@ const Main = (props) => {
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please select a category"
             selected={product ? product.category : ''}
-            onInput={props.inputHandler}
+            initialValid={true}
+            onInput={inputHandler}
           />
-          {!props.edit && (
-            <FormInput
-              id="type"
-              element="select"
-              selectOptions={typeOptions}
-              label="Product Type"
-              validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please select a type"
-              onInput={props.inputHandler}
-            />
-          )}
+          <FormInput
+            key={product ? product.type : 'type'}
+            id="type"
+            element="select"
+            selectOptions={typeOptions}
+            label="Product Type"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please select a type"
+            selected={product ? product.type : ''}
+            initialValid={true}
+            onInput={inputHandler}
+          />
         </div>
         <div className={classes['block-50']}>
           <ImageUpload
+            key={product ? product.image : 'image'}
             center
             id="image"
             validators={[VALIDATOR_REQUIRE()]}
-            onInput={props.inputHandler}
             errorText="Please provide an image"
+            initialValue={product ? product.image : ''}
+            initialValid={true}
+            onInput={inputHandler}
           />
         </div>
       </div>
