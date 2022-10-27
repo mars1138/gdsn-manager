@@ -35,7 +35,7 @@ const FormInput = (props) => {
   let element;
 
   useEffect(() => {
-    onInput(id, value, isValid);
+    onInput && onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
 
   const changeHandler = (event) => {
@@ -88,7 +88,7 @@ const FormInput = (props) => {
     });
 
     element = (
-      <select id={props.id} onChange={changeHandler} onBlur={touchHandler}>
+      <select id={props.id} value={props.selected} onChange={changeHandler} onBlur={touchHandler}>
         {optionsArray}
       </select>
     );

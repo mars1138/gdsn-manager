@@ -10,10 +10,18 @@ import {
 import classes from './Categories.module.css';
 
 const Main = (props) => {
+  // const [productItem, setProductItem] = useState();
   const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
   const typeOptions = ['', 'Case', 'Display', 'Each', 'Pallet'];
 
-  console.log('mainproduct: ', props.product);
+  const { product, inputHandler } = props;
+
+  // useEffect(() => {
+  //   console.log(product);
+  //   if (product) setProductItem(product);
+  // }, [setProductItem, product, productItem]);
+
+  // console.log('productItem: ', productItem);
 
   return (
     <div className={classes.category}>
@@ -21,40 +29,45 @@ const Main = (props) => {
       <div className={classes['block-container']}>
         <div className={classes['block-50']}>
           <FormInput
+            key={product ? product.name : 'name'}
             id="name"
             element="input"
             label="Name"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter a valid name"
-            onInput={props.inputHandler}
-            initialValue={''}
+            initialValue={product ? product.name : ''}
             initialValid={true}
+            onInput={inputHandler}
           />
           <FormInput
+            key={product ? product.description : 'description'}
             id="description"
             element="textarea"
             label="Product Description"
             validators={[VALIDATOR_MINLENGTH(5)]}
             errorText="Please enter a description (min 10 characters)"
+            initialValue={product ? product.description : ''}
             onInput={props.inputHandler}
-          />
-          {!props.edit && (
-            <FormInput
-              id="gtin"
-              element="input"
-              label="GTIN-14 Global Trade Identification Number"
-              validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter a valid 14 digit GTIN"
-              onInput={props.inputHandler}
             />
-          )}
           <FormInput
+            key={product ? product.gtin : 'gtin'}
+            id="gtin"
+            element="input"
+            label="GTIN-14 Global Trade Identification Number"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a valid 14 digit GTIN"
+            initialValue={product ? product.gtin : ''}
+            onInput={props.inputHandler}
+            />
+          <FormInput
+            key={product ? product.category : 'category'}
             id="category"
             element="select"
             selectOptions={categoryOptions}
             label="Global Product Category Code"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please select a category"
+            selected={product ? product.category : ''}
             onInput={props.inputHandler}
           />
           {!props.edit && (

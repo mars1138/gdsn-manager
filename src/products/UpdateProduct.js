@@ -123,12 +123,17 @@ const UpdateProduct = () => {
           <form className={classes.form} onSubmit={updateSubmitHandler}>
             {isSubmitting && <LoadingSpinner />}
             <Main inputHandler={inputHandler} product={loadedProduct} edit />
-            <Dimensions inputHandler={inputHandler} edit />
+            <Dimensions
+              inputHandler={inputHandler}
+              product={loadedProduct}
+              edit
+            />
             <PackagingHandling inputHandler={inputHandler} edit />
             <div className={classes2['block-container']}>
               <Button type="submit" disabled={!formState.isValid}>
-                Add Item
+                Update
               </Button>
+              <Button to="/products/active">Cancel</Button>
             </div>
           </form>
         </Card>

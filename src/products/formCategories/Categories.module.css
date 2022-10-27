@@ -18,6 +18,10 @@
   width: 100%;
 }
 
+.block-container button {
+  margin-right: 1rem;
+}
+
 .block-100,
 .block-50,
 .block-25 {
