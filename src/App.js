@@ -48,6 +48,9 @@ function App() {
       <Route path="/products/published" exact>
         <ProductsList status="published" />
       </Route>
+      <Route path="/products/unpublished" exact>
+        <ProductsList status="unpublished" />
+      </Route>
       <Route path="/products/inactive" exact>
         <ProductsList status="inactive" />
       </Route>

@@ -12,8 +12,12 @@ export const navMenuData = [
         url: '/products/active',
         submenu: [
           {
-            title: 'Published Items',
+            title: 'Published',
             url: '/products/published',
+          },
+          {
+            title: 'Unpublished',
+            url: '/products/unpublished',
           },
         ],
       },

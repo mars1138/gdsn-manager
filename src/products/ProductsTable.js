@@ -5,7 +5,7 @@ import Button from '../shared/UIElements/Button';
 
 import classes from './ProductsTable.module.css';
 
-const ProductsTable = props => {
+const ProductsTable = (props) => {
   const [filterInput, setFilterInput] = useState('');
 
   const { columns, data, status } = props;
@@ -35,10 +35,10 @@ const ProductsTable = props => {
     },
     useFilters, // adding the useFilters hook to the table; can add as many hooks as needed
     useSortBy,
-    usePagination,
+    usePagination
   );
 
-  const handleFilterChange = event => {
+  const handleFilterChange = (event) => {
     const value = event.target.value || undefined;
     setFilter('name', value);
     setFilterInput(value);
@@ -64,7 +64,7 @@ const ProductsTable = props => {
                   className={classes.headers}
                   {...headerGroup.getHeaderGroupProps()}
                 >
-                  {headerGroup.headers.map(column => (
+                  {headerGroup.headers.map((column) => (
                     <th
                       className={classes.header}
                       {...column.getHeaderProps(column.getSortByToggleProps(), {
@@ -128,69 +128,71 @@ const ProductsTable = props => {
                     } else {
                       return (
                         <td key={i}>
-                          {status !== 'inactive' && (
-                            <div className={classes.buttons}>
-                              <Button
-                                to={`/products/${cell.row.original.gtin}`}
-                                action
-                              >
-                                <span title="edit">
-                                  <ion-icon
-                                    size="small"
-                                    src="/icons/build-outline.svg"
-                                  ></ion-icon>
-                                </span>
-                              </Button>
-                              <Button
-                                to={`/products/${cell.row.original.gtin}`}
-                                action
-                              >
-                                <span title="publish">
-                                  <ion-icon
-                                    size="small"
-                                    src="/icons/exit-outline.svg"
-                                  ></ion-icon>
-                                </span>
-                              </Button>
-                              <Button
-                                to={`/products/${cell.row.original.gtin}`}
-                                action
-                              >
-                                <span title="deactivate">
-                                  <ion-icon
-                                    size="small"
-                                    src="/icons/stop-circle-outline.svg"
-                                  ></ion-icon>
-                                </span>
-                              </Button>
-                            </div>
-                          )}
-                          {status === 'inactive' && (
-                            <div className={classes.buttons}>
-                              <Button
-                                action
-                                to={`/products/${cell.row.original.gtin}`}
-                              >
-                                <span title="reactivate">
-                                  <ion-icon
-                                    size="small"
-                                    src="/icons/play-circle-outline.svg"
-                                  ></ion-icon>
-                                </span>
-                              </Button>
-                              <Button
-                                to={`/products/${cell.row.original.gtin}`}
-                                action
-                              >
-                                <span title="permanent delete">
-                                  <ion-icon
-                                    size="small"
-                                    src="/icons/trash-outline.svg"
-                                  ></ion-icon>
-                                </span>
-                              </Button>
-                            </div>
-                          )}
+                          <div className={classes.buttons}>
+                            {status !== 'inactive' && (
+                              <>
+                                <Button
+                                  to={`/products/${cell.row.original.gtin}`}
+                                  action
+                                >
+                                  <span title="edit">
+                                    <ion-icon
+                                      size="small"
+                                      src="/icons/build-outline.svg"
+                                    ></ion-icon>
+                                  </span>
+                                </Button>
+                                <Button
+                                  to={`/products/${cell.row.original.gtin}`}
+                                  action
+                                >
+                                  <span title="publish">
+                                    <ion-icon
+                                      size="small"
+                                      src="/icons/exit-outline.svg"
+                                    ></ion-icon>
+                                  </span>
+                                </Button>
+                                <Button
+                                  to={`/products/${cell.row.original.gtin}`}
+                                  action
+                                >
+                                  <span title="deactivate">
+                                    <ion-icon
+                                      size="small"
+                                      src="/icons/stop-circle-outline.svg"
+                                    ></ion-icon>
+                                  </span>
+                                </Button>
+                              </>
+                            )}
+                            {status === 'inactive' && (
+                              <>
+                                <Button
+                                  action
+                                  to={`/products/${cell.row.original.gtin}`}
+                                >
+                                  <span title="reactivate">
+                                    <ion-icon
+                                      size="small"
+                                      src="/icons/play-circle-outline.svg"
+                                    ></ion-icon>
+                                  </span>
+                                </Button>
+                                <Button
+                                  to={`/products/${cell.row.original.gtin}`}
+                                  action
+                                >
+                                  <span title="permanent delete">
+                                    <ion-icon
+                                      size="small"
+                                      src="/icons/trash-outline.svg"
+                                    ></ion-icon>
+                                  </span>
+                                </Button>
+                              </>
+                            )}
+                          </div>
                         </td>
                       );
                     }
@@ -227,7 +229,7 @@ const ProductsTable = props => {
           <input
             type="number"
             defaultValue={pageIndex + 1}
-            onChange={e => {
+            onChange={(e) => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
             }}
@@ -236,11 +238,11 @@ const ProductsTable = props => {
         </span>{' '}
         <select
           value={pageSize}
-          onChange={e => {
+          onChange={(e) => {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[5, 10, 20, 30, 40, 50].map(pageSize => (
+          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>

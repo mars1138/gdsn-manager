@@ -27,6 +27,15 @@ const ProducstList = (props) => {
     if (filter === 'published') {
       return !product.dateInactive && product.datePublished;
     }
+
+    // will need adjusting when
+    if (filter === 'unpublished') {
+      return (
+        !product.dateInactive &&
+        product.subscribers.length === 0 &&
+        !product.datePublished
+      );
+    }
   };
 
   catalog.forEach((item) => {
