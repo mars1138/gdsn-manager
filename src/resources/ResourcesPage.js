@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Hero from '../shared/components/layout/Hero';
 import TabComponent from '../shared/components/TabComponent/TabComponent';
@@ -57,35 +58,30 @@ const ResourcesPage = () => {
         {/* <h2>Resources</h2> */}
         <div className={classes.cards}>
           <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
+            <Link to="/resources/webinars">
+              <h3>Webinars</h3>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
+                tempora provident explicabo inventore pariatur, nobis cumque a
+                culpa quod, alias voluptate veniam quae qui ut at, nostrum est
+                porro enim.
+              </p>
+            </Link>
           </Card>
           <Card>
-            <h3>CARD CONTENT</h3>
-            <div className={classes.image}></div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
+            <Link to='/resources/training'>
+              <h3>Training</h3>
+              <div className={classes.image}></div>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
+                tempora provident explicabo inventore pariatur, nobis cumque a
+                culpa quod, alias voluptate veniam quae qui ut at, nostrum est
+                porro enim.
+              </p>
+            </Link>
           </Card>
           <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h3>CARD CONTENT</h3>
+            <h3>Support</h3>
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
               tempora provident explicabo inventore pariatur, nobis cumque a

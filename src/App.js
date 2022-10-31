@@ -63,16 +63,16 @@ function App() {
       <Route path="/services">
         <ServicesPage />
       </Route>
-      <Route path="/resources">
+      <Route path="/resources" exact>
         <ResourcesPage />
       </Route>
-      <Route path="/webinars">
+      <Route path="/resources/webinars">
         <Webinars />
       </Route>
-      <Route path="/training">
+      <Route path="/resources/training">
         <Training />
       </Route>
-      <Route path="/support">
+      <Route path="/resources/support">
         <Support />
       </Route>
       <Route path="/plans">

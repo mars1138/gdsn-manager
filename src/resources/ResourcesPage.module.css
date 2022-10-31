@@ -1,6 +1,15 @@
 .cards {
-    width: 70%;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  width: 70%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a h3 {
+  text-align: center;
+}

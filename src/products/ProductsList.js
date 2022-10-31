@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import ProductsTable from './ProductsTable';
 import TabComponent from '../shared/components/TabComponent/TabComponent';
@@ -7,7 +8,7 @@ import Section from '../shared/components/layout/Section';
 
 import classes from './ProductsList.module.css';
 
-import { catalog } from '../assets/data/test-catalog';
+// import { catalog } from '../assets/data/test-catalog';
 import {
   productsTabs,
   activeColumns,
@@ -15,6 +16,7 @@ import {
 } from '../assets/data/productsData';
 
 const ProducstList = (props) => {
+  const catalog = useSelector((state) => state.catalog.products);
   const productsList = [];
 
   const filterProducts = (product, filter) => {
@@ -37,6 +39,8 @@ const ProducstList = (props) => {
       );
     }
   };
+
+  console.log('ProductsList catalog: ', catalog);
 
   catalog.forEach((item) => {
     if (filterProducts(item, props.status)) productsList.push(item);

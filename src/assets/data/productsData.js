@@ -43,6 +43,10 @@ export const activeColumns = [
     Header: ' ',
     columns: [
       {
+        Header: 'Index',
+        accessor: undefined,
+      },
+      {
         Header: 'Image',
         accessor: 'image',
       },
@@ -83,6 +87,10 @@ export const inactiveColumns = [
   {
     Header: ' ',
     columns: [
+      {
+        Header: 'Index',
+        accessor: undefined,
+      },
       {
         Header: 'GTIN',
         accessor: 'gtin',

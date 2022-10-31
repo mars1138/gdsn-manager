@@ -41,15 +41,15 @@ export const navMenuData = [
     submenu: [
       {
         title: 'Webinars',
-        url: '/webinars',
+        url: '/resources/webinars',
       },
       {
         title: 'Training',
-        url: '/training',
+        url: '/resources/training',
       },
       {
         title: 'Support',
-        url: '/support',
+        url: '/resources/support',
       },
     ],
   },

@@ -94,17 +94,17 @@ const ProductsTable = (props) => {
           })}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
+          {rows.map((row, rowIndex) => {
             // only render items on the current page
             if (
-              i >= pageSize * pageIndex &&
-              i + 1 <= pageSize * (pageIndex + 1)
+              rowIndex >= pageSize * pageIndex &&
+              rowIndex + 1 <= pageSize * (pageIndex + 1)
             ) {
               // This line is necessary to prepare the rows and get the row props from react-table dynamically
               prepareRow(row);
 
               return (
-                <tr key={i} className={classes.row} {...row.getRowProps()}>
+                <tr key={rowIndex} className={classes.row} {...row.getRowProps()}>
                   {row.cells.map((cell, i) => {
                     // console.log('cell: ', cell);
                     if (cell.column.accessor) {
@@ -125,6 +125,8 @@ const ProductsTable = (props) => {
                             cell.render('Cell')}
                         </td>
                       );
+                    } else if (cell.column.Header === 'Index') {
+                      return <td>{rowIndex + 1}</td>;
                     } else {
                       return (
                         <td key={i}>
