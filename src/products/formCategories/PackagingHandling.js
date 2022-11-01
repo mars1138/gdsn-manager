@@ -7,7 +7,20 @@ import classes from './Categories.module.css';
 
 const PackagingHandling = props => {
   const tempOptions = ['', 'Farenheit', 'Celsius'];
-  const packageOptions = ['', 'Case', 'Display', 'Each', 'Pallet'];
+  const packageOptions = [
+    '',
+    'Bag',
+    'Bottle',
+    'Box',
+    'Carton',
+    'Crate',
+    'Envelope',
+    'Multipack',
+    'Not Packed',
+    'Pallet',
+    'Roll',
+    'Wire',
+  ];
 
   const { product, inputHandler } = props;
 

@@ -51,41 +51,41 @@ const AddProduct = () => {
         value: null,
         isValid: false,
       },
-      // height: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // width: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // depth: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // weight: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // minTemp: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // maxTemp: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // storageInstructions: {
-      //   value: '',
-      //   isValid: false,
-      // },
+      height: {
+        value: '',
+        isValid: false,
+      },
+      width: {
+        value: '',
+        isValid: false,
+      },
+      depth: {
+        value: '',
+        isValid: false,
+      },
+      weight: {
+        value: '',
+        isValid: false,
+      },
+      minTemp: {
+        value: '',
+        isValid: false,
+      },
+      maxTemp: {
+        value: '',
+        isValid: false,
+      },
+      storageInstructions: {
+        value: '',
+        isValid: false,
+      },
     },
-    false
+    false,
   );
 
   const history = useHistory();
 
-  const productSubmitHandler = (event) => {
+  const productSubmitHandler = event => {
     event.preventDefault();
     console.log('submitting...');
 

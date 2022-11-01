@@ -22,7 +22,7 @@ const inputReducer = (state, action) => {
   }
 };
 
-const FormInput = (props) => {
+const FormInput = props => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue || '',
     isTouched: false,
@@ -38,7 +38,7 @@ const FormInput = (props) => {
     onInput && onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
 
-  const changeHandler = (event) => {
+  const changeHandler = event => {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
@@ -61,6 +61,7 @@ const FormInput = (props) => {
         onChange={changeHandler}
         onBlur={touchHandler}
         value={inputState.value}
+        // disabled={props.edit ? true : false}
       />
     );
 
@@ -83,12 +84,18 @@ const FormInput = (props) => {
       optionsArray.push(
         <option key={index} value={option}>
           {option}
-        </option>
+        </option>,
       );
     });
 
     element = (
-      <select id={props.id} value={props.selected} onChange={changeHandler} onBlur={touchHandler}>
+      <select
+        id={props.id}
+        value={props.selected}
+        onChange={changeHandler}
+        onBlur={touchHandler}
+        // disabled={props.edit ? true : false}
+      >
         {optionsArray}
       </select>
     );

@@ -6,6 +6,7 @@ import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
+  VALIDATOR_MAXLENGTH,
 } from '../../shared/utilities/validators';
 import classes from './Categories.module.css';
 
@@ -55,11 +56,16 @@ const Main = props => {
             id="gtin"
             element="input"
             label="GTIN-14 Global Trade Identification Number"
-            validators={[VALIDATOR_REQUIRE()]}
+            validators={[
+              VALIDATOR_REQUIRE(),
+              VALIDATOR_MINLENGTH(14),
+              VALIDATOR_MAXLENGTH(14),
+            ]}
             errorText="Please enter a valid 14 digit GTIN"
             initialValue={product ? product.gtin : ''}
             initialValid={true}
             onInput={inputHandler}
+            edit={props.edit}
           />
           <FormInput
             key={product ? product.category : 'category'}
@@ -84,6 +90,7 @@ const Main = props => {
             selected={product ? product.type : ''}
             initialValid={true}
             onInput={inputHandler}
+            edit={props.edit}
           />
         </div>
         <div className={classes['block-50']}>

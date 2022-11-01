@@ -50,3 +50,8 @@
 .form-control select:focus {
   outline: none;
 }
+
+/* .disabled {
+  background-color: var(--gray-3);
+  color: var(--gray-1);
+} */

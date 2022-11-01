@@ -47,10 +47,10 @@ const UpdateProduct = () => {
         value: '',
         isValid: true,
       },
-      type: {
-        value: '',
-        isValid: true,
-      },
+      // type: {
+      //   value: '',
+      //   isValid: true,
+      // },
       image: {
         value: null,
         isValid: true,
