@@ -2,8 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { catalog } from '../assets/data/test-catalog';
 
-console.log('catalog: ', catalog);
-
 const catalogSlice = createSlice({
   name: 'catalog',
   initialState: {
