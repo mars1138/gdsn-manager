@@ -10,7 +10,7 @@ import {
 } from '../../shared/utilities/validators';
 import classes from './Categories.module.css';
 
-const Main = props => {
+const Main = (props) => {
   // const [productItem, setProductItem] = useState();
   const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
   const typeOptions = ['', 'Case', 'Display', 'Each', 'Pallet'];

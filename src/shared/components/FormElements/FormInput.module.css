@@ -51,7 +51,10 @@
   outline: none;
 }
 
-/* .disabled {
-  background-color: var(--gray-3);
-  color: var(--gray-1);
-} */
+input:disabled,
+select:disabled {
+  background-color: var(--gray-2);
+  color: var(--primary);
+  border-color: var(--gray-3);
+  opacity: 1;
+}

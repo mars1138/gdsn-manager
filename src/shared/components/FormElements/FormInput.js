@@ -31,6 +31,7 @@ const FormInput = props => {
 
   const { id, onInput } = props;
   const { value, isValid } = inputState;
+  const disabledClass = `${props.edit ? classes.disabled : ''}`
 
   let element;
 
@@ -61,7 +62,8 @@ const FormInput = props => {
         onChange={changeHandler}
         onBlur={touchHandler}
         value={inputState.value}
-        // disabled={props.edit ? true : false}
+        disabled={props.edit ? true : false}
+        className={disabledClass}
       />
     );
 
@@ -82,7 +84,7 @@ const FormInput = props => {
 
     props.selectOptions.forEach((option, index) => {
       optionsArray.push(
-        <option key={index} value={option}>
+        <option key={index} value={option} selected={option === props.selected ? option : ''} className={props.edit && disabledClass}>
           {option}
         </option>,
       );
@@ -91,10 +93,9 @@ const FormInput = props => {
     element = (
       <select
         id={props.id}
-        value={props.selected}
         onChange={changeHandler}
         onBlur={touchHandler}
-        // disabled={props.edit ? true : false}
+        disabled={props.edit ? true : false}
       >
         {optionsArray}
       </select>
