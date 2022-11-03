@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
@@ -47,50 +49,44 @@ const tabContent = [
 ];
 
 const ProductsPage = () => {
+  const catalog = useSelector((state) => state.catalog.products);
+  const activeCount = catalog.filter((item) => !item.dateInactive).length;
+  const publishedCount = catalog.filter((item) => item.datePublished).length;
+  const unpublishedCount = catalog.filter(
+    (item) => !item.dateInactive && !item.datePublished
+  ).length;
+  const inactiveCount = catalog.filter((item) => item.dateInactive).length;
+
   return (
     <React.Fragment>
       <Section>
         <Hero type="center" />
       </Section>
       <Section>
-        {/* <h2>Products</h2> */}
         <div className={classes.cards}>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
+          <Card width="20">
+            <Link to="/products/active">
+              <h3>Active</h3>
+              <span>{activeCount}</span>
+            </Link>
           </Card>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <div className={classes.image}></div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
+          <Card width="20">
+            <Link to="/products/published">
+              <h3>Published</h3>
+              <span>{publishedCount}</span>
+            </Link>
           </Card>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
+          <Card width="20">
+            <Link to="/products/unpublished">
+              <h3>Unpublished</h3>
+              <span>{unpublishedCount}</span>
+            </Link>
           </Card>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
+          <Card width="20">
+            <Link to="/products/inactive">
+              <h3>Inactive</h3>
+              <span>{inactiveCount}</span>
+            </Link>
           </Card>
         </div>
       </Section>

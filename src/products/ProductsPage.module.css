@@ -1,6 +1,18 @@
 .cards {
-    width: 70%;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.cards h3 {
+  font-size: 2rem;
+}
+
+.cards span {
+  display: block;
+  color: var(--green-1);
+  font-size: xx-large;
+  text-align: center;
+}
