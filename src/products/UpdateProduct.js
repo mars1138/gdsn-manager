@@ -11,6 +11,7 @@ import Section from '../shared/components/layout/Section';
 import Main from './formCategories/Main';
 import Dimensions from './formCategories/Dimensions';
 import PackagingHandling from './formCategories/PackagingHandling';
+import Subscribers from './formCategories/Subscribers';
 
 import { useForm } from '../shared/components/hooks/form-hook';
 // import FormInput from '../shared/components/FormElements/FormInput';
@@ -25,7 +26,7 @@ const UpdateProduct = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const params = useParams();
-  const catalog = useSelector((state) => state.catalog.products);
+  const catalog = useSelector(state => state.catalog.products);
 
   const clearError = () => {
     setError(false);
@@ -86,7 +87,7 @@ const UpdateProduct = () => {
         isValid: true,
       },
     },
-    true
+    true,
   );
 
   const history = useHistory();
@@ -95,7 +96,7 @@ const UpdateProduct = () => {
     let product;
 
     const fetchProduct = () => {
-      product = catalog.filter((item) => item.gtin === params.pid);
+      product = catalog.filter(item => item.gtin === params.pid);
       // console.log('fetchedProduct: ', product);
     };
 
@@ -103,7 +104,7 @@ const UpdateProduct = () => {
     setLoadedProduct(product[0]);
   }, [params.pid, catalog]);
 
-  const updateSubmitHandler = (event) => {
+  const updateSubmitHandler = event => {
     event.preventDefault();
     console.log('submitting...');
 
@@ -115,6 +116,10 @@ const UpdateProduct = () => {
       }, 2000);
     } catch (err) {}
   };
+
+  console.log('loadedProduct: ', loadedProduct);
+  loadedProduct && console.log('UPdate.subscirbers: ', loadedProduct.subscribers);
+
 
   return (
     <Section>
@@ -135,6 +140,8 @@ const UpdateProduct = () => {
               product={loadedProduct}
               edit
             />
+            <Subscribers subscribers={loadedProduct ? loadedProduct.subscribers : []}/>
+            {/* <Subscribers /> */}
             <div className={classes2['block-container']}>
               <Button type="submit" disabled={!formState.isValid}>
                 Update
