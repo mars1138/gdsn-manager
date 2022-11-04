@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Modal from '../shared/UIElements/Modal';
@@ -12,6 +13,8 @@ import Dimensions from './formCategories/Dimensions';
 import PackagingHandling from './formCategories/PackagingHandling';
 
 import { useForm } from '../shared/components/hooks/form-hook';
+import { catalogActions } from '../../src/store/catalog-slice';
+
 // import FormInput from '../shared/components/FormElements/FormInput';
 
 import classes from './AddProduct.module.css';
@@ -20,6 +23,8 @@ import classes2 from './formCategories/Categories.module.css';
 const AddProduct = () => {
   const [error, setError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const dispatch = useDispatch();
 
   const clearError = () => {
     setError(false);
@@ -87,13 +92,16 @@ const AddProduct = () => {
 
   const productSubmitHandler = event => {
     event.preventDefault();
+    console.log('formState.inputs: ', formState.inputs);
     console.log('submitting...');
 
     try {
       setIsSubmitting(true);
+      dispatch(catalogActions.addProduct(formState.inputs));
+
       setTimeout(() => {
         setIsSubmitting(false);
-        history.push('/products');
+        history.push('/products/active');
       }, 2000);
     } catch (err) {}
   };

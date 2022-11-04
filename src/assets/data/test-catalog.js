@@ -1,5 +1,7 @@
 // import img1 from '../../assets/pexels-fauxels-3183197.jpg';
 
+export const catalogEmpty = [];
+
 export const catalog = [
   {
     name: 'Ham Sandwich',
