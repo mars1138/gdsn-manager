@@ -98,7 +98,7 @@ const Main = (props) => {
             key={product ? product.image : 'image'}
             center
             id="image"
-            validators={[VALIDATOR_REQUIRE()]}
+            // validators={[VALIDATOR_REQUIRE()]}
             errorText="Please provide an image"
             initialValue={product ? product.image : ''}
             initialValid={true}

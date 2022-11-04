@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import Modal from '../shared/UIElements/Modal';
@@ -14,7 +15,7 @@ import PackagingHandling from './formCategories/PackagingHandling';
 import { useForm } from '../shared/components/hooks/form-hook';
 // import FormInput from '../shared/components/FormElements/FormInput';
 
-import { catalog } from '../assets/data/test-catalog';
+// import { catalog } from '../assets/data/test-catalog';
 import classes from './AddProduct.module.css';
 import classes2 from './formCategories/Categories.module.css';
 
@@ -24,6 +25,7 @@ const UpdateProduct = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const params = useParams();
+  const catalog = useSelector((state) => state.catalog.products);
 
   const clearError = () => {
     setError(false);
@@ -51,10 +53,10 @@ const UpdateProduct = () => {
       //   value: '',
       //   isValid: true,
       // },
-      image: {
-        value: null,
-        isValid: true,
-      },
+      // image: {
+      //   value: null,
+      //   isValid: true,
+      // },
       height: {
         value: '',
         isValid: true,
@@ -84,7 +86,7 @@ const UpdateProduct = () => {
         isValid: true,
       },
     },
-    true,
+    true
   );
 
   const history = useHistory();
@@ -93,15 +95,15 @@ const UpdateProduct = () => {
     let product;
 
     const fetchProduct = () => {
-      product = catalog.filter(item => item.gtin === params.pid);
+      product = catalog.filter((item) => item.gtin === params.pid);
       // console.log('fetchedProduct: ', product);
     };
 
     fetchProduct();
     setLoadedProduct(product[0]);
-  }, [params.pid]);
+  }, [params.pid, catalog]);
 
-  const updateSubmitHandler = event => {
+  const updateSubmitHandler = (event) => {
     event.preventDefault();
     console.log('submitting...');
 

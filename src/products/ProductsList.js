@@ -7,7 +7,7 @@ import Section from '../shared/components/layout/Section';
 import Card from '../shared/UIElements/Card';
 
 // import { catalog } from '../assets/data/test-catalog';
-import { catalogActions } from '../../src/store/catalog-slice';
+// import { catalogActions } from '../../src/store/catalog-slice';
 import classes from './ProductsList.module.css';
 
 import {

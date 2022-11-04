@@ -23,7 +23,7 @@ const catalogSlice = createSlice({
         gtin: newItem.gtin.value,
         category: newItem.category.value,
         type: newItem.type.value,
-        image: newItem.image.value,
+        image: '',
         height: newItem.height.value,
         width: newItem.width.value,
         depth: newItem.depth.value,
@@ -43,11 +43,32 @@ const catalogSlice = createSlice({
     updateProduct(state, action) {
       // const newItem = action.payload;
     },
-    removeProduct(state, action) {
-      // const newItem = action.payload;
+    deactivateProduct(state, action) {
+      const gtin = action.payload;
+      const existingItem = state.products.find((item) => item.gtin === gtin);
+
+      if (existingItem) {
+        existingItem.dateInactive = new Date().toLocaleDateString();
+      }
+    },
+    toggleProductActive(state, action) {
+      const gtin = action.payload.gtin;
+      const existingItem = state.products.find((item) => item.gtin === gtin);
+
+      const deactivate = () => {
+        existingItem.dateInactive = new Date().toLocaleDateString();
+      };
+      const reactivate = () => {
+        existingItem.dateInactive = null;
+      };
+
+      if (existingItem) {
+        action.payload.status === 'deactivate' ? deactivate() : reactivate();
+      }
     },
     deleteProduct(state, action) {
-      // const newItem = action.payload;
+      const gtin = action.payload;
+      state.products = state.products.filter(item => item.gtin !== gtin);
     },
   },
 });

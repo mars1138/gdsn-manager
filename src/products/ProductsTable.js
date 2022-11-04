@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
 import Button from '../shared/UIElements/Button';
+
+import { catalogActions } from '../../src/store/catalog-slice';
 
 import classes from './ProductsTable.module.css';
 
@@ -9,6 +12,7 @@ const ProductsTable = (props) => {
   const [filterInput, setFilterInput] = useState('');
 
   const { columns, data, status } = props;
+  const dispatch = useDispatch();
 
   const {
     getTableProps, // table props from react-table
@@ -44,6 +48,18 @@ const ProductsTable = (props) => {
     setFilterInput(value);
   };
 
+  // const deactivateHandler = (gtin) => {
+  //   dispatch(catalogActions.deactivateProduct(gtin));
+  // };
+
+  const activeStatusHandler = (gtin, status) => {
+    dispatch(catalogActions.toggleProductActive({ gtin, status }));
+  };
+
+  const deleteProductHandler = (gtin) => {
+    dispatch(catalogActions.deleteProduct(gtin));
+  };
+
   return (
     <React.Fragment>
       <input
@@ -52,6 +68,50 @@ const ProductsTable = (props) => {
         onChange={handleFilterChange}
         placeholder={'Search name'}
       />
+      <div>
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {'<<'}
+        </button>{' '}
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {'<'}
+        </button>{' '}
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {'>'}
+        </button>{' '}
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'>>'}
+        </button>{' '}
+        <span>
+          Page{' '}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </span>
+        <span>
+          | Go to page:{' '}
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={(e) => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0;
+              gotoPage(page);
+            }}
+            style={{ width: '100px' }}
+          />
+        </span>{' '}
+        <select
+          value={pageSize}
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
+          }}
+        >
+          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
+      </div>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup, i) => {
@@ -66,6 +126,7 @@ const ProductsTable = (props) => {
                 >
                   {headerGroup.headers.map((column) => (
                     <th
+                      key={i}
                       className={classes.header}
                       {...column.getHeaderProps(column.getSortByToggleProps(), {
                         style: {
@@ -104,12 +165,17 @@ const ProductsTable = (props) => {
               prepareRow(row);
 
               return (
-                <tr key={rowIndex} className={classes.row} {...row.getRowProps()}>
+                <tr
+                  key={rowIndex}
+                  className={classes.row}
+                  {...row.getRowProps()}
+                >
                   {row.cells.map((cell, i) => {
                     // console.log('cell: ', cell);
                     if (cell.column.accessor) {
                       return (
                         <td
+                          key={i}
                           {...cell.getCellProps({
                             style: {
                               width: cell.column.width,
@@ -126,7 +192,7 @@ const ProductsTable = (props) => {
                         </td>
                       );
                     } else if (cell.column.Header === 'Index') {
-                      return <td>{rowIndex + 1}</td>;
+                      return <td key={i}>{rowIndex + 1}</td>;
                     } else {
                       return (
                         <td key={i}>
@@ -156,7 +222,12 @@ const ProductsTable = (props) => {
                                   </span>
                                 </Button>
                                 <Button
-                                  to={`/products/${cell.row.original.gtin}`}
+                                  onClick={() => {
+                                    activeStatusHandler(
+                                      cell.row.original.gtin,
+                                      'deactivate'
+                                    );
+                                  }}
                                   action
                                 >
                                   <span title="deactivate">
@@ -171,8 +242,13 @@ const ProductsTable = (props) => {
                             {status === 'inactive' && (
                               <>
                                 <Button
+                                  onClick={() => {
+                                    activeStatusHandler(
+                                      cell.row.original.gtin,
+                                      'activate'
+                                    );
+                                  }}
                                   action
-                                  to={`/products/${cell.row.original.gtin}`}
                                 >
                                   <span title="reactivate">
                                     <ion-icon
@@ -182,7 +258,11 @@ const ProductsTable = (props) => {
                                   </span>
                                 </Button>
                                 <Button
-                                  to={`/products/${cell.row.original.gtin}`}
+                                  onClick={() => {
+                                    deleteProductHandler(
+                                      cell.row.original.gtin
+                                    );
+                                  }}
                                   action
                                 >
                                   <span title="permanent delete">

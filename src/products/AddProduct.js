@@ -52,10 +52,10 @@ const AddProduct = () => {
         value: '',
         isValid: false,
       },
-      image: {
-        value: null,
-        isValid: false,
-      },
+      // image: {
+      //   value: null,
+      //   isValid: false,
+      // },
       height: {
         value: '',
         isValid: false,
@@ -85,12 +85,12 @@ const AddProduct = () => {
         isValid: false,
       },
     },
-    false,
+    false
   );
 
   const history = useHistory();
 
-  const productSubmitHandler = event => {
+  const productSubmitHandler = (event) => {
     event.preventDefault();
     console.log('formState.inputs: ', formState.inputs);
     console.log('submitting...');
