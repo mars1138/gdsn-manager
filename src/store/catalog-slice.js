@@ -12,6 +12,14 @@ const catalogSlice = createSlice({
     replaceCatalog(state, action) {
       state.products = action.payload.products;
     },
+    setCatalogStorage(state) {
+      localStorage.setItem('catalog', JSON.stringify(state.products));
+      console.log('catalog saved in localStorage')
+    },
+    getCatalogStorage(state) {
+      state.products = JSON.parse(localStorage.getItem('catalog'));
+      console.log('catalog retrieved from localStorage')
+    },
     addProduct(state, action) {
       const newItem = action.payload;
       console.log('addProduct: ', newItem);
@@ -45,7 +53,7 @@ const catalogSlice = createSlice({
     },
     deactivateProduct(state, action) {
       const gtin = action.payload;
-      const existingItem = state.products.find((item) => item.gtin === gtin);
+      const existingItem = state.products.find(item => item.gtin === gtin);
 
       if (existingItem) {
         existingItem.dateInactive = new Date().toLocaleDateString();
@@ -53,7 +61,7 @@ const catalogSlice = createSlice({
     },
     toggleProductActive(state, action) {
       const gtin = action.payload.gtin;
-      const existingItem = state.products.find((item) => item.gtin === gtin);
+      const existingItem = state.products.find(item => item.gtin === gtin);
 
       const deactivate = () => {
         existingItem.dateInactive = new Date().toLocaleDateString();

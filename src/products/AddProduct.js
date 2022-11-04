@@ -85,12 +85,12 @@ const AddProduct = () => {
         isValid: false,
       },
     },
-    false
+    false,
   );
 
   const history = useHistory();
 
-  const productSubmitHandler = (event) => {
+  const productSubmitHandler = event => {
     event.preventDefault();
     console.log('formState.inputs: ', formState.inputs);
     console.log('submitting...');
@@ -98,6 +98,7 @@ const AddProduct = () => {
     try {
       setIsSubmitting(true);
       dispatch(catalogActions.addProduct(formState.inputs));
+      dispatch(catalogActions.setCatalogStorage());
 
       setTimeout(() => {
         setIsSubmitting(false);

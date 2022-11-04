@@ -90,7 +90,7 @@ export const catalog = [
   {
     name: 'Chicken Sandwich NOT PUBLISHED',
     description: 'Chicken and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '22245678901234',
+    gtin: '12345678901238',
     category: 'Food',
     type: 'Case',
     image: '/media/pexels-fauxels-3184418.jpg',
@@ -111,7 +111,7 @@ export const catalog = [
   {
     name: 'Chicken Sandwich',
     description: 'Chicken and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '22245678901234',
+    gtin: '12345678901239',
     category: 'Food',
     type: 'Case',
     image: '/media/pexels-fauxels-3183197.jpg',
@@ -132,7 +132,7 @@ export const catalog = [
   {
     name: 'Chicken Sandwich',
     description: 'Chicken and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '22245678901234',
+    gtin: '12345678901240',
     category: 'Food',
     type: 'Case',
     image: '/media/pexels-tiger-lily-4483942.jpg',
@@ -237,7 +237,7 @@ export const catalog = [
   {
     name: 'Ruben Sandwich',
     description: 'Corned Beef and Saurkraut on Old Fashioned White Bread',
-    gtin: '33345678901234',
+    gtin: '33345678901235',
     category: 'Food',
     type: 'Case',
     image: '/media/pexels-fauxels-3184418.jpg',
@@ -258,7 +258,7 @@ export const catalog = [
   {
     name: 'Ruben Sandwich',
     description: 'Corned Beef and Saurkraut on Old Fashioned White Bread',
-    gtin: '33345678901234',
+    gtin: '33345678901236',
     category: 'Food',
     type: 'Case',
     image: '/media/pexels-fauxels-3184418.jpg',

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch} from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -28,8 +29,15 @@ import Support from './resources/Support';
 import ServicesPage from './services/ServicesPage';
 import PlansPage from './plans/PlansPage';
 
+import {catalogActions} from './store/catalog-slice'; 
+
 function App() {
+  const dispatch = useDispatch();
   let routes;
+
+  useEffect(()=>{
+    dispatch(catalogActions.getCatalogStorage());
+  },[dispatch])
 
   routes = (
     <Switch>
