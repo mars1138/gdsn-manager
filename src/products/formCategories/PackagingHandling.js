@@ -30,7 +30,8 @@ const PackagingHandling = props => {
       <div className={classes['block-container']}>
         <div className={classes['block-25']}>
           <FormInput
-            key={product ? product.packagingType : 'packagingType'}
+            key={1}
+            // key={product ? product.packagingType : 'packagingType'}
             id="packagingType"
             element="select"
             selectOptions={packageOptions}
@@ -40,11 +41,12 @@ const PackagingHandling = props => {
             selected={product ? product.packagingType : ''}
             onInput={inputHandler}
             initialValid={true}
-          />
+            />
         </div>
         <div className={classes['block-25']}>
           <FormInput
-            key={product ? product.tempUnits : 'tempUnits'}
+            key={1}
+            // key={product ? product.tempUnits : 'tempUnits'}
             id="tempUnits"
             element="select"
             selectOptions={tempOptions}
@@ -56,7 +58,7 @@ const PackagingHandling = props => {
             initialValid={true}
           />
           <FormInput
-            key={product ? product.maxTemp : 'maxTemp'}
+            // key={product ? product.maxTemp : 'maxTemp'}
             id="maxTemp"
             element="input"
             type="text"
@@ -68,7 +70,7 @@ const PackagingHandling = props => {
             initialValid={true}
           />
           <FormInput
-            key={product ? product.minTemp : 'minTemp'}
+            // key={product ? product.minTemp : 'minTemp'}
             id="minTemp"
             element="input"
             type="text"
@@ -82,7 +84,7 @@ const PackagingHandling = props => {
         </div>
         <div className={classes['block-50']}>
           <FormInput
-            key={product ? product.storageInstructions : 'storageInstructions'}
+            // key={product ? product.storageInstructions : 'storageInstructions'}
             id="storageInstructions"
             element="textarea"
             label="Storage Instructions"

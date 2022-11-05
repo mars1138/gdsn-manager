@@ -17,7 +17,14 @@ const catalogSlice = createSlice({
       console.log('catalog saved in localStorage')
     },
     getCatalogStorage(state) {
-      state.products = JSON.parse(localStorage.getItem('catalog'));
+      const local = JSON.parse(localStorage.getItem('catalog'));
+
+      // MODIFY FOR PRODUCTION:
+      if (local && local.length > 0) 
+      {state.products = local;
+      } else {
+        state.products = catalog
+      }
       console.log('catalog retrieved from localStorage')
     },
     addProduct(state, action) {

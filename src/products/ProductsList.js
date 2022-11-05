@@ -16,8 +16,8 @@ import {
   inactiveColumns,
 } from '../assets/data/productsData';
 
-const ProducstList = props => {
-  const catalog = useSelector(state => state.catalog.products);
+const ProducstList = (props) => {
+  const catalog = useSelector((state) => state.catalog.products);
   const productsList = [];
 
   const dispatch = useDispatch();
@@ -33,7 +33,6 @@ const ProducstList = props => {
       return !product.dateInactive && product.datePublished;
     }
 
-    // will need adjusting when
     if (filter === 'unpublished') {
       return (
         !product.dateInactive &&
@@ -47,9 +46,11 @@ const ProducstList = props => {
   console.log('state catalog: ', catalog);
 
   if (catalog) {
-    catalog.forEach(item => {
+    catalog.forEach((item) => {
       if (filterProducts(item, props.status)) productsList.push(item);
     });
+
+    productsList.sort((itemA, itemB) => itemA.gtin - itemB.gtin);
   }
 
   useEffect(() => {
