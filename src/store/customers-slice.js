@@ -5,7 +5,7 @@ import { customers as customerList } from '../assets/data/test-customers';
 const customersSlice = createSlice({
   name: 'customers',
   initialState: {
-    customers: customerList,
+    customerList: customerList,
   },
   reducers: {
     getCustomers(state) {

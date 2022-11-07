@@ -19,14 +19,31 @@ import { useForm } from '../shared/components/hooks/form-hook';
 // import { catalog } from '../assets/data/test-catalog';
 import classes from './AddProduct.module.css';
 import classes2 from './formCategories/Categories.module.css';
+// import { catalogActions } from '../store/catalog-slice';
 
 const UpdateProduct = () => {
   const [loadedProduct, setLoadedProduct] = useState();
   const [error, setError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // NOTES:  set up array that initiall duplicates product's subscriber list
+  // Subscriber component will toggle whether or not customer is in this temp list
+  // when form is submitting, save this temp array into loadedProduct.subscribers
+  const [subscriberDelete, setSubscriberDelete] = [];
+
   const params = useParams();
-  const catalog = useSelector(state => state.catalog.products);
+
+  const catalog = useSelector((state) => state.catalog.products);
+
+  const toggleSubscriber = (custId) => {
+    if (subscriberDelete.find((subscriber) => subscriber === custId)) {
+      setSubscriberDelete((prev) => {
+        prev.filter((sub) => sub !== custId);
+      });
+    } else {
+      setSubscriberDelete((prev) => [...prev, custId]);
+    }
+  };
 
   const clearError = () => {
     setError(false);
@@ -87,7 +104,7 @@ const UpdateProduct = () => {
         isValid: true,
       },
     },
-    true,
+    true
   );
 
   const history = useHistory();
@@ -96,7 +113,7 @@ const UpdateProduct = () => {
     let product;
 
     const fetchProduct = () => {
-      product = catalog.filter(item => item.gtin === params.pid);
+      product = catalog.filter((item) => item.gtin === params.pid);
       // console.log('fetchedProduct: ', product);
     };
 
@@ -104,9 +121,9 @@ const UpdateProduct = () => {
     setLoadedProduct(product[0]);
   }, [params.pid, catalog]);
 
-  const updateSubmitHandler = event => {
+  const updateSubmitHandler = (event) => {
     event.preventDefault();
-    console.log('submitting...');
+    // console.log('submitting...');
 
     try {
       setIsSubmitting(true);
@@ -117,9 +134,9 @@ const UpdateProduct = () => {
     } catch (err) {}
   };
 
-  console.log('loadedProduct: ', loadedProduct);
-  loadedProduct && console.log('UPdate.subscirbers: ', loadedProduct.subscribers);
-
+  // console.log('loadedProduct: ', loadedProduct);
+  loadedProduct &&
+    console.log('UPdate.subscirbers: ', loadedProduct.subscribers);
 
   return (
     <Section>
@@ -140,7 +157,11 @@ const UpdateProduct = () => {
               product={loadedProduct}
               edit
             />
-            <Subscribers subscribers={loadedProduct ? loadedProduct.subscribers : []}/>
+            <Subscribers
+              product={loadedProduct ? loadedProduct.gtin : ''}
+              subscribers={loadedProduct ? loadedProduct.subscribers : []}
+              toggleSubscriber={toggleSubscriber}
+            />
             {/* <Subscribers /> */}
             <div className={classes2['block-container']}>
               <Button type="submit" disabled={!formState.isValid}>

@@ -1,23 +1,59 @@
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import Card from '../../shared/UIElements/Card';
 
 import classes from './Categories.module.css';
 
+const Subscriber = (props) => {
+  const [deleteSub, setDeleteSub] = useState(false);
+
+  const toggleSubHandler = (custId) => {
+    setDeleteSub(!deleteSub);
+    props.toggleSubscriber(custId);
+  };
+
+  return (
+    <Card index={props.subscriberNum}>
+      <div
+        className={classes.close}
+        onClick={() => {
+          toggleSubHandler(props.subscriberNum);
+        }}
+      >
+        &times;
+      </div>
+      <h4>{props.customer.name}</h4>
+      <h5>Cust #{props.customer.id}</h5>
+      {deleteSub && <p>Pending Delete</p>}
+    </Card>
+  );
+};
+
 const Subscribers = (props) => {
+  const customerList = useSelector((state) => state.customers.customerList);
   const subscribers = props.subscribers;
   const subscriberList = [];
+
   let content;
 
-  console.log('subscirbers: ', subscribers);
+  // const cardClasses = `${}`
+
+  // console.log('subscribers: ', subscribers);
   content = <p>No Subscribers</p>;
 
   subscribers &&
-    subscribers.forEach((customer, i) => {
-      console.log('customer: ', customer);
+    subscribers.forEach((subscriberNum, i) => {
+      const customer = customerList.find((cust) => cust.id === subscriberNum);
 
       subscriberList.push(
-        <Card key={i} index={customer}>
-          <h4>{customer}</h4>
-        </Card>
+        <Subscriber
+          key={i}
+          index={i}
+          subscriberNum={subscriberNum}
+          customer={customer}
+          toggleSubscriber={props.toggleSubscriber}
+        />
       );
     });
 

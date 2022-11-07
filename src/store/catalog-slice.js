@@ -14,18 +14,18 @@ const catalogSlice = createSlice({
     },
     setCatalogStorage(state) {
       localStorage.setItem('catalog', JSON.stringify(state.products));
-      console.log('catalog saved in localStorage')
+      console.log('catalog saved in localStorage');
     },
     getCatalogStorage(state) {
       const local = JSON.parse(localStorage.getItem('catalog'));
 
       // MODIFY FOR PRODUCTION:
-      if (local && local.length > 0) 
-      {state.products = local;
+      if (local && local.length > 0) {
+        state.products = local;
       } else {
-        state.products = catalog
+        state.products = catalog;
       }
-      console.log('catalog retrieved from localStorage')
+      console.log('catalog retrieved from localStorage');
     },
     addProduct(state, action) {
       const newItem = action.payload;
@@ -60,7 +60,7 @@ const catalogSlice = createSlice({
     },
     deactivateProduct(state, action) {
       const gtin = action.payload;
-      const existingItem = state.products.find(item => item.gtin === gtin);
+      const existingItem = state.products.find((item) => item.gtin === gtin);
 
       if (existingItem) {
         existingItem.dateInactive = new Date().toLocaleDateString();
@@ -68,7 +68,7 @@ const catalogSlice = createSlice({
     },
     toggleProductActive(state, action) {
       const gtin = action.payload.gtin;
-      const existingItem = state.products.find(item => item.gtin === gtin);
+      const existingItem = state.products.find((item) => item.gtin === gtin);
 
       const deactivate = () => {
         existingItem.dateInactive = new Date().toLocaleDateString();
@@ -83,7 +83,24 @@ const catalogSlice = createSlice({
     },
     deleteProduct(state, action) {
       const gtin = action.payload;
-      state.products = state.products.filter(item => item.gtin !== gtin);
+      state.products = state.products.filter((item) => item.gtin !== gtin);
+    },
+    removeSubscriber(state, action) {
+      const custId = action.payload.custId;
+      const prod = action.payload.productNum;
+      // console.log('custId: ', custId);
+      // console.log('prod: ', prod);
+
+      const existingProduct = state.products.find((item) => item.gtin === prod);
+      // console.log('existingProd: ', existingProduct);
+      const newSubs = existingProduct.subscribers.filter(
+        (cust) => cust !== custId
+      );
+      // console.log('newsubs: ', newSubs);
+
+      if (existingProduct) {
+        existingProduct.subscribers = newSubs;
+      }
     },
   },
 });

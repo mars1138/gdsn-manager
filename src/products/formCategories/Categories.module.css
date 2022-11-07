@@ -1,5 +1,6 @@
 .category {
   margin: 2rem auto 5rem auto;
+  position: relative;
 }
 
 .category h3 {
@@ -39,4 +40,16 @@
 
 .block-25 {
   width: 25%;
+}
+
+.close {
+  position: absolute;
+  top: 2px;
+  right: 7px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: var(--red-1);
 }
