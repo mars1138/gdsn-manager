@@ -80,7 +80,7 @@ const UpdateProduct = () => {
         isValid: false,
       },
     },
-    false
+    false,
   );
 
   // NOTES:  set up array that initiall duplicates product's subscriber list
@@ -91,16 +91,16 @@ const UpdateProduct = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.catalog.products);
+  const catalog = useSelector(state => state.catalog.products);
 
   // passed on to subscriber component; add/remove customer id from list of product subscribers
-  const toggleSubscriber = (custId) => {
-    if (subscriberUpdate.find((subscriber) => subscriber === custId)) {
-      const newSubs = subscriberUpdate.filter((sub) => sub !== custId);
+  const toggleSubscriber = custId => {
+    if (subscriberUpdate.find(subscriber => subscriber === custId)) {
+      const newSubs = subscriberUpdate.filter(sub => sub !== custId);
 
       setSubscriberUpdate([...newSubs]);
     } else {
-      setSubscriberUpdate((prev) => [...prev, custId]);
+      setSubscriberUpdate(prev => [...prev, custId]);
     }
   };
 
@@ -114,7 +114,7 @@ const UpdateProduct = () => {
     let product;
 
     const fetchProduct = () => {
-      product = catalog.filter((item) => item.gtin === params.pid)[0];
+      product = catalog.filter(item => item.gtin === params.pid)[0];
       console.log('fetchedProduct: ', product);
     };
 
@@ -175,43 +175,42 @@ const UpdateProduct = () => {
           isValid: true,
         },
       },
-      true
+      true,
     );
     setSubscriberUpdate([...product.subscribers]);
   }, [params.pid, catalog, setFormData]);
 
-  const updateSubmitHandler = (event) => {
+  const updateSubmitHandler = event => {
     event.preventDefault();
     // console.log('submitting...');
 
     try {
       setIsSubmitting(true);
-      console.log('formState: ', formState);
-
-      dispatch(
-        catalogActions.updateExistingProduct({
-          name: formState.inputs.name.value,
-          description: formState.inputs.description.value,
-          gtin: formState.inputs.gtin.value,
-          category: formState.inputs.category.value,
-          type: formState.inputs.type.value,
-          image: '',
-          height: formState.inputs.height.value,
-          width: formState.inputs.width.value,
-          depth: formState.inputs.depth.value,
-          weight: formState.inputs.weight.value,
-          packagingType: formState.inputs.packagingType.value,
-          tempUnits: formState.inputs.tempUnits.value,
-          minTemp: formState.inputs.minTemp.value,
-          maxTemp: formState.inputs.maxTemp.value,
-          storageInstructions: formState.inputs.storageInstructions.value,
-          // subscribers: [],
-        })
-      );
-
+      console.log('formState on submit: ', formState);
+      
       setTimeout(() => {
         setIsSubmitting(false);
         history.push('/products');
+        dispatch(
+          catalogActions.updateExistingProduct({
+            name: formState.inputs.name.value,
+            description: formState.inputs.description.value,
+            gtin: formState.inputs.gtin.value,
+            category: formState.inputs.category.value,
+            type: formState.inputs.type.value,
+            image: '',
+            height: formState.inputs.height.value,
+            width: formState.inputs.width.value,
+            depth: formState.inputs.depth.value,
+            weight: formState.inputs.weight.value,
+            packagingType: formState.inputs.packagingType.value,
+            tempUnits: formState.inputs.tempUnits.value,
+            minTemp: formState.inputs.minTemp.value,
+            maxTemp: formState.inputs.maxTemp.value,
+            storageInstructions: formState.inputs.storageInstructions.value,
+            // subscribers: [],
+          }),
+        );
       }, 2000);
     } catch (err) {}
   };
@@ -219,7 +218,8 @@ const UpdateProduct = () => {
   // console.log('loadedProduct: ', loadedProduct);
   // loadedProduct &&
   //   console.log('UPdate.subscirbers: ', loadedProduct.subscribers);
-
+  console.log('formState: ', formState);
+  
   return (
     <Section>
       <h1>Update Product</h1>

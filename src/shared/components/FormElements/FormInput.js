@@ -22,7 +22,7 @@ const inputReducer = (state, action) => {
   }
 };
 
-const FormInput = (props) => {
+const FormInput = props => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue || '',
     isTouched: false,
@@ -39,7 +39,7 @@ const FormInput = (props) => {
     onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
 
-  const changeHandler = (event) => {
+  const changeHandler = event => {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
@@ -56,7 +56,7 @@ const FormInput = (props) => {
   if (props.element === 'input')
     element = (
       <input
-        key={props.id}
+        key={`${props.id}-input`}
         id={props.id}
         type={props.type}
         placeholder={props.placeholder}
@@ -71,7 +71,7 @@ const FormInput = (props) => {
   if (props.element === 'textarea')
     element = (
       <textarea
-        key={props.id}
+        key={`${props.id}-text`}
         id={props.id}
         rows={props.rows || 3}
         onChange={changeHandler}
@@ -85,21 +85,24 @@ const FormInput = (props) => {
     const optionsArray = [];
 
     props.selectOptions.forEach((option, index) => {
+      console.log('option key: ', `${index}-${props.id}`);
       optionsArray.push(
         <option
-          key={index}
+          key={`${index}-${props.id}`}
           value={option}
           // selected={option === props.selected ? option : ''}
           className={props.edit && disabledClass}
         >
           {option}
-        </option>
+        </option>,
       );
     });
 
+    console.log('select key: ', `${props.id}-select`)
+
     element = (
       <select
-        key={props.id}
+        key={`${props.id}-select`}
         id={props.id}
         onChange={changeHandler}
         onBlur={touchHandler}
