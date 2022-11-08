@@ -1,7 +1,7 @@
 import { catalogActions } from './catalog-slice';
 
 export const fetchCatalogData = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch('https://QQQQQQQQQQQQQQQQQQQ');
 
@@ -18,7 +18,7 @@ export const fetchCatalogData = () => {
       dispatch(
         catalogActions.replaceCatalog({
           products: catalogData.products || [],
-        }),
+        })
       );
     } catch (err) {
       ///
@@ -26,8 +26,8 @@ export const fetchCatalogData = () => {
   };
 };
 
-export const sendCatalogData = catalog => {
-  return async dispatch => {
+export const sendCatalogData = (catalog) => {
+  return async (dispatch) => {
     /// show notification sending...
 
     const sendCatalog = async () => {
@@ -50,3 +50,4 @@ export const sendCatalogData = catalog => {
     }
   };
 };
+

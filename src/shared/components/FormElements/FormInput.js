@@ -36,7 +36,7 @@ const FormInput = (props) => {
   let element;
 
   useEffect(() => {
-    onInput && onInput(id, value, isValid);
+    onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
 
   const changeHandler = (event) => {
@@ -89,7 +89,7 @@ const FormInput = (props) => {
         <option
           key={index}
           value={option}
-          selected={option === props.selected ? option : ''}
+          // selected={option === props.selected ? option : ''}
           className={props.edit && disabledClass}
         >
           {option}
@@ -103,6 +103,7 @@ const FormInput = (props) => {
         id={props.id}
         onChange={changeHandler}
         onBlur={touchHandler}
+        defaultValue={props.selected}
         disabled={props.edit ? true : false}
       >
         {optionsArray}

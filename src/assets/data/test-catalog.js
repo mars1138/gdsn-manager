@@ -14,7 +14,7 @@ export const catalog = [
     width: '8',
     depth: '5',
     weight: '5',
-    packagingType: 'Case',
+    packagingType: 'Crate',
     tempUnits: 'Farenheit',
     minTemp: '0',
     maxTemp: '32',

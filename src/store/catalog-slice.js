@@ -61,9 +61,9 @@ const catalogSlice = createSlice({
         item => item.gtin === newItem.gtin,
       );
 
-      newItem.dateAdded = existingItem.dateAdded;
-      newItem.datePublished = existingItem.datePublished;
-      newItem.dateInactive = existingItem.dateInactive;
+      // newItem.dateAdded = existingItem.dateAdded;
+      // newItem.datePublished = existingItem.datePublished;
+      // newItem.dateInactive = existingItem.dateInactive;
 
       console.log('newItem: ', newItem);
 
@@ -84,7 +84,7 @@ const catalogSlice = createSlice({
       existingItem.minTemp = newItem.minTemp;
       existingItem.maxTemp = newItem.maxTemp;
       existingItem.storageInstructions = newItem.storageInstructions;
-      existingItem.subscribers = [...newItem.subscribers];
+      // existingItem.subscribers = [...newItem.subscribers];
     },
     deactivateProduct(state, action) {
       const gtin = action.payload;

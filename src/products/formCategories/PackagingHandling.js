@@ -5,7 +5,7 @@ import { VALIDATOR_REQUIRE } from '../../shared/utilities/validators';
 
 import classes from './Categories.module.css';
 
-const PackagingHandling = props => {
+const PackagingHandling = (props) => {
   const tempOptions = ['', 'Farenheit', 'Celsius'];
   const packageOptions = [
     '',
@@ -30,8 +30,9 @@ const PackagingHandling = props => {
       <div className={classes['block-container']}>
         <div className={classes['block-25']}>
           <FormInput
-            key={product ? product.packagingType : 'packagingType'}
-            id="packagingType"
+          key={product ? `${product.packagingType}` : 'packagingType'}
+          // key="packagingType"
+          id="packagingType"
             element="select"
             selectOptions={packageOptions}
             label="Packaging Type"
@@ -44,7 +45,8 @@ const PackagingHandling = props => {
         </div>
         <div className={classes['block-25']}>
           <FormInput
-            key={product ? product.tempUnits : 'tempUnits'}
+            key={product ? `${product.tempUnits}` : 'tempUnits'}
+            // key="tempUnits"
             id="tempUnits"
             element="select"
             selectOptions={tempOptions}
@@ -54,21 +56,10 @@ const PackagingHandling = props => {
             selected={product ? product.tempUnits : ''}
             onInput={inputHandler}
             initialValid={true}
-          />
+            />
           <FormInput
-            key={product ? product.maxTemp : 'maxTemp'}
-            id="maxTemp"
-            element="input"
-            type="text"
-            label="Maximum Temperature"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter max temperature"
-            initialValue={product ? product.maxTemp : ''}
-            onInput={inputHandler}
-            initialValid={true}
-          />
-          <FormInput
-            key={product ? product.minTemp : 'minTemp'}
+            key={product ? `${product.minTemp}` : 'minTemp'}
+            // key="minTemp"
             id="minTemp"
             element="input"
             type="text"
@@ -79,15 +70,28 @@ const PackagingHandling = props => {
             onInput={inputHandler}
             initialValid={true}
           />
+          <FormInput
+            key={product ? `${product.maxTemp}` : 'maxTemp'}
+            id="maxTemp"
+            element="input"
+            type="text"
+            label="Maximum Temperature"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter max temperature"
+            initialValue={product ? product.maxTemp : ''}
+            onInput={inputHandler}
+            initialValid={true}
+            />
         </div>
         <div className={classes['block-50']}>
           <FormInput
-            key={product ? product.storageInstructions : 'storageInstructions'}
+            key={product ? `${product.storageInstructions}` : 'storageInstructions'}
+            // key="storageInstructions"
             id="storageInstructions"
             element="textarea"
             label="Storage Instructions"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter consumer storage instructions"
+            errorText="Please enter storage instructions"
             initialValue={product ? product.storageInstructions : ''}
             onInput={inputHandler}
             initialValid={true}

@@ -14,77 +14,73 @@ import PackagingHandling from './formCategories/PackagingHandling';
 import Subscribers from './formCategories/Subscribers';
 
 import { useForm } from '../shared/components/hooks/form-hook';
-// import FormInput from '../shared/components/FormElements/FormInput';
 
-// import { catalog } from '../assets/data/test-catalog';
 import classes from './AddProduct.module.css';
 import classes2 from './formCategories/Categories.module.css';
 import { catalogActions } from '../store/catalog-slice';
-// import { catalogActions } from '../store/catalog-slice';
 
 const UpdateProduct = () => {
   const [loadedProduct, setLoadedProduct] = useState();
   const [error, setError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [subscriberUpdate, setSubscriberUpdate] = useState([]);
-  const [readyToSubmit, setReadyToSubmit] = useState(false);
 
-  const [formState, inputHandler] = useForm(
+  const [formState, inputHandler, setFormData] = useForm(
     {
       name: {
         value: '',
-        isValid: true,
+        isValid: false,
       },
       description: {
         value: '',
-        isValid: true,
+        isValid: false,
       },
       // gtin: {
       //   value: '',
-      //   isValid: true,
+      //   isValid: false,
       // },
       category: {
         value: '',
-        isValid: true,
+        isValid: false,
       },
       // type: {
       //   value: '',
-      //   isValid: true,
+      //   isValid: false,
       // },
       // image: {
       //   value: null,
-      //   isValid: true,
+      //   isValid: false,
       // },
       height: {
         value: '',
-        isValid: true,
+        isValid: false,
       },
       width: {
         value: '',
-        isValid: true,
+        isValid: false,
       },
       depth: {
         value: '',
-        isValid: true,
+        isValid: false,
       },
       weight: {
         value: '',
-        isValid: true,
+        isValid: false,
       },
       minTemp: {
         value: '',
-        isValid: true,
+        isValid: false,
       },
       maxTemp: {
         value: '',
-        isValid: true,
+        isValid: false,
       },
       storageInstructions: {
         value: '',
-        isValid: true,
+        isValid: false,
       },
     },
-    true,
+    false
   );
 
   // NOTES:  set up array that initiall duplicates product's subscriber list
@@ -95,42 +91,18 @@ const UpdateProduct = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const catalog = useSelector(state => state.catalog.products);
+  const catalog = useSelector((state) => state.catalog.products);
 
   // passed on to subscriber component; add/remove customer id from list of product subscribers
-  const toggleSubscriber = custId => {
-    if (subscriberUpdate.find(subscriber => subscriber === custId)) {
-      const newSubs = subscriberUpdate.filter(sub => sub !== custId);
+  const toggleSubscriber = (custId) => {
+    if (subscriberUpdate.find((subscriber) => subscriber === custId)) {
+      const newSubs = subscriberUpdate.filter((sub) => sub !== custId);
 
       setSubscriberUpdate([...newSubs]);
     } else {
-      setSubscriberUpdate(prev => [...prev, custId]);
+      setSubscriberUpdate((prev) => [...prev, custId]);
     }
   };
-
-  readyToSubmit &&
-    dispatch(
-      catalogActions.updateExistingProduct({
-        name: formState.inputs.name.value,
-        description: formState.inputs.description.value,
-        gtin: formState.inputs.gtin.value,
-        category: formState.inputs.category.value,
-        type: formState.inputs.type.value,
-        image: '',
-        height: formState.inputs.height.value,
-        width: formState.inputs.width.value,
-        depth: formState.inputs.depth.value,
-        weight: formState.inputs.weight.value,
-        packagingType: formState.inputs.packagingType.value,
-        tempUnits: formState.inputs.tempUnits.value,
-        minTemp: formState.inputs.minTemp.value,
-        maxTemp: formState.inputs.maxTemp.value,
-        storageInstructions: formState.inputs.storageInstructions.value,
-        subscribers: [...subscriberUpdate],
-      }),
-    );
-
-  readyToSubmit && dispatch(catalogActions.setCatalogStorage());
 
   console.log('subscriberUpdate: ', subscriberUpdate);
 
@@ -142,22 +114,101 @@ const UpdateProduct = () => {
     let product;
 
     const fetchProduct = () => {
-      product = catalog.filter(item => item.gtin === params.pid);
+      product = catalog.filter((item) => item.gtin === params.pid)[0];
       console.log('fetchedProduct: ', product);
     };
 
     fetchProduct();
-    setLoadedProduct(product[0]);
-    setSubscriberUpdate([...product[0].subscribers]);
-  }, [params.pid, catalog, setSubscriberUpdate]);
+    setLoadedProduct(product);
+    setFormData(
+      {
+        name: {
+          value: product.name,
+          isValid: true,
+        },
+        description: {
+          value: product.description,
+          isValid: true,
+        },
+        gtin: {
+          value: product.gtin,
+          isValid: false,
+        },
+        category: {
+          value: product.category,
+          isValid: true,
+        },
+        type: {
+          value: product.type,
+          isValid: true,
+        },
+        // image: {
+        //   value: null,
+        //   isValid: true,
+        // },
+        height: {
+          value: product.height,
+          isValid: true,
+        },
+        width: {
+          value: product.width,
+          isValid: true,
+        },
+        depth: {
+          value: product.depth,
+          isValid: true,
+        },
+        weight: {
+          value: product.weight,
+          isValid: true,
+        },
+        minTemp: {
+          value: product.minTemp,
+          isValid: true,
+        },
+        maxTemp: {
+          value: product.maxTemp,
+          isValid: true,
+        },
+        storageInstructions: {
+          value: product.storageInstructions,
+          isValid: true,
+        },
+      },
+      true
+    );
+    setSubscriberUpdate([...product.subscribers]);
+  }, [params.pid, catalog, setFormData]);
 
-  const updateSubmitHandler = event => {
+  const updateSubmitHandler = (event) => {
     event.preventDefault();
     // console.log('submitting...');
 
     try {
       setIsSubmitting(true);
-      setReadyToSubmit(true);
+      console.log('formState: ', formState);
+
+      dispatch(
+        catalogActions.updateExistingProduct({
+          name: formState.inputs.name.value,
+          description: formState.inputs.description.value,
+          gtin: formState.inputs.gtin.value,
+          category: formState.inputs.category.value,
+          type: formState.inputs.type.value,
+          image: '',
+          height: formState.inputs.height.value,
+          width: formState.inputs.width.value,
+          depth: formState.inputs.depth.value,
+          weight: formState.inputs.weight.value,
+          packagingType: formState.inputs.packagingType.value,
+          tempUnits: formState.inputs.tempUnits.value,
+          minTemp: formState.inputs.minTemp.value,
+          maxTemp: formState.inputs.maxTemp.value,
+          storageInstructions: formState.inputs.storageInstructions.value,
+          // subscribers: [],
+        })
+      );
+
       setTimeout(() => {
         setIsSubmitting(false);
         history.push('/products');
