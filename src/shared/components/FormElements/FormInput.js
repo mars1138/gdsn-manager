@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 
 import { validate } from '../../utilities/validators';
 import classes from './FormInput.module.css';
@@ -28,8 +28,9 @@ const FormInput = (props) => {
     isTouched: false,
     isValid: props.initialValid || false,
   });
+  const [first, setFirst] = useState(true);
 
-  const { id, onInput } = props;
+  const { id, onInput, selected, setSelectOption } = props;
   const { value, isValid } = inputState;
   const disabledClass = `${props.edit ? classes.disabled : ''}`;
 
@@ -37,7 +38,16 @@ const FormInput = (props) => {
 
   useEffect(() => {
     onInput(id, value, isValid);
-  }, [id, value, isValid, onInput]);
+
+    //////  TESTING FIX FOR SELECT OPTIONS:
+    if (first && setSelectOption) {
+      // console.log('setSelectOption: ', setSelectOption);
+      setFirst(false);
+      setSelectOption({ [id]: selected });
+      console.log(first);
+    }
+    //////  TESTING FIX FOR SELECT OPTIONS ^
+  }, [id, value, isValid, onInput, selected, setSelectOption, first]);
 
   const changeHandler = (event) => {
     dispatch({
@@ -47,13 +57,26 @@ const FormInput = (props) => {
     });
   };
 
+  //////  TESTING FIX FOR SELECT OPTIONS:
+  const changeSelectHandler = (event) => {
+    dispatch({
+      type: 'CHANGE',
+      val: event.target.value,
+      validators: props.validators,
+    });
+
+    const name = `${props.id}`;
+    props.setSelectOption({ [name]: event.target.value });
+  };
+  //////  TESTING FIX FOR SELECT OPTIONS^
+
   const touchHandler = () => {
     dispatch({
       type: 'TOUCH',
     });
   };
 
-  if (props.element === 'input')
+  if (props.element === 'input') {
     element = (
       <input
         key={props.id}
@@ -67,8 +90,10 @@ const FormInput = (props) => {
         className={disabledClass}
       />
     );
+    // console.log(`input ${props.id} key: `, props.id);
+  }
 
-  if (props.element === 'textarea')
+  if (props.element === 'textarea') {
     element = (
       <textarea
         key={props.id}
@@ -80,6 +105,8 @@ const FormInput = (props) => {
         placeholder={props.placeholder}
       />
     );
+    // console.log(`textarea ${props.id} key: `, props.id);
+  }
 
   if (props.element === 'select') {
     const optionsArray = [];
@@ -87,7 +114,7 @@ const FormInput = (props) => {
     props.selectOptions.forEach((option, index) => {
       optionsArray.push(
         <option
-          key={index}
+          key={`${props.id}-${index}`}
           value={option}
           // selected={option === props.selected ? option : ''}
           className={props.edit && disabledClass}
@@ -95,13 +122,15 @@ const FormInput = (props) => {
           {option}
         </option>
       );
+      // console.log(`option=${option} key: `, `${props.id}-${index}`);
     });
 
     element = (
       <select
         key={props.id}
         id={props.id}
-        onChange={changeHandler}
+        //////  TESTING FIX FOR SELECT OPTIONS:
+        onChange={changeSelectHandler}
         onBlur={touchHandler}
         defaultValue={props.selected}
         disabled={props.edit ? true : false}
@@ -109,6 +138,8 @@ const FormInput = (props) => {
         {optionsArray}
       </select>
     );
+    // props.setSelectOption({[props.id]: props.selected});
+    // console.log(`select ${props.id} key: `, props.id);
   }
 
   return (

@@ -30,9 +30,9 @@ const PackagingHandling = (props) => {
       <div className={classes['block-container']}>
         <div className={classes['block-25']}>
           <FormInput
-          key={product ? `${product.packagingType}` : 'packagingType'}
-          // key="packagingType"
-          id="packagingType"
+            key={product ? `${product.packagingType}` : 'packagingType'}
+            // key="packagingType"
+            id="packagingType"
             element="select"
             selectOptions={packageOptions}
             label="Packaging Type"
@@ -41,6 +41,8 @@ const PackagingHandling = (props) => {
             selected={product ? product.packagingType : ''}
             onInput={inputHandler}
             initialValid={true}
+            //////  TESTING FIX FOR SELECT OPTIONS:
+            setSelectOption={props.setSelectOption}
           />
         </div>
         <div className={classes['block-25']}>
@@ -56,7 +58,9 @@ const PackagingHandling = (props) => {
             selected={product ? product.tempUnits : ''}
             onInput={inputHandler}
             initialValid={true}
-            />
+            //////  TESTING FIX FOR SELECT OPTIONS:
+            setSelectOption={props.setSelectOption}
+          />
           <FormInput
             key={product ? `${product.minTemp}` : 'minTemp'}
             // key="minTemp"
@@ -81,11 +85,13 @@ const PackagingHandling = (props) => {
             initialValue={product ? product.maxTemp : ''}
             onInput={inputHandler}
             initialValid={true}
-            />
+          />
         </div>
         <div className={classes['block-50']}>
           <FormInput
-            key={product ? `${product.storageInstructions}` : 'storageInstructions'}
+            key={
+              product ? `${product.storageInstructions}` : 'storageInstructions'
+            }
             // key="storageInstructions"
             id="storageInstructions"
             element="textarea"

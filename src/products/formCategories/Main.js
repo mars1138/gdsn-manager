@@ -78,6 +78,8 @@ const Main = (props) => {
             selected={product ? product.category : ''}
             initialValid={true}
             onInput={inputHandler}
+            //////  TESTING FIX FOR SELECT OPTIONS:
+            setSelectOption={props.setSelectOption}
           />
           <FormInput
             key={product ? product.type : 'type'}
@@ -91,6 +93,8 @@ const Main = (props) => {
             initialValid={true}
             onInput={inputHandler}
             edit={props.edit}
+            //////  TESTING FIX FOR SELECT OPTIONS:
+            setSelectOption={props.setSelectOption}
           />
         </div>
         <div className={classes['block-50']}>

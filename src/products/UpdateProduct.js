@@ -25,6 +25,14 @@ const UpdateProduct = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [subscriberUpdate, setSubscriberUpdate] = useState([]);
 
+  //////  TESTING FIX FOR SELECT OPTIONS:
+  const [selectOptionsValues, setSelectOptionsValues] = useState({
+    category: '',
+    type: '',
+    packagingType: '',
+    tempUnits: '',
+  });
+
   const [formState, inputHandler, setFormData] = useForm(
     {
       name: {
@@ -180,20 +188,33 @@ const UpdateProduct = () => {
     setSubscriberUpdate([...product.subscribers]);
   }, [params.pid, catalog, setFormData]);
 
+
+  //////  TESTING FIX FOR SELECT OPTIONS:
+  const selectOptionsHandler = (value) => {
+    const newVal = value;
+    console.log('selectOptionsHandler: ', value);
+
+    setSelectOptionsValues((prev) => {
+      return { ...prev, ...newVal };
+    });
+  };
+
   const updateSubmitHandler = (event) => {
     event.preventDefault();
     // console.log('submitting...');
+    console.log('formState: ', formState);
+    console.log('selectOptionsValues: ', selectOptionsValues);
 
     try {
       setIsSubmitting(true);
-      console.log('formState: ', formState);
 
       dispatch(
         catalogActions.updateExistingProduct({
           name: formState.inputs.name.value,
           description: formState.inputs.description.value,
           gtin: formState.inputs.gtin.value,
-          category: formState.inputs.category.value,
+          //////  TESTING FIX FOR SELECT OPTIONS:
+          category: selectOptionsValues.category,
           type: formState.inputs.type.value,
           image: '',
           height: formState.inputs.height.value,
@@ -228,14 +249,19 @@ const UpdateProduct = () => {
           <Modal show={error} onClear={clearError} />
           <form className={classes.form} onSubmit={updateSubmitHandler}>
             {isSubmitting && <LoadingSpinner />}
-            <Main inputHandler={inputHandler} product={loadedProduct} edit />
+            <Main
+              inputHandler={inputHandler}
+              setSelectOption={selectOptionsHandler}
+              product={loadedProduct}
+              edit
+            />
             <Dimensions
               inputHandler={inputHandler}
               product={loadedProduct}
               edit
             />
             <PackagingHandling
-              inputHandler={inputHandler}
+              inputHandler={inputHandler} onSubmit={updateSubmitHandler}
               product={loadedProduct}
               edit
             />
