@@ -88,7 +88,7 @@ const UpdateProduct = () => {
         isValid: false,
       },
     },
-    false
+    false,
   );
 
   // NOTES:  set up array that initiall duplicates product's subscriber list
@@ -99,16 +99,16 @@ const UpdateProduct = () => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.catalog.products);
+  const catalog = useSelector(state => state.catalog.products);
 
   // passed on to subscriber component; add/remove customer id from list of product subscribers
-  const toggleSubscriber = (custId) => {
-    if (subscriberUpdate.find((subscriber) => subscriber === custId)) {
-      const newSubs = subscriberUpdate.filter((sub) => sub !== custId);
+  const toggleSubscriber = custId => {
+    if (subscriberUpdate.find(subscriber => subscriber === custId)) {
+      const newSubs = subscriberUpdate.filter(sub => sub !== custId);
 
       setSubscriberUpdate([...newSubs]);
     } else {
-      setSubscriberUpdate((prev) => [...prev, custId]);
+      setSubscriberUpdate(prev => [...prev, custId]);
     }
   };
 
@@ -122,7 +122,7 @@ const UpdateProduct = () => {
     let product;
 
     const fetchProduct = () => {
-      product = catalog.filter((item) => item.gtin === params.pid)[0];
+      product = catalog.filter(item => item.gtin === params.pid)[0];
       console.log('fetchedProduct: ', product);
     };
 
@@ -183,7 +183,7 @@ const UpdateProduct = () => {
           isValid: true,
         },
       },
-      true
+      true,
     );
     setSubscriberUpdate([...product.subscribers]);
   }, [params.pid, catalog, setFormData]);
@@ -199,7 +199,7 @@ const UpdateProduct = () => {
     });
   };
 
-  const updateSubmitHandler = (event) => {
+  const updateSubmitHandler = event => {
     event.preventDefault();
     // console.log('submitting...');
     console.log('formState: ', formState);
@@ -230,6 +230,8 @@ const UpdateProduct = () => {
         })
       );
 
+      console.log('formState on submit: ', formState);
+      
       setTimeout(() => {
         setIsSubmitting(false);
         history.push('/products');
@@ -240,7 +242,8 @@ const UpdateProduct = () => {
   // console.log('loadedProduct: ', loadedProduct);
   // loadedProduct &&
   //   console.log('UPdate.subscirbers: ', loadedProduct.subscribers);
-
+  // console.log('formState: ', formState);
+  
   return (
     <Section>
       <h1>Update Product</h1>

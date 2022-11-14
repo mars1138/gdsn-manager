@@ -22,7 +22,7 @@ const inputReducer = (state, action) => {
   }
 };
 
-const FormInput = (props) => {
+const FormInput = props => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue || '',
     isTouched: false,
@@ -49,7 +49,7 @@ const FormInput = (props) => {
     //////  TESTING FIX FOR SELECT OPTIONS ^
   }, [id, value, isValid, onInput, selected, setSelectOption, first]);
 
-  const changeHandler = (event) => {
+  const changeHandler = event => {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
@@ -79,7 +79,7 @@ const FormInput = (props) => {
   if (props.element === 'input') {
     element = (
       <input
-        key={props.id}
+        key={`${props.id}-input`}
         id={props.id}
         type={props.type}
         placeholder={props.placeholder}
@@ -96,7 +96,7 @@ const FormInput = (props) => {
   if (props.element === 'textarea') {
     element = (
       <textarea
-        key={props.id}
+        key={`${props.id}-text`}
         id={props.id}
         rows={props.rows || 3}
         onChange={changeHandler}
@@ -112,6 +112,7 @@ const FormInput = (props) => {
     const optionsArray = [];
 
     props.selectOptions.forEach((option, index) => {
+      // console.log('option key: ', `${index}-${props.id}`);
       optionsArray.push(
         <option
           key={`${props.id}-${index}`}
@@ -120,17 +121,20 @@ const FormInput = (props) => {
           className={props.edit && disabledClass}
         >
           {option}
-        </option>
+        </option>,
       );
       // console.log(`option=${option} key: `, `${props.id}-${index}`);
     });
 
+    // console.log('select key: ', `${props.id}-select`)
+
     element = (
       <select
-        key={props.id}
+        key={`${props.id}-select`}
         id={props.id}
         //////  TESTING FIX FOR SELECT OPTIONS:
         onChange={changeSelectHandler}
+        //////
         onBlur={touchHandler}
         defaultValue={props.selected}
         disabled={props.edit ? true : false}
