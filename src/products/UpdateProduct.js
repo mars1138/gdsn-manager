@@ -31,6 +31,7 @@ const UpdateProduct = () => {
     type: '',
     packagingType: '',
     tempUnits: '',
+    image: '',
   });
 
   const [formState, inputHandler, setFormData] = useForm(
@@ -128,6 +129,13 @@ const UpdateProduct = () => {
 
     fetchProduct();
     setLoadedProduct(product);
+    setSelectOptionsValues({
+      category: product.category,
+      type: product.type,
+      packagingType: product.packagingType,
+      tempUnits: product.tempUnits,
+      image: product.image,
+    });
     setFormData(
       {
         name: {
@@ -188,13 +196,12 @@ const UpdateProduct = () => {
     setSubscriberUpdate([...product.subscribers]);
   }, [params.pid, catalog, setFormData]);
 
-
   //////  TESTING FIX FOR SELECT OPTIONS:
-  const selectOptionsHandler = (value) => {
+  const selectOptionsHandler = value => {
     const newVal = value;
     console.log('selectOptionsHandler: ', value);
 
-    setSelectOptionsValues((prev) => {
+    setSelectOptionsValues(prev => {
       return { ...prev, ...newVal };
     });
   };
@@ -215,23 +222,23 @@ const UpdateProduct = () => {
           gtin: formState.inputs.gtin.value,
           //////  TESTING FIX FOR SELECT OPTIONS:
           category: selectOptionsValues.category,
-          type: formState.inputs.type.value,
-          image: '',
+          type: selectOptionsValues.type,
+          image: selectOptionsValues.image,
           height: formState.inputs.height.value,
           width: formState.inputs.width.value,
           depth: formState.inputs.depth.value,
           weight: formState.inputs.weight.value,
-          packagingType: formState.inputs.packagingType.value,
-          tempUnits: formState.inputs.tempUnits.value,
+          packagingType: selectOptionsValues.packagingType,
+          tempUnits: selectOptionsValues.tempUnits,
           minTemp: formState.inputs.minTemp.value,
           maxTemp: formState.inputs.maxTemp.value,
           storageInstructions: formState.inputs.storageInstructions.value,
           // subscribers: [],
-        })
+        }),
       );
 
       console.log('formState on submit: ', formState);
-      
+
       setTimeout(() => {
         setIsSubmitting(false);
         history.push('/products');
@@ -243,7 +250,7 @@ const UpdateProduct = () => {
   // loadedProduct &&
   //   console.log('UPdate.subscirbers: ', loadedProduct.subscribers);
   // console.log('formState: ', formState);
-  
+
   return (
     <Section>
       <h1>Update Product</h1>
@@ -264,7 +271,9 @@ const UpdateProduct = () => {
               edit
             />
             <PackagingHandling
-              inputHandler={inputHandler} onSubmit={updateSubmitHandler}
+              inputHandler={inputHandler}
+              setSelectOption={selectOptionsHandler}
+              onSubmit={updateSubmitHandler}
               product={loadedProduct}
               edit
             />

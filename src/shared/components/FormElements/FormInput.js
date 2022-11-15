@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 
 import { validate } from '../../utilities/validators';
 import classes from './FormInput.module.css';
@@ -28,9 +28,9 @@ const FormInput = props => {
     isTouched: false,
     isValid: props.initialValid || false,
   });
-  const [first, setFirst] = useState(true);
+  // const [first, setFirst] = useState(true);
 
-  const { id, onInput, selected, setSelectOption } = props;
+  const { id, onInput } = props;
   const { value, isValid } = inputState;
   const disabledClass = `${props.edit ? classes.disabled : ''}`;
 
@@ -40,14 +40,14 @@ const FormInput = props => {
     onInput(id, value, isValid);
 
     //////  TESTING FIX FOR SELECT OPTIONS:
-    if (first && setSelectOption) {
-      // console.log('setSelectOption: ', setSelectOption);
-      setFirst(false);
-      setSelectOption({ [id]: selected });
-      console.log(first);
-    }
+    // if (first && setSelectOption) {
+    //   // console.log('setSelectOption: ', setSelectOption);
+    //   setFirst(false);
+    //   setSelectOption({ [id]: selected });
+    //   console.log(first);
+    // }
     //////  TESTING FIX FOR SELECT OPTIONS ^
-  }, [id, value, isValid, onInput, selected, setSelectOption, first]);
+  }, [id, value, isValid, onInput]);
 
   const changeHandler = event => {
     dispatch({
@@ -58,7 +58,7 @@ const FormInput = props => {
   };
 
   //////  TESTING FIX FOR SELECT OPTIONS:
-  const changeSelectHandler = (event) => {
+  const changeSelectHandler = event => {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
