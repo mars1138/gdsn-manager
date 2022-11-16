@@ -52,6 +52,7 @@ const catalogSlice = createSlice({
         dateAdded: new Date().toLocaleDateString(),
         datePublished: null,
         dateInactive: null,
+        dateModified: new Date().toLocaleDateString(),
       });
       // }
     },
@@ -85,6 +86,7 @@ const catalogSlice = createSlice({
       existingItem.maxTemp = newItem.maxTemp;
       existingItem.storageInstructions = newItem.storageInstructions;
       existingItem.subscribers = [...newItem.subscribers];
+      existingItem.dateModified = new Date().toLocaleDateString();
     },
     deactivateProduct(state, action) {
       const gtin = action.payload;

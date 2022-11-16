@@ -23,6 +23,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Ham Sandwich INACTIVE TEST',
@@ -44,6 +45,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: null,
     dateInactive: new Date(1569999999990).toLocaleDateString(),
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Ham Sandwich',
@@ -65,6 +67,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: null,
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Ham Sandwich NOT PUBLISHED',
@@ -86,6 +89,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: null,
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Chicken Sandwich NOT PUBLISHED',
@@ -107,6 +111,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: null,
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Chicken Sandwich',
@@ -128,6 +133,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Chicken Sandwich',
@@ -149,6 +155,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Roast Beef Sandwich NOT PUBLISHED',
@@ -170,6 +177,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: null,
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Roast Beef Sandwich Deli',
@@ -191,6 +199,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Roast Beef Sandwich Deluxe',
@@ -212,6 +221,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Ruben Sandwich',
@@ -233,6 +243,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Ruben Sandwich',
@@ -254,6 +265,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: 'Ruben Sandwich',
@@ -275,6 +287,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '21 inch Computer Monitor',
@@ -296,6 +309,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '21 inch Computer Monitor',
@@ -317,6 +331,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '21 inch Computer Monitor',
@@ -338,6 +353,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '21 inch Computer Monitor INACTIVE',
@@ -359,6 +375,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: null,
     dateInactive: new Date(1533999999990).toLocaleDateString(),
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '21 inch Computer Monitor',
@@ -380,6 +397,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '21 inch Computer Monitor',
@@ -401,6 +419,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '27 inch Computer Monitor',
@@ -422,6 +441,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '27 inch Computer Monitor',
@@ -443,6 +463,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '27 inch Computer Monitor',
@@ -464,6 +485,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '27 inch Computer Monitor',
@@ -485,6 +507,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '27 inch Computer Monitor',
@@ -506,6 +529,7 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: new Date(1499999999990).toLocaleDateString(),
     dateInactive: null,
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
   {
     name: '27 inch Computer Monitor INACTIVE TEST',
@@ -527,5 +551,6 @@ export const catalog = [
     dateAdded: new Date(1499999999990).toLocaleDateString(),
     datePublished: null,
     dateInactive: new Date(1599999999990).toLocaleDateString(),
+    dateModified: new Date(1499999999990).toLocaleDateString(),
   },
 ];

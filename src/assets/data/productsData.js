@@ -68,8 +68,12 @@ export const activeColumns = [
         accessor: 'category',
       },
       {
-        Header: 'Date Added',
+        Header: 'Created',
         accessor: 'dateAdded',
+      },
+      {
+        Header: 'Modified',
+        accessor: 'dateModified',
       },
       {
         Header: 'Published',
@@ -83,6 +87,7 @@ export const activeColumns = [
     ],
   },
 ];
+
 export const inactiveColumns = [
   {
     Header: ' ',
