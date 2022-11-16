@@ -26,13 +26,7 @@ const UpdateProduct = () => {
   const [subscriberUpdate, setSubscriberUpdate] = useState([]);
 
   //////  TESTING FIX FOR SELECT OPTIONS:
-  const [selectOptionsValues, setSelectOptionsValues] = useState({
-    category: '',
-    type: '',
-    packagingType: '',
-    tempUnits: '',
-    image: '',
-  });
+  const [selectOptionsValues, setSelectOptionsValues] = useState();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -126,9 +120,9 @@ const UpdateProduct = () => {
       product = catalog.filter(item => item.gtin === params.pid)[0];
       console.log('fetchedProduct: ', product);
     };
-
+    
     fetchProduct();
-    setLoadedProduct(product);
+    setSubscriberUpdate([...product.subscribers]);
     setSelectOptionsValues({
       category: product.category,
       type: product.type,
@@ -192,10 +186,10 @@ const UpdateProduct = () => {
         },
       },
       true,
-    );
-    setSubscriberUpdate([...product.subscribers]);
-  }, [params.pid, catalog, setFormData]);
-
+      );
+      setLoadedProduct(product);
+    }, [params.pid, catalog, setFormData]);
+    
   //////  TESTING FIX FOR SELECT OPTIONS:
   const selectOptionsHandler = value => {
     const newVal = value;
@@ -233,7 +227,7 @@ const UpdateProduct = () => {
           minTemp: formState.inputs.minTemp.value,
           maxTemp: formState.inputs.maxTemp.value,
           storageInstructions: formState.inputs.storageInstructions.value,
-          // subscribers: [],
+          subscribers: [...subscriberUpdate],
         }),
       );
 
@@ -241,6 +235,7 @@ const UpdateProduct = () => {
 
       setTimeout(() => {
         setIsSubmitting(false);
+        dispatch(catalogActions.setCatalogStorage());
         history.push('/products');
       }, 2000);
     } catch (err) {}
@@ -282,7 +277,6 @@ const UpdateProduct = () => {
               subscribers={loadedProduct ? loadedProduct.subscribers : []}
               toggleSubscriber={toggleSubscriber}
             />
-            {/* <Subscribers /> */}
             <div className={classes2['block-container']}>
               <Button type="submit" disabled={!formState.isValid}>
                 Update

@@ -84,7 +84,7 @@ const catalogSlice = createSlice({
       existingItem.minTemp = newItem.minTemp;
       existingItem.maxTemp = newItem.maxTemp;
       existingItem.storageInstructions = newItem.storageInstructions;
-      // existingItem.subscribers = [...newItem.subscribers];
+      existingItem.subscribers = [...newItem.subscribers];
     },
     deactivateProduct(state, action) {
       const gtin = action.payload;

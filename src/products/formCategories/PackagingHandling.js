@@ -5,7 +5,7 @@ import { VALIDATOR_REQUIRE } from '../../shared/utilities/validators';
 
 import classes from './Categories.module.css';
 
-const PackagingHandling = (props) => {
+const PackagingHandling = props => {
   const tempOptions = ['', 'Farenheit', 'Celsius'];
   const packageOptions = [
     '',
@@ -17,7 +17,6 @@ const PackagingHandling = (props) => {
     'Envelope',
     'Multipack',
     'Not Packed',
-    'Pallet',
     'Roll',
     'Wire',
   ];
@@ -30,7 +29,11 @@ const PackagingHandling = (props) => {
       <div className={classes['block-container']}>
         <div className={classes['block-25']}>
           <FormInput
-            key={product ? `${product.packagingType}` : 'packagingType'}
+            key={
+              product && product.packagingType
+                ? `packagingType${product.packagingType}`
+                : 'packagingType'
+            }
             // key="packagingType"
             id="packagingType"
             element="select"
@@ -47,7 +50,11 @@ const PackagingHandling = (props) => {
         </div>
         <div className={classes['block-25']}>
           <FormInput
-            key={product ? `${product.tempUnits}` : 'tempUnits'}
+            key={
+              product && product.tempUnits
+                ? `tempUnits${product.tempUnits}`
+                : 'tempUnits'
+            }
             // key="tempUnits"
             id="tempUnits"
             element="select"
@@ -62,7 +69,11 @@ const PackagingHandling = (props) => {
             setSelectOption={props.setSelectOption}
           />
           <FormInput
-            key={product ? `${product.minTemp}` : 'minTemp'}
+            key={
+              product && product.minTemp
+                ? `minTemp${product.minTemp}`
+                : 'minTemp'
+            }
             // key="minTemp"
             id="minTemp"
             element="input"
@@ -75,7 +86,11 @@ const PackagingHandling = (props) => {
             initialValid={true}
           />
           <FormInput
-            key={product ? `${product.maxTemp}` : 'maxTemp'}
+            key={
+              product && product.maxTemp
+                ? `maxTemp${product.maxTemp}`
+                : 'maxTemp'
+            }
             id="maxTemp"
             element="input"
             type="text"
@@ -90,7 +105,9 @@ const PackagingHandling = (props) => {
         <div className={classes['block-50']}>
           <FormInput
             key={
-              product ? `${product.storageInstructions}` : 'storageInstructions'
+              product && product.storageInstructions
+                ? `${product.storageInstructions}`
+                : 'storageInstructions'
             }
             // key="storageInstructions"
             id="storageInstructions"

@@ -48,7 +48,7 @@ const Subscribers = (props) => {
 
       subscriberList.push(
         <Subscriber
-          key={i}
+          key={subscriberNum}
           index={i}
           subscriberNum={subscriberNum}
           customer={customer}

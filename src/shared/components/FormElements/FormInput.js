@@ -65,8 +65,10 @@ const FormInput = props => {
       validators: props.validators,
     });
 
-    const name = `${props.id}`;
-    props.setSelectOption({ [name]: event.target.value });
+    // const name = `${props.id}`;
+    // run only if updating existing product
+    props.setSelectOption &&
+      props.setSelectOption({ [props.id]: event.target.value });
   };
   //////  TESTING FIX FOR SELECT OPTIONS^
 
@@ -90,7 +92,7 @@ const FormInput = props => {
         className={disabledClass}
       />
     );
-    // console.log(`input ${props.id} key: `, props.id);
+    console.log(`input ${props.id} key: `, `${props.id}-input`);
   }
 
   if (props.element === 'textarea') {
@@ -105,14 +107,13 @@ const FormInput = props => {
         placeholder={props.placeholder}
       />
     );
-    // console.log(`textarea ${props.id} key: `, props.id);
+    console.log(`textarea ${props.id} key: `, `${props.id}-text`);
   }
 
   if (props.element === 'select') {
     const optionsArray = [];
 
     props.selectOptions.forEach((option, index) => {
-      // console.log('option key: ', `${index}-${props.id}`);
       optionsArray.push(
         <option
           key={`${props.id}-${index}`}
@@ -123,7 +124,7 @@ const FormInput = props => {
           {option}
         </option>,
       );
-      // console.log(`option=${option} key: `, `${props.id}-${index}`);
+      console.log(`option=${option} key: `, `${props.id}-${index}`);
     });
 
     // console.log('select key: ', `${props.id}-select`)
@@ -143,7 +144,7 @@ const FormInput = props => {
       </select>
     );
     // props.setSelectOption({[props.id]: props.selected});
-    // console.log(`select ${props.id} key: `, props.id);
+    console.log(`select ${props.id} key: `, `${props.id}-select`);
   }
 
   return (
