@@ -22,7 +22,7 @@ import { catalogActions } from '../store/catalog-slice';
 const UpdateProduct = () => {
   const [loadedProduct, setLoadedProduct] = useState();
   const [error, setError] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [subscriberUpdate, setSubscriberUpdate] = useState([]);
   const [selectOptionsValues, setSelectOptionsValues] = useState();
 

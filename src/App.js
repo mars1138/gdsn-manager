@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -29,15 +29,16 @@ import Support from './resources/Support';
 import ServicesPage from './services/ServicesPage';
 import PlansPage from './plans/PlansPage';
 
-import {catalogActions} from './store/catalog-slice'; 
+import { catalogActions } from './store/catalog-slice';
 
 function App() {
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   let routes;
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(catalogActions.getCatalogStorage());
-  },[dispatch])
+  }, [dispatch]);
 
   routes = (
     <Switch>
@@ -47,27 +48,31 @@ function App() {
       <Route path="/home" exact>
         <HomePage />
       </Route>
-      <Route path="/products" exact>
-        <ProductsPage />
-      </Route>
-      <Route path="/products/active" exact>
-        <ProductsList status="active" />
-      </Route>
-      <Route path="/products/published" exact>
-        <ProductsList status="published" />
-      </Route>
-      <Route path="/products/unpublished" exact>
-        <ProductsList status="unpublished" />
-      </Route>
-      <Route path="/products/inactive" exact>
-        <ProductsList status="inactive" />
-      </Route>
-      <Route path="/products/add" exact>
-        <AddProduct />
-      </Route>
-      <Route path="/products/:pid">
-        <UpdateProduct />
-      </Route>
+      {isAuth && (
+        <>
+          <Route path="/products" exact>
+            <ProductsPage />
+          </Route>
+          <Route path="/products/active" exact>
+            <ProductsList status="active" />
+          </Route>
+          <Route path="/products/published" exact>
+            <ProductsList status="published" />
+          </Route>
+          <Route path="/products/unpublished" exact>
+            <ProductsList status="unpublished" />
+          </Route>
+          <Route path="/products/inactive" exact>
+            <ProductsList status="inactive" />
+          </Route>
+          <Route path="/products/add" exact>
+            <AddProduct />
+          </Route>
+          <Route path="/products/:pid">
+            <UpdateProduct />
+          </Route>
+        </>
+      )}
       <Route path="/services">
         <ServicesPage />
       </Route>
