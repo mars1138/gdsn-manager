@@ -34,7 +34,6 @@ const PackagingHandling = props => {
                 ? `packagingType${product.packagingType}`
                 : 'packagingType'
             }
-            // key="packagingType"
             id="packagingType"
             element="select"
             selectOptions={packageOptions}
@@ -44,7 +43,6 @@ const PackagingHandling = props => {
             selected={product ? product.packagingType : ''}
             onInput={inputHandler}
             initialValid={true}
-            //////  TESTING FIX FOR SELECT OPTIONS:
             setSelectOption={props.setSelectOption}
           />
         </div>
@@ -55,7 +53,6 @@ const PackagingHandling = props => {
                 ? `tempUnits${product.tempUnits}`
                 : 'tempUnits'
             }
-            // key="tempUnits"
             id="tempUnits"
             element="select"
             selectOptions={tempOptions}
@@ -65,7 +62,6 @@ const PackagingHandling = props => {
             selected={product ? product.tempUnits : ''}
             onInput={inputHandler}
             initialValid={true}
-            //////  TESTING FIX FOR SELECT OPTIONS:
             setSelectOption={props.setSelectOption}
           />
           <FormInput
@@ -74,7 +70,6 @@ const PackagingHandling = props => {
                 ? `minTemp${product.minTemp}`
                 : 'minTemp'
             }
-            // key="minTemp"
             id="minTemp"
             element="input"
             type="text"
@@ -109,7 +104,6 @@ const PackagingHandling = props => {
                 ? `${product.storageInstructions}`
                 : 'storageInstructions'
             }
-            // key="storageInstructions"
             id="storageInstructions"
             element="textarea"
             label="Storage Instructions"

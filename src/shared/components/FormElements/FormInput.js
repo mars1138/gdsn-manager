@@ -28,7 +28,6 @@ const FormInput = props => {
     isTouched: false,
     isValid: props.initialValid || false,
   });
-  // const [first, setFirst] = useState(true);
 
   const { id, onInput } = props;
   const { value, isValid } = inputState;
@@ -38,15 +37,6 @@ const FormInput = props => {
 
   useEffect(() => {
     onInput(id, value, isValid);
-
-    //////  TESTING FIX FOR SELECT OPTIONS:
-    // if (first && setSelectOption) {
-    //   // console.log('setSelectOption: ', setSelectOption);
-    //   setFirst(false);
-    //   setSelectOption({ [id]: selected });
-    //   console.log(first);
-    // }
-    //////  TESTING FIX FOR SELECT OPTIONS ^
   }, [id, value, isValid, onInput]);
 
   const changeHandler = event => {
@@ -57,7 +47,6 @@ const FormInput = props => {
     });
   };
 
-  //////  TESTING FIX FOR SELECT OPTIONS:
   const changeSelectHandler = event => {
     dispatch({
       type: 'CHANGE',
@@ -65,12 +54,10 @@ const FormInput = props => {
       validators: props.validators,
     });
 
-    // const name = `${props.id}`;
     // run only if updating existing product
     props.setSelectOption &&
       props.setSelectOption({ [props.id]: event.target.value });
   };
-  //////  TESTING FIX FOR SELECT OPTIONS^
 
   const touchHandler = () => {
     dispatch({
@@ -127,15 +114,11 @@ const FormInput = props => {
       console.log(`option=${option} key: `, `${props.id}-${index}`);
     });
 
-    // console.log('select key: ', `${props.id}-select`)
-
     element = (
       <select
         key={`${props.id}-select`}
         id={props.id}
-        //////  TESTING FIX FOR SELECT OPTIONS:
         onChange={changeSelectHandler}
-        //////
         onBlur={touchHandler}
         defaultValue={props.selected}
         disabled={props.edit ? true : false}
@@ -143,7 +126,6 @@ const FormInput = props => {
         {optionsArray}
       </select>
     );
-    // props.setSelectOption({[props.id]: props.selected});
     console.log(`select ${props.id} key: `, `${props.id}-select`);
   }
 

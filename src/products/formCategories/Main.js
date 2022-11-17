@@ -11,18 +11,10 @@ import {
 import classes from './Categories.module.css';
 
 const Main = (props) => {
-  // const [productItem, setProductItem] = useState();
   const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
   const typeOptions = ['', 'Case', 'Display', 'Each', 'Pallet'];
 
   const { product, inputHandler } = props;
-
-  // useEffect(() => {
-  //   console.log(product);
-  //   if (product) setProductItem(product);
-  // }, [setProductItem, product, productItem]);
-
-  // console.log('productItem: ', productItem);
 
   return (
     <div className={classes.category}>
@@ -78,7 +70,6 @@ const Main = (props) => {
             selected={product ? product.category : ''}
             initialValid={true}
             onInput={inputHandler}
-            //////  TESTING FIX FOR SELECT OPTIONS:
             setSelectOption={props.setSelectOption}
           />
           <FormInput
@@ -93,7 +84,6 @@ const Main = (props) => {
             initialValid={true}
             onInput={inputHandler}
             edit={props.edit}
-            //////  TESTING FIX FOR SELECT OPTIONS:
             setSelectOption={props.setSelectOption}
           />
         </div>

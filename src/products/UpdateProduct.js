@@ -22,10 +22,8 @@ import { catalogActions } from '../store/catalog-slice';
 const UpdateProduct = () => {
   const [loadedProduct, setLoadedProduct] = useState();
   const [error, setError] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(true);
   const [subscriberUpdate, setSubscriberUpdate] = useState([]);
-
-  //////  TESTING FIX FOR SELECT OPTIONS:
   const [selectOptionsValues, setSelectOptionsValues] = useState();
 
   const [formState, inputHandler, setFormData] = useForm(
@@ -83,27 +81,26 @@ const UpdateProduct = () => {
         isValid: false,
       },
     },
-    false,
+    false
   );
 
-  // NOTES:  set up array that initiall duplicates product's subscriber list
+  const params = useParams();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const catalog = useSelector((state) => state.catalog.products);
+
+  // NOTES:  set up array that initially duplicates product's subscriber list
   // Subscriber component will toggle whether or not customer is in this temp list
   // when form is submitting, save this temp array into loadedProduct.subscribers
 
-  const params = useParams();
-
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const catalog = useSelector(state => state.catalog.products);
-
   // passed on to subscriber component; add/remove customer id from list of product subscribers
-  const toggleSubscriber = custId => {
-    if (subscriberUpdate.find(subscriber => subscriber === custId)) {
-      const newSubs = subscriberUpdate.filter(sub => sub !== custId);
+  const toggleSubscriber = (custId) => {
+    if (subscriberUpdate.find((subscriber) => subscriber === custId)) {
+      const newSubs = subscriberUpdate.filter((sub) => sub !== custId);
 
       setSubscriberUpdate([...newSubs]);
     } else {
-      setSubscriberUpdate(prev => [...prev, custId]);
+      setSubscriberUpdate((prev) => [...prev, custId]);
     }
   };
 
@@ -117,10 +114,10 @@ const UpdateProduct = () => {
     let product;
 
     const fetchProduct = () => {
-      product = catalog.filter(item => item.gtin === params.pid)[0];
+      product = catalog.filter((item) => item.gtin === params.pid)[0];
       console.log('fetchedProduct: ', product);
     };
-    
+
     fetchProduct();
     setSubscriberUpdate([...product.subscribers]);
     setSelectOptionsValues({
@@ -185,22 +182,22 @@ const UpdateProduct = () => {
           isValid: true,
         },
       },
-      true,
-      );
-      setLoadedProduct(product);
-    }, [params.pid, catalog, setFormData]);
-    
+      true
+    );
+    setLoadedProduct(product);
+  }, [params.pid, catalog, setFormData]);
+
   //////  TESTING FIX FOR SELECT OPTIONS:
-  const selectOptionsHandler = value => {
+  const selectOptionsHandler = (value) => {
     const newVal = value;
     console.log('selectOptionsHandler: ', value);
 
-    setSelectOptionsValues(prev => {
+    setSelectOptionsValues((prev) => {
       return { ...prev, ...newVal };
     });
   };
 
-  const updateSubmitHandler = event => {
+  const updateSubmitHandler = (event) => {
     event.preventDefault();
     // console.log('submitting...');
     console.log('formState: ', formState);
@@ -228,7 +225,7 @@ const UpdateProduct = () => {
           maxTemp: formState.inputs.maxTemp.value,
           storageInstructions: formState.inputs.storageInstructions.value,
           subscribers: [...subscriberUpdate],
-        }),
+        })
       );
 
       console.log('formState on submit: ', formState);
@@ -240,11 +237,6 @@ const UpdateProduct = () => {
       }, 2000);
     } catch (err) {}
   };
-
-  // console.log('loadedProduct: ', loadedProduct);
-  // loadedProduct &&
-  //   console.log('UPdate.subscirbers: ', loadedProduct.subscribers);
-  // console.log('formState: ', formState);
 
   return (
     <Section>
