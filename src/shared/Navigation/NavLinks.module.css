@@ -16,6 +16,7 @@
   align-items: center;
   font-size: 1.5rem;
   list-style: none;
+  /* border: 1px solid blue; */
 }
 
 .nav-links li {
@@ -28,6 +29,10 @@
 
 .button {
   padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid blue; */
 }
 
 /* .nav-links a:link,

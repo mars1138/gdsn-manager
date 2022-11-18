@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { customers as customerList } from '../assets/data/test-customers';
+import { customers as customerList } from '../assets/data/customers-data';
 
 const customersSlice = createSlice({
   name: 'customers',

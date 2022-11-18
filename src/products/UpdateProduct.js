@@ -187,7 +187,6 @@ const UpdateProduct = () => {
     setLoadedProduct(product);
   }, [params.pid, catalog, setFormData]);
 
-  //////  TESTING FIX FOR SELECT OPTIONS:
   const selectOptionsHandler = (value) => {
     const newVal = value;
     console.log('selectOptionsHandler: ', value);
@@ -211,7 +210,6 @@ const UpdateProduct = () => {
           name: formState.inputs.name.value,
           description: formState.inputs.description.value,
           gtin: formState.inputs.gtin.value,
-          //////  TESTING FIX FOR SELECT OPTIONS:
           category: selectOptionsValues.category,
           type: selectOptionsValues.type,
           image: selectOptionsValues.image,
