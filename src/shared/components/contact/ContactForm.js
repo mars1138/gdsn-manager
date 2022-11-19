@@ -13,7 +13,7 @@ const isValidEmail = (value) => /^\S+@\S+\.\S+$/.test(value);
 
 const ContactForm = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [didSubmit, setDidSubmit] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(true);
   const [error, setError] = useState();
 
   const submitMessage = 'Form submitted, we will contact you shortly!';
