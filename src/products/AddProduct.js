@@ -123,7 +123,7 @@ const AddProduct = () => {
     showConfirmationHandler,
     cancelConfirmationHandler,
     confirmModalFooter,
-  } = useConfirmationModal(productSubmitHandler);
+  } = useConfirmationModal(productSubmitHandler, 'Add', 'Cancel');
 
 
   return (

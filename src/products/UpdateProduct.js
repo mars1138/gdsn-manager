@@ -251,7 +251,7 @@ const UpdateProduct = () => {
     showConfirmationHandler,
     cancelConfirmationHandler,
     confirmModalFooter,
-  } = useConfirmationModal(updateSubmitHandler);
+  } = useConfirmationModal(updateSubmitHandler, 'Update', 'Cancel');
 
   return (
     <Section>

@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import Button from '../../UIElements/Button';
 
-const useConfirmationModal = (submitFunction) => {
+const useConfirmationModal = (submitFunction, confirmLabel, cancelLabel) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const showConfirmationHandler = (event) => {
@@ -13,16 +13,16 @@ const useConfirmationModal = (submitFunction) => {
   const cancelConfirmationHandler = () => setShowConfirmation(false);
 
   const confirmModalFooter = (
-    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-      <div>
-        <Button danger onClick={cancelConfirmationHandler}>
-          Cancel
-        </Button>
-      </div>
-      <div style={{ marginLeft: '1rem' }}>
-        <Button onClick={submitFunction}>Update</Button>
-      </div>
-    </div>
+    // <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+    <React.Fragment>
+      <Button danger onClick={cancelConfirmationHandler}>
+        {cancelLabel}
+      </Button>
+      {/* </div>
+      <div style={{ marginLeft: '1rem' }}> */}
+      <Button onClick={submitFunction}>{confirmLabel}</Button>
+      {/* </div> */}
+    </React.Fragment>
   );
 
   return {

@@ -3,8 +3,10 @@ import { useDispatch } from 'react-redux';
 import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
 import Button from '../shared/UIElements/Button';
+import Modal from '../shared/UIElements/Modal';
 
 import { catalogActions } from '../../src/store/catalog-slice';
+// import useConfirmationModal from '../../src/shared/components/hooks/confirmation-hook';
 
 import classes from './ProductsTable.module.css';
 
@@ -48,10 +50,6 @@ const ProductsTable = (props) => {
     setFilterInput(value);
   };
 
-  // const deactivateHandler = (gtin) => {
-  //   dispatch(catalogActions.deactivateProduct(gtin));
-  // };
-
   const activeStatusHandler = (gtin, status) => {
     dispatch(catalogActions.toggleProductActive({ gtin, status }));
   };
@@ -59,6 +57,9 @@ const ProductsTable = (props) => {
   const deleteProductHandler = (gtin) => {
     dispatch(catalogActions.deleteProduct(gtin));
   };
+
+  // Testing 
+  let showDeactivateConfirm, cancelDeactivateConfirmHandler, deactivateConfirmFooter;
 
   return (
     <React.Fragment>
@@ -112,6 +113,15 @@ const ProductsTable = (props) => {
           ))}
         </select>
       </div>
+      <Modal
+        show={showDeactivateConfirm}
+        onCancel={cancelDeactivateConfirmHandler}
+        msgHeader="Confirm Deactivation"
+        footer={deactivateConfirmFooter}
+      >
+        <p>Are you sure you want to deactivate this product?</p>
+      </Modal>
+
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup, i) => {

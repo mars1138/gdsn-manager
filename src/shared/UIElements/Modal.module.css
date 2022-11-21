@@ -33,7 +33,11 @@
 
 .footer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+}
+
+.footer button {
+  margin-left: 1rem;
 }
 
 @keyframes pop-in {

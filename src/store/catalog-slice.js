@@ -88,14 +88,14 @@ const catalogSlice = createSlice({
       existingItem.subscribers = [...newItem.subscribers];
       existingItem.dateModified = new Date().toLocaleDateString();
     },
-    deactivateProduct(state, action) {
-      const gtin = action.payload;
-      const existingItem = state.products.find(item => item.gtin === gtin);
+    // deactivateProduct(state, action) {
+    //   const gtin = action.payload;
+    //   const existingItem = state.products.find(item => item.gtin === gtin);
 
-      if (existingItem) {
-        existingItem.dateInactive = new Date().toLocaleDateString();
-      }
-    },
+    //   if (existingItem) {
+    //     existingItem.dateInactive = new Date().toLocaleDateString();
+    //   }
+    // },
     toggleProductActive(state, action) {
       const gtin = action.payload.gtin;
       const existingItem = state.products.find(item => item.gtin === gtin);

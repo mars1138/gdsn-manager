@@ -14,7 +14,7 @@ const ModalOverlay = props => {
       </h2>
 
         <div className={classes.content}>{props.children}</div>
-        {props.footer && <div classname={classes.footer}>{props.footer}</div>}
+        {props.footer && <div className={classes.footer}>{props.footer}</div>}
       {/* <p className={classes.message}>
         {props.message ? props.message : ''}
         {props.children}
