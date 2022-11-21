@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import Backdrop from './Backdrop';
-import Button from '../UIElements/Button';
+// import Button from '../UIElements/Button';
 import classes from './Modal.module.css';
 
 const ModalOverlay = props => {
@@ -13,14 +13,8 @@ const ModalOverlay = props => {
         {props.msgHeader ? `${props.msgHeader}` : ''}
       </h2>
 
-      <form
-        onSubmit={
-          props.onSubmit ? props.onSubmit : event => event.preventDefault()
-        }
-      >
         <div className={classes.content}>{props.children}</div>
         {props.footer && <div classname={classes.footer}>{props.footer}</div>}
-      </form>
       {/* <p className={classes.message}>
         {props.message ? props.message : ''}
         {props.children}
@@ -42,7 +36,7 @@ const Modal = props => {
         in={props.show}
         mountOnEnter
         unmountOnExit
-        timeout={200}
+        timeout={0}
         classNames="modal"
       >
         <ModalOverlay {...props} />

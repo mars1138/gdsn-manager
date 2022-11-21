@@ -22,7 +22,7 @@ const inputReducer = (state, action) => {
   }
 };
 
-const FormInput = props => {
+const FormInput = (props) => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue || '',
     isTouched: false,
@@ -39,7 +39,7 @@ const FormInput = props => {
     onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
 
-  const changeHandler = event => {
+  const changeHandler = (event) => {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
@@ -47,7 +47,7 @@ const FormInput = props => {
     });
   };
 
-  const changeSelectHandler = event => {
+  const changeSelectHandler = (event) => {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
@@ -79,7 +79,7 @@ const FormInput = props => {
         className={disabledClass}
       />
     );
-    console.log(`input ${props.id} key: `, `${props.id}-input`);
+    // console.log(`input ${props.id} key: `, `${props.id}-input`);
   }
 
   if (props.element === 'textarea') {
@@ -94,7 +94,7 @@ const FormInput = props => {
         placeholder={props.placeholder}
       />
     );
-    console.log(`textarea ${props.id} key: `, `${props.id}-text`);
+    // console.log(`textarea ${props.id} key: `, `${props.id}-text`);
   }
 
   if (props.element === 'select') {
@@ -109,9 +109,9 @@ const FormInput = props => {
           className={props.edit && disabledClass}
         >
           {option}
-        </option>,
+        </option>
       );
-      console.log(`option=${option} key: `, `${props.id}-${index}`);
+      // console.log(`option=${option} key: `, `${props.id}-${index}`);
     });
 
     element = (
@@ -126,7 +126,7 @@ const FormInput = props => {
         {optionsArray}
       </select>
     );
-    console.log(`select ${props.id} key: `, `${props.id}-select`);
+    // console.log(`select ${props.id} key: `, `${props.id}-select`);
   }
 
   return (

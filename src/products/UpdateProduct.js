@@ -14,6 +14,7 @@ import PackagingHandling from './formCategories/PackagingHandling';
 import Subscribers from './formCategories/Subscribers';
 
 import { useForm } from '../shared/components/hooks/form-hook';
+import useConfirmationModal from '../shared/components/hooks/confirmation-hook';
 
 import classes from './AddProduct.module.css';
 import classes2 from './formCategories/Categories.module.css';
@@ -23,6 +24,7 @@ const UpdateProduct = () => {
   const [loadedProduct, setLoadedProduct] = useState();
   const [error, setError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [showConfirmation, setShowConfirmation] = useState(false);
   const [subscriberUpdate, setSubscriberUpdate] = useState([]);
   const [selectOptionsValues, setSelectOptionsValues] = useState();
 
@@ -88,6 +90,11 @@ const UpdateProduct = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const catalog = useSelector((state) => state.catalog.products);
+  // const showUpdateConfirmHandler = (event) => {
+  //   event.preventDefault();
+  //   setShowConfirmation(true);
+  // };
+  // const cancelUpdateHandler = () => setShowConfirmation(false);
 
   // NOTES:  set up array that initially duplicates product's subscriber list
   // Subscriber component will toggle whether or not customer is in this temp list
@@ -198,6 +205,7 @@ const UpdateProduct = () => {
 
   const updateSubmitHandler = (event) => {
     event.preventDefault();
+    setShowConfirmation(false);
     // console.log('submitting...');
     console.log('formState: ', formState);
     console.log('selectOptionsValues: ', selectOptionsValues);
@@ -236,13 +244,30 @@ const UpdateProduct = () => {
     } catch (err) {}
   };
 
+  // for Confirmation Modal
+  const {
+    showConfirmation,
+    setShowConfirmation,
+    showConfirmationHandler,
+    cancelConfirmationHandler,
+    confirmModalFooter,
+  } = useConfirmationModal(updateSubmitHandler);
+
   return (
     <Section>
       <h1>Update Product</h1>
       <div className={classes['card-container']}>
         <Card>
           <Modal show={error} onClear={clearError} />
-          <form className={classes.form} onSubmit={updateSubmitHandler}>
+          <Modal
+            show={showConfirmation}
+            onCancel={cancelConfirmationHandler}
+            msgHeader="Confirm Changes"
+            footer={confirmModalFooter}
+          >
+            <p>Are you sure you want to update this product?</p>
+          </Modal>
+          <form className={classes.form} onSubmit={showConfirmationHandler}>
             {isSubmitting && <LoadingSpinner />}
             <Main
               inputHandler={inputHandler}

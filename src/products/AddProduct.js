@@ -13,6 +13,7 @@ import Dimensions from './formCategories/Dimensions';
 import PackagingHandling from './formCategories/PackagingHandling';
 
 import { useForm } from '../shared/components/hooks/form-hook';
+import useConfirmationModal from '../shared/components/hooks/confirmation-hook';
 import { catalogActions } from '../../src/store/catalog-slice';
 
 // import FormInput from '../shared/components/FormElements/FormInput';
@@ -23,12 +24,19 @@ import classes2 from './formCategories/Categories.module.css';
 const AddProduct = () => {
   const [error, setError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [showConfirmation, setShowConfirmation] = useState(false);
 
   const dispatch = useDispatch();
 
   const clearError = () => {
     setError(false);
   };
+
+  // const showAddConfirmHandler = (event) => {
+  //   event.preventDefault();
+  //   setShowConfirmation(true);
+  // };
+  // const cancelAddHandler = () => setShowConfirmation(false);
 
   const [formState, inputHandler] = useForm(
     {
@@ -85,15 +93,16 @@ const AddProduct = () => {
         isValid: false,
       },
     },
-    false,
+    false
   );
 
   const history = useHistory();
 
-  const productSubmitHandler = event => {
+  const productSubmitHandler = (event) => {
     event.preventDefault();
-    console.log('formState.inputs: ', formState.inputs);
-    console.log('submitting...');
+    setShowConfirmation(false);
+    // console.log('formState.inputs: ', formState.inputs);
+    // console.log('submitting...');
 
     try {
       setIsSubmitting(true);
@@ -107,13 +116,31 @@ const AddProduct = () => {
     } catch (err) {}
   };
 
+   // for Confirmation Modal
+   const {
+    showConfirmation,
+    setShowConfirmation,
+    showConfirmationHandler,
+    cancelConfirmationHandler,
+    confirmModalFooter,
+  } = useConfirmationModal(productSubmitHandler);
+
+
   return (
     <Section>
       <h1>Add Product</h1>
       <div className={classes['card-container']}>
         <Card>
           <Modal show={error} onClear={clearError} />
-          <form className={classes.form} onSubmit={productSubmitHandler}>
+          <Modal
+            show={showConfirmation}
+            onCancel={cancelConfirmationHandler}
+            msgHeader="Confirm Registration"
+            footer={confirmModalFooter}
+          >
+            <p>Are you sure you want to register this product?</p>
+          </Modal>
+          <form className={classes.form} onSubmit={showConfirmationHandler}>
             {isSubmitting && <LoadingSpinner />}
             <Main inputHandler={inputHandler} />
             <Dimensions inputHandler={inputHandler} />
