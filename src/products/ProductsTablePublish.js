@@ -1,18 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import Button from '../shared/UIElements/Button';
-import Modal from '../shared/UIElements/Modal';
+// import Modal from '../shared/UIElements/Modal';
 
 import { catalogActions } from '../store/catalog-slice';
 import useConfirmationModal from '../shared/components/hooks/confirmation-hook';
 
-const ProductsTableDeactivate = (props) => {
+const ProductsTablePublish = props => {
   const { gtin } = props;
 
-  status = 'deactivate';
+  const prodStatus = 'deactivate';
+
+  const dispatch = useDispatch();
 
   const activeStatusHandler = () => {
-    dispatch(catalogActions.toggleProductActive({ gtin, status }));
+    dispatch(catalogActions.toggleProductActive({ gtin, prodStatus }));
   };
 
   const {
@@ -23,13 +26,18 @@ const ProductsTableDeactivate = (props) => {
     confirmModalFooter,
   } = useConfirmationModal(activeStatusHandler, 'Deactivate', 'Cancel');
 
+  const clickHandler = () => {
+    props.setModal(showConfirmation, setShowConfirmation, cancelConfirmationHandler, confirmModalFooter)
+    showConfirmationHandler();
+  };
+
   return (
-    <Button onClick={showConfirmationHandler} action>
-      <span title={status}>
-        <ion-icon size="small" src="/icons/stop-circle-outline.svg"></ion-icon>
+    <Button onClick={clickHandler} action>
+      <span title={prodStatus}>
+        <ion-icon size="small" src="/icons/exit-outline.svg"></ion-icon>
       </span>
     </Button>
   );
 };
 
-export default ProductsTableDeactivate;
+export default ProductsTablePublish;

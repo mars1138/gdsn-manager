@@ -6,11 +6,11 @@ import Button from '../shared/UIElements/Button';
 import Modal from '../shared/UIElements/Modal';
 
 import { catalogActions } from '../../src/store/catalog-slice';
-// import useConfirmationModal from '../../src/shared/components/hooks/confirmation-hook';
+import useConfirmationModal from '../../src/shared/components/hooks/confirmation-hook';
 
 import classes from './ProductsTable.module.css';
 
-const ProductsTable = (props) => {
+const ProductsTable = props => {
   const [filterInput, setFilterInput] = useState('');
 
   const { columns, data, status } = props;
@@ -41,25 +41,55 @@ const ProductsTable = (props) => {
     },
     useFilters, // adding the useFilters hook to the table; can add as many hooks as needed
     useSortBy,
-    usePagination
+    usePagination,
   );
 
-  const handleFilterChange = (event) => {
+  const handleFilterChange = event => {
     const value = event.target.value || undefined;
     setFilter('name', value);
     setFilterInput(value);
   };
 
-  const activeStatusHandler = (gtin, status) => {
-    dispatch(catalogActions.toggleProductActive({ gtin, status }));
-  };
+  const [deactivateParams, setDeactivateParams] = useState();
 
-  const deleteProductHandler = (gtin) => {
+  const deleteProductHandler = gtin => {
     dispatch(catalogActions.deleteProduct(gtin));
   };
 
-  // Testing 
-  let showDeactivateConfirm, cancelDeactivateConfirmHandler, deactivateConfirmFooter;
+  const {
+    showConfirmation: showConfirmDeactivate,
+    setShowConfirmation: setShowConfirmDeactivate,
+    showConfirmationHandler: showConfirmDeactivateHandler,
+    cancelConfirmationHandler: cancelDeactivateHandler,
+  } = useConfirmationModal();
+
+  console.log(showConfirmDeactivateHandler);
+
+  const deactivateHandler = (product, status) => {
+    setDeactivateParams({ gtin: product, status: status });
+    setShowConfirmDeactivate(true);
+  };
+
+  const activeStatusHandler = () => {
+    const gtin = deactivateParams.gtin;
+    const status = deactivateParams.status;
+    dispatch(catalogActions.toggleProductActive({ gtin, status }));
+    cancelDeactivateHandler();
+  };
+
+  const deactivateFooter = (
+    <React.Fragment>
+      <Button danger onClick={cancelDeactivateHandler}>
+        Cancel
+      </Button>
+      {/* </div>
+      <div style={{ marginLeft: '1rem' }}> */}
+      <Button onClick={activeStatusHandler}>Deactivate</Button>
+      {/* </div> */}
+    </React.Fragment>
+  );
+  // Testing
+  // let showDeactivate, cancelDeactivateHandler, deactivateFooter;
 
   return (
     <React.Fragment>
@@ -93,7 +123,7 @@ const ProductsTable = (props) => {
           <input
             type="number"
             defaultValue={pageIndex + 1}
-            onChange={(e) => {
+            onChange={e => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
             }}
@@ -102,11 +132,11 @@ const ProductsTable = (props) => {
         </span>{' '}
         <select
           value={pageSize}
-          onChange={(e) => {
+          onChange={e => {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
+          {[5, 10, 20, 30, 40, 50].map(pageSize => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
@@ -114,12 +144,13 @@ const ProductsTable = (props) => {
         </select>
       </div>
       <Modal
-        show={showDeactivateConfirm}
-        onCancel={cancelDeactivateConfirmHandler}
+        show={showConfirmDeactivate}
+        onCancel={cancelDeactivateHandler}
         msgHeader="Confirm Deactivation"
-        footer={deactivateConfirmFooter}
+        footer={deactivateFooter}
       >
         <p>Are you sure you want to deactivate this product?</p>
+        <p>GTIN: {deactivateParams && deactivateParams.gtin}</p>
       </Modal>
 
       <table {...getTableProps()}>
@@ -134,7 +165,7 @@ const ProductsTable = (props) => {
                   className={classes.headers}
                   {...headerGroup.getHeaderGroupProps()}
                 >
-                  {headerGroup.headers.map((column) => (
+                  {headerGroup.headers.map(column => (
                     <th
                       key={i}
                       className={classes.header}
@@ -233,12 +264,17 @@ const ProductsTable = (props) => {
                                 </Button>
                                 <Button
                                   onClick={() => {
-                                    activeStatusHandler(
+                                    deactivateHandler(
                                       cell.row.original.gtin,
-                                      'deactivate'
+                                      'deactivate',
                                     );
                                   }}
-                                  action
+                                  // onClick={() => {
+                                  //   activeStatusHandler(
+                                  //     cell.row.original.gtin,
+                                  //     'deactivate',
+                                  //   );
+                                  // }}
                                 >
                                   <span title="deactivate">
                                     <ion-icon
@@ -255,7 +291,7 @@ const ProductsTable = (props) => {
                                   onClick={() => {
                                     activeStatusHandler(
                                       cell.row.original.gtin,
-                                      'activate'
+                                      'activate',
                                     );
                                   }}
                                   action
@@ -270,7 +306,7 @@ const ProductsTable = (props) => {
                                 <Button
                                   onClick={() => {
                                     deleteProductHandler(
-                                      cell.row.original.gtin
+                                      cell.row.original.gtin,
                                     );
                                   }}
                                   action
@@ -321,7 +357,7 @@ const ProductsTable = (props) => {
           <input
             type="number"
             defaultValue={pageIndex + 1}
-            onChange={(e) => {
+            onChange={e => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
             }}
@@ -330,11 +366,11 @@ const ProductsTable = (props) => {
         </span>{' '}
         <select
           value={pageSize}
-          onChange={(e) => {
+          onChange={e => {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
+          {[5, 10, 20, 30, 40, 50].map(pageSize => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
