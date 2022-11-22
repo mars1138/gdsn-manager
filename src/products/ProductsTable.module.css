@@ -35,9 +35,9 @@ input {
   justify-content: flex-start;
 }
 
-.buttons button:not(:last-of-type) {
+/* .buttons button:not(:last-of-type) {
   margin-right: 1rem;
-}
+} */
 
 .thumbnail {
   overflow: hidden;
