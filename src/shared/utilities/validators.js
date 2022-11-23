@@ -21,21 +21,21 @@ export const VALIDATOR_MAX = (val) => ({ type: VALIDATOR_TYPE_MAX, val: val });
 export const VALIDATOR_EMAIL = () => ({ type: VALIDATOR_TYPE_EMAIL });
 
 export const validate = (value, validators) => {
-  console.log('validators: ', validators);
+  // console.log('validators: ', validators);
 
   let isValid = true;
   for (const validator of validators) {
     if (validator.type === VALIDATOR_TYPE_REQUIRE) {
-      console.log('input value: ', value);
+      // console.log('input value: ', value);
       isValid = isValid && value.trim().length > 0;
     }
     if (validator.type === VALIDATOR_TYPE_MINLENGTH) {
-      console.log('input value: ', value);
-      console.log('input length: ', value.trim().length);
-      console.log('validator.val: ', validator.val);
+      // console.log('input value: ', value);
+      // console.log('input length: ', value.trim().length);
+      // console.log('validator.val: ', validator.val);
       isValid = isValid && value.trim().length >= validator.val;
 
-      console.log('isValid: ', isValid);
+      // console.log('isValid: ', isValid);
     }
     if (validator.type === VALIDATOR_TYPE_MAXLENGTH) {
       isValid = isValid && value.trim().length <= validator.val;

@@ -4,18 +4,18 @@ import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
 import Button from '../shared/UIElements/Button';
 import Modal from '../shared/UIElements/Modal';
+import { useForm } from '../shared/components/hooks/form-hook';
 import FormInput from '../shared/components/FormElements/FormInput';
 
 import { catalogActions } from '../../src/store/catalog-slice';
 import useConfirmationModal from '../../src/shared/components/hooks/confirmation-hook';
 
-import {
-  VALIDATOR_REQUIRE,
-} from '../shared/utilities/validators';
+import { VALIDATOR_REQUIRE } from '../shared/utilities/validators';
 import classes from './ProductsTable.module.css';
 
-const ProductsTable = (props) => {
+const ProductsTable = props => {
   const [filterInput, setFilterInput] = useState('');
+  const [selectSubscriber, setSelectSubscriber] = useState();
 
   const subscriberOptions = [
     '',
@@ -29,6 +29,16 @@ const ProductsTable = (props) => {
 
   const { columns, data, status } = props;
   const dispatch = useDispatch();
+
+  const [formState, inputHandler] = useForm(
+    {
+      subscriber: {
+        value: '',
+        isValid: false,
+      },
+    },
+    false,
+  );
 
   const {
     getTableProps, // table props from react-table
@@ -55,10 +65,10 @@ const ProductsTable = (props) => {
     },
     useFilters, // adding the useFilters hook to the table; can add as many hooks as needed
     useSortBy,
-    usePagination
+    usePagination,
   );
 
-  const handleFilterChange = (event) => {
+  const handleFilterChange = event => {
     const value = event.target.value || undefined;
     setFilter('name', value);
     setFilterInput(value);
@@ -66,7 +76,7 @@ const ProductsTable = (props) => {
 
   const [actionParams, setActionParams] = useState();
 
-  const deleteProductHandler = (gtin) => {
+  const deleteProductHandler = gtin => {
     dispatch(catalogActions.deleteProduct(gtin));
   };
 
@@ -89,13 +99,17 @@ const ProductsTable = (props) => {
     setShowConfirmation: setShowChooseSubscriber,
     showConfirmationHandler: showChooseSubscriberHandler,
     cancelConfirmationHandler: cancelSubscriberHandler,
-    confirmModalFooter: chooseSubscriberFooter,
-  } = useConfirmationModal(showConfirmPublishHandler, 'Next', 'Cancel');
+    // confirmModalFooter: chooseSubscriberFooter,
+  } = useConfirmationModal();
 
-  console.log(showConfirmDeactivateHandler);
-  console.log(showConfirmPublishHandler);
+  console.log(
+    selectSubscriber,
+    showConfirmDeactivateHandler,
+    setShowConfirmPublish,
+    showChooseSubscriberHandler,
+  );
 
-  const publishActionHandler = (product, status) => {
+  const chooseSubHandler = (product, status) => {
     setActionParams({ gtin: product, status: status });
     // setShowConfirmPublish(true);
     setShowChooseSubscriber(true);
@@ -104,13 +118,14 @@ const ProductsTable = (props) => {
     setActionParams({ gtin: product, status: status });
     setShowConfirmDeactivate(true);
   };
-  
+
   const publishProductHandler = () => {
-    const gtin = actionParams.gtin;
-    const status = actionParams.status;
+    // const gtin = actionParams.gtin;
+    // const status = actionParams.status;
     // dispatch(catalogActions.toggleProductActive({ gtin, status }));
     cancelPublishHandler();
     setShowChooseSubscriber(false);
+    console.log('Product Published!')
   };
   const activeStatusHandler = () => {
     const gtin = actionParams.gtin;
@@ -119,11 +134,11 @@ const ProductsTable = (props) => {
     cancelDeactivateHandler();
   };
 
-  const selectSubscriberHandler = (custId) => {
-    setActionParams((prev) => {
-      return { ...prev, customer: custId };
-    });
-  };
+  // const selectSubscriberHandler = custId => {
+  //   setActionParams(prev => {
+  //     return { ...prev, customer: custId };
+  //   });
+  // };
 
   const publishFooter = (
     <React.Fragment>
@@ -142,7 +157,51 @@ const ProductsTable = (props) => {
     </React.Fragment>
   );
 
-  console.log('actionParams: ', actionParams);
+  // console.log('actionParams: ', actionParams);
+  // console.log('selectOptionValue: ', selectSubscriber);
+
+  const selectSubsciberForm = (
+    <form
+      onSubmit={showConfirmPublishHandler}
+      style={{
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+      }}
+    >
+      <FormInput
+        // key={product ? product.category : 'category'}
+        id="subscriber"
+        element="select"
+        selectOptions={subscriberOptions}
+        label="Subscriber"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please select a category"
+        // selected={product ? product.category : ''}
+        initialValid={false}
+        onInput={inputHandler}
+        setSelectOption={setSelectSubscriber}
+      />
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <div>
+          <Button
+            inverse 
+            onClick={event => {
+              event.preventDefault();
+              setShowChooseSubscriber(false);
+            }}
+          >
+            Cancel
+          </Button>
+        </div>
+        <div style={{ marginLeft: '1rem' }}>
+          <Button inverse type="submit" disabled={!formState.isValid}>
+            Next
+          </Button>
+        </div>
+      </div>
+    </form>
+  );
 
   return (
     <React.Fragment>
@@ -152,83 +211,15 @@ const ProductsTable = (props) => {
         onChange={handleFilterChange}
         placeholder={'Search name'}
       />
-      <div>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'<<'}
-        </button>{' '}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
-        <span>
-          Page{' '}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-        <span>
-          | Go to page:{' '}
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              gotoPage(page);
-            }}
-            style={{ width: '100px' }}
-          />
-        </span>{' '}
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-      </div>
+
       <Modal
         show={showChooseSubscriber}
         onClear={cancelSubscriberHandler}
         msgHeader={`Choose Subscriber to receive Publication`}
-        footer={chooseSubscriberFooter}
+        // footer={chooseSubscriberFooter}
       >
         <div>{`Item: ${actionParams && actionParams.gtin}`}</div>
-        <div>
-          <FormInput
-            // key={product ? product.category : 'category'}
-            id="subscriber"
-            element="select"
-            selectOptions={subscriberOptions}
-            label="Subscriber"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please select a category"
-            // selected={product ? product.category : ''}
-            initialValid={false}
-            onInput={()=>{console.log('select change')}}
-            setSelectOption={props.setSelectOption}
-          />
-          {/* {`Customer: `}
-          <select
-            onChange={(event) => {
-              const value = event.target.value;
-              selectSubscriberHandler(value);
-            }}
-          >
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-          </select> */}
-        </div>
+        <div>{selectSubsciberForm}</div>
       </Modal>
 
       <Modal
@@ -238,8 +229,8 @@ const ProductsTable = (props) => {
         footer={publishFooter}
       >
         <p>Are you sure you want to publish this product?</p>
-        <p>GTIN: {actionParams && actionParams.gtin}</p>
-        <p>Customer: {actionParams && actionParams.customer}</p>
+        <p><strong>GTIN:</strong> {actionParams && actionParams.gtin}</p>
+        <p><strong>Customer:</strong> {selectSubscriber && selectSubscriber.subscriber}</p>
       </Modal>
 
       <Modal
@@ -264,7 +255,7 @@ const ProductsTable = (props) => {
                   className={classes.headers}
                   {...headerGroup.getHeaderGroupProps()}
                 >
-                  {headerGroup.headers.map((column) => (
+                  {headerGroup.headers.map(column => (
                     <th
                       key={i}
                       className={classes.header}
@@ -352,9 +343,9 @@ const ProductsTable = (props) => {
                                 </Button>
                                 <Button
                                   onClick={() => {
-                                    publishActionHandler(
+                                    chooseSubHandler(
                                       cell.row.original.gtin,
-                                      'deactivate'
+                                      'deactivate',
                                     );
                                   }}
                                   action
@@ -370,7 +361,7 @@ const ProductsTable = (props) => {
                                   onClick={() => {
                                     deactivateActionHandler(
                                       cell.row.original.gtin,
-                                      'deactivate'
+                                      'deactivate',
                                     );
                                   }}
                                   action
@@ -390,7 +381,7 @@ const ProductsTable = (props) => {
                                   onClick={() => {
                                     activeStatusHandler(
                                       cell.row.original.gtin,
-                                      'activate'
+                                      'activate',
                                     );
                                   }}
                                   action
@@ -405,7 +396,7 @@ const ProductsTable = (props) => {
                                 <Button
                                   onClick={() => {
                                     deleteProductHandler(
-                                      cell.row.original.gtin
+                                      cell.row.original.gtin,
                                     );
                                   }}
                                   action
@@ -456,7 +447,7 @@ const ProductsTable = (props) => {
           <input
             type="number"
             defaultValue={pageIndex + 1}
-            onChange={(e) => {
+            onChange={e => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
             }}
@@ -465,11 +456,11 @@ const ProductsTable = (props) => {
         </span>{' '}
         <select
           value={pageSize}
-          onChange={(e) => {
+          onChange={e => {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
+          {[5, 10, 20, 30, 40, 50].map(pageSize => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
