@@ -4,14 +4,28 @@ import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
 import Button from '../shared/UIElements/Button';
 import Modal from '../shared/UIElements/Modal';
+import FormInput from '../shared/components/FormElements/FormInput';
 
 import { catalogActions } from '../../src/store/catalog-slice';
 import useConfirmationModal from '../../src/shared/components/hooks/confirmation-hook';
 
+import {
+  VALIDATOR_REQUIRE,
+} from '../shared/utilities/validators';
 import classes from './ProductsTable.module.css';
 
 const ProductsTable = (props) => {
   const [filterInput, setFilterInput] = useState('');
+
+  const subscriberOptions = [
+    '',
+    '1111111 Amazon',
+    '2222222 Walmart',
+    '3333333 Kroger',
+    '4444444 Safeway',
+    '5555555 Albertsons',
+    '6666666 Best Buy',
+  ];
 
   const { columns, data, status } = props;
   const dispatch = useDispatch();
@@ -70,29 +84,45 @@ const ProductsTable = (props) => {
     cancelConfirmationHandler: cancelPublishHandler,
   } = useConfirmationModal();
 
+  const {
+    showConfirmation: showChooseSubscriber,
+    setShowConfirmation: setShowChooseSubscriber,
+    showConfirmationHandler: showChooseSubscriberHandler,
+    cancelConfirmationHandler: cancelSubscriberHandler,
+    confirmModalFooter: chooseSubscriberFooter,
+  } = useConfirmationModal(showConfirmPublishHandler, 'Next', 'Cancel');
+
   console.log(showConfirmDeactivateHandler);
   console.log(showConfirmPublishHandler);
 
   const publishActionHandler = (product, status) => {
     setActionParams({ gtin: product, status: status });
-    setShowConfirmPublish(true);
+    // setShowConfirmPublish(true);
+    setShowChooseSubscriber(true);
   };
   const deactivateActionHandler = (product, status) => {
     setActionParams({ gtin: product, status: status });
     setShowConfirmDeactivate(true);
   };
-
+  
   const publishProductHandler = () => {
     const gtin = actionParams.gtin;
     const status = actionParams.status;
-    dispatch(catalogActions.toggleProductActive({ gtin, status }));
+    // dispatch(catalogActions.toggleProductActive({ gtin, status }));
     cancelPublishHandler();
+    setShowChooseSubscriber(false);
   };
   const activeStatusHandler = () => {
     const gtin = actionParams.gtin;
     const status = actionParams.status;
     dispatch(catalogActions.toggleProductActive({ gtin, status }));
     cancelDeactivateHandler();
+  };
+
+  const selectSubscriberHandler = (custId) => {
+    setActionParams((prev) => {
+      return { ...prev, customer: custId };
+    });
   };
 
   const publishFooter = (
@@ -111,6 +141,8 @@ const ProductsTable = (props) => {
       <Button onClick={activeStatusHandler}>Deactivate</Button>
     </React.Fragment>
   );
+
+  console.log('actionParams: ', actionParams);
 
   return (
     <React.Fragment>
@@ -165,6 +197,41 @@ const ProductsTable = (props) => {
         </select>
       </div>
       <Modal
+        show={showChooseSubscriber}
+        onClear={cancelSubscriberHandler}
+        msgHeader={`Choose Subscriber to receive Publication`}
+        footer={chooseSubscriberFooter}
+      >
+        <div>{`Item: ${actionParams && actionParams.gtin}`}</div>
+        <div>
+          <FormInput
+            // key={product ? product.category : 'category'}
+            id="subscriber"
+            element="select"
+            selectOptions={subscriberOptions}
+            label="Subscriber"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please select a category"
+            // selected={product ? product.category : ''}
+            initialValid={false}
+            onInput={()=>{console.log('select change')}}
+            setSelectOption={props.setSelectOption}
+          />
+          {/* {`Customer: `}
+          <select
+            onChange={(event) => {
+              const value = event.target.value;
+              selectSubscriberHandler(value);
+            }}
+          >
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select> */}
+        </div>
+      </Modal>
+
+      <Modal
         show={showConfirmPublish}
         onClear={cancelPublishHandler}
         msgHeader="Confirm Publication"
@@ -172,7 +239,9 @@ const ProductsTable = (props) => {
       >
         <p>Are you sure you want to publish this product?</p>
         <p>GTIN: {actionParams && actionParams.gtin}</p>
+        <p>Customer: {actionParams && actionParams.customer}</p>
       </Modal>
+
       <Modal
         show={showConfirmDeactivate}
         onClear={cancelDeactivateHandler}

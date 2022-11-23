@@ -6,13 +6,13 @@ import Backdrop from './Backdrop';
 // import Button from '../UIElements/Button';
 import classes from './Modal.module.css';
 
-const ModalOverlay = props => {
+const ModalOverlay = (props) => {
   const content = (
     <div className={classes.modal}>
       <h2 className={classes.header}>
         {props.msgHeader ? `${props.msgHeader}` : ''}
       </h2>
-
+      
         <div className={classes.content}>{props.children}</div>
         {props.footer && <div className={classes.footer}>{props.footer}</div>}
       {/* <p className={classes.message}>
@@ -28,7 +28,7 @@ const ModalOverlay = props => {
   return ReactDOM.createPortal(content, document.getElementById('modal-hook'));
 };
 
-const Modal = props => {
+const Modal = (props) => {
   return (
     <React.Fragment>
       {props.show && <Backdrop onClick={props.onClear} />}
