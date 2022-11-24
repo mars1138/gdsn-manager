@@ -10,22 +10,13 @@ import FormInput from '../shared/components/FormElements/FormInput';
 import { catalogActions } from '../../src/store/catalog-slice';
 import useConfirmationModal from '../../src/shared/components/hooks/confirmation-hook';
 
+import { customers } from '../assets/data/customers-data';
 import { VALIDATOR_REQUIRE } from '../shared/utilities/validators';
 import classes from './ProductsTable.module.css';
 
-const ProductsTable = props => {
+const ProductsTable = (props) => {
   const [filterInput, setFilterInput] = useState('');
   const [selectSubscriber, setSelectSubscriber] = useState();
-
-  const subscriberOptions = [
-    '',
-    '1111111 Amazon',
-    '2222222 Walmart',
-    '3333333 Kroger',
-    '4444444 Safeway',
-    '5555555 Albertsons',
-    '6666666 Best Buy',
-  ];
 
   const { columns, data, status } = props;
   const dispatch = useDispatch();
@@ -37,7 +28,7 @@ const ProductsTable = props => {
         isValid: false,
       },
     },
-    false,
+    false
   );
 
   const {
@@ -65,10 +56,10 @@ const ProductsTable = props => {
     },
     useFilters, // adding the useFilters hook to the table; can add as many hooks as needed
     useSortBy,
-    usePagination,
+    usePagination
   );
 
-  const handleFilterChange = event => {
+  const handleFilterChange = (event) => {
     const value = event.target.value || undefined;
     setFilter('name', value);
     setFilterInput(value);
@@ -76,7 +67,7 @@ const ProductsTable = props => {
 
   const [actionParams, setActionParams] = useState();
 
-  const deleteProductHandler = gtin => {
+  const deleteProductHandler = (gtin) => {
     dispatch(catalogActions.deleteProduct(gtin));
   };
 
@@ -106,7 +97,7 @@ const ProductsTable = props => {
     selectSubscriber,
     showConfirmDeactivateHandler,
     setShowConfirmPublish,
-    showChooseSubscriberHandler,
+    showChooseSubscriberHandler
   );
 
   const chooseSubHandler = (product, status) => {
@@ -120,12 +111,14 @@ const ProductsTable = props => {
   };
 
   const publishProductHandler = () => {
-    // const gtin = actionParams.gtin;
-    // const status = actionParams.status;
-    // dispatch(catalogActions.toggleProductActive({ gtin, status }));
+    const gtin = actionParams.gtin;
+    const custId = selectSubscriber.subscriber;
+    console.log(gtin, custId);
+    dispatch(catalogActions.addSubscriber({ gtin, custId }));
     cancelPublishHandler();
     setShowChooseSubscriber(false);
-    console.log('Product Published!')
+    dispatch(catalogActions.setCatalogStorage());
+    console.log('Product Published!');
   };
   const activeStatusHandler = () => {
     const gtin = actionParams.gtin;
@@ -173,7 +166,7 @@ const ProductsTable = props => {
         // key={product ? product.category : 'category'}
         id="subscriber"
         element="select"
-        selectOptions={subscriberOptions}
+        selectOptions={customers}
         label="Subscriber"
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please select a category"
@@ -185,8 +178,8 @@ const ProductsTable = props => {
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <div>
           <Button
-            inverse 
-            onClick={event => {
+            inverse
+            onClick={(event) => {
               event.preventDefault();
               setShowChooseSubscriber(false);
             }}
@@ -229,8 +222,13 @@ const ProductsTable = props => {
         footer={publishFooter}
       >
         <p>Are you sure you want to publish this product?</p>
-        <p><strong>GTIN:</strong> {actionParams && actionParams.gtin}</p>
-        <p><strong>Customer:</strong> {selectSubscriber && selectSubscriber.subscriber}</p>
+        <p>
+          <strong>GTIN:</strong> {actionParams && actionParams.gtin}
+        </p>
+        <p>
+          <strong>Customer:</strong>{' '}
+          {selectSubscriber && selectSubscriber.subscriber}
+        </p>
       </Modal>
 
       <Modal
@@ -255,7 +253,7 @@ const ProductsTable = props => {
                   className={classes.headers}
                   {...headerGroup.getHeaderGroupProps()}
                 >
-                  {headerGroup.headers.map(column => (
+                  {headerGroup.headers.map((column) => (
                     <th
                       key={i}
                       className={classes.header}
@@ -345,7 +343,7 @@ const ProductsTable = props => {
                                   onClick={() => {
                                     chooseSubHandler(
                                       cell.row.original.gtin,
-                                      'deactivate',
+                                      'deactivate'
                                     );
                                   }}
                                   action
@@ -361,7 +359,7 @@ const ProductsTable = props => {
                                   onClick={() => {
                                     deactivateActionHandler(
                                       cell.row.original.gtin,
-                                      'deactivate',
+                                      'deactivate'
                                     );
                                   }}
                                   action
@@ -381,7 +379,7 @@ const ProductsTable = props => {
                                   onClick={() => {
                                     activeStatusHandler(
                                       cell.row.original.gtin,
-                                      'activate',
+                                      'activate'
                                     );
                                   }}
                                   action
@@ -396,7 +394,7 @@ const ProductsTable = props => {
                                 <Button
                                   onClick={() => {
                                     deleteProductHandler(
-                                      cell.row.original.gtin,
+                                      cell.row.original.gtin
                                     );
                                   }}
                                   action
@@ -447,7 +445,7 @@ const ProductsTable = props => {
           <input
             type="number"
             defaultValue={pageIndex + 1}
-            onChange={e => {
+            onChange={(e) => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
             }}
@@ -456,11 +454,11 @@ const ProductsTable = props => {
         </span>{' '}
         <select
           value={pageSize}
-          onChange={e => {
+          onChange={(e) => {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[5, 10, 20, 30, 40, 50].map(pageSize => (
+          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>

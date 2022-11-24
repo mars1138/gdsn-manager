@@ -104,11 +104,11 @@ const FormInput = (props) => {
       optionsArray.push(
         <option
           key={`${props.id}-${index}`}
-          value={option}
+          value={option.id}
           // selected={option === props.selected ? option : ''}
           className={props.edit && disabledClass}
         >
-          {option}
+          {`${option.name} ${option.id && '(GLN: ' + option.id + ')'}`}
         </option>
       );
       // console.log(`option=${option} key: `, `${props.id}-${index}`);

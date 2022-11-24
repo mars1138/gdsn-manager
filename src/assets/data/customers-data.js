@@ -1,4 +1,5 @@
 export const customers = [
+  { id: '', name: '' },
   { id: 111111234, name: 'Amazon' },
   { id: 111111235, name: 'Walmart' },
   { id: 111111236, name: 'Kroger' },
@@ -11,7 +12,7 @@ export const customers = [
   { id: 111111243, name: 'Office Depot' },
   { id: 111111244, name: 'Staples' },
   { id: 111111245, name: 'Costco' },
-  { id: 111111245, name: "Sams's Club" },
-  { id: 111111245, name: 'Frys' },
-  { id: 111111245, name: 'QFC' },
+  { id: 111111246, name: "Sams's Club" },
+  { id: 111111247, name: 'Frys' },
+  { id: 111111248, name: 'QFC' },
 ];

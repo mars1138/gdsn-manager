@@ -115,6 +115,17 @@ const catalogSlice = createSlice({
       const gtin = action.payload;
       state.products = state.products.filter(item => item.gtin !== gtin);
     },
+    addSubscriber(state, action) {
+      const custId = action.payload.custId;
+      const prod = action.payload.gtin;
+
+      const existingProduct = state.products.find(item => item.gtin === prod);
+      
+      if (existingProduct) {
+        const newSubs = [...existingProduct.subscribers, custId];
+        existingProduct.subscribers = newSubs;
+      }
+    },
     removeSubscriber(state, action) {
       const custId = action.payload.custId;
       const prod = action.payload.productNum;
