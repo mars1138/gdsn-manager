@@ -5,20 +5,38 @@ import { VALIDATOR_REQUIRE } from '../../shared/utilities/validators';
 
 import classes from './Categories.module.css';
 
-const PackagingHandling = props => {
-  const tempOptions = ['', 'Farenheit', 'Celsius'];
+const PackagingHandling = (props) => {
+  // const tempOptions = ['', 'Farenheit', 'Celsius'];
+  const tempOptions = [
+    { id: '', name: '' },
+    { id: 0, name: 'Farenheit' },
+    { id: 1, name: 'Celsius' },
+  ];
+  // const packageOptions = [
+  //   '',
+  //   'Bag',
+  //   'Bottle',
+  //   'Box',
+  //   'Carton',
+  //   'Crate',
+  //   'Envelope',
+  //   'Multipack',
+  //   'Not Packed',
+  //   'Roll',
+  //   'Wire',
+  // ];
   const packageOptions = [
-    '',
-    'Bag',
-    'Bottle',
-    'Box',
-    'Carton',
-    'Crate',
-    'Envelope',
-    'Multipack',
-    'Not Packed',
-    'Roll',
-    'Wire',
+    { id: '', name: '' },
+    { id: 0, name: 'Bag' },
+    { id: 1, name: 'Bottle' },
+    { id: 2, name: 'Box' },
+    { id: 3, name: 'Carton' },
+    { id: 4, name: 'Crate' },
+    { id: 5, name: 'Envelope' },
+    { id: 6, name: 'Multipack' },
+    { id: 7, name: 'Not Packed' },
+    { id: 8, name: 'Roll' },
+    { id: 9, name: 'Wire' },
   ];
 
   const { product, inputHandler } = props;

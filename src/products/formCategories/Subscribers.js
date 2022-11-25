@@ -18,7 +18,7 @@ const Subscriber = (props) => {
       <div
         className={classes.close}
         onClick={() => {
-          toggleSubHandler(props.subscriberNum);
+          toggleSubHandler(props.customer.id);
         }}
       >
         &times;
@@ -44,13 +44,14 @@ const Subscribers = (props) => {
 
   subscribers &&
     subscribers.forEach((subscriberNum, i) => {
-      const customer = customerList.find((cust) => cust.id === subscriberNum);
+      const customer = customerList.find((cust) => cust.id === +subscriberNum);
+      console.log('customer: ', customer);
 
       subscriberList.push(
         <Subscriber
           key={subscriberNum}
           index={i}
-          subscriberNum={subscriberNum}
+          // subscriberNum={subscriberNum}
           customer={customer}
           toggleSubscriber={props.toggleSubscriber}
         />

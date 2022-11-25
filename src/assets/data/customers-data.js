@@ -1,5 +1,4 @@
 export const customers = [
-  { id: '', name: '' },
   { id: 111111234, name: 'Amazon' },
   { id: 111111235, name: 'Walmart' },
   { id: 111111236, name: 'Kroger' },

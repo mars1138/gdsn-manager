@@ -16,10 +16,15 @@ import classes from './ProductsTable.module.css';
 
 const ProductsTable = (props) => {
   const [filterInput, setFilterInput] = useState('');
+  const [actionParams, setActionParams] = useState();
   const [selectSubscriber, setSelectSubscriber] = useState();
 
-  const { columns, data, status } = props;
   const dispatch = useDispatch();
+  const { columns, data, status } = props;
+
+  // Format customer list for select element:
+  const customerList = [{id: '', name: ''}];
+  customers.forEach(cust => customerList.push(cust));
 
   const [formState, inputHandler] = useForm(
     {
@@ -65,8 +70,6 @@ const ProductsTable = (props) => {
     setFilterInput(value);
   };
 
-  const [actionParams, setActionParams] = useState();
-
   const deleteProductHandler = (gtin) => {
     dispatch(catalogActions.deleteProduct(gtin));
   };
@@ -100,8 +103,8 @@ const ProductsTable = (props) => {
     showChooseSubscriberHandler
   );
 
-  const chooseSubHandler = (product, status) => {
-    setActionParams({ gtin: product, status: status });
+  const chooseSubHandler = (product) => {
+    setActionParams({ gtin: product });
     // setShowConfirmPublish(true);
     setShowChooseSubscriber(true);
   };
@@ -166,7 +169,7 @@ const ProductsTable = (props) => {
         // key={product ? product.category : 'category'}
         id="subscriber"
         element="select"
-        selectOptions={customers}
+        selectOptions={customerList}
         label="Subscriber"
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please select a category"
@@ -341,10 +344,7 @@ const ProductsTable = (props) => {
                                 </Button>
                                 <Button
                                   onClick={() => {
-                                    chooseSubHandler(
-                                      cell.row.original.gtin,
-                                      'deactivate'
-                                    );
+                                    chooseSubHandler(cell.row.original.gtin);
                                   }}
                                   action
                                 >
