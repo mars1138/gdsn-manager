@@ -53,3 +53,10 @@
 .close:hover {
   color: var(--red-1);
 }
+
+.subscribers {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

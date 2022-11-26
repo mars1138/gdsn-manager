@@ -7,11 +7,11 @@ import classes from './Categories.module.css';
 
 const PackagingHandling = (props) => {
   // const tempOptions = ['', 'Farenheit', 'Celsius'];
-  const tempOptions = [
-    { id: '', name: '' },
-    { id: 0, name: 'Farenheit' },
-    { id: 1, name: 'Celsius' },
-  ];
+  // const tempOptions = [
+  //   { id: '', name: '' },
+  //   { id: 0, name: 'Farenheit' },
+  //   { id: 1, name: 'Celsius' },
+  // ];
   // const packageOptions = [
   //   '',
   //   'Bag',
@@ -25,19 +25,19 @@ const PackagingHandling = (props) => {
   //   'Roll',
   //   'Wire',
   // ];
-  const packageOptions = [
-    { id: '', name: '' },
-    { id: 0, name: 'Bag' },
-    { id: 1, name: 'Bottle' },
-    { id: 2, name: 'Box' },
-    { id: 3, name: 'Carton' },
-    { id: 4, name: 'Crate' },
-    { id: 5, name: 'Envelope' },
-    { id: 6, name: 'Multipack' },
-    { id: 7, name: 'Not Packed' },
-    { id: 8, name: 'Roll' },
-    { id: 9, name: 'Wire' },
-  ];
+  // const packageOptions = [
+  //   { id: '', name: '' },
+  //   { id: 0, name: 'Bag' },
+  //   { id: 1, name: 'Bottle' },
+  //   { id: 2, name: 'Box' },
+  //   { id: 3, name: 'Carton' },
+  //   { id: 4, name: 'Crate' },
+  //   { id: 5, name: 'Envelope' },
+  //   { id: 6, name: 'Multipack' },
+  //   { id: 7, name: 'Not Packed' },
+  //   { id: 8, name: 'Roll' },
+  //   { id: 9, name: 'Wire' },
+  // ];
 
   const { product, inputHandler } = props;
 
@@ -54,7 +54,7 @@ const PackagingHandling = (props) => {
             }
             id="packagingType"
             element="select"
-            selectOptions={packageOptions}
+            selectOptions={props.packageOptions}
             label="Packaging Type"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please select a packaging type"
@@ -73,7 +73,7 @@ const PackagingHandling = (props) => {
             }
             id="tempUnits"
             element="select"
-            selectOptions={tempOptions}
+            selectOptions={props.tempOptions}
             label="Temperature Units"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please select a unit of measure"

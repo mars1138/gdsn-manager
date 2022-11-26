@@ -14,7 +14,7 @@ const Subscriber = (props) => {
   };
 
   return (
-    <Card index={props.subscriberNum}>
+    <Card index={props.subscriberNum} width="30">
       <div
         className={classes.close}
         onClick={() => {
@@ -45,7 +45,7 @@ const Subscribers = (props) => {
   subscribers &&
     subscribers.forEach((subscriberNum, i) => {
       const customer = customerList.find((cust) => cust.id === +subscriberNum);
-      console.log('customer: ', customer);
+      // console.log('customer: ', customer);
 
       subscriberList.push(
         <Subscriber
@@ -63,7 +63,9 @@ const Subscribers = (props) => {
   return (
     <div className={classes.category}>
       <h3>Subscribers</h3>
-      <div className={classes['block-container']}>{content}</div>
+      <div className={classes['block-container']}>
+        <div className={classes.subscribers}>{content}</div>
+      </div>
     </div>
   );
 };

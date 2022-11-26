@@ -7,15 +7,15 @@ export const catalog = [
     name: 'Ham Sandwich',
     description: 'Ham and Swiss Cheese on Old Fashioned White Bread',
     gtin: '12345678901234',
-    category: 'Food',
-    type: 'Case',
+    category: 0,
+    type: 0,
     image: '/media/pexels-fauxels-3184418.jpg',
     height: '12',
     width: '8',
     depth: '5',
     weight: '5',
-    packagingType: 'Crate',
-    tempUnits: 'Farenheit',
+    packagingType: 4,
+    tempUnits: 1,
     minTemp: '0',
     maxTemp: '32',
     storageInstructions: 'Keep frozen until ready to display product',
@@ -553,4 +553,36 @@ export const catalog = [
     dateInactive: new Date(1599999999990).toLocaleDateString(),
     dateModified: new Date(1499999999990).toLocaleDateString(),
   },
+];
+
+export const categoryOptions = [
+  { id: '', name: 'Select a Category' },
+  { id: 0, name: 'Food' },
+  { id: 1, name: 'Clothing' },
+  { id: 2, name: 'Electronics' },
+];
+export const typeOptions = [
+  { id: '', name: 'Select a Type' },
+  { id: 0, name: 'Case' },
+  { id: 1, name: 'Display' },
+  { id: 2, name: 'Each' },
+  { id: 3, name: 'Pallet' },
+];
+export const tempOptions = [
+  { id: '', name: 'Select Temp. Unit' },
+  { id: 0, name: 'Farenheit' },
+  { id: 1, name: 'Celsius' },
+];
+export const packageOptions = [
+  { id: '', name: 'Select Packaging Type' },
+  { id: 0, name: 'Bag' },
+  { id: 1, name: 'Bottle' },
+  { id: 2, name: 'Box' },
+  { id: 3, name: 'Carton' },
+  { id: 4, name: 'Crate' },
+  { id: 5, name: 'Envelope' },
+  { id: 6, name: 'Multipack' },
+  { id: 7, name: 'Not Packed' },
+  { id: 8, name: 'Roll' },
+  { id: 9, name: 'Wire' },
 ];

@@ -2,6 +2,10 @@
   width: 30%;
 }
 
+.plan > div {
+  height: 98%;
+}
+
 .plan > *:hover {
   border: 1px solid var(--primary-light);
 }

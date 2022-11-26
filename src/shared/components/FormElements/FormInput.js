@@ -100,18 +100,20 @@ const FormInput = (props) => {
   if (props.element === 'select') {
     const optionsArray = [];
 
-    props.selectOptions.forEach((option, index) => {
+    props.id && props.selectOptions.forEach((option, index) => {
       optionsArray.push(
         <option
+          // key={`${props.id}-${index}`}
           key={`${props.id}-${index}`}
           value={option.id}
           // selected={option === props.selected ? option : ''}
           className={props.edit && disabledClass}
         >
-          {`${option.name} ${option.id && '(GLN: ' + option.id + ')'}`}
+          {/* {`${option.name} ${option.id && '(GLN: ' + option.id + ')'}`} */}
+          {option.name}
         </option>
       );
-      // console.log(`option=${option} key: `, `${props.id}-${index}`);
+      console.log(`option=${option.id} key: `, `${props.id}-${index}`);
     });
 
     element = (
@@ -126,7 +128,7 @@ const FormInput = (props) => {
         {optionsArray}
       </select>
     );
-    // console.log(`select ${props.id} key: `, `${props.id}-select`);
+    console.log(`select ${props.id} key: `, `${props.id}-select`);
   }
 
   return (

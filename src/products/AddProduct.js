@@ -17,7 +17,12 @@ import useConfirmationModal from '../shared/components/hooks/confirmation-hook';
 import { catalogActions } from '../../src/store/catalog-slice';
 
 // import FormInput from '../shared/components/FormElements/FormInput';
-
+import {
+  categoryOptions,
+  typeOptions,
+  tempOptions,
+  packageOptions,
+} from '../assets/data/test-catalog';
 import classes from './AddProduct.module.css';
 import classes2 from './formCategories/Categories.module.css';
 
@@ -116,15 +121,14 @@ const AddProduct = () => {
     } catch (err) {}
   };
 
-   // for Confirmation Modal
-   const {
+  // for Confirmation Modal
+  const {
     showConfirmation,
     setShowConfirmation,
     showConfirmationHandler,
     cancelConfirmationHandler,
     confirmModalFooter,
   } = useConfirmationModal(productSubmitHandler, 'Add', 'Cancel');
-
 
   return (
     <Section>
@@ -142,9 +146,17 @@ const AddProduct = () => {
           </Modal>
           <form className={classes.form} onSubmit={showConfirmationHandler}>
             {isSubmitting && <LoadingSpinner />}
-            <Main inputHandler={inputHandler} />
+            <Main
+              inputHandler={inputHandler}
+              categoryOptions={categoryOptions}
+              typeOptions={typeOptions}
+            />
             <Dimensions inputHandler={inputHandler} />
-            <PackagingHandling inputHandler={inputHandler} />
+            <PackagingHandling
+              inputHandler={inputHandler}
+              packageOptions={packageOptions}
+              tempOptions={tempOptions}
+            />
             <div className={classes2['block-container']}>
               <Button type="submit" disabled={!formState.isValid}>
                 Add Item

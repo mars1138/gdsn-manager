@@ -16,6 +16,7 @@ import Subscribers from './formCategories/Subscribers';
 import { useForm } from '../shared/components/hooks/form-hook';
 import useConfirmationModal from '../shared/components/hooks/confirmation-hook';
 
+import {categoryOptions, typeOptions, tempOptions, packageOptions} from '../assets/data/test-catalog';
 import classes from './AddProduct.module.css';
 import classes2 from './formCategories/Categories.module.css';
 import { catalogActions } from '../store/catalog-slice';
@@ -111,7 +112,7 @@ const UpdateProduct = () => {
     }
   };
 
-  console.log('subscriberUpdate: ', subscriberUpdate);
+  // console.log('subscriberUpdate: ', subscriberUpdate);
 
   const clearError = () => {
     setError(false);
@@ -126,7 +127,7 @@ const UpdateProduct = () => {
     };
 
     fetchProduct();
-    setSubscriberUpdate([...product.subscribers]);
+    if (product.subscribers) setSubscriberUpdate([...product.subscribers]);
     setSelectOptionsValues({
       category: product.category,
       type: product.type,
@@ -273,6 +274,8 @@ const UpdateProduct = () => {
               inputHandler={inputHandler}
               setSelectOption={selectOptionsHandler}
               product={loadedProduct}
+              categoryOptions={categoryOptions}
+              typeOptions={typeOptions}
               edit
             />
             <Dimensions
@@ -285,6 +288,8 @@ const UpdateProduct = () => {
               setSelectOption={selectOptionsHandler}
               onSubmit={updateSubmitHandler}
               product={loadedProduct}
+              packageOptions={packageOptions}
+              tempOptions={tempOptions}
               edit
             />
             <Subscribers
