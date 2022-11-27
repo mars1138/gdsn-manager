@@ -13,7 +13,10 @@ import Dimensions from './formCategories/Dimensions';
 import PackagingHandling from './formCategories/PackagingHandling';
 
 import { useForm } from '../shared/components/hooks/form-hook';
-import useConfirmationModal from '../shared/components/hooks/confirmation-hook';
+import {
+  useConfirmationModal,
+  useConfirmModalFooter,
+} from '../shared/components/hooks/confirmation-hook';
 import { catalogActions } from '../../src/store/catalog-slice';
 
 // import FormInput from '../shared/components/FormElements/FormInput';
@@ -127,8 +130,14 @@ const AddProduct = () => {
     setShowConfirmation,
     showConfirmationHandler,
     cancelConfirmationHandler,
-    confirmModalFooter,
-  } = useConfirmationModal(productSubmitHandler, 'Add', 'Cancel');
+  } = useConfirmationModal();
+
+  const confirmModalFooter = useConfirmModalFooter(
+    productSubmitHandler,
+    cancelConfirmationHandler,
+    'Add',
+    'Cancel'
+  );
 
   return (
     <Section>

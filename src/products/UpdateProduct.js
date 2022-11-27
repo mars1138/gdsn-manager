@@ -14,9 +14,14 @@ import PackagingHandling from './formCategories/PackagingHandling';
 import Subscribers from './formCategories/Subscribers';
 
 import { useForm } from '../shared/components/hooks/form-hook';
-import useConfirmationModal from '../shared/components/hooks/confirmation-hook';
+import { useConfirmationModal, useConfirmModalFooter } from '../shared/components/hooks/confirmation-hook';
 
-import {categoryOptions, typeOptions, tempOptions, packageOptions} from '../assets/data/test-catalog';
+import {
+  categoryOptions,
+  typeOptions,
+  tempOptions,
+  packageOptions,
+} from '../assets/data/test-catalog';
 import classes from './AddProduct.module.css';
 import classes2 from './formCategories/Categories.module.css';
 import { catalogActions } from '../store/catalog-slice';
@@ -251,8 +256,14 @@ const UpdateProduct = () => {
     setShowConfirmation,
     showConfirmationHandler,
     cancelConfirmationHandler,
-    confirmModalFooter,
-  } = useConfirmationModal(updateSubmitHandler, 'Update', 'Cancel');
+  } = useConfirmationModal();
+
+  const confirmModalFooter = useConfirmModalFooter(
+    updateSubmitHandler,
+    cancelConfirmationHandler,
+    'Update',
+    'Cancel'
+  );
 
   return (
     <Section>
@@ -262,7 +273,7 @@ const UpdateProduct = () => {
           <Modal show={error} onClear={clearError} />
           <Modal
             show={showConfirmation}
-            onCancel={cancelConfirmationHandler}
+            onClear={cancelConfirmationHandler}
             msgHeader="Confirm Changes"
             footer={confirmModalFooter}
           >

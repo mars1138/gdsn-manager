@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 
 import Button from '../../UIElements/Button';
 
-const useConfirmationModal = (submitFunction, confirmLabel, cancelLabel) => {
+export const useConfirmationModal = (
+  submitFunction,
+  confirmLabel,
+  cancelLabel
+) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const showConfirmationHandler = (event) => {
@@ -12,26 +16,43 @@ const useConfirmationModal = (submitFunction, confirmLabel, cancelLabel) => {
 
   const cancelConfirmationHandler = () => setShowConfirmation(false);
 
-  const confirmModalFooter = (
-    // <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-    <React.Fragment>
-      <Button danger onClick={cancelConfirmationHandler}>
-        {cancelLabel}
-      </Button>
-      {/* </div>
-      <div style={{ marginLeft: '1rem' }}> */}
-      <Button onClick={submitFunction}>{confirmLabel}</Button>
-      {/* </div> */}
-    </React.Fragment>
-  );
-
   return {
     showConfirmation,
     setShowConfirmation,
     showConfirmationHandler,
     cancelConfirmationHandler,
-    confirmModalFooter,
+    // confirmModalFooter,
   };
 };
 
-export default useConfirmationModal;
+export const useConfirmModalFooter = (
+  submitFunction,
+  cancelFunction,
+  confirmLabel,
+  cancelLabel
+) => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <div>
+        <Button danger onClick={cancelFunction}>
+          {cancelLabel}
+        </Button>
+      </div>
+      <div style={{ marginLeft: '1rem' }}>
+        <Button onClick={submitFunction}>{confirmLabel}</Button>
+      </div>
+    </div>
+  );
+};
+// <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+// <React.Fragment>
+//   <Button danger onClick={cancelConfirmationHandler}>
+//     {cancelLabel}
+//   </Button>
+//   </div>
+//   <div style={{ marginLeft: '1rem' }}>
+//   <Button onClick={submitFunction}>{confirmLabel}</Button>
+//   </div>
+// </React.Fragment>
+
+// export default useConfirmationModal;

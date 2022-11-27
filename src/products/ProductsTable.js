@@ -8,9 +8,10 @@ import { useForm } from '../shared/components/hooks/form-hook';
 import FormInput from '../shared/components/FormElements/FormInput';
 
 import { catalogActions } from '../../src/store/catalog-slice';
-import useConfirmationModal from '../../src/shared/components/hooks/confirmation-hook';
+import {useConfirmationModal, useModalFooter } from '../../src/shared/components/hooks/confirmation-hook';
 
 import { customers } from '../assets/data/customers-data';
+import { categoryOptions, typeOptions } from '../assets/data/test-catalog';
 import { VALIDATOR_REQUIRE } from '../shared/utilities/validators';
 import classes from './ProductsTable.module.css';
 
@@ -23,8 +24,8 @@ const ProductsTable = (props) => {
   const { columns, data, status } = props;
 
   // Format customer list for select element:
-  const customerList = [{id: '', name: ''}];
-  customers.forEach(cust => customerList.push(cust));
+  const customerList = [{ id: '', name: '' }];
+  customers.forEach((cust) => customerList.push(cust));
 
   const [formState, inputHandler] = useForm(
     {
@@ -70,9 +71,12 @@ const ProductsTable = (props) => {
     setFilterInput(value);
   };
 
-  const deleteProductHandler = (gtin) => {
-    dispatch(catalogActions.deleteProduct(gtin));
-  };
+  const {
+    showConfirmation: showConfirmActivate,
+    setShowConfirmation: setShowConfirmActivate,
+    showConfirmationHandler: showConfirmActivateHandler,
+    cancelConfirmationHandler: cancelActivateHandler,
+  } = useConfirmationModal();
 
   const {
     showConfirmation: showConfirmDeactivate,
@@ -87,7 +91,7 @@ const ProductsTable = (props) => {
     showConfirmationHandler: showConfirmPublishHandler,
     cancelConfirmationHandler: cancelPublishHandler,
   } = useConfirmationModal();
-
+  
   const {
     showConfirmation: showChooseSubscriber,
     setShowConfirmation: setShowChooseSubscriber,
@@ -95,7 +99,14 @@ const ProductsTable = (props) => {
     cancelConfirmationHandler: cancelSubscriberHandler,
     // confirmModalFooter: chooseSubscriberFooter,
   } = useConfirmationModal();
-
+  
+  const {
+    showConfirmation: showConfirmDelete,
+    setShowConfirmation: setShowConfirmDelete,
+    showConfirmationHandler: showConfirmDeleteHandler,
+    cancelConfirmationHandler: cancelDeleteHandler,
+  } = useConfirmationModal();
+  
   console.log(
     selectSubscriber,
     showConfirmDeactivateHandler,
@@ -103,17 +114,26 @@ const ProductsTable = (props) => {
     showChooseSubscriberHandler
   );
 
-  const chooseSubHandler = (product) => {
-    setActionParams({ gtin: product });
-    // setShowConfirmPublish(true);
-    setShowChooseSubscriber(true);
-  };
-  const deactivateActionHandler = (product, status) => {
-    setActionParams({ gtin: product, status: status });
-    setShowConfirmDeactivate(true);
+  // const chooseSubHandler = (product) => {
+  //   setActionParams({ gtin: product });
+  //   // setShowConfirmPublish(true);
+  //   setShowChooseSubscriber(true);
+  // };
+
+  const productActionHandler = (product, action) => {
+    setActionParams({ gtin: product, action: action });
+    if (action === 'activate') setShowConfirmActivate(true);
+    if (action === 'deactivate') setShowConfirmDeactivate(true);
+    if (action === 'publish') setShowChooseSubscriber(true);
+    if (action === 'delete') setShowConfirmDelete(true);
   };
 
+  // const deleteProductHandler = (gtin) => {
+  //   dispatch(catalogActions.deleteProduct(gtin));
+  // };
+
   const publishProductHandler = () => {
+    console.log('actionParams: ', actionParams);
     const gtin = actionParams.gtin;
     const custId = selectSubscriber.subscriber;
     console.log(gtin, custId);
@@ -123,33 +143,67 @@ const ProductsTable = (props) => {
     dispatch(catalogActions.setCatalogStorage());
     console.log('Product Published!');
   };
+
   const activeStatusHandler = () => {
+    // setActionParams({ gtin: product, status: activeStatus });
+    console.log('actionParams: ', actionParams);
     const gtin = actionParams.gtin;
-    const status = actionParams.status;
-    dispatch(catalogActions.toggleProductActive({ gtin, status }));
-    cancelDeactivateHandler();
+    const status = actionParams.action;
+    dispatch(
+      catalogActions.toggleProductActive({
+        gtin: gtin,
+        status: status,
+      })
+    );
+    status === 'activate' && cancelActivateHandler();
+    status === 'deactivate' && cancelDeactivateHandler();
+    // status === 'deactivate' && cancelDeactivateHandler();
   };
 
-  // const selectSubscriberHandler = custId => {
-  //   setActionParams(prev => {
-  //     return { ...prev, customer: custId };
-  //   });
-  // };
+  const deleteProductHandler = () => {
+    const gtin = actionParams.gtin;
+    dispatch(catalogActions.deleteProduct(gtin));
+    cancelDeleteHandler();
+  };
+
+  const cancelHandler = () => {
+    const { action } = actionParams;
+    if (action === 'activate') cancelActivateHandler();
+    if (action === 'deactivate') cancelDeactivateHandler();
+    if (action === 'publish') cancelPublishHandler();
+    if (action === 'delete') cancelDeleteHandler();
+  };
 
   const publishFooter = (
     <React.Fragment>
-      <Button danger onClick={cancelPublishHandler}>
+      <Button danger onClick={cancelHandler}>
         Cancel
       </Button>
       <Button onClick={publishProductHandler}>Publish</Button>
     </React.Fragment>
   );
+  const activateFooter = (
+    <React.Fragment>
+      <Button danger onClick={cancelHandler}>
+        Cancel
+      </Button>
+      <Button onClick={activeStatusHandler}>Activate</Button>
+    </React.Fragment>
+  );
   const deactivateFooter = (
     <React.Fragment>
-      <Button danger onClick={cancelDeactivateHandler}>
+      <Button danger onClick={cancelHandler}>
         Cancel
       </Button>
       <Button onClick={activeStatusHandler}>Deactivate</Button>
+    </React.Fragment>
+  );
+  const deleteFooter = (
+    <React.Fragment>
+      <Button danger onClick={cancelHandler}>
+        Cancel
+      </Button>
+      <Button onClick={deleteProductHandler}>Delete</Button>
     </React.Fragment>
   );
 
@@ -235,12 +289,32 @@ const ProductsTable = (props) => {
       </Modal>
 
       <Modal
+        show={showConfirmActivate}
+        onClear={cancelActivateHandler}
+        msgHeader="Confirm Activation"
+        footer={activateFooter}
+      >
+        <p>Are you sure you want to Activate this product?</p>
+        <p>GTIN: {actionParams && actionParams.gtin}</p>
+      </Modal>
+
+      <Modal
         show={showConfirmDeactivate}
         onClear={cancelDeactivateHandler}
         msgHeader="Confirm Deactivation"
         footer={deactivateFooter}
       >
         <p>Are you sure you want to deactivate this product?</p>
+        <p>GTIN: {actionParams && actionParams.gtin}</p>
+      </Modal>
+      
+      <Modal
+        show={showConfirmDelete}
+        onClear={cancelDeleteHandler}
+        msgHeader="Confirm Deletion"
+        footer={deleteFooter}
+      >
+        <p>Are you sure you want to PERMANENTLY DELETE this product?</p>
         <p>GTIN: {actionParams && actionParams.gtin}</p>
       </Modal>
 
@@ -304,6 +378,23 @@ const ProductsTable = (props) => {
                 >
                   {row.cells.map((cell, i) => {
                     // console.log('cell: ', cell);
+                    let type = {};
+                    let category = {};
+                    if (cell.column.Header === 'Type') {
+                      console.log('Type cell value: ', cell.value);
+                      type = typeOptions.filter(
+                        (type) => type.id === +cell.value
+                      )[0];
+                      console.log('type: ', type.name);
+                    }
+                    if (cell.column.Header === 'Category') {
+                      console.log('Category cell value: ', cell.value);
+                      category = categoryOptions.filter(
+                        (category) => category.id === +cell.value
+                      )[0];
+                      console.log('category: ', category.name);
+                    }
+
                     if (cell.column.accessor) {
                       return (
                         <td
@@ -319,7 +410,11 @@ const ProductsTable = (props) => {
                               <img src={cell.value} alt={cell.value} />
                             </div>
                           )}
+                          {cell.column.Header === 'Type' && type.name}
+                          {cell.column.Header === 'Category' && category.name}
                           {cell.column.Header !== 'Image' &&
+                            cell.column.Header !== 'Type' &&
+                            cell.column.Header !== 'Category' &&
                             cell.render('Cell')}
                         </td>
                       );
@@ -344,7 +439,10 @@ const ProductsTable = (props) => {
                                 </Button>
                                 <Button
                                   onClick={() => {
-                                    chooseSubHandler(cell.row.original.gtin);
+                                    productActionHandler(
+                                      cell.row.original.gtin,
+                                      'publish'
+                                    );
                                   }}
                                   action
                                 >
@@ -357,7 +455,7 @@ const ProductsTable = (props) => {
                                 </Button>
                                 <Button
                                   onClick={() => {
-                                    deactivateActionHandler(
+                                    productActionHandler(
                                       cell.row.original.gtin,
                                       'deactivate'
                                     );
@@ -377,7 +475,7 @@ const ProductsTable = (props) => {
                               <>
                                 <Button
                                   onClick={() => {
-                                    activeStatusHandler(
+                                    productActionHandler(
                                       cell.row.original.gtin,
                                       'activate'
                                     );
@@ -393,8 +491,9 @@ const ProductsTable = (props) => {
                                 </Button>
                                 <Button
                                   onClick={() => {
-                                    deleteProductHandler(
-                                      cell.row.original.gtin
+                                    productActionHandler(
+                                      cell.row.original.gtin,
+                                      'delete'
                                     );
                                   }}
                                   action
