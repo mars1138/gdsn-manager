@@ -69,15 +69,27 @@ export const activeColumns = [
       },
       {
         Header: 'Created',
-        accessor: 'dateAdded',
+        accessor: (row) => new Date(row.dateAdded).toLocaleDateString(),
       },
       {
         Header: 'Modified',
-        accessor: 'dateModified',
+        accessor: (row) => {
+          if (row.dateModified) {
+            return new Date(row.dateModified).toLocaleDateString();
+          } else {
+            return '';
+          }
+        },
       },
       {
         Header: 'Published',
-        accessor: 'datePublished',
+        accessor: (row) => {
+          if (row.datePublished) {
+            return new Date(row.datePublished).toLocaleDateString();
+          } else {
+            return '';
+          }
+        },
       },
       {
         Header: 'Actions',
@@ -114,12 +126,18 @@ export const inactiveColumns = [
         accessor: 'category',
       },
       {
-        Header: 'Date Added',
-        accessor: 'dateAdded',
+        Header: 'Created',
+        accessor: (row) => new Date(row.dateAdded).toLocaleDateString(),
       },
       {
-        Header: 'Date Inactivated',
-        accessor: 'dateInactive',
+        Header: 'Date Inactive',
+        accessor: (row) => {
+          if (row.dateInactive) {
+            return new Date(row.dateInactive).toLocaleDateString();
+          } else {
+            return '';
+          }
+        },
       },
       {
         Header: 'Actions',

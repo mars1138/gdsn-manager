@@ -49,17 +49,17 @@ const catalogSlice = createSlice({
         maxTemp: newItem.maxTemp.value,
         storageInstructions: newItem.storageInstructions.value,
         subscribers: [],
-        dateAdded: new Date().toLocaleDateString(),
+        dateAdded: new Date().getTime(),
         datePublished: null,
         dateInactive: null,
-        dateModified: new Date().toLocaleDateString(),
+        dateModified: null,
       });
       // }
     },
     updateExistingProduct(state, action) {
       const newItem = action.payload;
       const existingItem = state.products.find(
-        item => item.gtin === newItem.gtin,
+        (item) => item.gtin === newItem.gtin
       );
 
       // newItem.dateAdded = existingItem.dateAdded;
@@ -86,7 +86,7 @@ const catalogSlice = createSlice({
       existingItem.maxTemp = newItem.maxTemp;
       existingItem.storageInstructions = newItem.storageInstructions;
       existingItem.subscribers = [...newItem.subscribers];
-      existingItem.dateModified = new Date().toLocaleDateString();
+      existingItem.dateModified = new Date().getTime();
     },
     // deactivateProduct(state, action) {
     //   const gtin = action.payload;
@@ -98,13 +98,14 @@ const catalogSlice = createSlice({
     // },
     toggleProductActive(state, action) {
       const gtin = action.payload.gtin;
-      const existingItem = state.products.find(item => item.gtin === gtin);
+      const existingItem = state.products.find((item) => item.gtin === gtin);
 
       const deactivate = () => {
-        existingItem.dateInactive = new Date().toLocaleDateString();
+        existingItem.dateInactive = new Date().getTime();
       };
       const reactivate = () => {
         existingItem.dateInactive = null;
+        existingItem.dateModified = new Date().getTime();
       };
 
       if (existingItem) {
@@ -113,14 +114,14 @@ const catalogSlice = createSlice({
     },
     deleteProduct(state, action) {
       const gtin = action.payload;
-      state.products = state.products.filter(item => item.gtin !== gtin);
+      state.products = state.products.filter((item) => item.gtin !== gtin);
     },
     addSubscriber(state, action) {
       const custId = action.payload.custId;
       const prod = action.payload.gtin;
 
-      const existingProduct = state.products.find(item => item.gtin === prod);
-      
+      const existingProduct = state.products.find((item) => item.gtin === prod);
+
       if (existingProduct) {
         const newSubs = [...existingProduct.subscribers, custId];
         existingProduct.subscribers = newSubs;
@@ -132,10 +133,10 @@ const catalogSlice = createSlice({
       // console.log('custId: ', custId);
       // console.log('prod: ', prod);
 
-      const existingProduct = state.products.find(item => item.gtin === prod);
+      const existingProduct = state.products.find((item) => item.gtin === prod);
       // console.log('existingProd: ', existingProduct);
       const newSubs = existingProduct.subscribers.filter(
-        cust => cust !== custId,
+        (cust) => cust !== custId
       );
       // console.log('newsubs: ', newSubs);
 

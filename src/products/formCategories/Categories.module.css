@@ -43,11 +43,13 @@
 }
 
 .close {
+  color: var(--gray-1);
   position: absolute;
-  top: 2px;
+  top: 7px;
   right: 7px;
   font-size: 1.5rem;
   cursor: pointer;
+  display: flex;
 }
 
 .close:hover {
@@ -55,8 +57,30 @@
 }
 
 .subscribers {
+  width: 100%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  /* border: 1px solid blue; */
+}
+
+.subscriber {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.subscriber p {
+  margin-top: .5rem;
+  color: var(--gray-1);
+}
+
+.pending {
+  color: var(--red-1);
+}
+
+.hide {
+  opacity: 0;
 }

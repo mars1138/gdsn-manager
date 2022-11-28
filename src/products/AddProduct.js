@@ -135,7 +135,7 @@ const AddProduct = () => {
   const confirmModalFooter = useConfirmModalFooter(
     productSubmitHandler,
     cancelConfirmationHandler,
-    'Add',
+    'Register',
     'Cancel'
   );
 
@@ -147,7 +147,7 @@ const AddProduct = () => {
           <Modal show={error} onClear={clearError} />
           <Modal
             show={showConfirmation}
-            onCancel={cancelConfirmationHandler}
+            onClear={cancelConfirmationHandler}
             msgHeader="Confirm Registration"
             footer={confirmModalFooter}
           >

@@ -14,7 +14,10 @@ import PackagingHandling from './formCategories/PackagingHandling';
 import Subscribers from './formCategories/Subscribers';
 
 import { useForm } from '../shared/components/hooks/form-hook';
-import { useConfirmationModal, useConfirmModalFooter } from '../shared/components/hooks/confirmation-hook';
+import {
+  useConfirmationModal,
+  useConfirmModalFooter,
+} from '../shared/components/hooks/confirmation-hook';
 
 import {
   categoryOptions,
@@ -108,16 +111,18 @@ const UpdateProduct = () => {
 
   // passed on to subscriber component; add/remove customer id from list of product subscribers
   const toggleSubscriber = (custId) => {
-    if (subscriberUpdate.find((subscriber) => subscriber === custId)) {
-      const newSubs = subscriberUpdate.filter((sub) => sub !== custId);
+    console.log('custId: ', custId);
+    console.log('subscriberUpdate: ', subscriberUpdate);
+    console.log(subscriberUpdate.find((subscriber) => +subscriber === custId));
+
+    if (subscriberUpdate.find((subscriber) => +subscriber === custId)) {
+      const newSubs = subscriberUpdate.filter((sub) => +sub !== custId);
 
       setSubscriberUpdate([...newSubs]);
     } else {
       setSubscriberUpdate((prev) => [...prev, custId]);
     }
   };
-
-  // console.log('subscriberUpdate: ', subscriberUpdate);
 
   const clearError = () => {
     setError(false);

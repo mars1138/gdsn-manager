@@ -21,11 +21,22 @@ const Subscriber = (props) => {
           toggleSubHandler(props.customer.id);
         }}
       >
-        &times;
+        {!deleteSub && (
+          <ion-icon size="small" src="/icons/trash-outline.svg"></ion-icon>
+        )}
+        {deleteSub && (
+          <ion-icon
+            size="small"
+            src="/icons/arrow-undo-circle-outline.svg"
+          ></ion-icon>
+        )}
       </div>
-      <h4>{props.customer.name}</h4>
-      <h5>Cust #{props.customer.id}</h5>
-      {deleteSub && <p>Pending Delete</p>}
+      <div className={classes.subscriber}>
+        <h4>{props.customer.name}</h4>
+        <h5>#{props.customer.id}</h5>
+        {!deleteSub && <p>Active</p>}
+        {deleteSub && <p style={{color: 'var(--red-1)'}}>Remove</p>}
+      </div>
     </Card>
   );
 };

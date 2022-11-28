@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
 import Button from '../shared/UIElements/Button';
@@ -8,7 +8,10 @@ import { useForm } from '../shared/components/hooks/form-hook';
 import FormInput from '../shared/components/FormElements/FormInput';
 
 import { catalogActions } from '../../src/store/catalog-slice';
-import {useConfirmationModal, useModalFooter } from '../../src/shared/components/hooks/confirmation-hook';
+import {
+  useConfirmationModal,
+  useConfirmModalFooter,
+} from '../../src/shared/components/hooks/confirmation-hook';
 
 import { customers } from '../assets/data/customers-data';
 import { categoryOptions, typeOptions } from '../assets/data/test-catalog';
@@ -21,11 +24,22 @@ const ProductsTable = (props) => {
   const [selectSubscriber, setSelectSubscriber] = useState();
 
   const dispatch = useDispatch();
+
+  const catalog = useSelector((state) => state.catalog.products);
+  let productName, customerName;
+
   const { columns, data, status } = props;
 
   // Format customer list for select element:
   const customerList = [{ id: '', name: '' }];
   customers.forEach((cust) => customerList.push(cust));
+  console.log('selectSubscriber: ', selectSubscriber);
+
+  if (selectSubscriber && selectSubscriber.subscriber !== '')
+    customerName = customerList.find(
+      (cust) => cust.id === +selectSubscriber.subscriber
+    ).name;
+  console.log('customername: ', customerName);
 
   const [formState, inputHandler] = useForm(
     {
@@ -91,7 +105,7 @@ const ProductsTable = (props) => {
     showConfirmationHandler: showConfirmPublishHandler,
     cancelConfirmationHandler: cancelPublishHandler,
   } = useConfirmationModal();
-  
+
   const {
     showConfirmation: showChooseSubscriber,
     setShowConfirmation: setShowChooseSubscriber,
@@ -99,53 +113,55 @@ const ProductsTable = (props) => {
     cancelConfirmationHandler: cancelSubscriberHandler,
     // confirmModalFooter: chooseSubscriberFooter,
   } = useConfirmationModal();
-  
+
   const {
     showConfirmation: showConfirmDelete,
     setShowConfirmation: setShowConfirmDelete,
     showConfirmationHandler: showConfirmDeleteHandler,
     cancelConfirmationHandler: cancelDeleteHandler,
   } = useConfirmationModal();
-  
+
   console.log(
-    selectSubscriber,
     showConfirmDeactivateHandler,
     setShowConfirmPublish,
-    showChooseSubscriberHandler
+    showChooseSubscriberHandler,
+    showConfirmDeleteHandler,
+    showConfirmActivateHandler
   );
 
-  // const chooseSubHandler = (product) => {
-  //   setActionParams({ gtin: product });
-  //   // setShowConfirmPublish(true);
-  //   setShowChooseSubscriber(true);
-  // };
-
-  const productActionHandler = (product, action) => {
-    setActionParams({ gtin: product, action: action });
+  const productActionHandler = (productId, action) => {
+    productName = catalog.find((item) => item.gtin === productId).name;
+    setActionParams({ gtin: productId, itemName: productName, action: action });
+    // console.log(catalog.find((item) => item.gtin === productId).name);
     if (action === 'activate') setShowConfirmActivate(true);
     if (action === 'deactivate') setShowConfirmDeactivate(true);
     if (action === 'publish') setShowChooseSubscriber(true);
     if (action === 'delete') setShowConfirmDelete(true);
   };
 
-  // const deleteProductHandler = (gtin) => {
-  //   dispatch(catalogActions.deleteProduct(gtin));
-  // };
-
   const publishProductHandler = () => {
     console.log('actionParams: ', actionParams);
     const gtin = actionParams.gtin;
     const custId = selectSubscriber.subscriber;
-    console.log(gtin, custId);
-    dispatch(catalogActions.addSubscriber({ gtin, custId }));
+
+    const alreadySubbed = catalog.find(
+      (item) =>
+        item.gtin === gtin && item.subscribers.find((cust) => cust === +custId)
+    );
+
+    console.log('alreadySubbed: ', alreadySubbed);
+
+    if (!alreadySubbed) {
+      console.log(gtin, custId);
+      dispatch(catalogActions.addSubscriber({ gtin, custId }));
+      dispatch(catalogActions.setCatalogStorage());
+      console.log('Product Published!');
+    }
     cancelPublishHandler();
-    setShowChooseSubscriber(false);
-    dispatch(catalogActions.setCatalogStorage());
-    console.log('Product Published!');
+    cancelSubscriberHandler();
   };
 
   const activeStatusHandler = () => {
-    // setActionParams({ gtin: product, status: activeStatus });
     console.log('actionParams: ', actionParams);
     const gtin = actionParams.gtin;
     const status = actionParams.action;
@@ -155,15 +171,17 @@ const ProductsTable = (props) => {
         status: status,
       })
     );
+
     status === 'activate' && cancelActivateHandler();
     status === 'deactivate' && cancelDeactivateHandler();
-    // status === 'deactivate' && cancelDeactivateHandler();
+    dispatch(catalogActions.setCatalogStorage());
   };
 
   const deleteProductHandler = () => {
     const gtin = actionParams.gtin;
     dispatch(catalogActions.deleteProduct(gtin));
     cancelDeleteHandler();
+    dispatch(catalogActions.setCatalogStorage());
   };
 
   const cancelHandler = () => {
@@ -174,41 +192,30 @@ const ProductsTable = (props) => {
     if (action === 'delete') cancelDeleteHandler();
   };
 
-  const publishFooter = (
-    <React.Fragment>
-      <Button danger onClick={cancelHandler}>
-        Cancel
-      </Button>
-      <Button onClick={publishProductHandler}>Publish</Button>
-    </React.Fragment>
+  const confirmActivateFooter = useConfirmModalFooter(
+    activeStatusHandler,
+    cancelHandler,
+    'Activate',
+    'Cancel'
   );
-  const activateFooter = (
-    <React.Fragment>
-      <Button danger onClick={cancelHandler}>
-        Cancel
-      </Button>
-      <Button onClick={activeStatusHandler}>Activate</Button>
-    </React.Fragment>
+  const confirmDeactivateFooter = useConfirmModalFooter(
+    activeStatusHandler,
+    cancelHandler,
+    'Deactivate',
+    'Cancel'
   );
-  const deactivateFooter = (
-    <React.Fragment>
-      <Button danger onClick={cancelHandler}>
-        Cancel
-      </Button>
-      <Button onClick={activeStatusHandler}>Deactivate</Button>
-    </React.Fragment>
+  const confirmPublishFooter = useConfirmModalFooter(
+    publishProductHandler,
+    cancelHandler,
+    'Publish',
+    'Cancel'
   );
-  const deleteFooter = (
-    <React.Fragment>
-      <Button danger onClick={cancelHandler}>
-        Cancel
-      </Button>
-      <Button onClick={deleteProductHandler}>Delete</Button>
-    </React.Fragment>
+  const confirmDeleteFooter = useConfirmModalFooter(
+    deleteProductHandler,
+    cancelHandler,
+    'Delete',
+    'Cancel'
   );
-
-  // console.log('actionParams: ', actionParams);
-  // console.log('selectOptionValue: ', selectSubscriber);
 
   const selectSubsciberForm = (
     <form
@@ -226,7 +233,7 @@ const ProductsTable = (props) => {
         selectOptions={customerList}
         label="Subscriber"
         validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please select a category"
+        errorText="Please select a subscriber"
         // selected={product ? product.category : ''}
         initialValid={false}
         onInput={inputHandler}
@@ -266,24 +273,39 @@ const ProductsTable = (props) => {
         show={showChooseSubscriber}
         onClear={cancelSubscriberHandler}
         msgHeader={`Choose Subscriber to receive Publication`}
-        // footer={chooseSubscriberFooter}
       >
-        <div>{`Item: ${actionParams && actionParams.gtin}`}</div>
+        <p>
+          <strong>{`Item: `}</strong>
+          {actionParams && actionParams.itemName}
+        </p>
+        <p>
+          <strong>{`GTIN: `}</strong>
+          {actionParams && actionParams.gtin}
+        </p>
         <div>{selectSubsciberForm}</div>
       </Modal>
 
       <Modal
         show={showConfirmPublish}
         onClear={cancelPublishHandler}
-        msgHeader="Confirm Publication"
-        footer={publishFooter}
+        msgHeader="Confirm Product Publication"
+        footer={confirmPublishFooter}
       >
         <p>Are you sure you want to publish this product?</p>
         <p>
-          <strong>GTIN:</strong> {actionParams && actionParams.gtin}
+          <strong>{`Item: `}</strong>
+          {actionParams && actionParams.itemName}
         </p>
         <p>
-          <strong>Customer:</strong>{' '}
+          <strong>{`GTIN: `}</strong>
+          {actionParams && actionParams.gtin}
+        </p>
+        <p>
+          <strong>{`Customer: `}</strong>
+          {customerName && customerName}
+        </p>
+        <p>
+          <strong>{`Customer ID: `}</strong>
           {selectSubscriber && selectSubscriber.subscriber}
         </p>
       </Modal>
@@ -291,31 +313,52 @@ const ProductsTable = (props) => {
       <Modal
         show={showConfirmActivate}
         onClear={cancelActivateHandler}
-        msgHeader="Confirm Activation"
-        footer={activateFooter}
+        msgHeader="Confirm Product Activation"
+        footer={confirmActivateFooter}
       >
         <p>Are you sure you want to Activate this product?</p>
-        <p>GTIN: {actionParams && actionParams.gtin}</p>
+        <p>
+          <strong>{`Item: `}</strong>
+          {actionParams && actionParams.itemName}
+        </p>
+        <p>
+          <strong>{`GTIN: `}</strong>
+          {actionParams && actionParams.gtin}
+        </p>
       </Modal>
 
       <Modal
         show={showConfirmDeactivate}
         onClear={cancelDeactivateHandler}
-        msgHeader="Confirm Deactivation"
-        footer={deactivateFooter}
+        msgHeader="Confirm Product Deactivation"
+        footer={confirmDeactivateFooter}
       >
         <p>Are you sure you want to deactivate this product?</p>
-        <p>GTIN: {actionParams && actionParams.gtin}</p>
+        <p>
+          <strong>{`Item: `}</strong>
+          {actionParams && actionParams.itemName}
+        </p>
+        <p>
+          <strong>{`GTIN: `}</strong>
+          {actionParams && actionParams.gtin}
+        </p>
       </Modal>
-      
+
       <Modal
         show={showConfirmDelete}
         onClear={cancelDeleteHandler}
-        msgHeader="Confirm Deletion"
-        footer={deleteFooter}
+        msgHeader="Confirm Product Deletion"
+        footer={confirmDeleteFooter}
       >
         <p>Are you sure you want to PERMANENTLY DELETE this product?</p>
-        <p>GTIN: {actionParams && actionParams.gtin}</p>
+        <p>
+          <strong>{`Item: `}</strong>
+          {actionParams && actionParams.itemName}
+        </p>
+        <p>
+          <strong>{`GTIN: `}</strong>
+          {actionParams && actionParams.gtin}
+        </p>
       </Modal>
 
       <table {...getTableProps()}>
@@ -377,22 +420,18 @@ const ProductsTable = (props) => {
                   {...row.getRowProps()}
                 >
                   {row.cells.map((cell, i) => {
-                    // console.log('cell: ', cell);
                     let type = {};
                     let category = {};
+
                     if (cell.column.Header === 'Type') {
-                      console.log('Type cell value: ', cell.value);
                       type = typeOptions.filter(
                         (type) => type.id === +cell.value
                       )[0];
-                      console.log('type: ', type.name);
                     }
                     if (cell.column.Header === 'Category') {
-                      console.log('Category cell value: ', cell.value);
                       category = categoryOptions.filter(
                         (category) => category.id === +cell.value
                       )[0];
-                      console.log('category: ', category.name);
                     }
 
                     if (cell.column.accessor) {
@@ -412,6 +451,7 @@ const ProductsTable = (props) => {
                           )}
                           {cell.column.Header === 'Type' && type.name}
                           {cell.column.Header === 'Category' && category.name}
+                          {/* {cell.column.Header === 'Created' && dateString} */}
                           {cell.column.Header !== 'Image' &&
                             cell.column.Header !== 'Type' &&
                             cell.column.Header !== 'Category' &&
