@@ -19,7 +19,7 @@ export const catalog = [
     minTemp: '0',
     maxTemp: '32',
     storageInstructions: 'Keep frozen until ready to display product',
-    subscribers: [],
+    subscribers: [111111235],
     dateAdded: 1499999999990,
     datePublished: 1499999999990,
     dateInactive: null,

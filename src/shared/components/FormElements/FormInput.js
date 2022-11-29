@@ -22,7 +22,7 @@ const inputReducer = (state, action) => {
   }
 };
 
-const FormInput = (props) => {
+const FormInput = props => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue || '',
     isTouched: false,
@@ -39,7 +39,7 @@ const FormInput = (props) => {
     onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
 
-  const changeHandler = (event) => {
+  const changeHandler = event => {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
@@ -47,7 +47,7 @@ const FormInput = (props) => {
     });
   };
 
-  const changeSelectHandler = (event) => {
+  const changeSelectHandler = event => {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
@@ -100,21 +100,22 @@ const FormInput = (props) => {
   if (props.element === 'select') {
     const optionsArray = [];
 
-    props.id && props.selectOptions.forEach((option, index) => {
-      optionsArray.push(
-        <option
-          // key={`${props.id}-${index}`}
-          key={`${props.id}-${index}`}
-          value={option.id}
-          // selected={option === props.selected ? option : ''}
-          className={props.edit && disabledClass}
-        >
-          {/* {`${option.name} ${option.id && '(GLN: ' + option.id + ')'}`} */}
-          {option.name}
-        </option>
-      );
-      console.log(`option=${option.id} key: `, `${props.id}-${index}`);
-    });
+    props.id &&
+      props.selectOptions.forEach((option, index) => {
+        optionsArray.push(
+          <option
+            // key={`${props.id}-${index}`}
+            key={`${props.id}-${index}`}
+            value={option.id}
+            // selected={option === props.selected ? option : ''}
+            className={props.edit && disabledClass}
+          >
+            {/* {`${option.name} ${option.id && '(GLN: ' + option.id + ')'}`} */}
+            {option.name}
+          </option>,
+        );
+        // console.log(`option=${option.id} key: `, `${props.id}-${index}`);
+      });
 
     element = (
       <select
@@ -128,7 +129,7 @@ const FormInput = (props) => {
         {optionsArray}
       </select>
     );
-    console.log(`select ${props.id} key: `, `${props.id}-select`);
+    // console.log(`select ${props.id} key: `, `${props.id}-select`);
   }
 
   return (

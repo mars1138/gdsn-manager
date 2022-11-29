@@ -18,28 +18,38 @@ import { categoryOptions, typeOptions } from '../assets/data/test-catalog';
 import { VALIDATOR_REQUIRE } from '../shared/utilities/validators';
 import classes from './ProductsTable.module.css';
 
-const ProductsTable = (props) => {
+const ProductsTable = props => {
   const [filterInput, setFilterInput] = useState('');
   const [actionParams, setActionParams] = useState();
   const [selectSubscriber, setSelectSubscriber] = useState();
 
   const dispatch = useDispatch();
 
-  const catalog = useSelector((state) => state.catalog.products);
+  const catalog = useSelector(state => state.catalog.products);
   let productName, customerName;
+  let alreadySubbed = false;
 
   const { columns, data, status } = props;
 
   // Format customer list for select element:
   const customerList = [{ id: '', name: '' }];
-  customers.forEach((cust) => customerList.push(cust));
-  console.log('selectSubscriber: ', selectSubscriber);
+  customers.forEach(cust => customerList.push(cust));
+  // console.log('selectSubscriber: ', selectSubscriber);
 
-  if (selectSubscriber && selectSubscriber.subscriber !== '')
+  if (selectSubscriber && selectSubscriber.subscriber !== '') {
     customerName = customerList.find(
-      (cust) => cust.id === +selectSubscriber.subscriber
+      cust => cust.id === +selectSubscriber.subscriber,
     ).name;
-  console.log('customername: ', customerName);
+
+    const gtin = actionParams.gtin;
+    const custId = +selectSubscriber.subscriber;
+    // console.log('custId: ', custId);
+    const product = catalog.find(item => item.gtin === gtin);
+    const productSubs = [...product.subscribers];
+    alreadySubbed = productSubs.includes(custId);
+    console.log('alreadySubbed: ', alreadySubbed);
+  }
+  // console.log('customername: ', customerName);
 
   const [formState, inputHandler] = useForm(
     {
@@ -48,7 +58,7 @@ const ProductsTable = (props) => {
         isValid: false,
       },
     },
-    false
+    false,
   );
 
   const {
@@ -76,10 +86,10 @@ const ProductsTable = (props) => {
     },
     useFilters, // adding the useFilters hook to the table; can add as many hooks as needed
     useSortBy,
-    usePagination
+    usePagination,
   );
 
-  const handleFilterChange = (event) => {
+  const handleFilterChange = event => {
     const value = event.target.value || undefined;
     setFilter('name', value);
     setFilterInput(value);
@@ -126,11 +136,11 @@ const ProductsTable = (props) => {
     setShowConfirmPublish,
     showChooseSubscriberHandler,
     showConfirmDeleteHandler,
-    showConfirmActivateHandler
+    showConfirmActivateHandler,
   );
 
   const productActionHandler = (productId, action) => {
-    productName = catalog.find((item) => item.gtin === productId).name;
+    productName = catalog.find(item => item.gtin === productId).name;
     setActionParams({ gtin: productId, itemName: productName, action: action });
     // console.log(catalog.find((item) => item.gtin === productId).name);
     if (action === 'activate') setShowConfirmActivate(true);
@@ -144,21 +154,14 @@ const ProductsTable = (props) => {
     const gtin = actionParams.gtin;
     const custId = selectSubscriber.subscriber;
 
-    const alreadySubbed = catalog.find(
-      (item) =>
-        item.gtin === gtin && item.subscribers.find((cust) => cust === +custId)
-    );
-
-    console.log('alreadySubbed: ', alreadySubbed);
-
     if (!alreadySubbed) {
       console.log(gtin, custId);
       dispatch(catalogActions.addSubscriber({ gtin, custId }));
       dispatch(catalogActions.setCatalogStorage());
       console.log('Product Published!');
+      cancelPublishHandler();
+      cancelSubscriberHandler();
     }
-    cancelPublishHandler();
-    cancelSubscriberHandler();
   };
 
   const activeStatusHandler = () => {
@@ -169,7 +172,7 @@ const ProductsTable = (props) => {
       catalogActions.toggleProductActive({
         gtin: gtin,
         status: status,
-      })
+      }),
     );
 
     status === 'activate' && cancelActivateHandler();
@@ -192,72 +195,91 @@ const ProductsTable = (props) => {
     if (action === 'delete') cancelDeleteHandler();
   };
 
+  const cancelSubHandler = event => {
+    event.preventDefault();
+    setSelectSubscriber(null);
+    setShowChooseSubscriber(false);
+  };
+
   const confirmActivateFooter = useConfirmModalFooter(
     activeStatusHandler,
     cancelHandler,
     'Activate',
-    'Cancel'
+    'Cancel',
   );
   const confirmDeactivateFooter = useConfirmModalFooter(
     activeStatusHandler,
     cancelHandler,
     'Deactivate',
-    'Cancel'
+    'Cancel',
   );
   const confirmPublishFooter = useConfirmModalFooter(
     publishProductHandler,
     cancelHandler,
     'Publish',
-    'Cancel'
+    'Cancel',
   );
   const confirmDeleteFooter = useConfirmModalFooter(
     deleteProductHandler,
     cancelHandler,
     'Delete',
-    'Cancel'
+    'Cancel',
   );
 
+  // const setSelectSubscriberHandler = subscriber => {
+  //   setSelectSubscriber(subscriber);
+  //   const gtin = actionParams.gtin;
+  //   const custId = selectSubscriber.subscriber;
+  //   console.log(subscriber);
+  //   console.log(catalog.find(item => item.gtin === gtin));
+  // };
+
   const selectSubsciberForm = (
-    <form
-      onSubmit={showConfirmPublishHandler}
-      style={{
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-      }}
-    >
-      <FormInput
-        // key={product ? product.category : 'category'}
-        id="subscriber"
-        element="select"
-        selectOptions={customerList}
-        label="Subscriber"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please select a subscriber"
-        // selected={product ? product.category : ''}
-        initialValid={false}
-        onInput={inputHandler}
-        setSelectOption={setSelectSubscriber}
-      />
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <div>
-          <Button
-            inverse
-            onClick={(event) => {
-              event.preventDefault();
-              setShowChooseSubscriber(false);
-            }}
-          >
-            Cancel
-          </Button>
+    <div className={classes.subscribers}>
+      <form onSubmit={showConfirmPublishHandler}>
+        <div className={classes['form-container']}>
+          <FormInput
+            // key={product ? product.category : 'category'}
+            id="subscriber"
+            element="select"
+            selectOptions={customerList}
+            label="Subscriber"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please select a subscriber"
+            // selected={product ? product.category : ''}
+            initialValid={false}
+            onInput={inputHandler}
+            setSelectOption={setSelectSubscriber}
+          />
+          <div className={classes.buttons}>
+            <div>
+              <Button
+                inverse
+                onClick={cancelSubHandler}
+                // onClick={event => {
+                //   event.preventDefault();
+                //   setShowChooseSubscriber(false);
+                // }}
+              >
+                Cancel
+              </Button>
+            </div>
+            <div style={{ marginLeft: '1rem' }}>
+              <Button
+                inverse
+                type="submit"
+                disabled={!formState.isValid || alreadySubbed}
+              >
+                Next
+              </Button>
+            </div>
+          </div>
         </div>
-        <div style={{ marginLeft: '1rem' }}>
-          <Button inverse type="submit" disabled={!formState.isValid}>
-            Next
-          </Button>
-        </div>
+      </form>
+      <div>
+        {alreadySubbed && <p>Product already published to Customer!</p>}
       </div>
-    </form>
+    </div>
   );
 
   return (
@@ -308,6 +330,7 @@ const ProductsTable = (props) => {
           <strong>{`Customer ID: `}</strong>
           {selectSubscriber && selectSubscriber.subscriber}
         </p>
+        {/* {alreadySubbed && <p>Product already published to Customer!</p>} */}
       </Modal>
 
       <Modal
@@ -373,7 +396,7 @@ const ProductsTable = (props) => {
                   className={classes.headers}
                   {...headerGroup.getHeaderGroupProps()}
                 >
-                  {headerGroup.headers.map((column) => (
+                  {headerGroup.headers.map(column => (
                     <th
                       key={i}
                       className={classes.header}
@@ -425,12 +448,12 @@ const ProductsTable = (props) => {
 
                     if (cell.column.Header === 'Type') {
                       type = typeOptions.filter(
-                        (type) => type.id === +cell.value
+                        type => type.id === +cell.value,
                       )[0];
                     }
                     if (cell.column.Header === 'Category') {
                       category = categoryOptions.filter(
-                        (category) => category.id === +cell.value
+                        category => category.id === +cell.value,
                       )[0];
                     }
 
@@ -481,7 +504,7 @@ const ProductsTable = (props) => {
                                   onClick={() => {
                                     productActionHandler(
                                       cell.row.original.gtin,
-                                      'publish'
+                                      'publish',
                                     );
                                   }}
                                   action
@@ -497,7 +520,7 @@ const ProductsTable = (props) => {
                                   onClick={() => {
                                     productActionHandler(
                                       cell.row.original.gtin,
-                                      'deactivate'
+                                      'deactivate',
                                     );
                                   }}
                                   action
@@ -517,7 +540,7 @@ const ProductsTable = (props) => {
                                   onClick={() => {
                                     productActionHandler(
                                       cell.row.original.gtin,
-                                      'activate'
+                                      'activate',
                                     );
                                   }}
                                   action
@@ -533,7 +556,7 @@ const ProductsTable = (props) => {
                                   onClick={() => {
                                     productActionHandler(
                                       cell.row.original.gtin,
-                                      'delete'
+                                      'delete',
                                     );
                                   }}
                                   action
@@ -584,7 +607,7 @@ const ProductsTable = (props) => {
           <input
             type="number"
             defaultValue={pageIndex + 1}
-            onChange={(e) => {
+            onChange={e => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
             }}
@@ -593,11 +616,11 @@ const ProductsTable = (props) => {
         </span>{' '}
         <select
           value={pageSize}
-          onChange={(e) => {
+          onChange={e => {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
+          {[5, 10, 20, 30, 40, 50].map(pageSize => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>

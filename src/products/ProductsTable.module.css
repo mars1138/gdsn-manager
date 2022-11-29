@@ -48,3 +48,25 @@ input {
   /* height: 100%; */
   object-fit: cover;
 }
+
+/* .subscribers form {
+  display: flex;
+  justifycontent: space-around;
+  alignitems: center;
+} */
+
+.subscribers p {
+  text-align: center;
+  color: var(--red-1);
+}
+
+.form-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

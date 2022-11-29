@@ -43,7 +43,7 @@
 @keyframes pop-in {
   from {
     opacity: 0;
-    transform: scale(70%);
+    transform: scale(90%);
   }
   to {
     opacity: 1;
