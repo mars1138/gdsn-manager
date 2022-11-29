@@ -35,16 +35,16 @@ const catalogSlice = createSlice({
       state.products.push({
         name: newItem.name.value,
         description: newItem.description.value,
-        gtin: newItem.gtin.value,
-        category: newItem.category.value,
-        type: newItem.type.value,
+        gtin: +newItem.gtin.value,
+        category: +newItem.category.value,
+        type: +newItem.type.value,
         image: '',
         height: newItem.height.value,
         width: newItem.width.value,
         depth: newItem.depth.value,
         weight: newItem.weight.value,
-        packagingType: newItem.packagingType.value,
-        tempUnits: newItem.tempUnits.value,
+        packagingType: +newItem.packagingType.value,
+        tempUnits: +newItem.tempUnits.value,
         minTemp: newItem.minTemp.value,
         maxTemp: newItem.maxTemp.value,
         storageInstructions: newItem.storageInstructions.value,
@@ -117,14 +117,18 @@ const catalogSlice = createSlice({
       state.products = state.products.filter((item) => item.gtin !== gtin);
     },
     addSubscriber(state, action) {
-      const custId = action.payload.custId;
+      const custId = +action.payload.custId;
       const prod = action.payload.gtin;
 
       const existingProduct = state.products.find((item) => item.gtin === prod);
 
       if (existingProduct) {
+        const existingSub = existingProduct;
+        if (existingSub) return;
+
         const newSubs = [...existingProduct.subscribers, custId];
         existingProduct.subscribers = newSubs;
+        existingProduct.datePublished = new Date().getTime();
       }
     },
     removeSubscriber(state, action) {

@@ -111,16 +111,16 @@ const UpdateProduct = () => {
 
   // passed on to subscriber component; add/remove customer id from list of product subscribers
   const toggleSubscriber = (custId) => {
-    console.log('custId: ', custId);
-    console.log('subscriberUpdate: ', subscriberUpdate);
-    console.log(subscriberUpdate.find((subscriber) => +subscriber === custId));
+    // console.log('custId: ', custId);
+    // console.log('subscriberUpdate: ', subscriberUpdate);
+    // console.log(subscriberUpdate.find((subscriber) => subscriber === custId));
 
-    if (subscriberUpdate.find((subscriber) => +subscriber === custId)) {
-      const newSubs = subscriberUpdate.filter((sub) => +sub !== custId);
+    if (subscriberUpdate.find((subscriber) => subscriber === custId)) {
+      const newSubs = subscriberUpdate.filter((sub) => sub !== custId);
 
       setSubscriberUpdate([...newSubs]);
     } else {
-      setSubscriberUpdate((prev) => [...prev, custId]);
+      setSubscriberUpdate((prev) => [...prev, +custId]);
     }
   };
 
@@ -130,14 +130,15 @@ const UpdateProduct = () => {
 
   useEffect(() => {
     let product;
-
+    console.log(params.pid);
     const fetchProduct = () => {
-      product = catalog.filter((item) => item.gtin === params.pid)[0];
+      product = catalog.filter((item) => item.gtin === +params.pid)[0];
       console.log('fetchedProduct: ', product);
     };
 
     fetchProduct();
-    if (product.subscribers) setSubscriberUpdate([...product.subscribers]);
+    if (product.subscribers && product.subscribers.length > 0)
+      setSubscriberUpdate([...product.subscribers]);
     setSelectOptionsValues({
       category: product.category,
       type: product.type,

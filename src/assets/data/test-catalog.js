@@ -6,7 +6,7 @@ export const catalog = [
   {
     name: 'Ham Sandwich',
     description: 'Ham and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '12345678901234',
+    gtin: 12345678901234,
     category: 0,
     type: 0,
     image: '/media/pexels-fauxels-3184418.jpg',
@@ -19,7 +19,7 @@ export const catalog = [
     minTemp: '0',
     maxTemp: '32',
     storageInstructions: 'Keep frozen until ready to display product',
-    subscribers: [111111235],
+    subscribers: [111111235, 111111237, 111111245],
     dateAdded: 1499999999990,
     datePublished: 1499999999990,
     dateInactive: null,
@@ -28,7 +28,7 @@ export const catalog = [
   {
     name: 'Ham Sandwich INACTIVE TEST',
     description: 'Ham and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '12355678901235',
+    gtin: 12355678901235,
     category: 0,
     type: 0,
     image: '/media/pexels-antonius-natan-11835350.jpg',
@@ -50,7 +50,7 @@ export const catalog = [
   {
     name: 'Ham Sandwich',
     description: 'Ham and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '12345678901236',
+    gtin: 12345678901236,
     category: 0,
     type: 0,
     image: '/media/pexels-fauxels-3183197.jpg',
@@ -72,7 +72,7 @@ export const catalog = [
   {
     name: 'Ham Sandwich NOT PUBLISHED',
     description: 'Ham and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '12345678901237',
+    gtin: 12345678901237,
     category: 0,
     type: 0,
     image: '/media/pexels-tiger-lily-4483942.jpg',
@@ -94,7 +94,7 @@ export const catalog = [
   {
     name: 'Chicken Sandwich NOT PUBLISHED',
     description: 'Chicken and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '12345678901238',
+    gtin: 12345678901238,
     category: 0,
     type: 0,
     image: '/media/pexels-fauxels-3184418.jpg',
@@ -116,7 +116,7 @@ export const catalog = [
   {
     name: 'Chicken Sandwich',
     description: 'Chicken and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '12345678901239',
+    gtin: 12345678901239,
     category: 0,
     type: 0,
     image: '/media/pexels-fauxels-3183197.jpg',
@@ -138,7 +138,7 @@ export const catalog = [
   {
     name: 'Chicken Sandwich',
     description: 'Chicken and Swiss Cheese on Old Fashioned White Bread',
-    gtin: '12345678901240',
+    gtin: 12345678901240,
     category: 0,
     type: 0,
     image: '/media/pexels-tiger-lily-4483942.jpg',
@@ -160,7 +160,7 @@ export const catalog = [
   {
     name: 'Roast Beef Sandwich NOT PUBLISHED',
     description: 'Roast Beef and Cheddar Cheese on Old Fashioned White Bread',
-    gtin: '22245678901234',
+    gtin: 22245678901234,
     category: 0,
     type: 0,
     image: '/media/pexels-fauxels-3184418.jpg',
@@ -182,7 +182,7 @@ export const catalog = [
   {
     name: 'Roast Beef Sandwich Deli',
     description: 'Roast Beef and Cheddar Cheese on Old Fashioned White Bread',
-    gtin: '22245678901235',
+    gtin: 22245678901235,
     category: 0,
     type: 0,
     image: '/media/pexels-fauxels-3183197.jpg',
@@ -204,7 +204,7 @@ export const catalog = [
   {
     name: 'Roast Beef Sandwich Deluxe',
     description: 'Roast Beef and Cheddar Cheese on Old Fashioned White Bread',
-    gtin: '22245678901236',
+    gtin: 22245678901236,
     category: 0,
     type: 0,
     image: '/media/pexels-tiger-lily-4483942.jpg',
@@ -226,7 +226,7 @@ export const catalog = [
   {
     name: 'Ruben Sandwich',
     description: 'Corned Beef and Saurkraut on Old Fashioned White Bread',
-    gtin: '33345678901234',
+    gtin: 33345678901234,
     category: 0,
     type: 0,
     image: '/media/pexels-fauxels-3184418.jpg',
@@ -248,7 +248,7 @@ export const catalog = [
   {
     name: 'Ruben Sandwich',
     description: 'Corned Beef and Saurkraut on Old Fashioned White Bread',
-    gtin: '33345678901235',
+    gtin: 33345678901235,
     category: 0,
     type: 0,
     image: '/media/pexels-fauxels-3184418.jpg',
@@ -270,7 +270,7 @@ export const catalog = [
   {
     name: 'Ruben Sandwich',
     description: 'Corned Beef and Saurkraut on Old Fashioned White Bread',
-    gtin: '33345678901236',
+    gtin: 33345678901236,
     category: 0,
     type: 0,
     image: '/media/pexels-fauxels-3184418.jpg',
@@ -292,7 +292,7 @@ export const catalog = [
   {
     name: '21 inch Computer Monitor',
     description: '21" QLED Computer Monitor',
-    gtin: '21215678901234',
+    gtin: 21215678901234,
     category: 2,
     type: 3,
     image: '/media/pexels-tiger-lily-4483942.jpg',
@@ -314,7 +314,7 @@ export const catalog = [
   {
     name: '21 inch Computer Monitor',
     description: '21" QLED Computer Monitor',
-    gtin: '21215678901235',
+    gtin: 21215678901235,
     category: 2,
     type: 3,
     image: '/media/pexels-tiger-lily-4483942.jpg',
@@ -336,7 +336,7 @@ export const catalog = [
   {
     name: '21 inch Computer Monitor',
     description: '21" QLED Computer Monitor',
-    gtin: '21215678901236',
+    gtin: 21215678901236,
     category: 2,
     type: 3,
     image: '/media/pexels-tiger-lily-4483942.jpg',
@@ -358,7 +358,7 @@ export const catalog = [
   {
     name: '21 inch Computer Monitor INACTIVE',
     description: '21" QLED Computer Monitor',
-    gtin: '21215678901237',
+    gtin: 21215678901237,
     category: 2,
     type: 3,
     image: '/media/pexels-tiger-lily-4483942.jpg',
@@ -380,7 +380,7 @@ export const catalog = [
   {
     name: '21 inch Computer Monitor',
     description: '21" QLED Computer Monitor',
-    gtin: '21215678901238',
+    gtin: 21215678901238,
     category: 2,
     type: 3,
     image: '/media/pexels-tiger-lily-4483942.jpg',
@@ -402,7 +402,7 @@ export const catalog = [
   {
     name: '21 inch Computer Monitor',
     description: '21" QLED Computer Monitor',
-    gtin: '21215678901239',
+    gtin: 21215678901239,
     category: 2,
     type: 3,
     image: '/media/pexels-tiger-lily-4483942.jpg',
@@ -424,7 +424,7 @@ export const catalog = [
   {
     name: '27 inch Computer Monitor',
     description: '27" QLED Computer Monitor',
-    gtin: '27275678901240',
+    gtin: 27275678901240,
     category: 2,
     type: 3,
     image: '/media/pexels-fauxels-3183197.jpg',
@@ -446,7 +446,7 @@ export const catalog = [
   {
     name: '27 inch Computer Monitor',
     description: '27" QLED Computer Monitor',
-    gtin: '27275678901241',
+    gtin: 27275678901241,
     category: 2,
     type: 3,
     image: '/media/pexels-fauxels-3183197.jpg',
@@ -468,7 +468,7 @@ export const catalog = [
   {
     name: '27 inch Computer Monitor',
     description: '27" QLED Computer Monitor',
-    gtin: '27275678901242',
+    gtin: 27275678901242,
     category: 2,
     type: 3,
     image: '/media/pexels-fauxels-3183197.jpg',
@@ -490,7 +490,7 @@ export const catalog = [
   {
     name: '27 inch Computer Monitor',
     description: '27" QLED Computer Monitor',
-    gtin: '27275678901243',
+    gtin: 27275678901243,
     category: 2,
     type: 3,
     image: '/media/pexels-fauxels-3183197.jpg',
@@ -512,7 +512,7 @@ export const catalog = [
   {
     name: '27 inch Computer Monitor',
     description: '27" QLED Computer Monitor',
-    gtin: '27275678901244',
+    gtin: 27275678901244,
     category: 2,
     type: 3,
     image: '/media/pexels-fauxels-3183197.jpg',
@@ -534,7 +534,7 @@ export const catalog = [
   {
     name: '27 inch Computer Monitor INACTIVE TEST',
     description: '27" QLED Computer Monitor',
-    gtin: '27275678901245',
+    gtin: 27275678901245,
     category: 2,
     type: 3,
     image: '/media/pexels-fauxels-3183197.jpg',
