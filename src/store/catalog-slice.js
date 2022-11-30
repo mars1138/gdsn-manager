@@ -123,8 +123,11 @@ const catalogSlice = createSlice({
       const existingProduct = state.products.find((item) => item.gtin === prod);
 
       if (existingProduct) {
-        const existingSub = existingProduct;
-        if (existingSub) return;
+        const existingSub = existingProduct.subscribers.includes(custId);
+        if (existingSub) {
+          console.log('customer already subscribed');
+          return;
+        }
 
         const newSubs = [...existingProduct.subscribers, custId];
         existingProduct.subscribers = newSubs;

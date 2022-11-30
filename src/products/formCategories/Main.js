@@ -73,7 +73,7 @@ const Main = (props) => {
             edit={props.edit}
           />
           <FormInput
-            key={product ? product.category : 'category'}
+            key={product ? `${product.category}1` : 'category'}
             id="category"
             element="select"
             selectOptions={props.categoryOptions}
@@ -86,7 +86,7 @@ const Main = (props) => {
             setSelectOption={props.setSelectOption}
           />
           <FormInput
-            key={product ? product.type : 'type'}
+            key={product ? `${product.type}2` : 'type'}
             id="type"
             element="select"
             selectOptions={props.typeOptions}
