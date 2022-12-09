@@ -28,6 +28,7 @@ import Support from './resources/Support';
 
 import ServicesPage from './services/ServicesPage';
 import PlansPage from './plans/PlansPage';
+import Auth from './user/Auth';
 
 import { catalogActions } from './store/catalog-slice';
 
@@ -91,8 +92,10 @@ function App() {
         <Route path="/about">
           <AboutPage />
         </Route>
-        <Route path="/auth"></Route>
-        <Redirect to="/auth" />
+        {/* <Route path="/auth">
+          <Auth />
+        </Route> */}
+        <Redirect to="/products" />
       </Switch>
     );
   } else {
@@ -125,7 +128,9 @@ function App() {
         <Route path="/about">
           <AboutPage />
         </Route>
-        <Route path="/auth"></Route>
+        <Route path="/auth">
+          <Auth />
+        </Route>
         <Redirect to="/auth" />
       </Switch>
     );

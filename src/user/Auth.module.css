@@ -1,0 +1,19 @@
+.auth-container {
+  width: 70%;
+  min-height: 30vh;
+  margin: 10% auto;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid blue; */
+}
+
+.auth-container form {
+  width: 100%;
+  /* border: 1px solid blue; */
+}
+
+.auth-container button {
+  margin-top: 12%;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -22,7 +22,7 @@ const NavLinks = props => {
         <NavMenuItems items={menu} key={index} depthLevel={depthLevel} />,
       );
     });
-  } 
+  }
   if (!isAuth) {
     navMenuDataLoggedOut.forEach((menu, index) => {
       const depthLevel = 0;
@@ -32,15 +32,9 @@ const NavLinks = props => {
     });
   }
 
-  const loginHandler = event => {
-    console.log('loginHandler...');
-    if (!isAuth) {
-      dispatch(authActions.login());
-      history.push('/products');
-    } else {
-      dispatch(authActions.logout());
-      history.push('/home');
-    }
+  const logoutHandler = event => {
+    dispatch(authActions.logout());
+    history.push('/auth');
   };
 
   return (
@@ -48,10 +42,13 @@ const NavLinks = props => {
       <nav className={classes['nav-container']}>
         <ul className={classes['nav-links']}>{menuLinks}</ul>
         <div className={classes.button}>
-          {!isAuth && <Button onClick={loginHandler}>Login</Button>}
-          {isAuth && <Button onClick={loginHandler} inverse>Logout</Button>}
+          {!isAuth && <Button to="/auth">Login</Button>}
+          {isAuth && (
+            <Button onClick={logoutHandler} inverse>
+              Logout
+            </Button>
+          )}
         </div>
-       
       </nav>
     </React.Fragment>
   );
