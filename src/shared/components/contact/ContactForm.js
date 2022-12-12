@@ -1,78 +1,56 @@
 import React, { useState } from 'react';
-
-import useInput from '../hooks/input';
+import { useHistory } from 'react-router-dom';
+// import useInput from '../hooks/input';
 import Modal from '../../UIElements/Modal';
 import LoadingSpinner from '../../UIElements/LoadingSpinner';
 import Button from '../../UIElements/Button';
+import FormInput from '../FormElements/FormInput';
+import { useForm } from '../hooks/form-hook';
+// import { useConfirmationModal } from '../hooks/confirmation-hook';
+import {
+  VALIDATOR_REQUIRE,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_MAXLENGTH,
+  VALIDATOR_EMAIL,
+} from '../../utilities/validators';
 import classes from './ContactForm.module.css';
-
-const isNotEmpty = (value) => value.trim() !== '';
-const isTenChars = (value) =>
-  value.trim().length === 10 && Number.isInteger(+value);
-const isValidEmail = (value) => /^\S+@\S+\.\S+$/.test(value);
 
 const ContactForm = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [didSubmit, setDidSubmit] = useState(true);
+  const [didSubmit, setDidSubmit] = useState(false);
   const [error, setError] = useState();
 
+  const [formState, inputHandler] = useForm(
+    {
+      name: {
+        value: '',
+        isValid: false,
+      },
+      company: {
+        value: '',
+        isValid: false,
+      },
+      email: {
+        value: '',
+        isValid: false,
+      },
+      phone: {
+        value: '',
+        isValid: false,
+      },
+      // comments: {
+      //   value: '',
+      //   isValid: false,
+      // },
+    },
+    false
+  );
+
+  const history = useHistory();
   const submitMessage = 'Form submitted, we will contact you shortly!';
-
-  const {
-    enteredInput: enteredName,
-    enteredInputValid: enteredNameValid,
-    inputInvalid: nameInputInvalid,
-    inputChangeHandler: nameChangeHandler,
-    inputBlurHandler: nameBlurHandler,
-    reset: resetName,
-  } = useInput(isNotEmpty);
-
-  const {
-    enteredInput: enteredCompany,
-    enteredInputValid: enteredCompanyValid,
-    inputInvalid: companyInputInvalid,
-    inputChangeHandler: companyChangeHandler,
-    inputBlurHandler: companyBlurHandler,
-    reset: resetCompany,
-  } = useInput(isNotEmpty);
-
-  const {
-    enteredInput: enteredPhone,
-    enteredInputValid: enteredPhoneValid,
-    inputInvalid: phoneInputInvalid,
-    inputChangeHandler: phoneChangeHandler,
-    inputBlurHandler: phoneBlurHandler,
-    reset: resetPhone,
-  } = useInput(isTenChars);
-
-  const {
-    enteredInput: enteredEmail,
-    enteredInputValid: enteredEmailValid,
-    inputInvalid: emailInputInvalid,
-    inputChangeHandler: emailChangeHandler,
-    inputBlurHandler: emailBlurHandler,
-    reset: resetEmail,
-  } = useInput(isValidEmail);
-
-  const {
-    enteredInput: enteredComments,
-    inputInvalid: commentsInputInvalid,
-    inputChangeHandler: commentsChangeHandler,
-    reset: resetComments,
-  } = useInput(isNotEmpty);
-
-  let formIsValid = false;
-
-  formIsValid =
-    enteredNameValid &&
-    enteredEmailValid &&
-    enteredPhoneValid &&
-    enteredCompanyValid;
 
   const submitHandler = async (event) => {
     event.preventDefault();
-
-    if (!formIsValid) return;
 
     try {
       props.toggleSubmitting();
@@ -101,14 +79,9 @@ const ContactForm = (props) => {
       // }
       setTimeout(() => {
         setIsSubmitting(false);
-        props.toggleSubmitting();
         setDidSubmit(true);
-        resetName();
-        resetEmail();
-        resetPhone();
-        resetComments();
-        resetCompany();
-      }, 3000);
+        // history.push('/about');
+      }, 2000);
     } catch (err) {
       setIsSubmitting(false);
       setError(err.message || 'An unknown error occurred, please try again');
@@ -123,16 +96,6 @@ const ContactForm = (props) => {
     setDidSubmit(false);
   };
 
-  const setControlClasses = (invalidInput) => {
-    return `${classes.control} ${invalidInput ? classes.invalid : ''}`;
-  };
-
-  const nameControlClasses = setControlClasses(nameInputInvalid);
-  const companyControlClasses = setControlClasses(companyInputInvalid);
-  const emailControlClasses = setControlClasses(emailInputInvalid);
-  const phoneControlClasses = setControlClasses(phoneInputInvalid);
-  const commentsControlClasses = setControlClasses(commentsInputInvalid);
-
   //   const buttonClasses = `${!formIsValid ? classes['btn-disabled'] : ''}`;
   const formClasses = `${classes['contact-form']} ${
     isSubmitting ? classes.submitting : ''
@@ -141,7 +104,7 @@ const ContactForm = (props) => {
   return (
     <React.Fragment>
       {error && (
-        <Modal msgHeader="Error Header" show={error} onClear={errorHandler}>
+        <Modal msgHeader="Error!" show={error} onClear={errorHandler}>
           {error}
         </Modal>
       )}
@@ -157,60 +120,53 @@ const ContactForm = (props) => {
       <div className={classes['form-container']}>
         {isSubmitting && <LoadingSpinner />}
         <form className={formClasses} onSubmit={submitHandler}>
-          <div className={nameControlClasses}>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              onChange={nameChangeHandler}
-              onBlur={nameBlurHandler}
-              value={enteredName}
-            />
-            {nameInputInvalid && <p>Please enter a valid name!</p>}
-          </div>
-          <div className={emailControlClasses}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHandler}
-              value={enteredEmail}
-            />
-            {emailInputInvalid && <p>Please enter a valid name!</p>}
-          </div>
-          <div className={phoneControlClasses}>
-            <label htmlFor="name">Phone</label>
-            <input
-              type="text"
-              id="phoneNumber"
-              onChange={phoneChangeHandler}
-              onBlur={phoneBlurHandler}
-              value={enteredPhone}
-            />
-            {phoneInputInvalid && <p>Please enter a phone number!</p>}
-          </div>
-          <div className={companyControlClasses}>
-            <label htmlFor="company">Company</label>
-            <input
-              type="text"
-              id="company"
-              onChange={companyChangeHandler}
-              onBlur={companyBlurHandler}
-              value={enteredCompany}
-            />
-            {companyInputInvalid && <p>Please enter name of your company!</p>}
-          </div>
-          <div className={commentsControlClasses}>
-            <label htmlFor="name">Comments</label>
-            <textarea
-              type="textarea"
-              id="comments"
-              onChange={commentsChangeHandler}
-              value={enteredComments}
-            />
-          </div>
-          <Button disabled={!formIsValid}>Submit</Button>
+          <FormInput
+            key="name"
+            id="name"
+            element="input"
+            label="Name"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a name"
+            onInput={inputHandler}
+          />
+          <FormInput
+            key="company"
+            id="company"
+            element="input"
+            label="Company"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a company name"
+            onInput={inputHandler}
+          />
+          <FormInput
+            key="email"
+            id="email"
+            element="input"
+            label="Email"
+            validators={[VALIDATOR_EMAIL()]}
+            errorText="Please enter a valid email address"
+            onInput={inputHandler}
+          />
+          <FormInput
+            key="phone"
+            id="phone"
+            element="input"
+            label="Phone"
+            validators={[VALIDATOR_MINLENGTH(10), VALIDATOR_MAXLENGTH(10)]}
+            errorText="Please enter a valid phone number"
+            onInput={inputHandler}
+          />
+          <FormInput
+            key="comments"
+            id="comments"
+            element="textarea"
+            label="Comments"
+            initialValid={true}
+            errorText="Please enter comments"
+            onInput={inputHandler}
+          />
+          <Button disabled={!formState.isValid}>Submit</Button>
+          {/* <Button>Submit</Button> */}
         </form>
       </div>
     </React.Fragment>

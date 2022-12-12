@@ -158,7 +158,7 @@ const UpdateProduct = () => {
         },
         gtin: {
           value: product.gtin,
-          isValid: false,
+          isValid: true,
         },
         category: {
           value: product.category,
