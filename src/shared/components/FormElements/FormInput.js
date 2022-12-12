@@ -9,7 +9,9 @@ const inputReducer = (state, action) => {
       return {
         ...state,
         value: action.val,
-        isValid: action.validators ? validate(action.val, action.validators) : true,
+        isValid: action.validators
+          ? validate(action.val, action.validators)
+          : true,
       };
     case 'TOUCH': {
       return {
@@ -22,7 +24,7 @@ const inputReducer = (state, action) => {
   }
 };
 
-const FormInput = (props) => {
+const FormInput = props => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue || '',
     isTouched: false,
@@ -39,7 +41,7 @@ const FormInput = (props) => {
     onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
 
-  const changeHandler = (event) => {
+  const changeHandler = event => {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
@@ -47,7 +49,7 @@ const FormInput = (props) => {
     });
   };
 
-  const changeSelectHandler = (event) => {
+  const changeSelectHandler = event => {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
@@ -111,9 +113,9 @@ const FormInput = (props) => {
           >
             {/* {`${option.name} ${option.id && '(GLN: ' + option.id + ')'}`} */}
             {option.name}
-          </option>
+          </option>,
         );
-        console.log(`option=${option.id} key: `, `${props.id ? props.id : 'option'}-${index}`);
+        // console.log(`option=${option.id} key: `, `${props.id ? props.id : 'option'}-${index}`);
       });
 
     element = (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 import Modal from '../shared/UIElements/Modal';
 import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
@@ -32,8 +32,9 @@ import classes2 from './formCategories/Categories.module.css';
 const AddProduct = () => {
   const [error, setError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   // const [showConfirmation, setShowConfirmation] = useState(false);
-
   const dispatch = useDispatch();
 
   const clearError = () => {
@@ -101,12 +102,12 @@ const AddProduct = () => {
         isValid: false,
       },
     },
-    false
+    false,
   );
 
-  const history = useHistory();
+  // const history = useHistory();
 
-  const productSubmitHandler = (event) => {
+  const productSubmitHandler = async event => {
     event.preventDefault();
     setShowConfirmation(false);
     // console.log('formState.inputs: ', formState.inputs);
@@ -117,11 +118,55 @@ const AddProduct = () => {
       dispatch(catalogActions.addProduct(formState.inputs));
       dispatch(catalogActions.setCatalogStorage());
 
-      setTimeout(() => {
-        setIsSubmitting(false);
-        history.push('/products/active');
-      }, 2000);
-    } catch (err) {}
+      console.log('formState.inputs: ', formState.inputs);
+
+      const response = await fetch('http://localhost:5000/api/products/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formState.inputs.name.value,
+          description: formState.inputs.description.value,
+          gtin: formState.inputs.gtin.value,
+          category: formState.inputs.category.value,
+          type: formState.inputs.type.value,
+          // image: formState.inputs.image.value || 0,
+          height: formState.inputs.height.value,
+          width: formState.inputs.width.value,
+          depth: formState.inputs.depth.value,
+          weight: formState.inputs.weight.value,
+          packagingType: formState.inputs.packagingType.value,
+          tempUnits: formState.inputs.tempUnits.value,
+          minTemp: formState.inputs.minTemp.value,
+          maxTemp: formState.inputs.maxTemp.value,
+          storageInstructions: formState.inputs.storageInstructions.value,
+          subscribers: [],
+          dateAdded: new Date().toISOString(),
+        }),
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        console.log(responseData.message);
+        throw new Error(responseData.message);
+      }
+      console.log(responseData);
+
+      setIsSubmitting(false);
+      setDidSubmit(true);
+
+      // setTimeout(() => {
+      //   setIsSubmitting(false);
+      //   history.push('/products/active');
+      // }, 2000);
+    } catch (err) {
+      setErrorMessage(err.message);
+      setIsSubmitting(false);
+      setError(true);
+      console.log(err);
+    }
   };
 
   // for Confirmation Modal
@@ -136,15 +181,27 @@ const AddProduct = () => {
     productSubmitHandler,
     cancelConfirmationHandler,
     'Register',
-    'Cancel'
+    'Cancel',
   );
+
+  const resetSubmitHandler = () => {
+    setDidSubmit(false);
+    // history.push('/products');
+  };
 
   return (
     <Section>
       <h1>Add Product</h1>
       <div className={classes['card-container']}>
         <Card>
-          <Modal show={error} onClear={clearError} />
+          <Modal show={didSubmit} onClear={resetSubmitHandler} />
+          <Modal
+            show={error}
+            msgHeader="Error creating product"
+            onClear={clearError}
+          >
+            {`${errorMessage ? errorMessage : 'An unknown error occurred'}`}
+          </Modal>
           <Modal
             show={showConfirmation}
             onClear={cancelConfirmationHandler}

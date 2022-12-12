@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import useInput from '../hooks/input';
 import Modal from '../../UIElements/Modal';
 import LoadingSpinner from '../../UIElements/LoadingSpinner';
 import Button from '../../UIElements/Button';
 import FormInput from '../FormElements/FormInput';
 import { useForm } from '../hooks/form-hook';
-// import { useConfirmationModal } from '../hooks/confirmation-hook';
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
@@ -15,7 +13,7 @@ import {
 } from '../../utilities/validators';
 import classes from './ContactForm.module.css';
 
-const ContactForm = (props) => {
+const ContactForm = props => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
   const [error, setError] = useState();
@@ -43,13 +41,13 @@ const ContactForm = (props) => {
         isValid: true,
       },
     },
-    false
+    false,
   );
 
   const history = useHistory();
   const submitMessage = 'Form submitted, we will contact you shortly!';
 
-  const submitHandler = async (event) => {
+  const submitHandler = async event => {
     event.preventDefault();
 
     try {
@@ -79,11 +77,14 @@ const ContactForm = (props) => {
         throw new Error(responseData.message);
       }
 
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setDidSubmit(true);
-        // history.push('/about');
-      }, 2000);
+      setIsSubmitting(false);
+      setDidSubmit(true);
+
+      // setTimeout(() => {
+      //   setIsSubmitting(false);
+      //   setDidSubmit(true);
+      //   history.push('/about');
+      // }, 2000);
     } catch (err) {
       setIsSubmitting(false);
       setError(err.message || 'An unknown error occurred, please try again');
@@ -96,6 +97,7 @@ const ContactForm = (props) => {
 
   const resetSubmitHandler = () => {
     setDidSubmit(false);
+    history.push('/services');
   };
 
   //   const buttonClasses = `${!formIsValid ? classes['btn-disabled'] : ''}`;
