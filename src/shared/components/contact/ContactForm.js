@@ -38,10 +38,10 @@ const ContactForm = (props) => {
         value: '',
         isValid: false,
       },
-      // comments: {
-      //   value: '',
-      //   isValid: false,
-      // },
+      comments: {
+        value: '',
+        isValid: true,
+      },
     },
     false
   );
@@ -56,27 +56,29 @@ const ContactForm = (props) => {
       props.toggleSubmitting();
       setIsSubmitting(true);
 
-      // const response = await fetch(
-      //     `${process.env.REACT_APP_BACKEND_URL}/api/contact`,
-      //     {
-      //       method: 'POST',
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify({
-      //         name: enteredName,
-      //         email: enteredEmail,
-      //         phone: enteredPhone,
-      //         comments: enteredComments,
-      //       }),
-      //     }
-      //   );
+      // console.log('formState: ', formState);
+      console.log(process.env.REACT_APP_BACKEND_URL);
 
-      // const responseData = await response.json();
+      const response = await fetch(`http://localhost:5000/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formState.inputs.name.value,
+          company: formState.inputs.company.value,
+          email: formState.inputs.email.value,
+          phone: formState.inputs.phone.value,
+          comments: formState.inputs.comments.value,
+        }),
+      });
 
-      // if (!response.ok) {
-      //     throw new Error(responseData.message);
-      // }
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseData.message);
+      }
+
       setTimeout(() => {
         setIsSubmitting(false);
         setDidSubmit(true);
@@ -126,7 +128,7 @@ const ContactForm = (props) => {
             element="input"
             label="Name"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a name"
+            errorText="Please enter your full name"
             onInput={inputHandler}
           />
           <FormInput
@@ -153,7 +155,7 @@ const ContactForm = (props) => {
             element="input"
             label="Phone"
             validators={[VALIDATOR_MINLENGTH(10), VALIDATOR_MAXLENGTH(10)]}
-            errorText="Please enter a valid phone number"
+            errorText="Please enter a valid phone number, with area code"
             onInput={inputHandler}
           />
           <FormInput
@@ -162,7 +164,7 @@ const ContactForm = (props) => {
             element="textarea"
             label="Comments"
             initialValid={true}
-            errorText="Please enter comments"
+            errorText="Please enter comment of minimum 10 characters"
             onInput={inputHandler}
           />
           <Button disabled={!formState.isValid}>Submit</Button>
