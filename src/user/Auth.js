@@ -130,9 +130,9 @@ const Auth = () => {
             }
             onClear={clearError}
           >
-            {`${error ? error : 'An unknown error occurred'}`}
+            {error}
           </Modal>
-          <h3>{isLoginMode ? "Please Login" : "Create an Account"}</h3>
+          <h3>{isLoginMode ? 'Please Login' : 'Create an Account'}</h3>
           <form onSubmit={authSubmitHandler}>
             {isSubmitting && <LoadingSpinner />}
             {!isLoginMode && (
