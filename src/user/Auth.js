@@ -19,7 +19,7 @@ import {
 import classes from './Auth.module.css';
 
 const Auth = () => {
-  const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const history = useHistory();
   const { isSubmitting, error, sendRequest, clearError } = useHttpClient();
@@ -36,7 +36,7 @@ const Auth = () => {
         isValid: false,
       },
     },
-    false,
+    false
   );
 
   if (isAuth) {
@@ -52,7 +52,7 @@ const Auth = () => {
           name: undefined,
           company: undefined,
         },
-        formState.inputs.email.isValid && formState.inputs.password.isValid,
+        formState.inputs.email.isValid && formState.inputs.password.isValid
       );
     } else {
       setFormData(
@@ -67,13 +67,13 @@ const Auth = () => {
             isvalid: false,
           },
         },
-        false,
+        false
       );
     }
-    setIsLoginMode(previousMode => !previousMode);
+    setIsLoginMode((previousMode) => !previousMode);
   };
 
-  const authSubmitHandler = async event => {
+  const authSubmitHandler = async (event) => {
     event.preventDefault();
 
     if (isLoginMode) {
@@ -87,9 +87,14 @@ const Auth = () => {
           }),
           {
             'Content-Type': 'application/json',
-          },
+          }
         );
-      } catch (err) {}
+
+        dispatch(authActions.login());
+        history.push('/products');
+      } catch (err) {
+        console.log(err);
+      }
     } else {
       try {
         await sendRequest(
@@ -103,12 +108,15 @@ const Auth = () => {
           }),
           {
             'Content-Type': 'application/json',
-          },
+          }
         );
-      } catch (err) {}
+
+        dispatch(authActions.login());
+        history.push('/products');
+      } catch (err) {
+        console.log(err);
+      }
     }
-    dispatch(authActions.login());
-    history.push('/products');
   };
 
   return (
@@ -117,12 +125,14 @@ const Auth = () => {
         <Card width="40">
           <Modal
             show={error === undefined || null ? false : true}
-            msgHeader="Error creating product"
+            msgHeader={
+              isLoginMode ? 'Error during login' : 'Error during signup'
+            }
             onClear={clearError}
           >
             {`${error ? error : 'An unknown error occurred'}`}
           </Modal>
-          <h3>Please Login</h3>
+          <h3>{isLoginMode ? "Please Login" : "Create an Account"}</h3>
           <form onSubmit={authSubmitHandler}>
             {isSubmitting && <LoadingSpinner />}
             {!isLoginMode && (
@@ -166,12 +176,12 @@ const Auth = () => {
               onInput={inputHandler}
             />
             <Button type="submit" disabled={!formState.isValid}>
-              {isLoginMode ? 'Login' : 'Signup'}
+              {isLoginMode ? 'Login' : 'Sign up'}
             </Button>
           </form>
-          <Button inverse onClick={switchModeHandler}>
-            Switch to {isLoginMode ? 'Signup' : 'Login'}
-          </Button>
+          <span className={classes.mode} onClick={switchModeHandler}>
+            {isLoginMode ? 'Signup for an account' : 'Already have an account?'}
+          </span>
         </Card>
       </div>
     </Section>
