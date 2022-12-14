@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import Modal from '../shared/UIElements/Modal';
 import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
@@ -13,6 +13,7 @@ import Dimensions from './formCategories/Dimensions';
 import PackagingHandling from './formCategories/PackagingHandling';
 
 import { useForm } from '../shared/components/hooks/form-hook';
+import { useHttpClient } from '../shared/components/hooks/http-hook';
 import {
   useConfirmationModal,
   useConfirmModalFooter,
@@ -30,16 +31,13 @@ import classes from './AddProduct.module.css';
 import classes2 from './formCategories/Categories.module.css';
 
 const AddProduct = () => {
-  const [error, setError] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [error, setError] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  const { isSubmitting, error, sendRequest, clearError } = useHttpClient();
   const [didSubmit, setDidSubmit] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
   // const [showConfirmation, setShowConfirmation] = useState(false);
   const dispatch = useDispatch();
-
-  const clearError = () => {
-    setError(false);
-  };
+  const history = useHistory();
 
   // const showAddConfirmHandler = (event) => {
   //   event.preventDefault();
@@ -105,7 +103,6 @@ const AddProduct = () => {
     false,
   );
 
-  // const history = useHistory();
 
   const productSubmitHandler = async event => {
     event.preventDefault();
@@ -114,18 +111,16 @@ const AddProduct = () => {
     // console.log('submitting...');
 
     try {
-      setIsSubmitting(true);
-      dispatch(catalogActions.addProduct(formState.inputs));
-      dispatch(catalogActions.setCatalogStorage());
+      // setIsSubmitting(true);
+      // dispatch(catalogActions.addProduct(formState.inputs));
+      // dispatch(catalogActions.setCatalogStorage());
 
-      console.log('formState.inputs: ', formState.inputs);
+      // console.log('formState.inputs: ', formState.inputs);
 
-      const response = await fetch('http://localhost:5000/api/products/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      await sendRequest(
+        'http://localhost:5000/api/products/',
+        'POST',
+        JSON.stringify({
           name: formState.inputs.name.value,
           description: formState.inputs.description.value,
           gtin: formState.inputs.gtin.value,
@@ -144,17 +139,20 @@ const AddProduct = () => {
           subscribers: [],
           dateAdded: new Date().toISOString(),
         }),
-      });
+        {
+          'Content-Type': 'application/json',
+        },
+      );
 
-      const responseData = await response.json();
+      // const responseData = await response.json();
 
-      if (!response.ok) {
-        console.log(responseData.message);
-        throw new Error(responseData.message);
-      }
-      console.log(responseData);
+      // if (!response.ok) {
+      //   console.log(responseData.message);
+      //   throw new Error(responseData.message);
+      // }
+      // console.log(responseData);
 
-      setIsSubmitting(false);
+      // setIsSubmitting(false);
       setDidSubmit(true);
 
       // setTimeout(() => {
@@ -162,10 +160,10 @@ const AddProduct = () => {
       //   history.push('/products/active');
       // }, 2000);
     } catch (err) {
-      setErrorMessage(err.message);
-      setIsSubmitting(false);
-      setError(true);
-      console.log(err);
+      // setErrorMessage(err.message);
+      // setIsSubmitting(false);
+      // setError(err.message);
+      // console.log(err);
     }
   };
 
@@ -186,7 +184,7 @@ const AddProduct = () => {
 
   const resetSubmitHandler = () => {
     setDidSubmit(false);
-    // history.push('/products');
+    history.push('/products');
   };
 
   return (
@@ -194,13 +192,19 @@ const AddProduct = () => {
       <h1>Add Product</h1>
       <div className={classes['card-container']}>
         <Card>
-          <Modal show={didSubmit} onClear={resetSubmitHandler} />
           <Modal
-            show={error}
+            show={error === undefined || null ? false : true}
             msgHeader="Error creating product"
             onClear={clearError}
           >
-            {`${errorMessage ? errorMessage : 'An unknown error occurred'}`}
+            {`${error ? error : 'An unknown error occurred'}`}
+          </Modal>
+          <Modal
+            show={didSubmit}
+            msgHeader="Success!"
+            onClear={resetSubmitHandler}
+          >
+            Product has been registered successfully
           </Modal>
           <Modal
             show={showConfirmation}
