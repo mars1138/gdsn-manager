@@ -92,13 +92,13 @@ const UpdateProduct = () => {
         isValid: false,
       },
     },
-    false
+    false,
   );
 
   const params = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.catalog.products);
+  const catalog = useSelector(state => state.catalog.products);
   // const showUpdateConfirmHandler = (event) => {
   //   event.preventDefault();
   //   setShowConfirmation(true);
@@ -110,17 +110,17 @@ const UpdateProduct = () => {
   // when form is submitting, save this temp array into loadedProduct.subscribers
 
   // passed on to subscriber component; add/remove customer id from list of product subscribers
-  const toggleSubscriber = (custId) => {
+  const toggleSubscriber = custId => {
     // console.log('custId: ', custId);
     // console.log('subscriberUpdate: ', subscriberUpdate);
     // console.log(subscriberUpdate.find((subscriber) => subscriber === custId));
 
-    if (subscriberUpdate.find((subscriber) => subscriber === custId)) {
-      const newSubs = subscriberUpdate.filter((sub) => sub !== custId);
+    if (subscriberUpdate.find(subscriber => subscriber === custId)) {
+      const newSubs = subscriberUpdate.filter(sub => sub !== custId);
 
       setSubscriberUpdate([...newSubs]);
     } else {
-      setSubscriberUpdate((prev) => [...prev, +custId]);
+      setSubscriberUpdate(prev => [...prev, +custId]);
     }
   };
 
@@ -132,7 +132,7 @@ const UpdateProduct = () => {
     let product;
     console.log(params.pid);
     const fetchProduct = () => {
-      product = catalog.filter((item) => item.gtin === +params.pid)[0];
+      product = catalog.filter(item => item.gtin === +params.pid)[0];
       console.log('fetchedProduct: ', product);
     };
 
@@ -201,21 +201,21 @@ const UpdateProduct = () => {
           isValid: true,
         },
       },
-      true
+      true,
     );
     setLoadedProduct(product);
   }, [params.pid, catalog, setFormData]);
 
-  const selectOptionsHandler = (value) => {
+  const selectOptionsHandler = value => {
     const newVal = value;
     console.log('selectOptionsHandler: ', value);
 
-    setSelectOptionsValues((prev) => {
+    setSelectOptionsValues(prev => {
       return { ...prev, ...newVal };
     });
   };
 
-  const updateSubmitHandler = (event) => {
+  const updateSubmitHandler = event => {
     event.preventDefault();
     setShowConfirmation(false);
     // console.log('submitting...');
@@ -243,7 +243,7 @@ const UpdateProduct = () => {
           maxTemp: formState.inputs.maxTemp.value,
           storageInstructions: formState.inputs.storageInstructions.value,
           subscribers: [...subscriberUpdate],
-        })
+        }),
       );
 
       console.log('formState on submit: ', formState);
@@ -268,7 +268,7 @@ const UpdateProduct = () => {
     updateSubmitHandler,
     cancelConfirmationHandler,
     'Update',
-    'Cancel'
+    'Cancel',
   );
 
   return (

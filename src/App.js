@@ -31,14 +31,44 @@ import PlansPage from './plans/PlansPage';
 import Auth from './user/Auth';
 
 import { catalogActions } from './store/catalog-slice';
+import { authActions } from './store/auth-slice';
+
+let logoutTimer;
 
 function App() {
   const isAuth = useSelector(state => state.auth.isAuthenticated);
   const dispatch = useDispatch();
+  const token = useSelector(state => state.auth.token);
+  const expireDate = useSelector(state => state.auth.expireDate);
   let routes;
 
   useEffect(() => {
     dispatch(catalogActions.getCatalogStorage());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (token && expireDate) {
+  //     const remainingTime = expireDate - new Date().getTime();
+  //     logoutTimer = setTimeout(dispatch(authActions.logout), remainingTime);
+  //   } else {
+  //     clearTimeout(logoutTimer);
+  //   }
+  // });
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('userData'));
+    if (
+      storedData &&
+      storedData.token &&
+      new Date(storedData.expireDate) > new Date()
+    )
+      dispatch(
+        authActions.login(
+          storedData.userId,
+          storedData.token,
+          storedData.expireDate,
+        ),
+      );
   }, [dispatch]);
 
   if (isAuth) {

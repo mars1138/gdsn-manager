@@ -19,11 +19,11 @@ import {
 import classes from './Auth.module.css';
 
 const Auth = () => {
-  const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const isAuth = useSelector(state => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const history = useHistory();
   const { isSubmitting, error, sendRequest, clearError } = useHttpClient();
-  const [didSubmit, setDidSubmit] = useState(false);
+  // const [didSubmit, setDidSubmit] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -36,7 +36,7 @@ const Auth = () => {
         isValid: false,
       },
     },
-    false
+    false,
   );
 
   if (isAuth) {
@@ -52,7 +52,7 @@ const Auth = () => {
           name: undefined,
           company: undefined,
         },
-        formState.inputs.email.isValid && formState.inputs.password.isValid
+        formState.inputs.email.isValid && formState.inputs.password.isValid,
       );
     } else {
       setFormData(
@@ -67,18 +67,19 @@ const Auth = () => {
             isvalid: false,
           },
         },
-        false
+        false,
       );
     }
-    setIsLoginMode((previousMode) => !previousMode);
+    setIsLoginMode(previousMode => !previousMode);
   };
 
-  const authSubmitHandler = async (event) => {
+  const authSubmitHandler = async event => {
     event.preventDefault();
+    let responseData;
 
     if (isLoginMode) {
       try {
-        await sendRequest(
+        responseData = await sendRequest(
           'http://localhost:5000/api/users/login',
           'POST',
           JSON.stringify({
@@ -87,17 +88,24 @@ const Auth = () => {
           }),
           {
             'Content-Type': 'application/json',
-          }
+          },
         );
 
-        dispatch(authActions.login());
+        console.log('loginResonse: ', responseData);
+
+        dispatch(
+          authActions.login({
+            user: responseData.userData.userId,
+            usrToken: responseData.userData.token,
+          }),
+        );
         history.push('/products');
       } catch (err) {
         console.log(err);
       }
     } else {
       try {
-        await sendRequest(
+        responseData = await sendRequest(
           'http://localhost:5000/api/users/signup',
           'POST',
           JSON.stringify({
@@ -108,10 +116,17 @@ const Auth = () => {
           }),
           {
             'Content-Type': 'application/json',
-          }
+          },
         );
 
-        dispatch(authActions.login());
+        console.log('SignupResonse: ', responseData);
+
+        dispatch(
+          authActions.login({
+            user: responseData.userData.userId,
+            usrToken: responseData.userData.token,
+          }),
+        );
         history.push('/products');
       } catch (err) {
         console.log(err);
@@ -171,7 +186,7 @@ const Auth = () => {
               id="password"
               type="password"
               label="Password"
-              validators={[VALIDATOR_MINLENGTH(5)]}
+              validators={[VALIDATOR_MINLENGTH(6)]}
               errorText="Please enter a valid password (minimum 5 characters)"
               onInput={inputHandler}
             />

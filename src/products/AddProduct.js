@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Modal from '../shared/UIElements/Modal';
@@ -18,7 +18,7 @@ import {
   useConfirmationModal,
   useConfirmModalFooter,
 } from '../shared/components/hooks/confirmation-hook';
-import { catalogActions } from '../../src/store/catalog-slice';
+// import { catalogActions } from '../../src/store/catalog-slice';
 
 // import FormInput from '../shared/components/FormElements/FormInput';
 import {
@@ -36,8 +36,10 @@ const AddProduct = () => {
   const { isSubmitting, error, sendRequest, clearError } = useHttpClient();
   const [didSubmit, setDidSubmit] = useState(false);
   // const [showConfirmation, setShowConfirmation] = useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const history = useHistory();
+  console.log(useSelector(state => state.auth.token));
+  const token = useSelector(state => state.auth.token);
 
   // const showAddConfirmHandler = (event) => {
   //   event.preventDefault();
@@ -103,7 +105,6 @@ const AddProduct = () => {
     false,
   );
 
-
   const productSubmitHandler = async event => {
     event.preventDefault();
     setShowConfirmation(false);
@@ -115,7 +116,7 @@ const AddProduct = () => {
       // dispatch(catalogActions.addProduct(formState.inputs));
       // dispatch(catalogActions.setCatalogStorage());
 
-      // console.log('formState.inputs: ', formState.inputs);
+      console.log('token: ', token);
 
       await sendRequest(
         'http://localhost:5000/api/products/',
@@ -141,6 +142,7 @@ const AddProduct = () => {
         }),
         {
           'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
         },
       );
 
