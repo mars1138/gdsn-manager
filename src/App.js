@@ -30,50 +30,37 @@ import ServicesPage from './services/ServicesPage';
 import PlansPage from './plans/PlansPage';
 import Auth from './user/Auth';
 
-// import { catalogActions } from './store/catalog-slice';
 import { authActions } from './store/auth-slice';
 
 let logoutTimer;
 
 function App() {
-  const isAuth = useSelector((state) => state.auth.isAuthenticated);
-  const authToken = useSelector((state) => state.auth.token);
-  const authExpire = useSelector((state) => state.auth.expireDate);
+  const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const authToken = useSelector(state => state.auth.token);
+  const authExpire = useSelector(state => state.auth.expireDate);
 
   const dispatch = useDispatch();
-  // const token = useSelector(state => state.auth.token);
-  // const expireDate = useSelector(state => state.auth.expireDate);
   let routes;
 
-  // useEffect(() => {
-  //   dispatch(catalogActions.getCatalogStorage());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   const localStorage = localStorage.getItem('userData');
-  //   console.log('localStorage: ', localStorage);
-
-  //   // if (localStorage.token && localStorage.expireDate) {
-  //   //   const remainingTime = expireDate - new Date().getTime();
-  //   //   logoutTimer = setTimeout(dispatch(authActions.logout), remainingTime);
-  //   // } else {
-  //   //   clearTimeout(logoutTimer);
-  //   // }
-  // });
   console.log(
     'authState: ',
-    useSelector((state) => state.auth)
+    useSelector(state => state.auth),
   );
 
-  // useEffect(() => {
-  //   if (authToken && authExpire) {
-  //     const remainingTime = authExpire - new Date().getTime();
-  //     console.log(remainingTime);
-  //     logoutTimer = setTimeout(dispatch(authActions.logout()), remainingTime);
-  //   } else {
-  //     clearTimeout(logoutTimer);
-  //   }
-  // }, [authExpire, authToken, dispatch]);
+  useEffect(() => {
+    console.log('authToken: ', authToken);
+    console.log('authExpire: ', authExpire);
+    if (authToken !== null && authExpire !== null) {
+      const remainingTime = authExpire - new Date().getTime();
+      console.log(remainingTime);
+      logoutTimer = setTimeout(() => {
+        dispatch(authActions.logout());
+      }, remainingTime);
+    } else {
+      clearTimeout(logoutTimer);
+      localStorage.removeItem('userData');
+    }
+  }, [authExpire, authToken, dispatch]);
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
@@ -81,17 +68,19 @@ function App() {
     console.log('storedData: ', storedData);
     if (
       storedData &&
-      storedData.token !== null &&
-      storedData.expireDate !== null &&
-      new Date(storedData.expireDate) > new Date()
+      storedData.token &&
+      storedData.expireDate &&
+      new Date(storedData.expireDate) > new Date(1671223612525)
     ) {
       dispatch(
         authActions.login({
           user: storedData.userId,
           token: storedData.token,
           expireDate: storedData.expireDate,
-        })
+        }),
       );
+    } else {
+      localStorage.removeItem('userData');
     }
   }, [dispatch]);
 
