@@ -7,7 +7,8 @@ import Section from '../shared/components/layout/Section';
 import Card from '../shared/UIElements/Card';
 
 // import { catalog } from '../assets/data/test-catalog';
-// import { catalogActions } from '../../src/store/catalog-slice';
+// import { authActions } from '../../src/store/auth-slice';
+import { fetchCatalogData } from '../../src/store/catalog-actions';
 import classes from './ProductsList.module.css';
 
 import {
@@ -15,12 +16,17 @@ import {
   activeColumns,
   inactiveColumns,
 } from '../assets/data/productsData';
+// import { catalogActions } from '../store/catalog-slice';
+import { useHttpClient } from '../shared/components/hooks/http-hook';
 
-const ProducstList = (props) => {
-  const catalog = useSelector((state) => state.catalog.products);
+const ProducstList = props => {
+  // let catalog;
+  const catalog = useSelector(state => state.catalog.products);
   const productsList = [];
 
   const dispatch = useDispatch();
+
+  const { isSubmitting, error, sendRequest, clearError } = useHttpClient();
 
   const filterProducts = (product, filter) => {
     if (filter === 'inactive') {
@@ -46,18 +52,35 @@ const ProducstList = (props) => {
   console.log('state catalog: ', catalog);
 
   if (catalog) {
-    catalog.forEach((item) => {
+    catalog.forEach(item => {
       if (filterProducts(item, props.status)) productsList.push(item);
     });
 
     productsList.sort((itemA, itemB) => itemA.gtin - itemB.gtin);
   }
 
+  const userId = useSelector(state => state.auth.userId);
+  console.log('userId: ', userId);
+
   useEffect(() => {
     console.log('exec replaceCatalog...');
-    // dispatch(catalogActions.replaceCatalog(catalog));
-    // dispatchEvent(fetchCartData());
-  }, [dispatch]);
+    const fetchData = async user => {
+      try {
+        const catalog = await sendRequest(
+          `http://localhost:5000/api/products/user/${user}`,
+          'GET',
+        );
+
+        console.log('fetchedCatalog: ', catalog);
+        // dispatch(catalogActions.replaceCatalog(catalog));
+      } catch (err) {}
+    };
+
+    if (userId) {
+      fetchData(userId);
+      // dispatch(fetchCatalogData(userId));
+    }
+  }, [dispatch, userId, sendRequest]);
 
   const noProducts = (
     <div className={classes['no-products']}>

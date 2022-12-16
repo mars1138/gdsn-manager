@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { catalog } from '../assets/data/test-catalog';
+// import { catalog } from '../assets/data/test-catalog';
 
 const catalogSlice = createSlice({
   name: 'catalog',
   initialState: {
-    products: catalog,
+    products: [],
     changed: false,
   },
   reducers: {
@@ -22,10 +22,8 @@ const catalogSlice = createSlice({
       // MODIFY FOR PRODUCTION:
       if (local && local.length > 0) {
         state.products = local;
-      } else {
-        state.products = catalog;
+        console.log('catalog retrieved from localStorage');
       }
-      console.log('catalog retrieved from localStorage');
     },
     addProduct(state, action) {
       const newItem = action.payload;
@@ -59,7 +57,7 @@ const catalogSlice = createSlice({
     updateExistingProduct(state, action) {
       const newItem = action.payload;
       const existingItem = state.products.find(
-        (item) => item.gtin === newItem.gtin
+        item => item.gtin === newItem.gtin,
       );
 
       // newItem.dateAdded = existingItem.dateAdded;
@@ -98,7 +96,7 @@ const catalogSlice = createSlice({
     // },
     toggleProductActive(state, action) {
       const gtin = action.payload.gtin;
-      const existingItem = state.products.find((item) => item.gtin === gtin);
+      const existingItem = state.products.find(item => item.gtin === gtin);
 
       const deactivate = () => {
         existingItem.dateInactive = new Date().getTime();
@@ -114,13 +112,13 @@ const catalogSlice = createSlice({
     },
     deleteProduct(state, action) {
       const gtin = action.payload;
-      state.products = state.products.filter((item) => item.gtin !== gtin);
+      state.products = state.products.filter(item => item.gtin !== gtin);
     },
     addSubscriber(state, action) {
       const custId = +action.payload.custId;
       const prod = action.payload.gtin;
 
-      const existingProduct = state.products.find((item) => item.gtin === prod);
+      const existingProduct = state.products.find(item => item.gtin === prod);
 
       if (existingProduct) {
         const existingSub = existingProduct.subscribers.includes(custId);
@@ -140,10 +138,10 @@ const catalogSlice = createSlice({
       // console.log('custId: ', custId);
       // console.log('prod: ', prod);
 
-      const existingProduct = state.products.find((item) => item.gtin === prod);
+      const existingProduct = state.products.find(item => item.gtin === prod);
       // console.log('existingProd: ', existingProduct);
       const newSubs = existingProduct.subscribers.filter(
-        (cust) => cust !== custId
+        cust => cust !== custId,
       );
       // console.log('newsubs: ', newSubs);
 
