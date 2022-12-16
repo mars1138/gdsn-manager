@@ -19,7 +19,7 @@ import {
 import classes from './Auth.module.css';
 
 const Auth = () => {
-  const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const history = useHistory();
   const { isSubmitting, error, sendRequest, clearError } = useHttpClient();
@@ -36,7 +36,7 @@ const Auth = () => {
         isValid: false,
       },
     },
-    false,
+    false
   );
 
   if (isAuth) {
@@ -52,7 +52,7 @@ const Auth = () => {
           name: undefined,
           company: undefined,
         },
-        formState.inputs.email.isValid && formState.inputs.password.isValid,
+        formState.inputs.email.isValid && formState.inputs.password.isValid
       );
     } else {
       setFormData(
@@ -67,13 +67,13 @@ const Auth = () => {
             isvalid: false,
           },
         },
-        false,
+        false
       );
     }
-    setIsLoginMode(previousMode => !previousMode);
+    setIsLoginMode((previousMode) => !previousMode);
   };
 
-  const authSubmitHandler = async event => {
+  const authSubmitHandler = async (event) => {
     event.preventDefault();
     let responseData;
 
@@ -88,7 +88,7 @@ const Auth = () => {
           }),
           {
             'Content-Type': 'application/json',
-          },
+          }
         );
 
         console.log('loginResonse: ', responseData);
@@ -96,8 +96,8 @@ const Auth = () => {
         dispatch(
           authActions.login({
             user: responseData.userData.userId,
-            usrToken: responseData.userData.token,
-          }),
+            token: responseData.userData.token,
+          })
         );
         history.push('/products');
       } catch (err) {
@@ -116,7 +116,7 @@ const Auth = () => {
           }),
           {
             'Content-Type': 'application/json',
-          },
+          }
         );
 
         console.log('SignupResonse: ', responseData);
@@ -124,8 +124,8 @@ const Auth = () => {
         dispatch(
           authActions.login({
             user: responseData.userData.userId,
-            usrToken: responseData.userData.token,
-          }),
+            token: responseData.userData.token,
+          })
         );
         history.push('/products');
       } catch (err) {

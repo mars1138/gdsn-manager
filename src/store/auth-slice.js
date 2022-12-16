@@ -13,22 +13,22 @@ const authSlice = createSlice({
   reducers: {
     login(state, action) {
       console.log('action.payload: ', action.payload);
-      const { user, usrToken, expireDate } = action.payload;
+      const { user, token, expireDate } = action.payload;
       const tokenExpire =
-        expireDate || new Date(new Date().getTime() + 1000 * 60 * 60); // 1hr in future
+        expireDate || new Date(new Date().getTime() + 1000 * 60 * 60).getTime(); // 1hr in future
 
       state.isAuthenticated = true;
       state.userId = user;
-      state.token = usrToken;
+      state.token = token;
       state.expireDate = tokenExpire;
 
       localStorage.setItem(
         'userData',
         JSON.stringify({
           userId: user,
-          token: usrToken,
+          token: token,
           expireDate: tokenExpire,
-        }),
+        })
       );
     },
     logout(state) {

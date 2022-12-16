@@ -33,10 +33,13 @@ import Auth from './user/Auth';
 // import { catalogActions } from './store/catalog-slice';
 import { authActions } from './store/auth-slice';
 
-// let logoutTimer;
+let logoutTimer;
 
 function App() {
-  const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const authToken = useSelector((state) => state.auth.token);
+  const authExpire = useSelector((state) => state.auth.expireDate);
+
   const dispatch = useDispatch();
   // const token = useSelector(state => state.auth.token);
   // const expireDate = useSelector(state => state.auth.expireDate);
@@ -47,28 +50,49 @@ function App() {
   // }, [dispatch]);
 
   // useEffect(() => {
-  //   if (token && expireDate) {
-  //     const remainingTime = expireDate - new Date().getTime();
-  //     logoutTimer = setTimeout(dispatch(authActions.logout), remainingTime);
+  //   const localStorage = localStorage.getItem('userData');
+  //   console.log('localStorage: ', localStorage);
+
+  //   // if (localStorage.token && localStorage.expireDate) {
+  //   //   const remainingTime = expireDate - new Date().getTime();
+  //   //   logoutTimer = setTimeout(dispatch(authActions.logout), remainingTime);
+  //   // } else {
+  //   //   clearTimeout(logoutTimer);
+  //   // }
+  // });
+  console.log(
+    'authState: ',
+    useSelector((state) => state.auth)
+  );
+
+  // useEffect(() => {
+  //   if (authToken && authExpire) {
+  //     const remainingTime = authExpire - new Date().getTime();
+  //     console.log(remainingTime);
+  //     logoutTimer = setTimeout(dispatch(authActions.logout()), remainingTime);
   //   } else {
   //     clearTimeout(logoutTimer);
   //   }
-  // });
+  // }, [authExpire, authToken, dispatch]);
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
+
+    console.log('storedData: ', storedData);
     if (
       storedData &&
-      storedData.token &&
+      storedData.token !== null &&
+      storedData.expireDate !== null &&
       new Date(storedData.expireDate) > new Date()
-    )
+    ) {
       dispatch(
-        authActions.login(
-          storedData.userId,
-          storedData.token,
-          storedData.expireDate,
-        ),
+        authActions.login({
+          user: storedData.userId,
+          token: storedData.token,
+          expireDate: storedData.expireDate,
+        })
       );
+    }
   }, [dispatch]);
 
   if (isAuth) {
