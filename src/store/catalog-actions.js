@@ -2,7 +2,7 @@ import { catalogActions } from './catalog-slice';
 
 export const fetchCatalogData = userId => {
   return async dispatch => {
-    const fetchData = async () => {
+    const fetchData = async (userId) => {
       const response = await fetch(
         `https://localhost:5000/api/products/user/${userId}`,
       );

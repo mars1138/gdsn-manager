@@ -31,6 +31,7 @@ import PlansPage from './plans/PlansPage';
 import Auth from './user/Auth';
 
 import { authActions } from './store/auth-slice';
+// import { catalogActions } from './store/catalog-slice';
 
 let logoutTimer;
 
@@ -42,10 +43,10 @@ function App() {
   const dispatch = useDispatch();
   let routes;
 
-  console.log(
-    'authState: ',
-    useSelector(state => state.auth),
-  );
+  // console.log(
+  //   'authState: ',
+  //   useSelector(state => state.auth),
+  // );
 
   useEffect(() => {
     console.log('authToken: ', authToken);

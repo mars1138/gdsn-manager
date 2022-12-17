@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { useHttpClient } from '../shared/components/hooks/http-hook';
 import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 import Hero from '../shared/components/layout/Hero';
 import classes from './ProductsPage.module.css';
+import { catalogActions } from '../store/catalog-slice';
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
@@ -49,13 +51,48 @@ const tabContent = [
 ];
 
 const ProductsPage = () => {
-  const catalog = useSelector((state) => state.catalog.products);
-  const activeCount = catalog.filter((item) => !item.dateInactive).length;
-  const publishedCount = catalog.filter((item) => item.datePublished).length;
+  const catalog = useSelector(state => state.catalog.products);
+  const activeCount = catalog.filter(item => !item.dateInactive).length;
+  const publishedCount = catalog.filter(item => item.datePublished).length;
   const unpublishedCount = catalog.filter(
-    (item) => !item.dateInactive && !item.datePublished
+    item => !item.dateInactive && !item.datePublished,
   ).length;
-  const inactiveCount = catalog.filter((item) => item.dateInactive).length;
+  const inactiveCount = catalog.filter(item => item.dateInactive).length;
+  const authToken = useSelector(state => state.auth.token);
+  const authUserId = useSelector(state => state.auth.userId);
+
+  const { sendRequest } = useHttpClient();
+  const dispatch = useDispatch();
+
+  // console.log(isSubmitting, error, clearError);
+
+  useEffect(() => {
+    const fetchData = async user => {
+      try {
+        console.log('exec replaceCatalog...');
+        const catalog = await sendRequest(
+          `http://localhost:5000/api/products/user/${user}`,
+          'GET',
+          null,
+          {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + authToken,
+          },
+        );
+
+        console.log('fetchedProducts: ', catalog);
+        dispatch(catalogActions.replaceCatalog({ products: [...catalog] }));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    console.log(authToken, authUserId);
+
+    if (authToken && authUserId) {
+      fetchData(authUserId);
+    }
+  }, [authUserId, authToken, dispatch, sendRequest]);
 
   return (
     <React.Fragment>
