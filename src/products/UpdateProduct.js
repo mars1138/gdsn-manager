@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import Modal from '../shared/UIElements/Modal';
@@ -13,6 +13,7 @@ import Dimensions from './formCategories/Dimensions';
 import PackagingHandling from './formCategories/PackagingHandling';
 import Subscribers from './formCategories/Subscribers';
 
+import { useHttpClient } from '../shared/components/hooks/http-hook';
 import { useForm } from '../shared/components/hooks/form-hook';
 import {
   useConfirmationModal,
@@ -27,12 +28,14 @@ import {
 } from '../assets/data/test-catalog';
 import classes from './AddProduct.module.css';
 import classes2 from './formCategories/Categories.module.css';
-import { catalogActions } from '../store/catalog-slice';
+// import { catalogActions } from '../store/catalog-slice';
 
 const UpdateProduct = () => {
   const [loadedProduct, setLoadedProduct] = useState();
-  const [error, setError] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [error, setError] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
+
   // const [showConfirmation, setShowConfirmation] = useState(false);
   const [subscriberUpdate, setSubscriberUpdate] = useState([]);
   const [selectOptionsValues, setSelectOptionsValues] = useState();
@@ -92,13 +95,17 @@ const UpdateProduct = () => {
         isValid: false,
       },
     },
-    false,
+    false
   );
 
+  const { sendRequest, error, clearError, isSubmitting } = useHttpClient();
   const params = useParams();
   const history = useHistory();
-  const dispatch = useDispatch();
-  const catalog = useSelector(state => state.catalog.products);
+  // const dispatch = useDispatch();
+  const catalog = useSelector((state) => state.catalog.products);
+  const authToken = useSelector((state) => state.auth.token);
+  const authUserId = useSelector((state) => state.auth.userId);
+
   // const showUpdateConfirmHandler = (event) => {
   //   event.preventDefault();
   //   setShowConfirmation(true);
@@ -110,29 +117,25 @@ const UpdateProduct = () => {
   // when form is submitting, save this temp array into loadedProduct.subscribers
 
   // passed on to subscriber component; add/remove customer id from list of product subscribers
-  const toggleSubscriber = custId => {
+  const toggleSubscriber = (custId) => {
     // console.log('custId: ', custId);
     // console.log('subscriberUpdate: ', subscriberUpdate);
     // console.log(subscriberUpdate.find((subscriber) => subscriber === custId));
 
-    if (subscriberUpdate.find(subscriber => subscriber === custId)) {
-      const newSubs = subscriberUpdate.filter(sub => sub !== custId);
+    if (subscriberUpdate.find((subscriber) => subscriber === custId)) {
+      const newSubs = subscriberUpdate.filter((sub) => sub !== custId);
 
       setSubscriberUpdate([...newSubs]);
     } else {
-      setSubscriberUpdate(prev => [...prev, +custId]);
+      setSubscriberUpdate((prev) => [...prev, +custId]);
     }
-  };
-
-  const clearError = () => {
-    setError(false);
   };
 
   useEffect(() => {
     let product;
     console.log(params.pid);
     const fetchProduct = () => {
-      product = catalog.filter(item => item.gtin === +params.pid)[0];
+      product = catalog.filter((item) => item.gtin === +params.pid)[0];
       console.log('fetchedProduct: ', product);
     };
 
@@ -201,58 +204,68 @@ const UpdateProduct = () => {
           isValid: true,
         },
       },
-      true,
+      true
     );
     setLoadedProduct(product);
   }, [params.pid, catalog, setFormData]);
 
-  const selectOptionsHandler = value => {
+  const selectOptionsHandler = (value) => {
     const newVal = value;
-    console.log('selectOptionsHandler: ', value);
+    // console.log('selectOptionsHandler: ', value);
 
-    setSelectOptionsValues(prev => {
+    setSelectOptionsValues((prev) => {
       return { ...prev, ...newVal };
     });
   };
 
-  const updateSubmitHandler = event => {
+  const updateSubmitHandler = (event) => {
     event.preventDefault();
     setShowConfirmation(false);
     // console.log('submitting...');
-    console.log('formState: ', formState);
-    console.log('selectOptionsValues: ', selectOptionsValues);
+    // console.log('formState: ', formState);
+    // console.log('selectOptionsValues: ', selectOptionsValues);
 
     try {
-      setIsSubmitting(true);
+      const fetchData = async () => {
+        try {
+          console.log('exec replaceCatalog...');
+          await sendRequest(
+            `http://localhost:5000/api/products/${formState.inputs.gtin.value}`,
+            'PATCH',
+            JSON.stringify({
+              name: formState.inputs.name.value,
+              description: formState.inputs.description.value,
+              gtin: formState.inputs.gtin.value,
+              category: selectOptionsValues.category,
+              type: selectOptionsValues.type,
+              image: selectOptionsValues.image,
+              height: formState.inputs.height.value,
+              width: formState.inputs.width.value,
+              depth: formState.inputs.depth.value,
+              weight: formState.inputs.weight.value,
+              packagingType: selectOptionsValues.packagingType,
+              tempUnits: selectOptionsValues.tempUnits,
+              minTemp: formState.inputs.minTemp.value,
+              maxTemp: formState.inputs.maxTemp.value,
+              storageInstructions: formState.inputs.storageInstructions.value,
+              subscribers: [...subscriberUpdate],
+              dateModified: new Date().getTime(),
+            }),
+            {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + authToken,
+            }
+          );
 
-      dispatch(
-        catalogActions.updateExistingProduct({
-          name: formState.inputs.name.value,
-          description: formState.inputs.description.value,
-          gtin: formState.inputs.gtin.value,
-          category: selectOptionsValues.category,
-          type: selectOptionsValues.type,
-          image: selectOptionsValues.image,
-          height: formState.inputs.height.value,
-          width: formState.inputs.width.value,
-          depth: formState.inputs.depth.value,
-          weight: formState.inputs.weight.value,
-          packagingType: selectOptionsValues.packagingType,
-          tempUnits: selectOptionsValues.tempUnits,
-          minTemp: formState.inputs.minTemp.value,
-          maxTemp: formState.inputs.maxTemp.value,
-          storageInstructions: formState.inputs.storageInstructions.value,
-          subscribers: [...subscriberUpdate],
-        }),
-      );
+          setDidSubmit(true);
+        } catch (err) {
+          console.log(err);
+        }
+      };
 
-      console.log('formState on submit: ', formState);
-
-      setTimeout(() => {
-        setIsSubmitting(false);
-        dispatch(catalogActions.setCatalogStorage());
-        history.push('/products');
-      }, 2000);
+      if (authToken && authUserId) {
+        fetchData(authUserId);
+      }
     } catch (err) {}
   };
 
@@ -268,15 +281,33 @@ const UpdateProduct = () => {
     updateSubmitHandler,
     cancelConfirmationHandler,
     'Update',
-    'Cancel',
+    'Cancel'
   );
+
+  const resetSubmitHandler = () => {
+    setDidSubmit(false);
+    history.push('/products');
+  };
 
   return (
     <Section>
       <h1>Update Product</h1>
       <div className={classes['card-container']}>
         <Card>
-          <Modal show={error} onClear={clearError} />
+          <Modal
+            show={error === undefined || null ? false : true}
+            msgHeader="Error creating product"
+            onClear={clearError}
+          >
+            {`${error ? error : 'An unknown error occurred'}`}
+          </Modal>
+          <Modal
+            show={didSubmit}
+            msgHeader="Success!"
+            onClear={resetSubmitHandler}
+          >
+            Product has been updated successfully
+          </Modal>
           <Modal
             show={showConfirmation}
             onClear={cancelConfirmationHandler}

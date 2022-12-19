@@ -25,6 +25,15 @@ const catalogSlice = createSlice({
         console.log('catalog retrieved from localStorage');
       }
     },
+    getProduct(state, action) {
+      const itemGtin = action.payload.gtin;
+
+      const existingItem = state.products.find(
+        (item) => item.gtin === itemGtin
+      );
+      console.log('existinItem: ', existingItem);
+      return existingItem.subscribers;
+    },
     addProduct(state, action) {
       const newItem = action.payload;
       console.log('addProduct: ', newItem);
@@ -57,7 +66,7 @@ const catalogSlice = createSlice({
     updateExistingProduct(state, action) {
       const newItem = action.payload;
       const existingItem = state.products.find(
-        item => item.gtin === newItem.gtin,
+        (item) => item.gtin === newItem.gtin
       );
 
       // newItem.dateAdded = existingItem.dateAdded;
@@ -96,7 +105,7 @@ const catalogSlice = createSlice({
     // },
     toggleProductActive(state, action) {
       const gtin = action.payload.gtin;
-      const existingItem = state.products.find(item => item.gtin === gtin);
+      const existingItem = state.products.find((item) => item.gtin === gtin);
 
       const deactivate = () => {
         existingItem.dateInactive = new Date().getTime();
@@ -112,13 +121,13 @@ const catalogSlice = createSlice({
     },
     deleteProduct(state, action) {
       const gtin = action.payload;
-      state.products = state.products.filter(item => item.gtin !== gtin);
+      state.products = state.products.filter((item) => item.gtin !== gtin);
     },
     addSubscriber(state, action) {
       const custId = +action.payload.custId;
       const prod = action.payload.gtin;
 
-      const existingProduct = state.products.find(item => item.gtin === prod);
+      const existingProduct = state.products.find((item) => item.gtin === prod);
 
       if (existingProduct) {
         const existingSub = existingProduct.subscribers.includes(custId);
@@ -138,10 +147,10 @@ const catalogSlice = createSlice({
       // console.log('custId: ', custId);
       // console.log('prod: ', prod);
 
-      const existingProduct = state.products.find(item => item.gtin === prod);
+      const existingProduct = state.products.find((item) => item.gtin === prod);
       // console.log('existingProd: ', existingProduct);
       const newSubs = existingProduct.subscribers.filter(
-        cust => cust !== custId,
+        (cust) => cust !== custId
       );
       // console.log('newsubs: ', newSubs);
 

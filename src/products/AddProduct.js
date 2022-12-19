@@ -38,8 +38,8 @@ const AddProduct = () => {
   // const [showConfirmation, setShowConfirmation] = useState(false);
   // const dispatch = useDispatch();
   const history = useHistory();
-  console.log(useSelector(state => state.auth.token));
-  const token = useSelector(state => state.auth.token);
+  console.log(useSelector((state) => state.auth.token));
+  const token = useSelector((state) => state.auth.token);
 
   // const showAddConfirmHandler = (event) => {
   //   event.preventDefault();
@@ -102,10 +102,10 @@ const AddProduct = () => {
         isValid: false,
       },
     },
-    false,
+    false
   );
 
-  const productSubmitHandler = async event => {
+  const productSubmitHandler = async (event) => {
     event.preventDefault();
     setShowConfirmation(false);
     // console.log('formState.inputs: ', formState.inputs);
@@ -139,11 +139,14 @@ const AddProduct = () => {
           storageInstructions: formState.inputs.storageInstructions.value,
           subscribers: [],
           dateAdded: new Date().toISOString(),
+          datePublished: null,
+          dateInactive: null,
+          dateModified: null,
         }),
         {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token,
-        },
+        }
       );
 
       // const responseData = await response.json();
@@ -181,7 +184,7 @@ const AddProduct = () => {
     productSubmitHandler,
     cancelConfirmationHandler,
     'Register',
-    'Cancel',
+    'Cancel'
   );
 
   const resetSubmitHandler = () => {

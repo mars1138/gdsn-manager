@@ -8,6 +8,7 @@ import { useForm } from '../shared/components/hooks/form-hook';
 import FormInput from '../shared/components/FormElements/FormInput';
 
 import { catalogActions } from '../../src/store/catalog-slice';
+import { useHttpClient } from '../shared/components/hooks/http-hook';
 import {
   useConfirmationModal,
   useConfirmModalFooter,
@@ -18,14 +19,17 @@ import { categoryOptions, typeOptions } from '../assets/data/test-catalog';
 import { VALIDATOR_REQUIRE } from '../shared/utilities/validators';
 import classes from './ProductsTable.module.css';
 
-const ProductsTable = props => {
+const ProductsTable = (props) => {
   const [filterInput, setFilterInput] = useState('');
   const [actionParams, setActionParams] = useState();
   const [selectSubscriber, setSelectSubscriber] = useState();
 
   const dispatch = useDispatch();
 
-  const catalog = useSelector(state => state.catalog.products);
+  const authToken = useSelector((state) => state.auth.token);
+  const authUserId = useSelector((state) => state.auth.userId);
+  const catalog = useSelector((state) => state.catalog.products);
+
   let productName, customerName;
   let alreadySubbed = false;
 
@@ -33,18 +37,18 @@ const ProductsTable = props => {
 
   // Format customer list for select element:
   const customerList = [{ id: '', name: '' }];
-  customers.forEach(cust => customerList.push(cust));
-  // console.log('selectSubscriber: ', selectSubscriber);
+  customers.forEach((cust) => customerList.push(cust));
+  console.log('selectSubscriber: ', selectSubscriber);
 
   if (selectSubscriber && selectSubscriber.subscriber !== '') {
     customerName = customerList.find(
-      cust => cust.id === +selectSubscriber.subscriber,
+      (cust) => cust.id === +selectSubscriber.subscriber
     ).name;
 
     const gtin = actionParams.gtin;
     const custId = +selectSubscriber.subscriber;
     // console.log('custId: ', custId);
-    const product = catalog.find(item => item.gtin === gtin);
+    const product = catalog.find((item) => item.gtin === gtin);
     const productSubs = [...product.subscribers];
     alreadySubbed = productSubs.includes(custId);
     console.log('alreadySubbed: ', alreadySubbed);
@@ -58,7 +62,7 @@ const ProductsTable = props => {
         isValid: false,
       },
     },
-    false,
+    false
   );
 
   const {
@@ -86,10 +90,10 @@ const ProductsTable = props => {
     },
     useFilters, // adding the useFilters hook to the table; can add as many hooks as needed
     useSortBy,
-    usePagination,
+    usePagination
   );
 
-  const handleFilterChange = event => {
+  const handleFilterChange = (event) => {
     const value = event.target.value || undefined;
     setFilter('name', value);
     setFilterInput(value);
@@ -98,20 +102,20 @@ const ProductsTable = props => {
   const {
     showConfirmation: showConfirmActivate,
     setShowConfirmation: setShowConfirmActivate,
-    showConfirmationHandler: showConfirmActivateHandler,
+    // showConfirmationHandler: showConfirmActivateHandler,
     cancelConfirmationHandler: cancelActivateHandler,
   } = useConfirmationModal();
 
   const {
     showConfirmation: showConfirmDeactivate,
     setShowConfirmation: setShowConfirmDeactivate,
-    showConfirmationHandler: showConfirmDeactivateHandler,
+    // showConfirmationHandler: showConfirmDeactivateHandler,
     cancelConfirmationHandler: cancelDeactivateHandler,
   } = useConfirmationModal();
 
   const {
     showConfirmation: showConfirmPublish,
-    setShowConfirmation: setShowConfirmPublish,
+    // setShowConfirmation: setShowConfirmPublish,
     showConfirmationHandler: showConfirmPublishHandler,
     cancelConfirmationHandler: cancelPublishHandler,
   } = useConfirmationModal();
@@ -119,7 +123,7 @@ const ProductsTable = props => {
   const {
     showConfirmation: showChooseSubscriber,
     setShowConfirmation: setShowChooseSubscriber,
-    showConfirmationHandler: showChooseSubscriberHandler,
+    // showConfirmationHandler: showChooseSubscriberHandler,
     cancelConfirmationHandler: cancelSubscriberHandler,
     // confirmModalFooter: chooseSubscriberFooter,
   } = useConfirmationModal();
@@ -127,20 +131,12 @@ const ProductsTable = props => {
   const {
     showConfirmation: showConfirmDelete,
     setShowConfirmation: setShowConfirmDelete,
-    showConfirmationHandler: showConfirmDeleteHandler,
+    // showConfirmationHandler: showConfirmDeleteHandler,
     cancelConfirmationHandler: cancelDeleteHandler,
   } = useConfirmationModal();
 
-  console.log(
-    showConfirmDeactivateHandler,
-    setShowConfirmPublish,
-    showChooseSubscriberHandler,
-    showConfirmDeleteHandler,
-    showConfirmActivateHandler,
-  );
-
   const productActionHandler = (productId, action) => {
-    productName = catalog.find(item => item.gtin === productId).name;
+    productName = catalog.find((item) => item.gtin === productId).name;
     setActionParams({ gtin: productId, itemName: productName, action: action });
     // console.log(catalog.find((item) => item.gtin === productId).name);
     if (action === 'activate') setShowConfirmActivate(true);
@@ -149,15 +145,68 @@ const ProductsTable = props => {
     if (action === 'delete') setShowConfirmDelete(true);
   };
 
+  // const [didSubmit, setDidSubmit] = useState(false);
+
+  const { sendRequest, error, clearError, isSubmitting } = useHttpClient();
+
   const publishProductHandler = () => {
     console.log('actionParams: ', actionParams);
     const gtin = actionParams.gtin;
     const custId = selectSubscriber.subscriber;
 
     if (!alreadySubbed) {
-      console.log(gtin, custId);
-      dispatch(catalogActions.addSubscriber({ gtin, custId }));
-      dispatch(catalogActions.setCatalogStorage());
+      // console.log(gtin, custId);
+      // dispatch(catalogActions.addSubscriber({ gtin, custId }));
+      // dispatch(catalogActions.setCatalogStorage());
+
+      const existingProduct = dispatch(
+        catalogActions.getProduct({ gtin: gtin })
+      );
+      console.log('existingProduct: ', existingProduct);
+
+      try {
+        const fetchData = async () => {
+          try {
+            console.log('exec replaceCatalog...');
+            await sendRequest(
+              `http://localhost:5000/api/products/${gtin}`,
+              'PATCH',
+              JSON.stringify({
+                // name: formState.inputs.name.value,
+                // description: formState.inputs.description.value,
+                // gtin: formState.inputs.gtin.value,
+                // category: selectOptionsValues.category,
+                // type: selectOptionsValues.type,
+                // image: selectOptionsValues.image,
+                // height: formState.inputs.height.value,
+                // width: formState.inputs.width.value,
+                // depth: formState.inputs.depth.value,
+                // weight: formState.inputs.weight.value,
+                // packagingType: selectOptionsValues.packagingType,
+                // tempUnits: selectOptionsValues.tempUnits,
+                // minTemp: formState.inputs.minTemp.value,
+                // maxTemp: formState.inputs.maxTemp.value,
+                // storageInstructions: formState.inputs.storageInstructions.value,
+                subscribers: [...existingProduct.subscribers],
+                datePublished: new Date().getTime(),
+              }),
+              {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + authToken,
+              }
+            );
+
+            // setDidSubmit(true);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+
+        if (authToken && authUserId) {
+          fetchData(authUserId);
+        }
+      } catch (err) {}
+
       console.log('Product Published!');
       cancelPublishHandler();
       cancelSubscriberHandler();
@@ -172,7 +221,7 @@ const ProductsTable = props => {
       catalogActions.toggleProductActive({
         gtin: gtin,
         status: status,
-      }),
+      })
     );
 
     status === 'activate' && cancelActivateHandler();
@@ -195,7 +244,7 @@ const ProductsTable = props => {
     if (action === 'delete') cancelDeleteHandler();
   };
 
-  const cancelSubHandler = event => {
+  const cancelSubHandler = (event) => {
     event.preventDefault();
     setSelectSubscriber(null);
     setShowChooseSubscriber(false);
@@ -205,25 +254,25 @@ const ProductsTable = props => {
     activeStatusHandler,
     cancelHandler,
     'Activate',
-    'Cancel',
+    'Cancel'
   );
   const confirmDeactivateFooter = useConfirmModalFooter(
     activeStatusHandler,
     cancelHandler,
     'Deactivate',
-    'Cancel',
+    'Cancel'
   );
   const confirmPublishFooter = useConfirmModalFooter(
     publishProductHandler,
     cancelHandler,
     'Publish',
-    'Cancel',
+    'Cancel'
   );
   const confirmDeleteFooter = useConfirmModalFooter(
     deleteProductHandler,
     cancelHandler,
     'Delete',
-    'Cancel',
+    'Cancel'
   );
 
   // const setSelectSubscriberHandler = subscriber => {
@@ -396,7 +445,7 @@ const ProductsTable = props => {
                   className={classes.headers}
                   {...headerGroup.getHeaderGroupProps()}
                 >
-                  {headerGroup.headers.map(column => (
+                  {headerGroup.headers.map((column) => (
                     <th
                       key={i}
                       className={classes.header}
@@ -448,12 +497,12 @@ const ProductsTable = props => {
 
                     if (cell.column.Header === 'Type') {
                       type = typeOptions.filter(
-                        type => type.id === +cell.value,
+                        (type) => type.id === +cell.value
                       )[0];
                     }
                     if (cell.column.Header === 'Category') {
                       category = categoryOptions.filter(
-                        category => category.id === +cell.value,
+                        (category) => category.id === +cell.value
                       )[0];
                     }
 
@@ -504,7 +553,7 @@ const ProductsTable = props => {
                                   onClick={() => {
                                     productActionHandler(
                                       cell.row.original.gtin,
-                                      'publish',
+                                      'publish'
                                     );
                                   }}
                                   action
@@ -520,7 +569,7 @@ const ProductsTable = props => {
                                   onClick={() => {
                                     productActionHandler(
                                       cell.row.original.gtin,
-                                      'deactivate',
+                                      'deactivate'
                                     );
                                   }}
                                   action
@@ -540,7 +589,7 @@ const ProductsTable = props => {
                                   onClick={() => {
                                     productActionHandler(
                                       cell.row.original.gtin,
-                                      'activate',
+                                      'activate'
                                     );
                                   }}
                                   action
@@ -556,7 +605,7 @@ const ProductsTable = props => {
                                   onClick={() => {
                                     productActionHandler(
                                       cell.row.original.gtin,
-                                      'delete',
+                                      'delete'
                                     );
                                   }}
                                   action
@@ -607,7 +656,7 @@ const ProductsTable = props => {
           <input
             type="number"
             defaultValue={pageIndex + 1}
-            onChange={e => {
+            onChange={(e) => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
             }}
@@ -616,11 +665,11 @@ const ProductsTable = props => {
         </span>{' '}
         <select
           value={pageSize}
-          onChange={e => {
+          onChange={(e) => {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[5, 10, 20, 30, 40, 50].map(pageSize => (
+          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>

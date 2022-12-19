@@ -18,13 +18,13 @@ import ProductsPage from './products/ProductsPage';
 import UpdateProduct from './products/UpdateProduct';
 import ProductsList from './products/ProductsList';
 import AddProduct from './products/AddProduct';
-
 import AboutPage from './about/AboutPage';
-
 import ResourcesPage from './resources/ResourcesPage';
 import Webinars from './resources/Webinars';
 import Training from './resources/Training';
 import Support from './resources/Support';
+import { useHttpClient } from './shared/components/hooks/http-hook';
+import { catalogActions } from './store/catalog-slice';
 
 import ServicesPage from './services/ServicesPage';
 import PlansPage from './plans/PlansPage';
@@ -36,11 +36,14 @@ import { authActions } from './store/auth-slice';
 let logoutTimer;
 
 function App() {
-  const isAuth = useSelector(state => state.auth.isAuthenticated);
-  const authToken = useSelector(state => state.auth.token);
-  const authExpire = useSelector(state => state.auth.expireDate);
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const authUserId = useSelector((state) => state.auth.userId);
+  const authToken = useSelector((state) => state.auth.token);
+  const authExpire = useSelector((state) => state.auth.expireDate);
 
   const dispatch = useDispatch();
+
+  const { sendRequest } = useHttpClient();
   let routes;
 
   // console.log(
@@ -57,11 +60,38 @@ function App() {
       logoutTimer = setTimeout(() => {
         dispatch(authActions.logout());
       }, remainingTime);
+
+      const fetchData = async (user) => {
+        try {
+          console.log('exec replaceCatalog...');
+          const catalog = await sendRequest(
+            `http://localhost:5000/api/products/user/${user}`,
+            'GET',
+            null,
+            {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + authToken,
+            }
+          );
+
+          // console.log('fetchedProducts: ', catalog);
+          dispatch(
+            catalogActions.replaceCatalog({ products: [...catalog.products] })
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      console.log(authToken, authUserId);
+
+      if (authToken && authUserId) {
+        fetchData(authUserId);
+      }
     } else {
       clearTimeout(logoutTimer);
-      localStorage.removeItem('userData');
     }
-  }, [authExpire, authToken, dispatch]);
+  }, [authUserId, authExpire, authToken, sendRequest, dispatch]);
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
@@ -78,7 +108,7 @@ function App() {
           user: storedData.userId,
           token: storedData.token,
           expireDate: storedData.expireDate,
-        }),
+        })
       );
     } else {
       localStorage.removeItem('userData');

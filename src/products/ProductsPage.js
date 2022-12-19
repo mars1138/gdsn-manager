@@ -58,6 +58,7 @@ const ProductsPage = () => {
     item => !item.dateInactive && !item.datePublished,
   ).length;
   const inactiveCount = catalog.filter(item => item.dateInactive).length;
+
   const authToken = useSelector(state => state.auth.token);
   const authUserId = useSelector(state => state.auth.userId);
 
@@ -80,14 +81,14 @@ const ProductsPage = () => {
           },
         );
 
-        console.log('fetchedProducts: ', catalog);
-        dispatch(catalogActions.replaceCatalog({ products: [...catalog] }));
+        // console.log('fetchedProducts: ', catalog);
+        dispatch(catalogActions.replaceCatalog({ products: [...catalog.products] }));
       } catch (err) {
         console.log(err);
       }
     };
 
-    console.log(authToken, authUserId);
+    // console.log(authToken, authUserId);
 
     if (authToken && authUserId) {
       fetchData(authUserId);
