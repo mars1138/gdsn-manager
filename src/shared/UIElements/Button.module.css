@@ -35,7 +35,7 @@
 }
 
 .action {
-  padding: .25rem 1rem;
+  padding: 0.25rem 1rem;
   color: var(--gray-5);
   background-color: transparent;
   border: none;

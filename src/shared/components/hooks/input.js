@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-const useInput = validateInput => {
+const useInput = (validateInput) => {
   const [enteredInput, setEnteredInput] = useState('');
   const [enteredInputTouched, setEnteredInputTouched] = useState(false);
 
   const enteredInputValid = validateInput(enteredInput);
   const inputInvalid = !enteredInputValid && enteredInputTouched;
 
-  const inputChangeHandler = event => {
+  const inputChangeHandler = (event) => {
     setEnteredInput(event.target.value);
   };
 

@@ -4,7 +4,7 @@ import HeroText from './HeroText';
 
 import classes from './Hero.module.css';
 
-const Hero = props => {
+const Hero = (props) => {
   return (
     <div className={classes.hero}>
       <HeroText type={props.type} />

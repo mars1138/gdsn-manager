@@ -35,7 +35,7 @@ const Subscriber = (props) => {
         <h4>{props.customer.name}</h4>
         <h5>#{props.customer.id}</h5>
         {!deleteSub && <p>Active</p>}
-        {deleteSub && <p style={{color: 'var(--red-1)'}}>Remove</p>}
+        {deleteSub && <p style={{ color: 'var(--red-1)' }}>Remove</p>}
       </div>
     </Card>
   );

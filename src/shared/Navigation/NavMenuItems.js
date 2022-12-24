@@ -101,7 +101,9 @@ const NavMenuItems = (props) => {
       )}
       {items.url && !items.submenu && (
         <button>
-          <NavLink activeClassName={classes.active} to={items.url}>{items.title} </NavLink>
+          <NavLink activeClassName={classes.active} to={items.url}>
+            {items.title}{' '}
+          </NavLink>
         </button>
       )}
     </li>

@@ -23,7 +23,7 @@ export const useHttpClient = () => {
         console.log(responseData);
 
         activeHttpRequests.current = activeHttpRequests.current.filter(
-          reqCtrl => reqCtrl !== httpAbortCtrl,
+          (reqCtrl) => reqCtrl !== httpAbortCtrl
         );
 
         if (!response.ok) throw new Error(responseData.message);
@@ -36,7 +36,7 @@ export const useHttpClient = () => {
         throw err;
       }
     },
-    [],
+    []
   );
 
   const clearError = () => {
@@ -46,7 +46,7 @@ export const useHttpClient = () => {
   // abort any active http requests if leaving current page
   useEffect(() => {
     return () => {
-      activeHttpRequests.current.forEach(abortCtrl => abortCtrl.abort());
+      activeHttpRequests.current.forEach((abortCtrl) => abortCtrl.abort());
     };
   }, []);
 

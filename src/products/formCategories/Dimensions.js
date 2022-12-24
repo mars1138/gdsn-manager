@@ -5,7 +5,7 @@ import { VALIDATOR_REQUIRE } from '../../shared/utilities/validators';
 
 import classes from './Categories.module.css';
 
-const Dimensions = props => {
+const Dimensions = (props) => {
   const { product, inputHandler } = props;
   return (
     <div className={classes.category}>

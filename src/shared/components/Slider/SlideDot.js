@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './Slider.module.css';
 
-const SlideDot = props => {
+const SlideDot = (props) => {
   return (
     <button
       className={`${classes.dot} ${

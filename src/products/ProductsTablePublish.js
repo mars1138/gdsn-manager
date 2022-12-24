@@ -7,7 +7,7 @@ import Button from '../shared/UIElements/Button';
 import { catalogActions } from '../store/catalog-slice';
 import useConfirmationModal from '../shared/components/hooks/confirmation-hook';
 
-const ProductsTablePublish = props => {
+const ProductsTablePublish = (props) => {
   const { gtin } = props;
 
   const prodStatus = 'deactivate';
@@ -27,7 +27,12 @@ const ProductsTablePublish = props => {
   } = useConfirmationModal(activeStatusHandler, 'Deactivate', 'Cancel');
 
   const clickHandler = () => {
-    props.setModal(showConfirmation, setShowConfirmation, cancelConfirmationHandler, confirmModalFooter)
+    props.setModal(
+      showConfirmation,
+      setShowConfirmation,
+      cancelConfirmationHandler,
+      confirmModalFooter
+    );
     showConfirmationHandler();
   };
 

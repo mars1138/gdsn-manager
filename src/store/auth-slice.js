@@ -30,7 +30,7 @@ const authSlice = createSlice({
           userId: user,
           token: token,
           expireDate: tokenExpire,
-        }),
+        })
       );
     },
     logout(state) {

@@ -9,9 +9,9 @@ import { navMenuData, navMenuDataLoggedOut } from './navMenuData';
 import { authActions } from '../../store/auth-slice';
 import classes from './NavLinks.module.css';
 
-const NavLinks = props => {
+const NavLinks = (props) => {
   const menuLinks = [];
-  const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -19,7 +19,7 @@ const NavLinks = props => {
     navMenuData.forEach((menu, index) => {
       const depthLevel = 0;
       menuLinks.push(
-        <NavMenuItems items={menu} key={index} depthLevel={depthLevel} />,
+        <NavMenuItems items={menu} key={index} depthLevel={depthLevel} />
       );
     });
   }
@@ -27,12 +27,12 @@ const NavLinks = props => {
     navMenuDataLoggedOut.forEach((menu, index) => {
       const depthLevel = 0;
       menuLinks.push(
-        <NavMenuItems items={menu} key={index} depthLevel={depthLevel} />,
+        <NavMenuItems items={menu} key={index} depthLevel={depthLevel} />
       );
     });
   }
 
-  const logoutHandler = event => {
+  const logoutHandler = (event) => {
     dispatch(authActions.logout());
     history.push('/auth');
   };

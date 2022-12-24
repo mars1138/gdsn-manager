@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './HeroText.module.css';
 
-const HeroText = props => {
+const HeroText = (props) => {
   const heroClasses = `${classes.content} 
     ${props.type === 'left' ? classes.left : ''}
     ${props.type === 'center' ? classes.center : ''}

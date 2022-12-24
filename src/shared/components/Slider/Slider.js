@@ -5,7 +5,7 @@ import SlideDot from './SlideDot';
 import SlideNav from './SlideNav';
 import classes from './Slider.module.css';
 
-const Slider = props => {
+const Slider = (props) => {
   const [translate, setTranslate] = useState([0, 100, 200]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const maxSlide = props.content.length - 1;
@@ -14,7 +14,7 @@ const Slider = props => {
   let slideElements = [];
   let dotElements = [];
 
-  const goToSlide = slide => {
+  const goToSlide = (slide) => {
     const tempTrans = [];
 
     for (let i = 0; i <= maxSlide; i++) {
@@ -44,7 +44,7 @@ const Slider = props => {
         slide={slide}
         type={props.type}
         shift={translate}
-      />,
+      />
     );
 
     dotElements.push(
@@ -53,7 +53,7 @@ const Slider = props => {
         index={index}
         goToSlide={goToSlide}
         currentSlide={currentSlide}
-      />,
+      />
     );
   });
 

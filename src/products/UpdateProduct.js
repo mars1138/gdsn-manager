@@ -66,34 +66,34 @@ const UpdateProduct = () => {
       //   value: null,
       //   isValid: false,
       // },
-      height: {
-        value: '',
-        isValid: false,
-      },
-      width: {
-        value: '',
-        isValid: false,
-      },
-      depth: {
-        value: '',
-        isValid: false,
-      },
-      weight: {
-        value: '',
-        isValid: false,
-      },
-      minTemp: {
-        value: '',
-        isValid: false,
-      },
-      maxTemp: {
-        value: '',
-        isValid: false,
-      },
-      storageInstructions: {
-        value: '',
-        isValid: false,
-      },
+      // height: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // width: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // depth: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // weight: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // minTemp: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // maxTemp: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // storageInstructions: {
+      //   value: '',
+      //   isValid: false,
+      // },
     },
     false
   );
@@ -171,10 +171,10 @@ const UpdateProduct = () => {
           value: product.type,
           isValid: true,
         },
-        // image: {
-        //   value: null,
-        //   isValid: true,
-        // },
+        image: {
+          value: product.image,
+          isValid: true,
+        },
         height: {
           value: product.height,
           isValid: true,
@@ -225,34 +225,68 @@ const UpdateProduct = () => {
     // console.log('formState: ', formState);
     // console.log('selectOptionsValues: ', selectOptionsValues);
 
+    let url;
+
     try {
       const fetchData = async () => {
         try {
           console.log('exec replaceCatalog...');
+          url =
+            process.env.REACT_APP_BACKEND_URL +
+            `/api/products/${formState.inputs.gtin.value}`;
+
+          const formData = new FormData();
+          formData.append('name', formState.inputs.name.value);
+          formData.append('description', formState.inputs.description.value);
+          formData.append('gtin', formState.inputs.gtin.value);
+          formData.append('category', formState.inputs.category.value);
+          formData.append('type', formState.inputs.type.value);
+          formData.append('image', formState.inputs.image.value);
+          formData.append('height', formState.inputs.height.value);
+          formData.append('width', formState.inputs.width.value);
+          formData.append('depth', formState.inputs.depth.value);
+          formData.append('weight', formState.inputs.weight.value);
+          formData.append(
+            'packagingType',
+            formState.inputs.packagingType.value
+          );
+          formData.append('tempUnits', formState.inputs.tempUnits.value);
+          formData.append('minTemp', formState.inputs.minTemp.value);
+          formData.append('maxTemp', formState.inputs.maxTemp.value);
+          formData.append(
+            'storageInstructions',
+            formState.inputs.storageInstructions.value
+          );
+          formData.append('subscribers', []);
+          // formData.append('dateAdded', new Date().toISOString());
+          // formData.append('datePublished', null);
+          // formData.append('dateInactive', null);
+          // formData.append('dateModified', null);
+
           await sendRequest(
-            `http://localhost:5000/api/products/${formState.inputs.gtin.value}`,
+            url,
             'PATCH',
-            JSON.stringify({
-              name: formState.inputs.name.value,
-              description: formState.inputs.description.value,
-              gtin: formState.inputs.gtin.value,
-              category: selectOptionsValues.category,
-              type: selectOptionsValues.type,
-              image: selectOptionsValues.image,
-              height: formState.inputs.height.value,
-              width: formState.inputs.width.value,
-              depth: formState.inputs.depth.value,
-              weight: formState.inputs.weight.value,
-              packagingType: selectOptionsValues.packagingType,
-              tempUnits: selectOptionsValues.tempUnits,
-              minTemp: formState.inputs.minTemp.value,
-              maxTemp: formState.inputs.maxTemp.value,
-              storageInstructions: formState.inputs.storageInstructions.value,
-              subscribers: [...subscriberUpdate],
-              dateModified: new Date().getTime(),
-            }),
+            // JSON.stringify({
+            //   name: formState.inputs.name.value,
+            //   description: formState.inputs.description.value,
+            //   gtin: formState.inputs.gtin.value,
+            //   category: selectOptionsValues.category,
+            //   type: selectOptionsValues.type,
+            //   image: selectOptionsValues.image,
+            //   height: formState.inputs.height.value,
+            //   width: formState.inputs.width.value,
+            //   depth: formState.inputs.depth.value,
+            //   weight: formState.inputs.weight.value,
+            //   packagingType: selectOptionsValues.packagingType,
+            //   tempUnits: selectOptionsValues.tempUnits,
+            //   minTemp: formState.inputs.minTemp.value,
+            //   maxTemp: formState.inputs.maxTemp.value,
+            //   storageInstructions: formState.inputs.storageInstructions.value,
+            //   subscribers: [...subscriberUpdate],
+            //   dateModified: new Date().getTime(),
+            // }),
+            formData,
             {
-              'Content-Type': 'application/json',
               Authorization: 'Bearer ' + authToken,
             }
           );
@@ -288,6 +322,8 @@ const UpdateProduct = () => {
     setDidSubmit(false);
     history.push('/products');
   };
+
+  console.log(selectOptionsValues);
 
   return (
     <Section>

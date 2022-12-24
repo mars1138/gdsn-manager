@@ -147,12 +147,12 @@ const ProductsTable = (props) => {
 
   // const [didSubmit, setDidSubmit] = useState(false);
 
-  const { sendRequest, error, clearError, isSubmitting } = useHttpClient();
+  const { sendRequest } = useHttpClient();
 
   const publishProductHandler = () => {
     console.log('actionParams: ', actionParams);
     const gtin = actionParams.gtin;
-    const custId = selectSubscriber.subscriber;
+    // const custId = selectSubscriber.subscriber;
 
     if (!alreadySubbed) {
       // console.log(gtin, custId);
@@ -518,7 +518,10 @@ const ProductsTable = (props) => {
                         >
                           {cell.column.Header === 'Image' && (
                             <div className={classes.thumbnail}>
-                              <img src={cell.value} alt={cell.value} />
+                              <img
+                                src={`${process.env.REACT_APP_BACKEND_URL}/${cell.value}`}
+                                alt={cell.value}
+                              />
                             </div>
                           )}
                           {cell.column.Header === 'Type' && type.name}

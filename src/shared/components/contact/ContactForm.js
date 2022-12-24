@@ -13,7 +13,7 @@ import {
 } from '../../utilities/validators';
 import classes from './ContactForm.module.css';
 
-const ContactForm = props => {
+const ContactForm = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
   const [error, setError] = useState();
@@ -41,13 +41,13 @@ const ContactForm = props => {
         isValid: true,
       },
     },
-    false,
+    false
   );
 
   const history = useHistory();
   const submitMessage = 'Form submitted, we will contact you shortly!';
 
-  const submitHandler = async event => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     try {

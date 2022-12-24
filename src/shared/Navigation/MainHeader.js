@@ -7,7 +7,7 @@ import Logo from './Logo';
 import Backdrop from '../UIElements/Backdrop';
 import classes from './MainHeader.module.css';
 
-const MainHeader = props => {
+const MainHeader = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const openDrawerHandler = () => {

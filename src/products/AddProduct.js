@@ -38,7 +38,6 @@ const AddProduct = () => {
   // const [showConfirmation, setShowConfirmation] = useState(false);
   // const dispatch = useDispatch();
   const history = useHistory();
-  console.log(useSelector((state) => state.auth.token));
   const token = useSelector((state) => state.auth.token);
 
   // const showAddConfirmHandler = (event) => {
@@ -69,82 +68,107 @@ const AddProduct = () => {
         value: '',
         isValid: false,
       },
-      // image: {
-      //   value: null,
+      image: {
+        value: null,
+        isValid: false,
+      },
+      // height: {
+      //   value: '',
       //   isValid: false,
       // },
-      height: {
-        value: '',
-        isValid: false,
-      },
-      width: {
-        value: '',
-        isValid: false,
-      },
-      depth: {
-        value: '',
-        isValid: false,
-      },
-      weight: {
-        value: '',
-        isValid: false,
-      },
-      minTemp: {
-        value: '',
-        isValid: false,
-      },
-      maxTemp: {
-        value: '',
-        isValid: false,
-      },
-      storageInstructions: {
-        value: '',
-        isValid: false,
-      },
+      // width: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // depth: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // weight: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // minTemp: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // maxTemp: {
+      //   value: '',
+      //   isValid: false,
+      // },
+      // storageInstructions: {
+      //   value: '',
+      //   isValid: false,
+      // },
     },
     false
   );
 
+  // console.log('formState.inputs: ', formState.inputs);
+
   const productSubmitHandler = async (event) => {
     event.preventDefault();
     setShowConfirmation(false);
+    let url;
     // console.log('formState.inputs: ', formState.inputs);
     // console.log('submitting...');
 
     try {
-      // setIsSubmitting(true);
-      // dispatch(catalogActions.addProduct(formState.inputs));
-      // dispatch(catalogActions.setCatalogStorage());
-
       console.log('token: ', token);
+      url = process.env.REACT_APP_BACKEND_URL + '/api/products';
+
+      const formData = new FormData();
+      formData.append('name', formState.inputs.name.value);
+      formData.append('description', formState.inputs.description.value);
+      formData.append('gtin', formState.inputs.gtin.value);
+      formData.append('category', formState.inputs.category.value);
+      formData.append('type', formState.inputs.type.value);
+      formData.append('image', formState.inputs.image.value);
+      formData.append('height', formState.inputs.height.value);
+      formData.append('width', formState.inputs.width.value);
+      formData.append('depth', formState.inputs.depth.value);
+      formData.append('weight', formState.inputs.weight.value);
+      formData.append('packagingType', formState.inputs.packagingType.value);
+      formData.append('tempUnits', formState.inputs.tempUnits.value);
+      formData.append('minTemp', formState.inputs.minTemp.value);
+      formData.append('maxTemp', formState.inputs.maxTemp.value);
+      formData.append(
+        'storageInstructions',
+        formState.inputs.storageInstructions.value
+      );
+      formData.append('subscribers', []);
+      // formData.append('dateAdded', new Date().toISOString());
+      // formData.append('datePublished', null);
+      // formData.append('dateInactive', null);
+      // formData.append('dateModified', null);
 
       await sendRequest(
-        'http://localhost:5000/api/products/',
+        url,
         'POST',
-        JSON.stringify({
-          name: formState.inputs.name.value,
-          description: formState.inputs.description.value,
-          gtin: formState.inputs.gtin.value,
-          category: formState.inputs.category.value,
-          type: formState.inputs.type.value,
-          // image: formState.inputs.image.value || 0,
-          height: formState.inputs.height.value,
-          width: formState.inputs.width.value,
-          depth: formState.inputs.depth.value,
-          weight: formState.inputs.weight.value,
-          packagingType: formState.inputs.packagingType.value,
-          tempUnits: formState.inputs.tempUnits.value,
-          minTemp: formState.inputs.minTemp.value,
-          maxTemp: formState.inputs.maxTemp.value,
-          storageInstructions: formState.inputs.storageInstructions.value,
-          subscribers: [],
-          dateAdded: new Date().toISOString(),
-          datePublished: null,
-          dateInactive: null,
-          dateModified: null,
-        }),
+        // JSON.stringify({
+        //   name: formState.inputs.name.value,
+        //   description: formState.inputs.description.value,
+        //   gtin: formState.inputs.gtin.value,
+        //   category: formState.inputs.category.value,
+        //   type: formState.inputs.type.value,
+        //   // image: formState.inputs.image.value || 0,
+        //   height: formState.inputs.height.value,
+        //   width: formState.inputs.width.value,
+        //   depth: formState.inputs.depth.value,
+        //   weight: formState.inputs.weight.value,
+        //   packagingType: formState.inputs.packagingType.value,
+        //   tempUnits: formState.inputs.tempUnits.value,
+        //   minTemp: formState.inputs.minTemp.value,
+        //   maxTemp: formState.inputs.maxTemp.value,
+        //   storageInstructions: formState.inputs.storageInstructions.value,
+        //   subscribers: [],
+        //   dateAdded: new Date().toISOString(),
+        //   datePublished: null,
+        //   dateInactive: null,
+        //   dateModified: null,
+        // }),
+        formData,
         {
-          'Content-Type': 'application/json',
           Authorization: 'Bearer ' + token,
         }
       );
@@ -235,6 +259,9 @@ const AddProduct = () => {
             <div className={classes2['block-container']}>
               <Button type="submit" disabled={!formState.isValid}>
                 Add Item
+              </Button>
+              <Button to="/products/active" danger>
+                Cancel
               </Button>
             </div>
           </form>

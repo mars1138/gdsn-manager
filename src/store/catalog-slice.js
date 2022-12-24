@@ -11,6 +11,11 @@ const catalogSlice = createSlice({
   reducers: {
     replaceCatalog(state, action) {
       state.products = action.payload.products;
+
+      // state.products.forEach(
+      //   (product) =>
+      //     (product.image = `${process.env.REACT_APP_BACKEND_URL}/${product.image}`)
+      // );
     },
     setCatalogStorage(state) {
       localStorage.setItem('catalog', JSON.stringify(state.products));

@@ -69,7 +69,7 @@ const ResourcesPage = () => {
             </Link>
           </Card>
           <Card>
-            <Link to='/resources/training'>
+            <Link to="/resources/training">
               <h3>Training</h3>
               <div className={classes.image}></div>
               <p>
