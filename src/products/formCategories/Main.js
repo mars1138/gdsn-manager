@@ -29,6 +29,8 @@ const Main = (props) => {
 
   const { product, inputHandler } = props;
 
+  console.log(product);
+
   return (
     <div className={classes.category}>
       <h3>Main</h3>

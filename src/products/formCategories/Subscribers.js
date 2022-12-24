@@ -50,10 +50,10 @@ const Subscribers = (props) => {
 
   // const cardClasses = `${}`
 
-  // console.log('subscribers: ', subscribers);
+  console.log('subscribers: ', subscribers);
   content = <p>No Subscribers</p>;
 
-  subscribers &&
+  subscribers[0] &&
     subscribers.forEach((subscriberNum, i) => {
       const customer = customerList.find((cust) => cust.id === +subscriberNum);
       // console.log('customer: ', customer);
@@ -69,7 +69,9 @@ const Subscribers = (props) => {
       );
     });
 
-  if (subscribers.length > 0) content = subscriberList;
+  if (subscribers && subscribers.length > 0) content = subscriberList;
+
+  console.log('content: ', content);
 
   return (
     <div className={classes.category}>

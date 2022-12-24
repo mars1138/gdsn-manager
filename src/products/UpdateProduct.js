@@ -324,6 +324,8 @@ const UpdateProduct = () => {
   };
 
   console.log(selectOptionsValues);
+  console.log('loadedProduct: ', loadedProduct);
+  console.log('formState: ', formState);
 
   return (
     <Section>

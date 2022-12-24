@@ -104,7 +104,7 @@ const AddProduct = () => {
     false
   );
 
-  // console.log('formState.inputs: ', formState.inputs);
+  console.log('formState.inputs: ', formState.inputs);
 
   const productSubmitHandler = async (event) => {
     event.preventDefault();
