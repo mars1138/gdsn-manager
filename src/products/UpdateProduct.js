@@ -191,6 +191,14 @@ const UpdateProduct = () => {
           value: product.weight,
           isValid: true,
         },
+        packagingType: {
+          value: product.packagingType || '',
+          isValid: true,
+        },
+        tempUnits: {
+          value: product.tempUnits || '',
+          isValid: true,
+        },
         minTemp: {
           value: product.minTemp,
           isValid: true,
@@ -222,7 +230,7 @@ const UpdateProduct = () => {
     event.preventDefault();
     setShowConfirmation(false);
     // console.log('submitting...');
-    // console.log('formState: ', formState);
+    console.log('formState: ', formState);
     // console.log('selectOptionsValues: ', selectOptionsValues);
 
     let url;
@@ -325,7 +333,7 @@ const UpdateProduct = () => {
 
   console.log(selectOptionsValues);
   console.log('loadedProduct: ', loadedProduct);
-  console.log('formState: ', formState);
+  // console.log('formState: ', formState);
 
   return (
     <Section>

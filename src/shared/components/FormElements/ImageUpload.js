@@ -9,11 +9,11 @@ const ImageUpload = (props) => {
   const [isValid, setIsValid] = useState(false);
 
   const filePickerRef = useRef();
+  console.log('props.initialValue: ', props.initialValue);
 
   useEffect(() => {
+    // if (props.initialValue) setPreviewUrl(props.initialValue);
     if (!file) return;
-
-    if (props.initialValue) setPreviewUrl(props.initialValue);
 
     const fileReader = new FileReader();
 
@@ -61,10 +61,13 @@ const ImageUpload = (props) => {
         }`}
       >
         <div className={classes.preview}>
-          {props.initialValue && <img src={props.initialValue} alt="Preview" />}
-          {previewUrl && (
-            <img src={props.initialValue || previewUrl} alt="Preview" />
+          {props.initialValue && !previewUrl && (
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/${props.initialValue}`}
+              alt="Preview"
+            />
           )}
+          {previewUrl && <img src={previewUrl} alt="Preview" />}
           {!props.initialValue && !previewUrl && <p>Please select an image.</p>}
         </div>
         <Button type="button" onClick={pickImageHandler}>
