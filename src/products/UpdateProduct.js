@@ -231,7 +231,9 @@ const UpdateProduct = () => {
     setShowConfirmation(false);
     // console.log('submitting...');
     console.log('formState: ', formState);
-    // console.log('selectOptionsValues: ', selectOptionsValues);
+
+    console.log('updateSubmit subscriberUpdate: ', subscriberUpdate);
+    // const subArray = [...loadedProduct.subscribers, subscriberUpdate];
 
     let url;
 
@@ -265,7 +267,7 @@ const UpdateProduct = () => {
             'storageInstructions',
             formState.inputs.storageInstructions.value
           );
-          formData.append('subscribers', []);
+          formData.append('subscribers', subscriberUpdate);
           // formData.append('dateAdded', new Date().toISOString());
           // formData.append('datePublished', null);
           // formData.append('dateInactive', null);
@@ -389,6 +391,7 @@ const UpdateProduct = () => {
             <Subscribers
               product={loadedProduct ? loadedProduct.gtin : ''}
               subscribers={loadedProduct ? loadedProduct.subscribers : []}
+              // subscribers={subscriberUpdate ? subscriberUpdate : []}
               toggleSubscriber={toggleSubscriber}
             />
             <div className={classes2['block-container']}>

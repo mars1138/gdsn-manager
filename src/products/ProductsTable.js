@@ -152,16 +152,14 @@ const ProductsTable = (props) => {
   const publishProductHandler = () => {
     console.log('actionParams: ', actionParams);
     const gtin = actionParams.gtin;
-    // const custId = selectSubscriber.subscriber;
+    const newSub = selectSubscriber.subscriber;
 
     if (!alreadySubbed) {
       // console.log(gtin, custId);
       // dispatch(catalogActions.addSubscriber({ gtin, custId }));
       // dispatch(catalogActions.setCatalogStorage());
 
-      const existingProduct = dispatch(
-        catalogActions.getProduct({ gtin: gtin })
-      );
+      const existingProduct = catalog.find((item) => item.gtin === gtin);
       console.log('existingProduct: ', existingProduct);
 
       try {
@@ -172,23 +170,23 @@ const ProductsTable = (props) => {
               `http://localhost:5000/api/products/${gtin}`,
               'PATCH',
               JSON.stringify({
-                // name: formState.inputs.name.value,
-                // description: formState.inputs.description.value,
-                // gtin: formState.inputs.gtin.value,
-                // category: selectOptionsValues.category,
-                // type: selectOptionsValues.type,
-                // image: selectOptionsValues.image,
-                // height: formState.inputs.height.value,
-                // width: formState.inputs.width.value,
-                // depth: formState.inputs.depth.value,
-                // weight: formState.inputs.weight.value,
-                // packagingType: selectOptionsValues.packagingType,
-                // tempUnits: selectOptionsValues.tempUnits,
-                // minTemp: formState.inputs.minTemp.value,
-                // maxTemp: formState.inputs.maxTemp.value,
-                // storageInstructions: formState.inputs.storageInstructions.value,
-                subscribers: [...existingProduct.subscribers],
-                datePublished: new Date().getTime(),
+                name: existingProduct.name,
+                description: existingProduct.description,
+                gtin: existingProduct.gtin,
+                category: existingProduct.category,
+                type: existingProduct.type,
+                image: existingProduct.image,
+                height: existingProduct.height,
+                width: existingProduct.width,
+                depth: existingProduct.depth,
+                weight: existingProduct.weight,
+                packagingType: existingProduct.packagingType,
+                tempUnits: existingProduct.tempUnits,
+                minTemp: existingProduct.minTemp,
+                maxTemp: existingProduct.maxTemp,
+                storageInstructions: existingProduct.storageInstructions,
+                subscribers: [...existingProduct.subscribers, newSub],
+                datePublished: new Date().toISOString(),
               }),
               {
                 'Content-Type': 'application/json',
