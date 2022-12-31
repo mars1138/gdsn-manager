@@ -152,7 +152,7 @@ const ProductsTable = (props) => {
   const publishProductHandler = () => {
     console.log('actionParams: ', actionParams);
     const gtin = actionParams.gtin;
-    const newSub = selectSubscriber.subscriber;
+    // const newSub = selectSubscriber.subscriber;
 
     if (!alreadySubbed) {
       // console.log(gtin, custId);
@@ -162,48 +162,38 @@ const ProductsTable = (props) => {
       const existingProduct = catalog.find((item) => item.gtin === gtin);
       console.log('existingProduct: ', existingProduct);
 
-      try {
-        const fetchData = async () => {
-          try {
-            console.log('exec replaceCatalog...');
-            await sendRequest(
-              `http://localhost:5000/api/products/${gtin}`,
-              'PATCH',
-              JSON.stringify({
-                name: existingProduct.name,
-                description: existingProduct.description,
-                gtin: existingProduct.gtin,
-                category: existingProduct.category,
-                type: existingProduct.type,
-                image: existingProduct.image,
-                height: existingProduct.height,
-                width: existingProduct.width,
-                depth: existingProduct.depth,
-                weight: existingProduct.weight,
-                packagingType: existingProduct.packagingType,
-                tempUnits: existingProduct.tempUnits,
-                minTemp: existingProduct.minTemp,
-                maxTemp: existingProduct.maxTemp,
-                storageInstructions: existingProduct.storageInstructions,
-                subscribers: [...existingProduct.subscribers, newSub],
-                datePublished: new Date().toISOString(),
-              }),
-              {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + authToken,
-              }
-            );
+      let url;
 
-            // setDidSubmit(true);
-          } catch (err) {
-            console.log(err);
-          }
-        };
+      const fetchData = async () => {
+        try {
+          console.log('exec replaceCatalog...');
+          url = process.env.REACT_APP_BACKEND_URL + `/api/products/${gtin}`;
 
-        if (authToken && authUserId) {
-          fetchData(authUserId);
+          const formData = new FormData();
+          formData.append('name', existingProduct.name);
+          formData.append('description', existingProduct.description);
+          formData.append('gtin', existingProduct.gtin);
+          formData.append('category', existingProduct.category);
+          formData.append('type', existingProduct.type);
+          formData.append('image', existingProduct.image);
+          formData.append('subscribers', [
+            ...existingProduct.subscribers,
+            +formState.inputs.subscriber.value,
+          ]);
+
+          await sendRequest(url, 'PATCH', formData, {
+            Authorization: 'Bearer ' + authToken,
+          });
+
+          // setDidSubmit(true);
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {}
+      };
+
+      if (authToken && authUserId) {
+        fetchData(authUserId);
+      }
 
       console.log('Product Published!');
       cancelPublishHandler();
@@ -361,6 +351,7 @@ const ProductsTable = (props) => {
         footer={confirmPublishFooter}
       >
         <p>Are you sure you want to publish this product?</p>
+        <br/>
         <p>
           <strong>{`Item: `}</strong>
           {actionParams && actionParams.itemName}

@@ -237,7 +237,6 @@ const UpdateProduct = () => {
 
     let url;
 
-    try {
       const fetchData = async () => {
         try {
           console.log('exec replaceCatalog...');
@@ -310,7 +309,6 @@ const UpdateProduct = () => {
       if (authToken && authUserId) {
         fetchData(authUserId);
       }
-    } catch (err) {}
   };
 
   // for Confirmation Modal
