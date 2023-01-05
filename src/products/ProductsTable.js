@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
 import Button from '../shared/UIElements/Button';
 import Modal from '../shared/UIElements/Modal';
+import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 import { useForm } from '../shared/components/hooks/form-hook';
 import FormInput from '../shared/components/FormElements/FormInput';
 
@@ -29,6 +31,8 @@ const ProductsTable = (props) => {
   const authToken = useSelector((state) => state.auth.token);
   const authUserId = useSelector((state) => state.auth.userId);
   const catalog = useSelector((state) => state.catalog.products);
+  const history = useHistory();
+  const { sendRequest, isSubmitting } = useHttpClient();
 
   let productName, customerName;
   let alreadySubbed = false;
@@ -147,8 +151,6 @@ const ProductsTable = (props) => {
 
   // const [didSubmit, setDidSubmit] = useState(false);
 
-  const { sendRequest } = useHttpClient();
-
   const publishProductHandler = () => {
     console.log('actionParams: ', actionParams);
     const gtin = actionParams.gtin;
@@ -185,7 +187,7 @@ const ProductsTable = (props) => {
             Authorization: 'Bearer ' + authToken,
           });
 
-          // setDidSubmit(true);
+          history.push('/products');
         } catch (err) {
           console.log(err);
         }
@@ -205,21 +207,88 @@ const ProductsTable = (props) => {
     console.log('actionParams: ', actionParams);
     const gtin = actionParams.gtin;
     const status = actionParams.action;
-    dispatch(
-      catalogActions.toggleProductActive({
-        gtin: gtin,
-        status: status,
-      })
-    );
+    const dateInactive =
+      status === 'activate'
+        ? new Date(0).toISOString()
+        : new Date().toISOString();
+    const existingProduct = catalog.find((item) => item.gtin === gtin);
+    console.log('existingProduct: ', existingProduct);
 
-    status === 'activate' && cancelActivateHandler();
-    status === 'deactivate' && cancelDeactivateHandler();
-    dispatch(catalogActions.setCatalogStorage());
+    let url;
+    // dispatch(
+    //   catalogActions.toggleProductActive({
+    //     gtin: gtin,
+    //     status: status,
+    //   })
+    // );
+
+    const fetchData = async () => {
+      try {
+        console.log('activating product...');
+        url = process.env.REACT_APP_BACKEND_URL + `/api/products/${gtin}`;
+
+        const formData = new FormData();
+        formData.append('name', existingProduct.name);
+        formData.append('description', existingProduct.description);
+        formData.append('gtin', existingProduct.gtin);
+        formData.append('subscribers', existingProduct.subscribers);
+        formData.append('dateInactive', dateInactive);
+
+        await sendRequest(url, 'PATCH', formData, {
+          Authorization: 'Bearer ' + authToken,
+        });
+
+        history.push('/products');
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    if (authToken && authUserId) {
+      fetchData(authUserId);
+    }
+
+    status === 'activate' ? cancelActivateHandler() : cancelDeactivateHandler();
+    // dispatch(catalogActions.setCatalogStorage());
   };
 
   const deleteProductHandler = () => {
     const gtin = actionParams.gtin;
-    dispatch(catalogActions.deleteProduct(gtin));
+    const existingProduct = catalog.find((item) => item.gtin === gtin);
+    console.log('existingProduct: ', existingProduct);
+    // dispatch(catalogActions.deleteProduct(gtin));
+
+    let url;
+    // dispatch(
+    //   catalogActions.toggleProductActive({
+    //     gtin: gtin,
+    //     status: status,
+    //   })
+    // );
+
+    const fetchData = async () => {
+      try {
+        console.log('activating product...');
+        url = process.env.REACT_APP_BACKEND_URL + `/api/products/${gtin}`;
+
+        await sendRequest(
+          url,
+          'DELETE',
+          {},
+          {
+            Authorization: 'Bearer ' + authToken,
+          }
+        );
+
+        history.push('/products');
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    if (authToken && authUserId) {
+      fetchData(authUserId);
+    }
     cancelDeleteHandler();
     dispatch(catalogActions.setCatalogStorage());
   };
@@ -327,6 +396,8 @@ const ProductsTable = (props) => {
         onChange={handleFilterChange}
         placeholder={'Search name'}
       />
+
+      {isSubmitting && <LoadingSpinner />}
 
       <Modal
         show={showChooseSubscriber}
