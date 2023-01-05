@@ -351,7 +351,7 @@ const ProductsTable = (props) => {
         footer={confirmPublishFooter}
       >
         <p>Are you sure you want to publish this product?</p>
-        <br/>
+        <br />
         <p>
           <strong>{`Item: `}</strong>
           {actionParams && actionParams.itemName}

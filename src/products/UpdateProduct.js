@@ -237,78 +237,75 @@ const UpdateProduct = () => {
 
     let url;
 
-      const fetchData = async () => {
-        try {
-          console.log('exec replaceCatalog...');
-          url =
-            process.env.REACT_APP_BACKEND_URL +
-            `/api/products/${formState.inputs.gtin.value}`;
+    const fetchData = async () => {
+      try {
+        console.log('exec replaceCatalog...');
+        url =
+          process.env.REACT_APP_BACKEND_URL +
+          `/api/products/${formState.inputs.gtin.value}`;
 
-          const formData = new FormData();
-          formData.append('name', formState.inputs.name.value);
-          formData.append('description', formState.inputs.description.value);
-          formData.append('gtin', formState.inputs.gtin.value);
-          formData.append('category', formState.inputs.category.value);
-          formData.append('type', formState.inputs.type.value);
-          formData.append('image', formState.inputs.image.value);
-          formData.append('height', formState.inputs.height.value);
-          formData.append('width', formState.inputs.width.value);
-          formData.append('depth', formState.inputs.depth.value);
-          formData.append('weight', formState.inputs.weight.value);
-          formData.append(
-            'packagingType',
-            formState.inputs.packagingType.value
-          );
-          formData.append('tempUnits', formState.inputs.tempUnits.value);
-          formData.append('minTemp', formState.inputs.minTemp.value);
-          formData.append('maxTemp', formState.inputs.maxTemp.value);
-          formData.append(
-            'storageInstructions',
-            formState.inputs.storageInstructions.value
-          );
-          formData.append('subscribers', subscriberUpdate);
-          // formData.append('dateAdded', new Date().toISOString());
-          // formData.append('datePublished', null);
-          // formData.append('dateInactive', null);
-          // formData.append('dateModified', null);
+        const formData = new FormData();
+        formData.append('name', formState.inputs.name.value);
+        formData.append('description', formState.inputs.description.value);
+        formData.append('gtin', formState.inputs.gtin.value);
+        formData.append('category', formState.inputs.category.value);
+        formData.append('type', formState.inputs.type.value);
+        formData.append('image', formState.inputs.image.value);
+        formData.append('height', formState.inputs.height.value);
+        formData.append('width', formState.inputs.width.value);
+        formData.append('depth', formState.inputs.depth.value);
+        formData.append('weight', formState.inputs.weight.value);
+        formData.append('packagingType', formState.inputs.packagingType.value);
+        formData.append('tempUnits', formState.inputs.tempUnits.value);
+        formData.append('minTemp', formState.inputs.minTemp.value);
+        formData.append('maxTemp', formState.inputs.maxTemp.value);
+        formData.append(
+          'storageInstructions',
+          formState.inputs.storageInstructions.value
+        );
+        formData.append('subscribers', subscriberUpdate);
+        // formData.append('dateAdded', new Date().toISOString());
+        // formData.append('datePublished', null);
+        // formData.append('dateInactive', null);
+        // formData.append('dateModified', null);
 
-          await sendRequest(
-            url,
-            'PATCH',
-            // JSON.stringify({
-            //   name: formState.inputs.name.value,
-            //   description: formState.inputs.description.value,
-            //   gtin: formState.inputs.gtin.value,
-            //   category: selectOptionsValues.category,
-            //   type: selectOptionsValues.type,
-            //   image: selectOptionsValues.image,
-            //   height: formState.inputs.height.value,
-            //   width: formState.inputs.width.value,
-            //   depth: formState.inputs.depth.value,
-            //   weight: formState.inputs.weight.value,
-            //   packagingType: selectOptionsValues.packagingType,
-            //   tempUnits: selectOptionsValues.tempUnits,
-            //   minTemp: formState.inputs.minTemp.value,
-            //   maxTemp: formState.inputs.maxTemp.value,
-            //   storageInstructions: formState.inputs.storageInstructions.value,
-            //   subscribers: [...subscriberUpdate],
-            //   dateModified: new Date().getTime(),
-            // }),
-            formData,
-            {
-              Authorization: 'Bearer ' + authToken,
-            }
-          );
+        await sendRequest(
+          url,
+          'PATCH',
+          // JSON.stringify({
+          //   name: formState.inputs.name.value,
+          //   description: formState.inputs.description.value,
+          //   gtin: formState.inputs.gtin.value,
+          //   category: selectOptionsValues.category,
+          //   type: selectOptionsValues.type,
+          //   image: selectOptionsValues.image,
+          //   height: formState.inputs.height.value,
+          //   width: formState.inputs.width.value,
+          //   depth: formState.inputs.depth.value,
+          //   weight: formState.inputs.weight.value,
+          //   packagingType: selectOptionsValues.packagingType,
+          //   tempUnits: selectOptionsValues.tempUnits,
+          //   minTemp: formState.inputs.minTemp.value,
+          //   maxTemp: formState.inputs.maxTemp.value,
+          //   storageInstructions: formState.inputs.storageInstructions.value,
+          //   subscribers: [...subscriberUpdate],
+          //   dateModified: new Date().getTime(),
+          // }),
+          formData,
+          {
+            Authorization: 'Bearer ' + authToken,
+          }
+        );
 
-          setDidSubmit(true);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-
-      if (authToken && authUserId) {
-        fetchData(authUserId);
+        setDidSubmit(true);
+      } catch (err) {
+        console.log(err);
       }
+    };
+
+    if (authToken && authUserId) {
+      fetchData(authUserId);
+    }
   };
 
   // for Confirmation Modal
