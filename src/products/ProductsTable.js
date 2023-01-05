@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
 import Button from '../shared/UIElements/Button';
@@ -9,7 +9,7 @@ import LoadingSpinner from '../shared/UIElements/LoadingSpinner';
 import { useForm } from '../shared/components/hooks/form-hook';
 import FormInput from '../shared/components/FormElements/FormInput';
 
-import { catalogActions } from '../../src/store/catalog-slice';
+// import { catalogActions } from '../../src/store/catalog-slice';
 import { useHttpClient } from '../shared/components/hooks/http-hook';
 import {
   useConfirmationModal,
@@ -26,7 +26,7 @@ const ProductsTable = (props) => {
   const [actionParams, setActionParams] = useState();
   const [selectSubscriber, setSelectSubscriber] = useState();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const authToken = useSelector((state) => state.auth.token);
   const authUserId = useSelector((state) => state.auth.userId);
@@ -290,7 +290,7 @@ const ProductsTable = (props) => {
       fetchData(authUserId);
     }
     cancelDeleteHandler();
-    dispatch(catalogActions.setCatalogStorage());
+    // dispatch(catalogActions.setCatalogStorage());
   };
 
   const cancelHandler = () => {
