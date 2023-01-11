@@ -25,6 +25,7 @@ const ProductsTable = (props) => {
   const [filterInput, setFilterInput] = useState('');
   const [actionParams, setActionParams] = useState();
   const [selectSubscriber, setSelectSubscriber] = useState();
+  const [actionCompleted, setActionCompleted] = useState();
 
   // const dispatch = useDispatch();
 
@@ -187,9 +188,14 @@ const ProductsTable = (props) => {
             Authorization: 'Bearer ' + authToken,
           });
 
-          history.push('/products');
+          // history.push('/products');
+          cancelPublishHandler();
+          cancelSubscriberHandler();
+          setActionCompleted('published.');
         } catch (err) {
           console.log(err);
+          cancelPublishHandler();
+          cancelSubscriberHandler();
         }
       };
 
@@ -197,10 +203,13 @@ const ProductsTable = (props) => {
         fetchData(authUserId);
       }
 
-      console.log('Product Published!');
-      cancelPublishHandler();
-      cancelSubscriberHandler();
+      // console.log('Product Published!');
     }
+  };
+
+  const actionCompletedHandler = () => {
+    setActionCompleted(null);
+    history.go(0);
   };
 
   const activeStatusHandler = () => {
@@ -238,7 +247,12 @@ const ProductsTable = (props) => {
           Authorization: 'Bearer ' + authToken,
         });
 
-        history.push('/products');
+        status === 'activate'
+          ? cancelActivateHandler()
+          : cancelDeactivateHandler();
+        const action = status === 'activate' ? 'activated' : 'deactivated';
+        setActionCompleted(action);
+        // history.push('/products');
       } catch (err) {
         console.log(err);
       }
@@ -248,7 +262,6 @@ const ProductsTable = (props) => {
       fetchData(authUserId);
     }
 
-    status === 'activate' ? cancelActivateHandler() : cancelDeactivateHandler();
     // dispatch(catalogActions.setCatalogStorage());
   };
 
@@ -398,6 +411,13 @@ const ProductsTable = (props) => {
       />
 
       {isSubmitting && <LoadingSpinner />}
+      <Modal
+        show={actionCompleted}
+        onClear={actionCompletedHandler}
+        msgHeader={`Success!`}
+      >
+        <p>Product has been {actionCompleted}</p>
+      </Modal>
 
       <Modal
         show={showChooseSubscriber}
