@@ -24,7 +24,8 @@ import Webinars from './resources/Webinars';
 import Training from './resources/Training';
 import Support from './resources/Support';
 import { useHttpClient } from './shared/components/hooks/http-hook';
-import { catalogActions } from './store/catalog-slice';
+// import { catalogActions } from './store/catalog-slice';
+import { fetchCatalog } from './store/catalog-actions';
 
 import ServicesPage from './services/ServicesPage';
 import PlansPage from './plans/PlansPage';
@@ -36,10 +37,10 @@ import { authActions } from './store/auth-slice';
 let logoutTimer;
 
 function App() {
-  const isAuth = useSelector((state) => state.auth.isAuthenticated);
-  const authUserId = useSelector((state) => state.auth.userId);
-  const authToken = useSelector((state) => state.auth.token);
-  const authExpire = useSelector((state) => state.auth.expireDate);
+  const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const authUserId = useSelector(state => state.auth.userId);
+  const authToken = useSelector(state => state.auth.token);
+  const authExpire = useSelector(state => state.auth.expireDate);
 
   const dispatch = useDispatch();
 
@@ -52,41 +53,41 @@ function App() {
   // );
 
   useEffect(() => {
-    console.log('authToken: ', authToken);
-    console.log('authExpire: ', authExpire);
+    // console.log('authToken: ', authToken);
+    // console.log('authExpire: ', authExpire);
     if (authToken !== null && authExpire !== null) {
       const remainingTime = authExpire - new Date().getTime();
-      console.log(remainingTime);
+      // console.log(remainingTime);
       logoutTimer = setTimeout(() => {
         dispatch(authActions.logout());
       }, remainingTime);
 
-      const fetchData = async (user) => {
-        try {
-          console.log('exec replaceCatalog...');
-          const catalog = await sendRequest(
-            `http://localhost:5000/api/products/user/${user}`,
-            'GET',
-            null,
-            {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + authToken,
-            }
-          );
+      // const fetchData = async (user) => {
+      //   try {
+      //     console.log('exec replaceCatalog...');
+      //     const catalog = await sendRequest(
+      //       `http://localhost:5000/api/products/user/${user}`,
+      //       'GET',
+      //       null,
+      //       {
+      //         'Content-Type': 'application/json',
+      //         Authorization: 'Bearer ' + authToken,
+      //       }
+      //     );
 
-          // console.log('fetchedProducts: ', catalog);
-          dispatch(
-            catalogActions.replaceCatalog({ products: [...catalog.products] })
-          );
-        } catch (err) {
-          console.log(err);
-        }
-      };
+      //     // console.log('fetchedProducts: ', catalog);
+      //     dispatch(
+      //       catalogActions.replaceCatalog({ products: [...catalog.products] })
+      //     );
+      //   } catch (err) {
+      //     console.log(err);
+      //   }
+      // };
 
-      console.log(authToken, authUserId);
+      // console.log(authToken, authUserId);
 
       if (authToken && authUserId) {
-        fetchData(authUserId);
+        fetchCatalog(authUserId);
       }
     } else {
       clearTimeout(logoutTimer);
@@ -96,7 +97,7 @@ function App() {
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
 
-    console.log('storedData: ', storedData);
+    // console.log('storedData: ', storedData);
     if (
       storedData &&
       storedData.token &&
@@ -108,7 +109,7 @@ function App() {
           user: storedData.userId,
           token: storedData.token,
           expireDate: storedData.expireDate,
-        })
+        }),
       );
     } else {
       localStorage.removeItem('userData');

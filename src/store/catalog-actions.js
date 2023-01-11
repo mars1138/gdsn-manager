@@ -1,10 +1,18 @@
 import { catalogActions } from './catalog-slice';
 
-export const fetchCatalogData = (userId) => {
-  return async (dispatch) => {
-    const fetchData = async (userId) => {
+export const fetchCatalog = (userId, userToken) => {
+  return async dispatch => {
+    const fetchData = async () => {
       const response = await fetch(
-        `https://localhost:5000/api/products/user/${userId}`
+        `http://localhost:5000/api/products/user/${userId}`,
+        {
+          method: 'GET',
+          body: null,
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + userToken,
+          },
+        },
       );
 
       if (!response.ok) throw new Error('Could not fetch product catalog');
@@ -19,17 +27,17 @@ export const fetchCatalogData = (userId) => {
 
       dispatch(
         catalogActions.replaceCatalog({
-          products: catalogData.products || [],
-        })
+          products: [...catalogData.products] || [],
+        }),
       );
     } catch (err) {
-      ///
+      console.log(err);
     }
   };
 };
 
-export const sendCatalogData = (catalog) => {
-  return async (dispatch) => {
+export const sendCatalogData = catalog => {
+  return async dispatch => {
     /// show notification sending...
 
     const sendCatalog = async () => {
