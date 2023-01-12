@@ -53,7 +53,6 @@ const Support = () => {
         <Hero type="center" />
       </Section>
       <Section>
-        {/* <h2>Support</h2> */}
         <div className={classes.cards}>
           <Card>
             <h3>CARD CONTENT</h3>

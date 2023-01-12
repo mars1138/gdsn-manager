@@ -18,9 +18,7 @@ import {
   useConfirmationModal,
   useConfirmModalFooter,
 } from '../shared/components/hooks/confirmation-hook';
-// import { catalogActions } from '../../src/store/catalog-slice';
 
-// import FormInput from '../shared/components/FormElements/FormInput';
 import {
   categoryOptions,
   typeOptions,
@@ -31,20 +29,10 @@ import classes from './AddProduct.module.css';
 import classes2 from './formCategories/Categories.module.css';
 
 const AddProduct = () => {
-  // const [error, setError] = useState(false);
-  // const [isSubmitting, setIsSubmitting] = useState(false);
   const { isSubmitting, error, sendRequest, clearError } = useHttpClient();
   const [didSubmit, setDidSubmit] = useState(false);
-  // const [showConfirmation, setShowConfirmation] = useState(false);
-  // const dispatch = useDispatch();
   const history = useHistory();
   const token = useSelector((state) => state.auth.token);
-
-  // const showAddConfirmHandler = (event) => {
-  //   event.preventDefault();
-  //   setShowConfirmation(true);
-  // };
-  // const cancelAddHandler = () => setShowConfirmation(false);
 
   const [formState, inputHandler] = useForm(
     {
@@ -72,34 +60,6 @@ const AddProduct = () => {
         value: null,
         isValid: false,
       },
-      // height: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // width: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // depth: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // weight: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // minTemp: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // maxTemp: {
-      //   value: '',
-      //   isValid: false,
-      // },
-      // storageInstructions: {
-      //   value: '',
-      //   isValid: false,
-      // },
     },
     false
   );
@@ -110,8 +70,6 @@ const AddProduct = () => {
     event.preventDefault();
     setShowConfirmation(false);
     let url;
-    // console.log('formState.inputs: ', formState.inputs);
-    // console.log('submitting...');
 
     try {
       console.log('token: ', token);
@@ -137,62 +95,14 @@ const AddProduct = () => {
         formState.inputs.storageInstructions.value
       );
       formData.append('subscribers', []);
-      // formData.append('dateAdded', new Date().toISOString());
-      // formData.append('datePublished', null);
-      // formData.append('dateInactive', null);
-      // formData.append('dateModified', null);
 
-      await sendRequest(
-        url,
-        'POST',
-        // JSON.stringify({
-        //   name: formState.inputs.name.value,
-        //   description: formState.inputs.description.value,
-        //   gtin: formState.inputs.gtin.value,
-        //   category: formState.inputs.category.value,
-        //   type: formState.inputs.type.value,
-        //   // image: formState.inputs.image.value || 0,
-        //   height: formState.inputs.height.value,
-        //   width: formState.inputs.width.value,
-        //   depth: formState.inputs.depth.value,
-        //   weight: formState.inputs.weight.value,
-        //   packagingType: formState.inputs.packagingType.value,
-        //   tempUnits: formState.inputs.tempUnits.value,
-        //   minTemp: formState.inputs.minTemp.value,
-        //   maxTemp: formState.inputs.maxTemp.value,
-        //   storageInstructions: formState.inputs.storageInstructions.value,
-        //   subscribers: [],
-        //   dateAdded: new Date().toISOString(),
-        //   datePublished: null,
-        //   dateInactive: null,
-        //   dateModified: null,
-        // }),
-        formData,
-        {
-          Authorization: 'Bearer ' + token,
-        }
-      );
+      await sendRequest(url, 'POST', formData, {
+        Authorization: 'Bearer ' + token,
+      });
 
-      // const responseData = await response.json();
-
-      // if (!response.ok) {
-      //   console.log(responseData.message);
-      //   throw new Error(responseData.message);
-      // }
-      // console.log(responseData);
-
-      // setIsSubmitting(false);
       setDidSubmit(true);
-
-      // setTimeout(() => {
-      //   setIsSubmitting(false);
-      //   history.push('/products/active');
-      // }, 2000);
     } catch (err) {
-      // setErrorMessage(err.message);
-      // setIsSubmitting(false);
-      // setError(err.message);
-      // console.log(err);
+      console.log(err);
     }
   };
 

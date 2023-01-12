@@ -14,7 +14,6 @@ const authSlice = createSlice({
     login(state, action) {
       console.log('action.payload: ', action.payload);
       const { user, token, expireDate } = action.payload;
-      // const tokenExpire = new Date(new Date().getTime() + 10000).getTime(); // test timeout
 
       const tokenExpire =
         expireDate || new Date(new Date().getTime() + 1000 * 60 * 60).getTime(); // 1hr in future

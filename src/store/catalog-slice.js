@@ -11,11 +11,6 @@ const catalogSlice = createSlice({
   reducers: {
     replaceCatalog(state, action) {
       state.products = action.payload.products;
-
-      // state.products.forEach(
-      //   (product) =>
-      //     (product.image = `${process.env.REACT_APP_BACKEND_URL}/${product.image}`)
-      // );
     },
     setCatalogStorage(state) {
       localStorage.setItem('catalog', JSON.stringify(state.products));
@@ -74,14 +69,6 @@ const catalogSlice = createSlice({
         (item) => item.gtin === newItem.gtin
       );
 
-      // newItem.dateAdded = existingItem.dateAdded;
-      // newItem.datePublished = existingItem.datePublished;
-      // newItem.dateInactive = existingItem.dateInactive;
-
-      console.log('newItem: ', newItem);
-
-      // existingItem = { ...newItem };
-
       existingItem.name = newItem.name;
       existingItem.description = newItem.description;
       existingItem.gtin = newItem.gtin;
@@ -100,14 +87,6 @@ const catalogSlice = createSlice({
       existingItem.subscribers = [...newItem.subscribers];
       existingItem.dateModified = new Date().getTime();
     },
-    // deactivateProduct(state, action) {
-    //   const gtin = action.payload;
-    //   const existingItem = state.products.find(item => item.gtin === gtin);
-
-    //   if (existingItem) {
-    //     existingItem.dateInactive = new Date().toLocaleDateString();
-    //   }
-    // },
     toggleProductActive(state, action) {
       const gtin = action.payload.gtin;
       const existingItem = state.products.find((item) => item.gtin === gtin);
@@ -149,15 +128,11 @@ const catalogSlice = createSlice({
     removeSubscriber(state, action) {
       const custId = action.payload.custId;
       const prod = action.payload.productNum;
-      // console.log('custId: ', custId);
-      // console.log('prod: ', prod);
 
       const existingProduct = state.products.find((item) => item.gtin === prod);
-      // console.log('existingProd: ', existingProduct);
       const newSubs = existingProduct.subscribers.filter(
         (cust) => cust !== custId
       );
-      // console.log('newsubs: ', newSubs);
 
       if (existingProduct) {
         existingProduct.subscribers = newSubs;

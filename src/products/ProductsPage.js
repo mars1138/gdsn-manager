@@ -9,7 +9,7 @@ import Section from '../shared/components/layout/Section';
 import Hero from '../shared/components/layout/Hero';
 import classes from './ProductsPage.module.css';
 // import { catalogActions } from '../store/catalog-slice';
-import { fetchCatalog } from '../store/catalog-actions';
+import { fetchCatalog } from '../store/catalog-functions';
 
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';

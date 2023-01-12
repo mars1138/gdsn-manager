@@ -54,7 +54,6 @@ const AboutPage = () => {
         <Hero />
       </Section>
       <Section>
-        {/* <h2>About</h2> */}
         <div className={classes.cards}>
           <Card>
             <h3>CARD CONTENT</h3>

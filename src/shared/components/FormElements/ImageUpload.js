@@ -12,7 +12,6 @@ const ImageUpload = (props) => {
   console.log('props.initialValue: ', props.initialValue);
 
   useEffect(() => {
-    // if (props.initialValue) setPreviewUrl(props.initialValue);
     if (!file) return;
 
     const fileReader = new FileReader();

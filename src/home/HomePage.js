@@ -110,7 +110,6 @@ const HomePage = () => {
         <Hero type="right" />
       </Section>
       <Section>
-        {/* <h2>Home</h2> */}
         <div className={classes.cards}>
           <Card>
             <h3>CARD CONTENT</h3>

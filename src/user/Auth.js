@@ -23,7 +23,6 @@ const Auth = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { isSubmitting, error, sendRequest, clearError } = useHttpClient();
-  // const [didSubmit, setDidSubmit] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [formState, inputHandler, setFormData] = useForm(
     {

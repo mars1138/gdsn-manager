@@ -20,13 +20,6 @@ const ModalOverlay = (props) => {
           <Button onClick={props.onClear}>Close</Button>
         </div>
       )}
-      {/* <p className={classes.message}>
-        {props.message ? props.message : ''}
-        {props.children}
-      </p>
-      <div className={classes.button}>
-        <Button onClick={props.onClear}>Close</Button>
-      </div> */}
     </div>
   );
 

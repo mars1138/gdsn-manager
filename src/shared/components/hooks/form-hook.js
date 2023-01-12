@@ -14,8 +14,6 @@ const formReducer = (state, action) => {
         }
       }
 
-      // console.log('formIsValid: ', formIsValid);
-
       return {
         ...state,
         inputs: {
@@ -43,8 +41,6 @@ export const useForm = (initialInputs, initialFormValidity) => {
   });
 
   const inputHandler = useCallback((id, value, isValid) => {
-    // console.log('inputHandler activated...', id);
-
     dispatch({
       type: 'INPUT_CHANGE',
       value: value,

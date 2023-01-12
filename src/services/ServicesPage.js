@@ -85,61 +85,12 @@ const ServicesPage = () => {
         <Hero />
       </Section>
       <Section>
-        {/* <h2>Services</h2> */}
         <TabComponent>{tabContent}</TabComponent>
       </Section>
       <Section trigger="0.1">
         <Slider type="gallery" content={sliderGallery} />
         <Slider type="testimonial" content={sliderTestimonial} />
       </Section>
-      {/* <Section>
-        <div className={classes.cards}>
-          <div className={classes.first}>
-            <Card>
-              <h2>CARD CONTENT</h2>
-              <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                tempora provident explicabo inventore pariatur, nobis cumque a
-                culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-                porro enim.
-              </p>
-            </Card>
-            </div>
-            <div className={classes.second}>
-            <Card>
-              <h2>CARD CONTENT</h2>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                tempora provident explicabo inventore pariatur, nobis cumque a
-                culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-                porro enim.
-              </p>
-            </Card>
-            </div>
-            <div className={classes.third}>
-            <Card>
-            <h2>CARD CONTENT</h2>
-            <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                tempora provident explicabo inventore pariatur, nobis cumque a
-                culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-                porro enim.
-                </p>
-                </Card>
-                </div>
-                <div className={classes.fourth}>
-            <Card>
-            <h2>CARD CONTENT</h2>
-              <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                tempora provident explicabo inventore pariatur, nobis cumque a
-                culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-                porro enim.
-                </p>
-                </Card>
-          </div>
-        </div>
-      </Section> */}
     </React.Fragment>
   );
 };

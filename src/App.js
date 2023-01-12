@@ -24,71 +24,36 @@ import Webinars from './resources/Webinars';
 import Training from './resources/Training';
 import Support from './resources/Support';
 import { useHttpClient } from './shared/components/hooks/http-hook';
-// import { catalogActions } from './store/catalog-slice';
-import { fetchCatalog } from './store/catalog-actions';
+import { authActions } from './store/auth-slice';
+import { fetchCatalog } from './store/catalog-functions';
 
 import ServicesPage from './services/ServicesPage';
 import PlansPage from './plans/PlansPage';
 import Auth from './user/Auth';
 
-import { authActions } from './store/auth-slice';
-// import { catalogActions } from './store/catalog-slice';
-
 let logoutTimer;
 
 function App() {
-  const isAuth = useSelector(state => state.auth.isAuthenticated);
-  const authUserId = useSelector(state => state.auth.userId);
-  const authToken = useSelector(state => state.auth.token);
-  const authExpire = useSelector(state => state.auth.expireDate);
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const authUserId = useSelector((state) => state.auth.userId);
+  const authToken = useSelector((state) => state.auth.token);
+  const authExpire = useSelector((state) => state.auth.expireDate);
 
   const dispatch = useDispatch();
 
   const { sendRequest } = useHttpClient();
   let routes;
 
-  // console.log(
-  //   'authState: ',
-  //   useSelector(state => state.auth),
-  // );
-
   useEffect(() => {
     // console.log('authToken: ', authToken);
     // console.log('authExpire: ', authExpire);
     if (authToken !== null && authExpire !== null) {
       const remainingTime = authExpire - new Date().getTime();
-      // console.log(remainingTime);
       logoutTimer = setTimeout(() => {
         dispatch(authActions.logout());
       }, remainingTime);
 
-      // const fetchData = async (user) => {
-      //   try {
-      //     console.log('exec replaceCatalog...');
-      //     const catalog = await sendRequest(
-      //       `http://localhost:5000/api/products/user/${user}`,
-      //       'GET',
-      //       null,
-      //       {
-      //         'Content-Type': 'application/json',
-      //         Authorization: 'Bearer ' + authToken,
-      //       }
-      //     );
-
-      //     // console.log('fetchedProducts: ', catalog);
-      //     dispatch(
-      //       catalogActions.replaceCatalog({ products: [...catalog.products] })
-      //     );
-      //   } catch (err) {
-      //     console.log(err);
-      //   }
-      // };
-
-      // console.log(authToken, authUserId);
-
-      if (authToken && authUserId) {
-        fetchCatalog(authUserId);
-      }
+      dispatch(fetchCatalog(authUserId, authToken));
     } else {
       clearTimeout(logoutTimer);
     }
@@ -97,7 +62,6 @@ function App() {
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
 
-    // console.log('storedData: ', storedData);
     if (
       storedData &&
       storedData.token &&
@@ -109,7 +73,7 @@ function App() {
           user: storedData.userId,
           token: storedData.token,
           expireDate: storedData.expireDate,
-        }),
+        })
       );
     } else {
       localStorage.removeItem('userData');
@@ -167,9 +131,6 @@ function App() {
         <Route path="/about">
           <AboutPage />
         </Route>
-        {/* <Route path="/auth">
-          <Auth />
-        </Route> */}
         <Redirect to="/products" />
       </Switch>
     );

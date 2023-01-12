@@ -11,25 +11,7 @@ import {
 import classes from './Categories.module.css';
 
 const Main = (props) => {
-  // const categoryOptions = ['', 'Food', 'Clothing', 'Electronics'];
-  // const typeOptions = ['', 'Case', 'Display', 'Each', 'Pallet'];
-  // const categoryOptions = [
-  //   { id: '', name: '' },
-  //   { id: 0, name: 'Food' },
-  //   { id: 1, name: 'Clothing' },
-  //   { id: 2, name: 'Electronics' },
-  // ];
-  // const typeOptions = [
-  //   { id: '', name: '' },
-  //   { id: 0, name: 'Case' },
-  //   { id: 1, name: 'Display' },
-  //   { id: 2, name: 'Each' },
-  //   { id: 3, name: 'Pallet' },
-  // ];
-
   const { product, inputHandler } = props;
-
-  console.log(product);
 
   return (
     <div className={classes.category}>

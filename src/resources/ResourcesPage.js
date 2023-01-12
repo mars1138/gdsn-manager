@@ -55,7 +55,6 @@ const ResourcesPage = () => {
         <Hero type="right" />
       </Section>
       <Section>
-        {/* <h2>Resources</h2> */}
         <div className={classes.cards}>
           <Card>
             <Link to="/resources/webinars">

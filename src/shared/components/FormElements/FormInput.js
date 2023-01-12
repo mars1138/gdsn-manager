@@ -81,7 +81,6 @@ const FormInput = (props) => {
         className={disabledClass}
       />
     );
-    // console.log(`input ${props.id} key: `, `${props.id}-input`);
   }
 
   if (props.element === 'textarea') {
@@ -96,7 +95,6 @@ const FormInput = (props) => {
         placeholder={props.placeholder}
       />
     );
-    // console.log(`textarea ${props.id} key: `, `${props.id}-text`);
   }
 
   if (props.element === 'select') {
@@ -108,14 +106,11 @@ const FormInput = (props) => {
           <option
             key={`${props.id ? props.id : 'option'}-${index}`}
             value={option.id}
-            // selected={option === props.selected ? option : ''}
             className={props.edit && disabledClass}
           >
-            {/* {`${option.name} ${option.id && '(GLN: ' + option.id + ')'}`} */}
             {option.name}
           </option>
         );
-        // console.log(`option=${option.id} key: `, `${props.id ? props.id : 'option'}-${index}`);
       });
 
     element = (
@@ -130,7 +125,6 @@ const FormInput = (props) => {
         {optionsArray}
       </select>
     );
-    // console.log(`select ${props.id} key: `, `${props.id}-select`);
   }
 
   return (

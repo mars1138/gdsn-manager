@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 
 import Button from '../../UIElements/Button';
 
-export const useConfirmationModal = (
-  submitFunction,
-  confirmLabel,
-  cancelLabel
-) => {
+export const useConfirmationModal = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const showConfirmationHandler = (event) => {
@@ -21,7 +17,6 @@ export const useConfirmationModal = (
     setShowConfirmation,
     showConfirmationHandler,
     cancelConfirmationHandler,
-    // confirmModalFooter,
   };
 };
 
