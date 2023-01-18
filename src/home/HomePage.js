@@ -52,20 +52,17 @@ const tabContent = [
 const sliderHome = [
   {
     title: 'Content Header 1',
-    text:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
   },
   {
     title: 'Content Header 2',
-    text:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: '/media/pexels-fauxels-3183197.jpg',
   },
   {
     title: 'Content Header 3',
-    text:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: '/media/pexels-fauxels-3184418.jpg',
   },
 ];
@@ -103,11 +100,15 @@ const sliderTestimonial = [
   },
 ];
 
+const heroTitle = 'Home';
+const heroText =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
+
 const HomePage = () => {
   return (
     <React.Fragment>
       <Section>
-        <Hero type="right" />
+        <Hero type="right" page="home" title={heroTitle} text={heroText} />
       </Section>
       <Section>
         <div className={classes.cards}>

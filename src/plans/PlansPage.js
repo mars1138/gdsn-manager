@@ -61,6 +61,10 @@ const sliderTestimonial = [
   },
 ];
 
+const heroTitle = 'Pricing Plans';
+const heroText =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
+
 const PlansPage = () => {
   const plansArray = [];
 
@@ -71,7 +75,7 @@ const PlansPage = () => {
   return (
     <React.Fragment>
       <Section>
-        <Hero type="center" />
+        <Hero type="center" title={heroTitle} text={heroText} page="plans" />
       </Section>
       <Section>
         <div className={classes.cards}>{plansArray}</div>

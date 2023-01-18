@@ -8,7 +8,6 @@ import Slider from '../shared/components/Slider/Slider';
 import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
 import img3 from '../assets/pexels-fauxels-3184418.jpg';
-import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
 
 const tabContent = [
   {
@@ -34,14 +33,6 @@ const tabContent = [
       'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 3 Heading',
     imgUrl: img3,
-  },
-  {
-    id: 4,
-    tabTitle: 'Solutions4',
-    content:
-      'Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 4 Heading',
-    imgUrl: img4,
   },
 ];
 
@@ -78,11 +69,15 @@ const sliderTestimonial = [
   },
 ];
 
+const heroTitle = 'Home';
+const heroText =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
+
 const ServicesPage = () => {
   return (
     <React.Fragment>
       <Section>
-        <Hero />
+        <Hero page="services" title={heroTitle} text={heroText} />
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>

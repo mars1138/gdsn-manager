@@ -7,10 +7,10 @@ import Section from '../shared/components/layout/Section';
 import classes from './AboutPage.module.css';
 import Contact from '../shared/components/contact/Contact';
 
-import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
-import img2 from '../assets/pexels-fauxels-3183197.jpg';
+import img1 from '../assets/media/about/pexels-fauxels-3182759.jpg';
+import img2 from '../assets/media/about/pexels-christina-morillo-1181354.jpg';
 import img3 from '../assets/pexels-fauxels-3184418.jpg';
-import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
+// import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
 
 const tabContent = [
   {
@@ -37,21 +37,17 @@ const tabContent = [
     contentHeading: 'Tab 3 Heading',
     imgUrl: img3,
   },
-  {
-    id: 4,
-    tabTitle: 'Tab4',
-    content:
-      'Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 4 Heading',
-    imgUrl: img4,
-  },
 ];
+
+const heroTitle = 'Our Company';
+const heroText =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
 
 const AboutPage = () => {
   return (
     <React.Fragment>
       <Section>
-        <Hero />
+        <Hero page="about" title={heroTitle} text={heroText} />
       </Section>
       <Section>
         <div className={classes.cards}>

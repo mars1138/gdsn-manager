@@ -3,9 +3,8 @@
   height: 40vh;
   padding: 4rem;
 
-  background-image: url('../../../assets/pexels-fauxels-3183197.jpg');
+  /* background-image: url('../../../assets/pexels-fauxels-3183197.jpg'); */
   background-size: cover;
-  background-position-y: 30%;
   /* background-blend-mode: color-burn; */
   background-repeat: no-repeat;
 
@@ -14,4 +13,27 @@
   border-radius: var(--borderRadius-card);
   box-shadow: var(--shadow);
   /* border: 1px solid blue; */
+}
+
+.home {
+  background-image: url('../../../assets/media/home/pexels-fauxels-3183197.jpg');
+  background-position-y: 30%;
+}
+.services {
+  background-image: url('../../../assets/media/services/pexels-photomix-company-106344.jpg');
+}
+.resources {
+  background-image: url('../../../assets/media/resources/nana-smirnova-IEiAmhXehwE-unsplash.jpg');
+}
+.support {
+  background-image: url('../../../assets/media/resources/support/pexels-panumas-nikhomkhai-1148820.jpg');
+  background-position-y: 20%;
+}
+.plans {
+  background-image: url('../../../assets/media/plans/pexels-fauxels-3183153.jpg');
+  background-position-y: 20%;
+}
+.about {
+  background-image: url('../../../assets/media/about/pexels-andrea-piacquadio-789822.jpg');
+  background-position-y: 50%;
 }

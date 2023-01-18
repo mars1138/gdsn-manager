@@ -6,10 +6,10 @@ import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 import classes from './Support.module.css';
 
-import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
-import img2 from '../assets/pexels-fauxels-3183197.jpg';
-import img3 from '../assets/pexels-fauxels-3184418.jpg';
-import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
+import img1 from '../assets/media/resources/support/pexels-mikhail-nilov-7682103.jpg';
+import img2 from '../assets/media/resources/support/firos-nv-1wBmbnvv4TE-unsplash.jpg';
+import img3 from '../assets/media/resources/support/pexels-mart-production-7709175.jpg';
+// import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
 
 const tabContent = [
   {
@@ -36,21 +36,17 @@ const tabContent = [
     contentHeading: 'Tab 3 Heading',
     imgUrl: img3,
   },
-  {
-    id: 4,
-    tabTitle: 'Products 4',
-    content:
-      'Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 4 Heading',
-    imgUrl: img4,
-  },
 ];
+
+const heroTitle = 'Home';
+const heroText =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
 
 const Support = () => {
   return (
     <React.Fragment>
       <Section>
-        <Hero type="center" />
+        <Hero type="center" page="support" title={heroTitle} text={heroText} />
       </Section>
       <Section>
         <div className={classes.cards}>

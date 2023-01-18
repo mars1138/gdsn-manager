@@ -48,11 +48,15 @@ const tabContent = [
   },
 ];
 
+const heroTitle = 'Resources';
+const heroText =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
+
 const ResourcesPage = () => {
   return (
     <React.Fragment>
       <Section>
-        <Hero type="right" />
+        <Hero type="right" title={heroTitle} text={heroText} page="resources" />
       </Section>
       <Section>
         <div className={classes.cards}>
@@ -80,13 +84,15 @@ const ResourcesPage = () => {
             </Link>
           </Card>
           <Card>
-            <h3>Support</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
+            <Link to="/resources/support">
+              <h3>Support</h3>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
+                tempora provident explicabo inventore pariatur, nobis cumque a
+                culpa quod, alias voluptate veniam quae qui ut at, nostrum est
+                porro enim.
+              </p>
+            </Link>
           </Card>
         </div>
       </Section>
