@@ -1,23 +1,39 @@
+import img1 from '../media/resources/training/bulbs-gac71d5a20_640.jpg';
+import img2 from '../media/resources/training/startup-g5a809f49f_640.jpg';
+import img3 from '../media/resources/training/list-g966146249_640.png';
+import img4 from '../media/resources/training/virtual-gdae0ed3c8_640.png';
+import img5 from '../media/resources/training/pexels-hitesh-choudhary-340152.jpg';
+
 export const trainingCards = [
   {
-    title: 'Training 1',
-    text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    title: 'GDSN Basics',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: img1,
   },
   {
-    title: 'Training 2',
-    text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    title: 'GDSN Advanced Topics',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: img2,
   },
   {
-    title: 'Training 3',
-    text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    title: 'Publishing Items',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: img3,
   },
   {
-    title: 'Training 4',
-    text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    title: 'Supporting your Customers',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: img4,
+  },
+  {
+    title: 'Ongoing Maintenance',
+    text:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    imgUrl: img5,
   },
 ];
 

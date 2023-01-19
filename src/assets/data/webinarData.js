@@ -1,57 +1,67 @@
+import img1 from '../media/resources/webinars/spreadsheets-gb32a532e4_640.png';
+import img2 from '../media/resources/webinars/mika-baumeister-Wpnoqo2plFA-unsplash.jpg';
+import img3 from '../media/resources/webinars/magnifying-glass-g0e536d7d7_640.png';
+import img4 from '../media/resources/webinars/document-gd4bff9ec6_640.png';
+import img5 from '../media/resources/webinars/puzzle-gc1da0fb56_640.jpg';
+import img6 from '../media/resources/webinars/pexels-pixabay-534216.jpg';
+import img7 from '../media/resources/webinars/broken-business-g6d4a9619a_640.jpg';
+import img8 from '../media/resources/webinars/spreadsheet-gbaeb98562_640.jpg';
+import img9 from '../media/resources/webinars/business-gf5e877f7b_640.jpg';
+
 export const webinarCards = [
   {
-    title: 'Webinar 1',
+    title: 'Product Attributes 1',
     text:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: img1,
   },
   {
-    title: 'Webinar 2',
+    title: 'Product Attributes 2',
     text:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: img2,
   },
   {
-    title: 'Webinar 3',
+    title: 'Product Attributes 3',
     text:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: img3,
   },
   {
-    title: 'Webinar 4',
+    title: 'Product Dimensions 1',
     text:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: img4,
   },
   {
-    title: 'Webinar 5',
+    title: 'Product Dimensions 2',
     text:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: img5,
   },
   {
-    title: 'Webinar 6',
+    title: 'GTIN Basics',
     text:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: img6,
   },
   {
-    title: 'Webinar 7',
+    title: 'Correcting Errors 1',
     text:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: img7,
   },
   {
-    title: 'Webinar 8',
+    title: 'Correcting Errors 2',
     text:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: img8,
   },
   {
-    title: 'Webinar 9',
+    title: 'Employee Training',
     text:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: img9,
   },
 ];
 

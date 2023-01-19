@@ -19,6 +19,10 @@
   background-image: url('../../../assets/media/home/pexels-fauxels-3183197.jpg');
   background-position-y: 30%;
 }
+.products {
+  background-image: url('../../../assets/media/products/pexels-tiger-lily-4483775.jpg');
+  background-position-y: 63%;
+}
 .services {
   background-image: url('../../../assets/media/services/pexels-photomix-company-106344.jpg');
 }

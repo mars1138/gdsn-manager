@@ -13,6 +13,10 @@ import img1 from '../assets/pexels-tiger-lily-4483942.jpg';
 import img2 from '../assets/pexels-fauxels-3183197.jpg';
 import img3 from '../assets/pexels-fauxels-3184418.jpg';
 
+import cust1 from '../assets/media/plans/2.jpg';
+import cust2 from '../assets/media/plans/51.jpg';
+import cust3 from '../assets/media/plans/59.jpg';
+
 const tabContent = [
   {
     id: 1,
@@ -45,19 +49,19 @@ const sliderTestimonial = [
     author: 'Author Name 1',
     quote:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
-    imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
+    imgUrl: cust1,
   },
   {
     author: 'Author Name 2',
     quote:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: cust2,
   },
   {
     author: 'Author Name 3',
     quote:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
-    imgUrl: '/media/pexels-fauxels-3184418.jpg',
+    imgUrl: cust3,
   },
 ];
 

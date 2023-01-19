@@ -12,6 +12,10 @@ import img2 from '../assets/pexels-fauxels-3183197.jpg';
 import img3 from '../assets/pexels-fauxels-3184418.jpg';
 import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
 
+import cust1 from '../assets/media/home/78.jpg';
+import cust2 from '../assets/media/home/7.jpg';
+import cust3 from '../assets/media/home/65.jpg';
+
 import video from '../assets/File - 9772.mp4';
 
 const tabContent = [
@@ -52,17 +56,20 @@ const tabContent = [
 const sliderHome = [
   {
     title: 'Content Header 1',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
   },
   {
     title: 'Content Header 2',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: '/media/pexels-fauxels-3183197.jpg',
   },
   {
     title: 'Content Header 3',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: '/media/pexels-fauxels-3184418.jpg',
   },
 ];
@@ -84,19 +91,19 @@ const sliderTestimonial = [
     author: 'Author Name 1',
     quote:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
-    imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
+    imgUrl: cust1,
   },
   {
     author: 'Author Name 2',
     quote:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: cust2,
   },
   {
     author: 'Author Name 3',
     quote:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
-    imgUrl: '/media/pexels-fauxels-3184418.jpg',
+    imgUrl: cust3,
   },
 ];
 

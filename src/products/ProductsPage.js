@@ -52,16 +52,16 @@ const tabContent = [
 ];
 
 const ProductsPage = () => {
-  const catalog = useSelector(state => state.catalog.products);
-  const activeCount = catalog.filter(item => !item.dateInactive).length;
-  const publishedCount = catalog.filter(item => item.datePublished).length;
+  const catalog = useSelector((state) => state.catalog.products);
+  const activeCount = catalog.filter((item) => !item.dateInactive).length;
+  const publishedCount = catalog.filter((item) => item.datePublished).length;
   const unpublishedCount = catalog.filter(
-    item => !item.dateInactive && !item.datePublished,
+    (item) => !item.dateInactive && !item.datePublished
   ).length;
-  const inactiveCount = catalog.filter(item => item.dateInactive).length;
+  const inactiveCount = catalog.filter((item) => item.dateInactive).length;
 
-  const authToken = useSelector(state => state.auth.token);
-  const authUserId = useSelector(state => state.auth.userId);
+  const authToken = useSelector((state) => state.auth.token);
+  const authUserId = useSelector((state) => state.auth.userId);
 
   const { sendRequest } = useHttpClient();
   const dispatch = useDispatch();
@@ -98,10 +98,14 @@ const ProductsPage = () => {
     }
   }, [authUserId, authToken, dispatch, sendRequest]);
 
+  const heroTitle = 'My Products';
+  const heroText =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
+
   return (
     <React.Fragment>
       <Section>
-        <Hero type="center" />
+        <Hero type="center" title={heroTitle} text={heroText} page="products" />
       </Section>
       <Section>
         <div className={classes.cards}>

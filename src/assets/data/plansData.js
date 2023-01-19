@@ -1,3 +1,7 @@
+import plan1 from '../media/plans/undraw_add_information_j2wg.svg';
+import plan2 from '../media/plans/undraw_performance_overview_re_mqrq.svg';
+import plan3 from '../media/plans/undraw_teaching_re_g7e3.svg';
+
 export const planCards = [
   {
     id: 1,
@@ -5,7 +9,7 @@ export const planCards = [
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 1 Heading',
-    imgUrl: 'media/pexels-tiger-lily-4483942.jpg',
+    imgUrl: plan1,
     features: [
       {
         text: 'Access to Peer Community Platform',
@@ -28,7 +32,7 @@ export const planCards = [
     content:
       'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 2 Heading',
-    imgUrl: 'media/pexels-fauxels-3183197.jpg',
+    imgUrl: plan2,
     features: [
       {
         text: 'Access to Peer Community Platform',
@@ -60,7 +64,7 @@ export const planCards = [
     content:
       'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 3 Heading',
-    imgUrl: 'media/pexels-fauxels-3184418.jpg',
+    imgUrl: plan3,
     features: [
       {
         text: 'Access to Peer Community Platform',

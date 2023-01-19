@@ -1,9 +1,9 @@
 import React from 'react';
 
-import TabComponent from '../shared/components/TabComponent/TabComponent';
+// import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Section from '../shared/components/layout/Section';
 import WebinarCard from './WebinarCard';
-import { webinarCards, webinarTabs } from '../assets/data/webinarData';
+import { webinarCards } from '../assets/data/webinarData';
 import classes from './Webinars.module.css';
 
 const Webinars = () => {
@@ -19,9 +19,9 @@ const Webinars = () => {
         <h2>Webinars</h2>
         <div className={classes.webinars}>{webinars}</div>
       </Section>
-      <Section>
+      {/* <Section>
         <TabComponent>{webinarTabs}</TabComponent>
-      </Section>
+      </Section> */}
     </React.Fragment>
   );
 };

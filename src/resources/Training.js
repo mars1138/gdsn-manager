@@ -1,9 +1,9 @@
 import React from 'react';
 
-import TabComponent from '../shared/components/TabComponent/TabComponent';
+// import TabComponent from '../shared/components/TabComponent/TabComponent';
 import TrainingCard from './TrainingCard';
 import Section from '../shared/components/layout/Section';
-import { trainingCards, trainingTabs } from '../assets/data/trainingData';
+import { trainingCards } from '../assets/data/trainingData';
 import classes from './Training.module.css';
 
 const Training = () => {
@@ -15,11 +15,12 @@ const Training = () => {
 
   return (
     <React.Fragment>
-      <Section>
+      {/* <Section>
         <h2>Training</h2>
         <TabComponent>{trainingTabs}</TabComponent>
-      </Section>
+      </Section> */}
       <Section trigger=".1">
+        <h2>Training</h2>
         <div className={classes.cards}>{cards}</div>
       </Section>
     </React.Fragment>
