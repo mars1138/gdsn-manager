@@ -14,7 +14,7 @@ import img3 from '../assets/media/resources/support/pexels-mart-production-77091
 const tabContent = [
   {
     id: 1,
-    tabTitle: 'Products 1',
+    tabTitle: 'Help Desk',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 1 Heading',
@@ -22,7 +22,7 @@ const tabContent = [
   },
   {
     id: 2,
-    tabTitle: 'Products 2',
+    tabTitle: 'Research',
     content:
       'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 2 Heading',
@@ -30,7 +30,7 @@ const tabContent = [
   },
   {
     id: 3,
-    tabTitle: 'Products 3',
+    tabTitle: 'Community',
     content:
       'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 3 Heading',
@@ -38,7 +38,7 @@ const tabContent = [
   },
 ];
 
-const heroTitle = 'Home';
+const heroTitle = 'Support';
 const heroText =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
 

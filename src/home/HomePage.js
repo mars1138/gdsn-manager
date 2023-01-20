@@ -18,89 +18,101 @@ import cust3 from '../assets/media/home/65.jpg';
 
 import video from '../assets/File - 9772.mp4';
 
+const cardContent = [
+  {
+    id: 1,
+    cardTitle: 'Global Commerce',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+  {
+    id: 2,
+    cardTitle: 'Industry Standards',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+  {
+    id: 3,
+    cardTitle: 'Digital Catalog',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+  {
+    id: 4,
+    cardTitle: 'Customer Relations',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+];
+
 const tabContent = [
   {
     id: 1,
-    tabTitle: 'Tab1',
+    tabTitle: 'Solutions',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequitempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    contentHeading: 'Tab 1 Heading',
+    contentHeading: '',
     imgUrl: img1,
   },
   {
     id: 2,
-    tabTitle: 'Tab2',
+    tabTitle: 'Resources',
     content:
       'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequitempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    contentHeading: 'Tab 2 Heading',
+    contentHeading: '',
     imgUrl: img2,
   },
   {
     id: 3,
-    tabTitle: 'Tab3',
+    tabTitle: 'Marketing',
     content:
       'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequitempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    contentHeading: 'Tab 3 Heading',
+    contentHeading: '',
     imgUrl: img3,
   },
   {
     id: 4,
-    tabTitle: 'Tab4',
+    tabTitle: 'Customers',
     content:
       'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequitempora provident explicabo inventore pariatur, nobis cumque aculpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-    contentHeading: 'Tab 4 Heading',
+    contentHeading: '',
     imgUrl: img4,
   },
 ];
 
 const sliderHome = [
   {
-    title: 'Content Header 1',
-    text:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    title: 'Product Management',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
   },
   {
-    title: 'Content Header 2',
-    text:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    title: 'E-commerce Support',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: '/media/pexels-fauxels-3183197.jpg',
   },
   {
-    title: 'Content Header 3',
-    text:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
-    imgUrl: '/media/pexels-fauxels-3184418.jpg',
-  },
-];
-
-const sliderGallery = [
-  {
-    imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
-  },
-  {
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
-  },
-  {
+    title: 'Powerful Analytics',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: '/media/pexels-fauxels-3184418.jpg',
   },
 ];
 
 const sliderTestimonial = [
   {
-    author: 'Author Name 1',
+    author: 'Maxwell Hughes, Entercom Manufacturing',
     quote:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: cust1,
   },
   {
-    author: 'Author Name 2',
+    author: 'Jacob Smythe, FoodCorp, Inc.',
     quote:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: cust2,
   },
   {
-    author: 'Author Name 3',
+    author: 'Liz Xavier, Samwell Products Corp.',
     quote:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: cust3,
@@ -112,65 +124,42 @@ const heroText =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
 
 const HomePage = () => {
+  const cardArray = [];
+
+  cardContent.forEach(card =>
+    cardArray.push(
+      <Card key={card.id}>
+        <h3>{card.cardTitle}</h3>
+        <p>{card.cardText}</p>
+      </Card>,
+    ),
+  );
+
   return (
     <React.Fragment>
       <Section>
         <Hero type="right" page="home" title={heroTitle} text={heroText} />
       </Section>
       <Section>
-        <div className={classes.cards}>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <div className={classes.image}></div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-        </div>
+        <h2>Your Comprehensive Item Management Solution</h2>
+        <div className={classes.cards}>{cardArray}</div>
+      </Section>
+      <Section>
+        <TabComponent>{tabContent}</TabComponent>
       </Section>
       <Section trigger="0.1">
-        <h2>Slider Gallery</h2>
+        <h2>Services That Fit Your Company's Needs</h2>
         <Slider type="description" content={sliderHome} />
-        <Slider type="gallery" content={sliderGallery} />
+        {/* <Slider type="gallery" content={sliderGallery} /> */}
+      </Section>
+      <Section>
+        <h2>Valued By Industry Leaders</h2>
         <Slider type="testimonial" content={sliderTestimonial} />
       </Section>
       <Section>
         <video width="600" height="360" src={video} type="/video/mp4" controls>
           Your browser does not support the video tag.
         </video>
-      </Section>
-      <Section>
-        <TabComponent>{tabContent}</TabComponent>
       </Section>
     </React.Fragment>
   );

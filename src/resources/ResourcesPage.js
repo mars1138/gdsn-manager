@@ -15,7 +15,7 @@ import video from '../assets/File - 9772.mp4';
 const tabContent = [
   {
     id: 1,
-    tabTitle: 'Tab1',
+    tabTitle: 'Content Library',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 1 Heading',
@@ -23,7 +23,7 @@ const tabContent = [
   },
   {
     id: 2,
-    tabTitle: 'Tab2',
+    tabTitle: 'News',
     content:
       'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 2 Heading',
@@ -31,7 +31,7 @@ const tabContent = [
   },
   {
     id: 3,
-    tabTitle: 'Tab3',
+    tabTitle: 'Events',
     content:
       'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 3 Heading',

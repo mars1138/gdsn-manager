@@ -12,7 +12,7 @@ import img3 from '../assets/pexels-fauxels-3184418.jpg';
 const tabContent = [
   {
     id: 1,
-    tabTitle: 'Solutions 1',
+    tabTitle: 'Item Management',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 1 Heading',
@@ -20,15 +20,23 @@ const tabContent = [
   },
   {
     id: 2,
-    tabTitle: 'Solutions 2',
+    tabTitle: 'Automation',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    contentHeading: 'Tab 1 Heading',
+    imgUrl: img1,
+  },
+  {
+    id: 3,
+    tabTitle: 'Education',
     content:
       'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 2 Heading',
     imgUrl: img2,
   },
   {
-    id: 3,
-    tabTitle: 'Solutions 3',
+    id: 4,
+    tabTitle: 'Reporting',
     content:
       'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contentHeading: 'Tab 3 Heading',
@@ -69,7 +77,7 @@ const sliderTestimonial = [
   },
 ];
 
-const heroTitle = 'Home';
+const heroTitle = 'Services';
 const heroText =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
 

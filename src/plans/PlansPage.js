@@ -65,7 +65,7 @@ const sliderTestimonial = [
   },
 ];
 
-const heroTitle = 'Pricing Plans';
+const heroTitle = 'Pricing Plans For Your Needs';
 const heroText =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
 
