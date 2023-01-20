@@ -53,7 +53,7 @@ const ResourcesPage = () => {
         <div className={classes.cards}>
           <Card>
             <Link to="/resources/webinars">
-              <h3>Webinars</h3>
+              <h3>WEBINARS</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
                 tempora provident explicabo inventore pariatur, nobis cumque a
@@ -64,7 +64,7 @@ const ResourcesPage = () => {
           </Card>
           <Card>
             <Link to="/resources/training">
-              <h3>Training</h3>
+              <h3>TRAINING</h3>
               <div className={classes.image}></div>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
@@ -76,7 +76,7 @@ const ResourcesPage = () => {
           </Card>
           <Card>
             <Link to="/resources/support">
-              <h3>Support</h3>
+              <h3>SUPPORT</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
                 tempora provident explicabo inventore pariatur, nobis cumque a

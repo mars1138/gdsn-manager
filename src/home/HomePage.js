@@ -7,42 +7,46 @@ import Section from '../shared/components/layout/Section';
 import Slider from '../shared/components/Slider/Slider';
 import classes from './HomePage.module.css';
 
-import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
-import img2 from '../assets/pexels-fauxels-3183197.jpg';
-import img3 from '../assets/pexels-fauxels-3184418.jpg';
-import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
+import img1 from '../assets/media/home/carlos-muza-hpjSkU2UYSU-unsplash.jpg';
+import img2 from '../assets/media/home/claudio-schwarz-fyeOxvYvIyY-unsplash.jpg';
+import img3 from '../assets/media/home/old-youth-lDDyRE1Ec8Q-unsplash.jpg';
+import img4 from '../assets/media/home/pexels-andrea-piacquadio-3778235.jpg';
 
 import cust1 from '../assets/media/home/78.jpg';
 import cust2 from '../assets/media/home/7.jpg';
 import cust3 from '../assets/media/home/65.jpg';
+
+import slide1 from '../assets/media/home/pexels-tiger-lily-4483942.jpg';
+import slide2 from '../assets/media/home/pexels-monstera-6289028.jpg';
+import slide3 from '../assets/media/home/pexels-burak-the-weekender-186461.jpg';
 
 import video from '../assets/File - 9772.mp4';
 
 const cardContent = [
   {
     id: 1,
-    cardTitle: 'Global Commerce',
+    cardTitle: 'GLOBAL COMMERCE',
     cardText:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
   },
   {
     id: 2,
-    cardTitle: 'Industry Standards',
+    cardTitle: 'INDUSTRY STANDARD',
     cardText:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
   },
   {
     id: 3,
-    cardTitle: 'Digital Catalog',
+    cardTitle: 'DIGITAL CATALOG',
     cardText:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
   },
-  {
-    id: 4,
-    cardTitle: 'Customer Relations',
-    cardText:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-  },
+  // {
+  //   id: 4,
+  //   cardTitle: 'RELIABILITY',
+  //   cardText:
+  //     'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  // },
 ];
 
 const tabContent = [
@@ -83,18 +87,21 @@ const tabContent = [
 const sliderHome = [
   {
     title: 'Product Management',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
-    imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: slide1,
   },
   {
     title: 'E-commerce Support',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: slide2,
   },
   {
     title: 'Powerful Analytics',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
-    imgUrl: '/media/pexels-fauxels-3184418.jpg',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    imgUrl: slide3,
   },
 ];
 
@@ -112,7 +119,7 @@ const sliderTestimonial = [
     imgUrl: cust2,
   },
   {
-    author: 'Liz Xavier, Samwell Products Corp.',
+    author: 'Liz Xavier, Samwell Distributing',
     quote:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: cust3,
@@ -126,13 +133,13 @@ const heroText =
 const HomePage = () => {
   const cardArray = [];
 
-  cardContent.forEach(card =>
+  cardContent.forEach((card) =>
     cardArray.push(
       <Card key={card.id}>
         <h3>{card.cardTitle}</h3>
         <p>{card.cardText}</p>
-      </Card>,
-    ),
+      </Card>
+    )
   );
 
   return (

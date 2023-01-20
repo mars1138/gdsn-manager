@@ -8,10 +8,14 @@ import Slider from '../shared/components/Slider/Slider';
 import classes from './AboutPage.module.css';
 import Contact from '../shared/components/contact/Contact';
 
-import img1 from '../assets/media/about/pexels-fauxels-3182759.jpg';
-import img2 from '../assets/pexels-fauxels-3184418.jpg';
+import img1 from '../assets/media/about/pexels-alphatradezone-5833273.jpg';
+import img2 from '../assets/media/about/pexels-fauxels-3184418.jpg';
 import img3 from '../assets/media/about/pexels-christina-morillo-1181354.jpg';
 // import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
+
+import slide1 from '../assets/media/about/pexels-fauxels-3182759B.jpg';
+import slide2 from '../assets/media/about/pexels-andrea-piacquadio-3769021B.jpg';
+import slide3 from '../assets/media/about/pexels-fauxels-3184292B.jpg';
 
 const cardContent = [
   {
@@ -63,13 +67,13 @@ const tabContent = [
 
 const sliderGallery = [
   {
-    imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
+    imgUrl: slide1,
   },
   {
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: slide2,
   },
   {
-    imgUrl: '/media/pexels-fauxels-3184418.jpg',
+    imgUrl: slide3,
   },
 ];
 
@@ -80,13 +84,13 @@ const heroText =
 const AboutPage = () => {
   const cardArray = [];
 
-  cardContent.forEach(card =>
+  cardContent.forEach((card) =>
     cardArray.push(
       <Card key={card.id} width="30">
         <h3>{card.cardTitle}</h3>
         <p>{card.cardText}</p>
-      </Card>,
-    ),
+      </Card>
+    )
   );
 
   return (
