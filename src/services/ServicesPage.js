@@ -5,9 +5,14 @@ import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Section from '../shared/components/layout/Section';
 import Slider from '../shared/components/Slider/Slider';
 
-import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
-import img2 from '../assets/pexels-fauxels-3183197.jpg';
-import img3 from '../assets/pexels-fauxels-3184418.jpg';
+import img1 from '../assets/media/services/pexels-antonius-natan-11835350.jpg';
+import img2 from '../assets/media/services/digitization-g9292200ae_640.jpg';
+import img3 from '../assets/media/services/audit-g7ab6ca2f4_640.jpg';
+import img4 from '../assets/media/services/laptop-g8feb88364_640.png';
+
+import slide1 from '../assets/media/services/online-g8b04bfbcb_640.png';
+import slide2 from '../assets/media/services/petrebels-JwMGy1h-JsY-unsplash.jpg';
+import slide3 from '../assets/media/services/pexels-lukas-669612.jpg';
 
 import cust1 from '../assets/media/plans/2.jpg';
 import cust2 from '../assets/media/plans/51.jpg';
@@ -19,7 +24,7 @@ const tabContent = [
     tabTitle: 'Item Management',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 1 Heading',
+    contentHeading: 'Product Management Made Easy',
     imgUrl: img1,
   },
   {
@@ -27,36 +32,36 @@ const tabContent = [
     tabTitle: 'Automation',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 1 Heading',
-    imgUrl: img1,
+    contentHeading: 'Simplifying Routine Tasks',
+    imgUrl: img2,
   },
   {
     id: 3,
     tabTitle: 'Reporting',
     content:
       'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 2 Heading',
-    imgUrl: img2,
+    contentHeading: 'Standard and Custom Reporting Available',
+    imgUrl: img3,
   },
   {
     id: 4,
     tabTitle: 'Education',
     content:
       'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 3 Heading',
-    imgUrl: img3,
+    contentHeading: "We're Here to Help",
+    imgUrl: img4,
   },
 ];
 
 const sliderGallery = [
   {
-    imgUrl: '/media/pexels-tiger-lily-4483942.jpg',
+    imgUrl: slide1,
   },
   {
-    imgUrl: '/media/pexels-fauxels-3183197.jpg',
+    imgUrl: slide2,
   },
   {
-    imgUrl: '/media/pexels-fauxels-3184418.jpg',
+    imgUrl: slide3,
   },
 ];
 
