@@ -7,9 +7,10 @@ import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 import classes from './ResourcesPage.module.css';
 
-import img1 from '../assets/pexels-antonius-natan-11835350.jpg';
-import img2 from '../assets/pexels-fauxels-3183197.jpg';
-import img3 from '../assets/pexels-fauxels-3184418.jpg';
+import img1 from '../assets/media/resources/niklas-ohlrogge-uu0cOMPdM2g-unsplash.jpg';
+import img2 from '../assets/media/resources/monitor-gbe11283c1_640.jpg';
+import img3 from '../assets/media/resources/chuttersnap-Q_KdjKxntH8-unsplash.jpg';
+
 import video from '../assets/File - 9772.mp4';
 
 const tabContent = [
