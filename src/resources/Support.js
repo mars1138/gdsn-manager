@@ -11,6 +11,33 @@ import img2 from '../assets/media/resources/support/firos-nv-1wBmbnvv4TE-unsplas
 import img3 from '../assets/media/resources/support/pexels-mart-production-7709175.jpg';
 // import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
 
+const cardContent = [
+  {
+    id: 1,
+    cardTitle: 'webinars',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+  {
+    id: 2,
+    cardTitle: 'training',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+  {
+    id: 3,
+    cardTitle: 'support',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+  {
+    id: 4,
+    cardTitle: 'support',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+];
+
 const tabContent = [
   {
     id: 1,
@@ -43,6 +70,17 @@ const heroText =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
 
 const Support = () => {
+  const cardArray = [];
+
+  cardContent.forEach((card) =>
+    cardArray.push(
+      <Card key={card.id}>
+        <h3>{card.cardTitle}</h3>
+        <p>{card.cardText}</p>
+      </Card>
+    )
+  );
+
   return (
     <React.Fragment>
       <Section>

@@ -13,13 +13,34 @@ import img3 from '../assets/media/resources/chuttersnap-Q_KdjKxntH8-unsplash.jpg
 
 import video from '../assets/File - 9772.mp4';
 
+const cardContent = [
+  {
+    id: 1,
+    cardTitle: 'webinars',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+  {
+    id: 2,
+    cardTitle: 'training',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+  {
+    id: 3,
+    cardTitle: 'support',
+    cardText:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+  },
+];
+
 const tabContent = [
   {
     id: 1,
     tabTitle: 'Content Library',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 1 Heading',
+    contentHeading: 'Extensive Resources Available',
     imgUrl: img1,
   },
   {
@@ -27,7 +48,7 @@ const tabContent = [
     tabTitle: 'News',
     content:
       'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 2 Heading',
+    contentHeading: 'Stay Current On Recent News',
     imgUrl: img2,
   },
   {
@@ -35,7 +56,7 @@ const tabContent = [
     tabTitle: 'Events',
     content:
       'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 3 Heading',
+    contentHeading: 'Annual Events',
     imgUrl: img3,
   },
 ];
@@ -45,48 +66,26 @@ const heroText =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
 
 const ResourcesPage = () => {
+  const cardArray = [];
+
+  cardContent.forEach((card) =>
+    cardArray.push(
+      <Link to={`/resources/${card.cardTitle}`}>
+        <Card key={card.id}>
+          <h3>{card.cardTitle}</h3>
+          <p>{card.cardText}</p>
+        </Card>
+      </Link>
+    )
+  );
+
   return (
     <React.Fragment>
       <Section>
         <Hero type="right" title={heroTitle} text={heroText} page="resources" />
       </Section>
       <Section>
-        <div className={classes.cards}>
-          <Card>
-            <Link to="/resources/webinars">
-              <h3>WEBINARS</h3>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                tempora provident explicabo inventore pariatur, nobis cumque a
-                culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-                porro enim.
-              </p>
-            </Link>
-          </Card>
-          <Card>
-            <Link to="/resources/training">
-              <h3>TRAINING</h3>
-              <div className={classes.image}></div>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                tempora provident explicabo inventore pariatur, nobis cumque a
-                culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-                porro enim.
-              </p>
-            </Link>
-          </Card>
-          <Card>
-            <Link to="/resources/support">
-              <h3>SUPPORT</h3>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-                tempora provident explicabo inventore pariatur, nobis cumque a
-                culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-                porro enim.
-              </p>
-            </Link>
-          </Card>
-        </div>
+        <div className={classes.cards}>{cardArray}</div>
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>
