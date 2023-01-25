@@ -9,7 +9,10 @@ import classes from './Support.module.css';
 import img1 from '../assets/media/resources/support/pexels-mikhail-nilov-7682103.jpg';
 import img2 from '../assets/media/resources/support/firos-nv-1wBmbnvv4TE-unsplash.jpg';
 import img3 from '../assets/media/resources/support/pexels-mart-production-7709175.jpg';
-// import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
+
+import card1 from '../assets/media/resources/support/pexels-mikhail-nilov-7681562.jpg';
+import card2 from '../assets/media/resources/support/pexels-mart-production-7709208.jpg';
+import card3 from '../assets/media/resources/support/pexels-yan-krukau-8867244.jpg';
 
 const cardContent = [
   {
@@ -17,24 +20,21 @@ const cardContent = [
     cardTitle: 'webinars',
     cardText:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    cardImg: card1,
   },
   {
     id: 2,
     cardTitle: 'training',
     cardText:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    cardImg: card2,
   },
   {
     id: 3,
     cardTitle: 'support',
     cardText:
       'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-  },
-  {
-    id: 4,
-    cardTitle: 'support',
-    cardText:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+    cardImg: card3,
   },
 ];
 
@@ -44,7 +44,7 @@ const tabContent = [
     tabTitle: 'Help Desk',
     content:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 1 Heading',
+    contentHeading: "We're Here To Help!",
     imgUrl: img1,
   },
   {
@@ -52,7 +52,7 @@ const tabContent = [
     tabTitle: 'Research',
     content:
       'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 2 Heading',
+    contentHeading: 'Expanding Our Horizons',
     imgUrl: img2,
   },
   {
@@ -60,7 +60,7 @@ const tabContent = [
     tabTitle: 'Community',
     content:
       'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 3 Heading',
+    contentHeading: 'Engage With Other Users',
     imgUrl: img3,
   },
 ];
@@ -75,8 +75,11 @@ const Support = () => {
   cardContent.forEach((card) =>
     cardArray.push(
       <Card key={card.id}>
-        <h3>{card.cardTitle}</h3>
-        <p>{card.cardText}</p>
+        {/* <h3>{card.cardTitle}</h3>
+        <p>{card.cardText}</p> */}
+        <div className={classes.image}>
+          <img src={card.cardImg} alt={card.cardTitle} />
+        </div>
       </Card>
     )
   );
@@ -87,48 +90,10 @@ const Support = () => {
         <Hero type="center" page="support" title={heroTitle} text={heroText} />
       </Section>
       <Section>
-        <div className={classes.cards}>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <div className={classes.image}></div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-          <Card>
-            <h3>CARD CONTENT</h3>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi
-              tempora provident explicabo inventore pariatur, nobis cumque a
-              culpa quod, alias voluptate veniam quae qui ut at, nostrum est
-              porro enim.
-            </p>
-          </Card>
-        </div>
+        <TabComponent>{tabContent}</TabComponent>
       </Section>
       <Section>
-        <TabComponent>{tabContent}</TabComponent>
+        <div className={classes.cards}>{cardArray}</div>
       </Section>
     </React.Fragment>
   );
