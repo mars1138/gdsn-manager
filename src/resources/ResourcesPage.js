@@ -68,15 +68,15 @@ const heroText =
 const ResourcesPage = () => {
   const cardArray = [];
 
-  cardContent.forEach((card) =>
+  cardContent.forEach(card =>
     cardArray.push(
       <Link to={`/resources/${card.cardTitle}`}>
         <Card key={card.id}>
           <h3>{card.cardTitle}</h3>
           <p>{card.cardText}</p>
         </Card>
-      </Link>
-    )
+      </Link>,
+    ),
   );
 
   return (
@@ -85,7 +85,7 @@ const ResourcesPage = () => {
         <Hero type="right" title={heroTitle} text={heroText} page="resources" />
       </Section>
       <Section>
-        <div className={classes.cards}>{cardArray}</div>
+        <div className={classes.resourcesCards}>{cardArray}</div>
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>

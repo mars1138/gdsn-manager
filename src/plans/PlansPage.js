@@ -82,7 +82,7 @@ const PlansPage = () => {
         <Hero type="center" title={heroTitle} text={heroText} page="plans" />
       </Section>
       <Section>
-        <div className={classes.cards}>{plansArray}</div>
+        <div className={classes.planCards}>{plansArray}</div>
       </Section>
       <Section>
         <TabComponent>{tabContent}</TabComponent>

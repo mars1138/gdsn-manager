@@ -72,7 +72,7 @@ const heroText =
 const Support = () => {
   const cardArray = [];
 
-  cardContent.forEach((card) =>
+  cardContent.forEach(card =>
     cardArray.push(
       <Card key={card.id}>
         {/* <h3>{card.cardTitle}</h3>
@@ -80,8 +80,8 @@ const Support = () => {
         <div className={classes.image}>
           <img src={card.cardImg} alt={card.cardTitle} />
         </div>
-      </Card>
-    )
+      </Card>,
+    ),
   );
 
   return (
@@ -93,7 +93,7 @@ const Support = () => {
         <TabComponent>{tabContent}</TabComponent>
       </Section>
       <Section>
-        <div className={classes.cards}>{cardArray}</div>
+        <div className={classes.supportCards}>{cardArray}</div>
       </Section>
     </React.Fragment>
   );
