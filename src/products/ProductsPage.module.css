@@ -1,4 +1,4 @@
-.cards {
+.productCards {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -6,13 +6,33 @@
   justify-content: space-evenly;
 }
 
-.cards h3 {
+.productCards h3 {
   font-size: 2rem;
 }
 
-.cards span {
+.productCards span {
   display: block;
   color: var(--green-1);
   font-size: xx-large;
   text-align: center;
+}
+
+.productCards a,
+.productCards a * {
+  transition: all 0.2s;
+}
+
+.productCards a:link,
+.productCards a:active,
+.productCards a:visited,
+.productCards a:hover {
+  width: 100%;
+  text-decoration: none;
+}
+
+.productCards a:hover div {
+  background: var(--secondary-light);
+}
+.productCards a:hover h3 {
+  color: var(--white-3);
 }

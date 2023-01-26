@@ -108,31 +108,31 @@ const ProductsPage = () => {
         <Hero type="center" title={heroTitle} text={heroText} page="products" />
       </Section>
       <Section>
-        <div className={classes.cards}>
-          <Card width="20">
-            <Link to="/products/active">
+        <div className={classes.productCards}>
+          <Link to="/products/active">
+            <Card>
               <h3>Active</h3>
               <span>{activeCount}</span>
-            </Link>
-          </Card>
-          <Card width="20">
-            <Link to="/products/published">
+            </Card>
+          </Link>
+          <Link to="/products/published">
+            <Card>
               <h3>Published</h3>
               <span>{publishedCount}</span>
-            </Link>
-          </Card>
-          <Card width="20">
-            <Link to="/products/unpublished">
+            </Card>
+          </Link>
+          <Link to="/products/unpublished">
+            <Card>
               <h3>Unpublished</h3>
               <span>{unpublishedCount}</span>
-            </Link>
-          </Card>
-          <Card width="20">
-            <Link to="/products/inactive">
+            </Card>
+          </Link>
+          <Link to="/products/inactive">
+            <Card>
               <h3>Inactive</h3>
               <span>{inactiveCount}</span>
-            </Link>
-          </Card>
+            </Card>
+          </Link>
         </div>
       </Section>
       <Section>
