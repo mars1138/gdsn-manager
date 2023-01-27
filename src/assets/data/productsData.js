@@ -27,6 +27,22 @@ export const productsTabs = [
     contentHeading: '',
     imgUrl: img3,
   },
+  {
+    id: 4,
+    tabTitle: 'Reactivate',
+    content:
+      'Choose this action from the Inactive list to set a catalog item back to Active status. Doing so will make the item available for subscriptions again.',
+    contentHeading: '',
+    imgUrl: img3,
+  },
+  {
+    id: 5,
+    tabTitle: 'Delete',
+    content:
+      'Choose this action to permanently remove an item from your catalog.  Once an item is deleted, it cannot be restored and must be recreated via Add New Item',
+    contentHeading: 'CAUTION---This Action is Irreversible',
+    imgUrl: img3,
+  },
 ];
 
 export const activeColumns = [
@@ -60,11 +76,11 @@ export const activeColumns = [
       },
       {
         Header: 'Created',
-        accessor: row => new Date(row.dateAdded).toLocaleDateString(),
+        accessor: (row) => new Date(row.dateAdded).toLocaleDateString(),
       },
       {
         Header: 'Modified',
-        accessor: row => {
+        accessor: (row) => {
           if (row.dateModified) {
             return new Date(row.dateModified).toLocaleDateString();
           } else {
@@ -74,7 +90,7 @@ export const activeColumns = [
       },
       {
         Header: 'Published',
-        accessor: row => {
+        accessor: (row) => {
           if (row.datePublished) {
             return new Date(row.datePublished).toLocaleDateString();
           } else {
@@ -118,11 +134,11 @@ export const inactiveColumns = [
       },
       {
         Header: 'Created',
-        accessor: row => new Date(row.dateAdded).toLocaleDateString(),
+        accessor: (row) => new Date(row.dateAdded).toLocaleDateString(),
       },
       {
         Header: 'Date Inactive',
-        accessor: row => {
+        accessor: (row) => {
           if (row.dateInactive) {
             return new Date(row.dateInactive).toLocaleDateString();
           } else {

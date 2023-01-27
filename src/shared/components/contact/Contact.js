@@ -17,7 +17,7 @@ const Contact = () => {
 
   return (
     <div id="contact-form" className={classes.form}>
-      <h1>Contact us today for more information!</h1>
+      <h2>Contact us today for more information!</h2>
       <div className={contactClasses}>
         <ContactForm toggleSubmitting={setSubmittingHandler} />
         <ContactText />
