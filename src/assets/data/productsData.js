@@ -1,40 +1,31 @@
 import img1 from '../pexels-antonius-natan-11835350.jpg';
 import img2 from '../pexels-fauxels-3183197.jpg';
 import img3 from '../pexels-fauxels-3184418.jpg';
-import img4 from '../pexels-tiger-lily-4483942.jpg';
 
 export const productsTabs = [
   {
     id: 1,
-    tabTitle: 'Products 1',
+    tabTitle: 'Edit',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 1 Heading',
+      'Update the attributes of your product item.  Name, Product Description, Global Product Category Code, and Image are required attributes.  Global Trade Identification Number (GTIN) & Product Type cannot be edited.  If you wish to change either of these, you must create a new product with an entirely new GTIN',
+    contentHeading: '',
     imgUrl: img1,
   },
   {
     id: 2,
-    tabTitle: 'Products 2',
+    tabTitle: 'Publish',
     content:
-      'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 2 Heading',
+      'Select a customer/subscriber who wishes to start receiving product data.  Click on Publish at the confirmation window to complete the action.',
+    contentHeading: '',
     imgUrl: img2,
   },
   {
     id: 3,
-    tabTitle: 'Products 3',
+    tabTitle: 'Deactivate',
     content:
-      'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 3 Heading',
+      'Choose this action to render the catalog item inactive.  You can reactivate the product if you wish to make it available to customers again in the future.',
+    contentHeading: '',
     imgUrl: img3,
-  },
-  {
-    id: 4,
-    tabTitle: 'Products 4',
-    content:
-      'Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 4 Heading',
-    imgUrl: img4,
   },
 ];
 
@@ -69,11 +60,11 @@ export const activeColumns = [
       },
       {
         Header: 'Created',
-        accessor: (row) => new Date(row.dateAdded).toLocaleDateString(),
+        accessor: row => new Date(row.dateAdded).toLocaleDateString(),
       },
       {
         Header: 'Modified',
-        accessor: (row) => {
+        accessor: row => {
           if (row.dateModified) {
             return new Date(row.dateModified).toLocaleDateString();
           } else {
@@ -83,7 +74,7 @@ export const activeColumns = [
       },
       {
         Header: 'Published',
-        accessor: (row) => {
+        accessor: row => {
           if (row.datePublished) {
             return new Date(row.datePublished).toLocaleDateString();
           } else {
@@ -127,11 +118,11 @@ export const inactiveColumns = [
       },
       {
         Header: 'Created',
-        accessor: (row) => new Date(row.dateAdded).toLocaleDateString(),
+        accessor: row => new Date(row.dateAdded).toLocaleDateString(),
       },
       {
         Header: 'Date Inactive',
-        accessor: (row) => {
+        accessor: row => {
           if (row.dateInactive) {
             return new Date(row.dateInactive).toLocaleDateString();
           } else {

@@ -36,3 +36,17 @@
 .productCards a:hover h3 {
   color: var(--white-3);
 }
+
+.text {
+  color: var(--black-1);
+  width: 65%;
+  font-size: 1.75rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.addItem {
+  margin: 2rem 0 5rem 0;
+  display: flex;
+  justify-content: center;
+}

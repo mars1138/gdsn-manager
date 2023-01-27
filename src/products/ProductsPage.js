@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useHttpClient } from '../shared/components/hooks/http-hook';
 import TabComponent from '../shared/components/TabComponent/TabComponent';
+import Button from '../shared/UIElements/Button';
 import Card from '../shared/UIElements/Card';
 import Section from '../shared/components/layout/Section';
 import Hero from '../shared/components/layout/Hero';
@@ -19,49 +20,49 @@ import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
 const tabContent = [
   {
     id: 1,
-    tabTitle: 'Products 1',
+    tabTitle: 'Active',
     content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 1 Heading',
+      'These are all the products in your catalog are actively available for publication to your customers.  Active products can be edited, published, or deactivated',
+    contentHeading: 'Active Products',
     imgUrl: img1,
   },
   {
     id: 2,
-    tabTitle: 'Products 2',
+    tabTitle: 'Published',
     content:
-      'Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 2 Heading',
+      'These products in your catalog are one which currently have at least one customer that is subscribing to data from that product.  Published products can be edited, published to additional customers, or deactivated',
+    contentHeading: 'Published Products',
     imgUrl: img2,
   },
   {
     id: 3,
-    tabTitle: 'Products 3',
+    tabTitle: 'Unpublished',
     content:
-      'Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 3 Heading',
+      'Unpublished products in your catalog are all active products for which no customers are currently subscribed.  Unpublished products can be edited, published to customers, or deactivated',
+    contentHeading: 'Unpublished Products',
     imgUrl: img3,
   },
   {
     id: 4,
-    tabTitle: 'Products 4',
+    tabTitle: 'Inactive',
     content:
-      'Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    contentHeading: 'Tab 4 Heading',
+      'Inactive products are those that are no longer available to customers, but are kept in the catalog for historical purposes.  Inactive (or deactivated) products can be reactivated or permanently deleted from the catalog',
+    contentHeading: 'Inactive Products',
     imgUrl: img4,
   },
 ];
 
 const ProductsPage = () => {
-  const catalog = useSelector((state) => state.catalog.products);
-  const activeCount = catalog.filter((item) => !item.dateInactive).length;
-  const publishedCount = catalog.filter((item) => item.datePublished).length;
+  const catalog = useSelector(state => state.catalog.products);
+  const activeCount = catalog.filter(item => !item.dateInactive).length;
+  const publishedCount = catalog.filter(item => item.datePublished).length;
   const unpublishedCount = catalog.filter(
-    (item) => !item.dateInactive && !item.datePublished
+    item => !item.dateInactive && !item.datePublished,
   ).length;
-  const inactiveCount = catalog.filter((item) => item.dateInactive).length;
+  const inactiveCount = catalog.filter(item => item.dateInactive).length;
 
-  const authToken = useSelector((state) => state.auth.token);
-  const authUserId = useSelector((state) => state.auth.userId);
+  const authToken = useSelector(state => state.auth.token);
+  const authUserId = useSelector(state => state.auth.userId);
 
   const { sendRequest } = useHttpClient();
   const dispatch = useDispatch();
@@ -69,38 +70,14 @@ const ProductsPage = () => {
   // console.log(isSubmitting, error, clearError);
 
   useEffect(() => {
-    // const fetchData = async (user) => {
-    //   try {
-    //     console.log('exec replaceCatalog...');
-    //     const catalog = await sendRequest(
-    //       `http://localhost:5000/api/products/user/${user}`,
-    //       'GET',
-    //       null,
-    //       {
-    //         'Content-Type': 'application/json',
-    //         Authorization: 'Bearer ' + authToken,
-    //       }
-    //     );
-
-    //     // console.log('fetchedProducts: ', catalog);
-    //     dispatch(
-    //       catalogActions.replaceCatalog({ products: [...catalog.products] })
-    //     );
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-
-    // console.log(authToken, authUserId);
-
     if (authToken && authUserId) {
       dispatch(fetchCatalog(authUserId, authToken));
     }
   }, [authUserId, authToken, dispatch, sendRequest]);
 
-  const heroTitle = 'My Products';
+  const heroTitle = 'Your Product Catalog';
   const heroText =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem, ipsum dolor sit amet consectetur adipisicing elit.';
+    'Please click on a category of products below to see a listing of product category';
 
   return (
     <React.Fragment>
@@ -108,6 +85,7 @@ const ProductsPage = () => {
         <Hero type="center" title={heroTitle} text={heroText} page="products" />
       </Section>
       <Section>
+        <h2>Total Products: {catalog.length}</h2>
         <div className={classes.productCards}>
           <Link to="/products/active">
             <Card>
@@ -136,6 +114,16 @@ const ProductsPage = () => {
         </div>
       </Section>
       <Section>
+        <div className={classes.text}>
+          <p>
+            Please see the tabbed component below for a description of each
+            category of products on your catalog. Click on Add New Item to
+            create a new catalog product.
+          </p>
+          <div className={classes.addItem}>
+            <Button to="/products/add">Add New Item</Button>
+          </div>
+        </div>
         <TabComponent>{tabContent}</TabComponent>
       </Section>
     </React.Fragment>
