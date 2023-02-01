@@ -1,6 +1,8 @@
-import img1 from '../pexels-antonius-natan-11835350.jpg';
-import img2 from '../pexels-fauxels-3183197.jpg';
-import img3 from '../pexels-fauxels-3184418.jpg';
+import img1 from '../media/products/markus-winkler-afW1hht0NSs-unsplash-min.jpg';
+import img2 from '../media/products/pexels-pixabay-163064-min.jpg';
+import img3 from '../media/products/markus-winkler-7EwWeNyzSwQ-unsplash-min.jpg';
+import img4 from '../media/products/absolutvision-82TpEld0_e4-unsplash-min.jpg';
+import img5 from '../media/products/pexels-miguel-á-padriñán-2882553.jpg';
 
 export const productsTabs = [
   {
@@ -33,7 +35,7 @@ export const productsTabs = [
     content:
       'Choose this action from the Inactive list to set a catalog item back to Active status. Doing so will make the item available for subscriptions again.',
     contentHeading: '',
-    imgUrl: img3,
+    imgUrl: img4,
   },
   {
     id: 5,
@@ -41,7 +43,7 @@ export const productsTabs = [
     content:
       'Choose this action to permanently remove an item from your catalog.  Once an item is deleted, it cannot be restored and must be recreated via Add New Item',
     contentHeading: 'CAUTION---This Action is Irreversible',
-    imgUrl: img3,
+    imgUrl: img5,
   },
 ];
 
@@ -76,11 +78,11 @@ export const activeColumns = [
       },
       {
         Header: 'Created',
-        accessor: (row) => new Date(row.dateAdded).toLocaleDateString(),
+        accessor: row => new Date(row.dateAdded).toLocaleDateString(),
       },
       {
         Header: 'Modified',
-        accessor: (row) => {
+        accessor: row => {
           if (row.dateModified) {
             return new Date(row.dateModified).toLocaleDateString();
           } else {
@@ -90,7 +92,7 @@ export const activeColumns = [
       },
       {
         Header: 'Published',
-        accessor: (row) => {
+        accessor: row => {
           if (row.datePublished) {
             return new Date(row.datePublished).toLocaleDateString();
           } else {
@@ -134,11 +136,11 @@ export const inactiveColumns = [
       },
       {
         Header: 'Created',
-        accessor: (row) => new Date(row.dateAdded).toLocaleDateString(),
+        accessor: row => new Date(row.dateAdded).toLocaleDateString(),
       },
       {
         Header: 'Date Inactive',
-        accessor: (row) => {
+        accessor: row => {
           if (row.dateInactive) {
             return new Date(row.dateInactive).toLocaleDateString();
           } else {
