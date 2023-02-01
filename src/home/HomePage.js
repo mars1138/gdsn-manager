@@ -7,18 +7,18 @@ import Section from '../shared/components/layout/Section';
 import Slider from '../shared/components/Slider/Slider';
 import classes from './HomePage.module.css';
 
-import img1 from '../assets/media/home/carlos-muza-hpjSkU2UYSU-unsplash.jpg';
-import img2 from '../assets/media/home/claudio-schwarz-fyeOxvYvIyY-unsplash.jpg';
-import img3 from '../assets/media/home/old-youth-lDDyRE1Ec8Q-unsplash.jpg';
-import img4 from '../assets/media/home/pexels-andrea-piacquadio-3778235.jpg';
+import img1 from '../assets/media/home/carlos-muza-hpjSkU2UYSU-unsplash-min.jpg';
+import img2 from '../assets/media/home/claudio-schwarz-fyeOxvYvIyY-unsplash-min.jpg';
+import img3 from '../assets/media/home/old-youth-lDDyRE1Ec8Q-unsplash-min.jpg';
+import img4 from '../assets/media/home/pexels-andrea-piacquadio-3778235-min.jpg';
 
 import cust1 from '../assets/media/home/78.jpg';
 import cust2 from '../assets/media/home/7.jpg';
 import cust3 from '../assets/media/home/65.jpg';
 
-import slide1 from '../assets/media/home/pexels-tiger-lily-4483942.jpg';
-import slide2 from '../assets/media/home/pexels-monstera-6289028.jpg';
-import slide3 from '../assets/media/home/pexels-burak-the-weekender-186461.jpg';
+import slide1 from '../assets/media/home/pexels-tiger-lily-4483942-min.jpg';
+import slide2 from '../assets/media/home/pexels-monstera-6289028-min.jpg';
+import slide3 from '../assets/media/home/pexels-burak-the-weekender-186461-min.jpg';
 
 import video from '../assets/File - 9772.mp4';
 

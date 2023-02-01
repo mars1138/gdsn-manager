@@ -5,14 +5,14 @@ import TabComponent from '../shared/components/TabComponent/TabComponent';
 import Section from '../shared/components/layout/Section';
 import Slider from '../shared/components/Slider/Slider';
 
-import img1 from '../assets/media/services/pexels-antonius-natan-11835350.jpg';
-import img2 from '../assets/media/services/digitization-g9292200ae_640.jpg';
-import img3 from '../assets/media/services/audit-g7ab6ca2f4_640.jpg';
-import img4 from '../assets/media/services/online-education-gae6d1ed66_640.jpg';
+import img1 from '../assets/media/services/pexels-antonius-natan-11835350-min.jpg';
+import img2 from '../assets/media/services/digitization-g9292200ae_640-min.jpg';
+import img3 from '../assets/media/services/audit-g7ab6ca2f4_640-min.jpg';
+import img4 from '../assets/media/services/online-education-gae6d1ed66_640-min.jpg';
 
 import slide1 from '../assets/media/services/online-g8b04bfbcb_640.png';
-import slide2 from '../assets/media/services/pexels-tiger-lily-4483941.jpg';
-import slide3 from '../assets/media/services/pexels-alexander-suhorucov-6457521.jpg';
+import slide2 from '../assets/media/services/pexels-tiger-lily-4483941-min.jpg';
+import slide3 from '../assets/media/services/pexels-alexander-suhorucov-6457521-min.jpg';
 
 import cust1 from '../assets/media/plans/2.jpg';
 import cust2 from '../assets/media/plans/51.jpg';

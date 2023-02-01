@@ -1,8 +1,8 @@
 import img1 from '../media/resources/training/bulbs-gac71d5a20_640.jpg';
-import img2 from '../media/resources/training/startup-g5a809f49f_640.jpg';
+import img2 from '../media/resources/training/startup-g5a809f49f_640-min.jpg';
 import img3 from '../media/resources/training/list-g966146249_640.png';
 import img4 from '../media/resources/training/virtual-gdae0ed3c8_640.png';
-import img5 from '../media/resources/training/pexels-hitesh-choudhary-340152.jpg';
+import img5 from '../media/resources/training/pexels-hitesh-choudhary-340152-min.jpg';
 
 export const trainingCards = [
   {

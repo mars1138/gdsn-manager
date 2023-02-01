@@ -1,12 +1,12 @@
-import img1 from '../media/resources/webinars/spreadsheets-gb32a532e4_640.png';
-import img2 from '../media/resources/webinars/mika-baumeister-Wpnoqo2plFA-unsplash.jpg';
-import img3 from '../media/resources/webinars/magnifying-glass-g0e536d7d7_640.png';
-import img4 from '../media/resources/webinars/document-gd4bff9ec6_640.png';
-import img5 from '../media/resources/webinars/puzzle-gc1da0fb56_640.jpg';
-import img6 from '../media/resources/webinars/pexels-pixabay-534216.jpg';
-import img7 from '../media/resources/webinars/broken-business-g6d4a9619a_640.jpg';
-import img8 from '../media/resources/webinars/spreadsheet-gbaeb98562_640.jpg';
-import img9 from '../media/resources/webinars/business-gf5e877f7b_640.jpg';
+import img1 from '../media/resources/webinars/spreadsheets-gb32a532e4_640-min.png';
+import img2 from '../media/resources/webinars/mika-baumeister-Wpnoqo2plFA-unsplash-min.jpg';
+import img3 from '../media/resources/webinars/magnifying-glass-g0e536d7d7_640-min.png';
+import img4 from '../media/resources/webinars/document-gd4bff9ec6_640-min.png';
+import img5 from '../media/resources/webinars/puzzle-gc1da0fb56_640-min.jpg';
+import img6 from '../media/resources/webinars/pexels-pixabay-534216-min.jpg';
+import img7 from '../media/resources/webinars/broken-business-g6d4a9619a_640-min.jpg';
+import img8 from '../media/resources/webinars/spreadsheet-gbaeb98562_640-min.jpg';
+import img9 from '../media/resources/webinars/business-gf5e877f7b_640-min.jpg';
 
 export const webinarCards = [
   {

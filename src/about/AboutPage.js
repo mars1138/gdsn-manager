@@ -8,14 +8,14 @@ import Slider from '../shared/components/Slider/Slider';
 import classes from './AboutPage.module.css';
 import Contact from '../shared/components/contact/Contact';
 
-import img1 from '../assets/media/about/pexels-alphatradezone-5833273.jpg';
-import img2 from '../assets/media/about/pexels-fauxels-3184418.jpg';
-import img3 from '../assets/media/about/pexels-christina-morillo-1181354.jpg';
+import img1 from '../assets/media/about/pexels-alphatradezone-5833273-min.jpg';
+import img2 from '../assets/media/about/pexels-fauxels-3184418-min.jpg';
+import img3 from '../assets/media/about/pexels-christina-morillo-1181354-min.jpg';
 // import img4 from '../assets/pexels-tiger-lily-4483942.jpg';
 
-import slide1 from '../assets/media/about/pexels-fauxels-3182759B.jpg';
-import slide2 from '../assets/media/about/pexels-andrea-piacquadio-3769021B.jpg';
-import slide3 from '../assets/media/about/pexels-fauxels-3184292B.jpg';
+import slide1 from '../assets/media/about/pexels-fauxels-3182759B-min.jpg';
+import slide2 from '../assets/media/about/pexels-andrea-piacquadio-3769021B-min.jpg';
+import slide3 from '../assets/media/about/pexels-fauxels-3184292B-min.jpg';
 
 const cardContent = [
   {
