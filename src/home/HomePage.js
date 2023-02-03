@@ -27,19 +27,19 @@ const cardContent = [
     id: 1,
     cardTitle: 'DIGITAL CATALOG',
     cardText:
-      'GDSN-Plus is a demo of a Global Data Synchronization Network application.  It allows users to create a catalog of products that used as a single source of information.  The products can then be easily shared with customers.',
+      'GDSN-Plus is a demo of a Global Data Synchronization Network application.  It allows users to create a catalog of products that is used as a single source of information.  The products can then be easily shared with customers.',
   },
   {
     id: 2,
     cardTitle: 'INDUSTRY STANDARD',
     cardText:
-      'The purpose of a Global Data Synchronization Network application is to provide a system where suppliers and their customers can share product information using a standard set of ',
+      'It is the mission of GDSN-Plus to provide a system where suppliers and their customers can share product information using a standardized set of attributes.',
   },
   {
     id: 3,
     cardTitle: 'GLOBAL COMMERCE',
     cardText:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
+      'Having a single standard for all products allows for all customers to have the information they need to properly and efficiently process these products. At any point in the distribution chain, all parties will have the data they need for proper transport, storage, and handling of sale items.',
   },
   // {
   //   id: 4,
@@ -87,17 +87,20 @@ const tabContent = [
 const sliderHome = [
   {
     title: 'Product Management',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: slide1,
   },
   {
     title: 'E-commerce Support',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: slide2,
   },
   {
     title: 'Powerful Analytics',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: slide3,
   },
 ];
@@ -125,18 +128,18 @@ const sliderTestimonial = [
 
 const heroTitle = 'Home';
 const heroText =
-  'Welcome to GDSN-Plus! To begin creating your product catalog, please sign in or create an account.';
+  'Welcome to GDSN-Plus! To begin creating your product catalog, please sign in or create an account. At the My Products page, you can then begin creating new items.';
 
 const HomePage = () => {
   const cardArray = [];
 
-  cardContent.forEach(card =>
+  cardContent.forEach((card) =>
     cardArray.push(
-      <Card key={card.id}>
+      <Card key={card.id} width="30">
         <h3>{card.cardTitle}</h3>
         <p>{card.cardText}</p>
-      </Card>,
-    ),
+      </Card>
+    )
   );
 
   return (
