@@ -12,16 +12,23 @@ export const planCards = [
     imgUrl: plan1,
     features: [
       {
-        text: 'Access to Peer Community Platform',
+        text: 'Full Product Catalog functionality',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text:
-          'Access to Peer Community Platform.  Access to Peer Community Platform',
+        text: 'Access to Basics Tutorials and Webinars',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text: 'Access to Peer Community Platform',
+        text: 'Support available via chat or email',
+        icon: '/icons/bookmark-outline.svg',
+      },
+      {
+        text: 'Access to Peer Community Platform & Knowledgebase',
+        icon: '/icons/bookmark-outline.svg',
+      },
+      {
+        text: 'E-Commerce Support',
         icon: '/icons/bookmark-outline.svg',
       },
     ],
@@ -35,26 +42,36 @@ export const planCards = [
     imgUrl: plan2,
     features: [
       {
-        text: 'Access to Peer Community Platform',
+        text: 'Full Product Catalog functionality',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text:
-          'Access to Peer Community Platform.  Access to Peer Community Platform',
+        text: 'Access to Basics Tutorials and Webinars',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text: 'Access to Peer Community Platform',
+        text: 'Support available via chat or email',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text:
-          'Access to Peer Community Platform.  Access to Peer Community Platform',
+        text: 'Access to Peer Community Platform & Knowledgebase',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text: 'Access to Peer Community Platform',
+        text: 'E-Commerce Support',
         icon: '/icons/bookmark-outline.svg',
+      },
+      {
+        text: 'Access to Advanced Tutorials and Webinars',
+        icon: '/icons/ribbon-outline.svg',
+      },
+      {
+        text: 'Support available 24/7 via phone at hourly rates',
+        icon: '/icons/ribbon-outline.svg',
+      },
+      {
+        text: 'Basic Analytics',
+        icon: '/icons/ribbon-outline.svg',
       },
     ],
   },
@@ -67,35 +84,48 @@ export const planCards = [
     imgUrl: plan3,
     features: [
       {
-        text: 'Access to Peer Community Platform',
+        text: 'Full Product Catalog functionality',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text:
-          'Access to Peer Community Platform.  Access to Peer Community Platform',
+        text: 'Access to Basics Tutorials and Webinars',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text: 'Access to Peer Community Platform',
+        text: 'Support available via chat or email',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text:
-          'Access to Peer Community Platform.  Access to Peer Community Platform',
+        text: 'Access to Peer Community Platform & Knowledgebase',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text: 'Access to Peer Community Platform',
+        text: 'E-Commerce Support',
         icon: '/icons/bookmark-outline.svg',
       },
       {
-        text:
-          'Access to Peer Community Platform.  Access to Peer Community Platform',
-        icon: '/icons/bookmark-outline.svg',
+        text: 'Access to Advanced Tutorials and Webinars',
+        icon: '/icons/ribbon-outline.svg',
       },
       {
-        text: 'Access to Peer Community',
-        icon: '/icons/bookmark-outline.svg',
+        text: 'Support available 24/7 via phone at hourly rates',
+        icon: '/icons/ribbon-outline.svg',
+      },
+      {
+        text: 'Basic Analytics',
+        icon: '/icons/ribbon-outline.svg',
+      },
+      {
+        text: '100 hours free phone support annually',
+        icon: '/icons/diamond-outline.svg',
+      },
+      {
+        text: 'Advanced Networking Options between Suppliers',
+        icon: '/icons/diamond-outline.svg',
+      },
+      {
+        text: 'Advanced Analytics',
+        icon: '/icons/diamond-outline.svg',
       },
     ],
   },

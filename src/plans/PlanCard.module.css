@@ -55,6 +55,10 @@
   padding-top: 0.25rem;
 }
 
+.plan-icon ion-icon {
+  color: var(--secondary);
+}
+
 .plan-detail {
   width: 85%;
   text-align: left;
