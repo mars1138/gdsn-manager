@@ -20,7 +20,7 @@ import slide1 from '../assets/media/home/pexels-tiger-lily-4483942-min.jpg';
 import slide2 from '../assets/media/home/pexels-monstera-6289028-min.jpg';
 import slide3 from '../assets/media/home/pexels-burak-the-weekender-186461-min.jpg';
 
-import video from '../assets/File - 9772.mp4';
+import video from '../assets/pexels-rodnae-productions-7947451.mp4';
 
 const cardContent = [
   {
@@ -41,12 +41,6 @@ const cardContent = [
     cardText:
       'Having a single standard for all products allows for all customers to have the information they need to properly and efficiently process these products. At any point in the distribution chain, all parties will have the data they need for proper transport, storage, and handling of sale items.',
   },
-  // {
-  //   id: 4,
-  //   cardTitle: 'RELIABILITY',
-  //   cardText:
-  //     'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi tempora provident explicabo inventore pariatur, nobis cumque a culpa quod, alias voluptate veniam quae qui ut at, nostrum est porro enim.',
-  // },
 ];
 
 const tabContent = [
@@ -87,20 +81,17 @@ const tabContent = [
 const sliderHome = [
   {
     title: 'Product Management',
-    text:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: slide1,
   },
   {
     title: 'E-commerce Support',
-    text:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: slide2,
   },
   {
     title: 'Powerful Analytics',
-    text:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: slide3,
   },
 ];
@@ -133,13 +124,13 @@ const heroText =
 const HomePage = () => {
   const cardArray = [];
 
-  cardContent.forEach((card) =>
+  cardContent.forEach(card =>
     cardArray.push(
       <Card key={card.id} width="30">
         <h3>{card.cardTitle}</h3>
         <p>{card.cardText}</p>
-      </Card>
-    )
+      </Card>,
+    ),
   );
 
   return (
@@ -157,14 +148,21 @@ const HomePage = () => {
       <Section trigger="0.1">
         <h2>Services That Fit Your Company's Needs</h2>
         <Slider type="description" content={sliderHome} />
-        {/* <Slider type="gallery" content={sliderGallery} /> */}
       </Section>
       <Section>
         <h2>Valued By Industry Leaders</h2>
         <Slider type="testimonial" content={sliderTestimonial} />
       </Section>
       <Section>
-        <video width="600" height="360" src={video} type="/video/mp4" controls>
+        <video
+          width="640"
+          height="360"
+          src={video}
+          type="/video/mp4"
+          autoplay
+          muted
+          controls
+        >
           Your browser does not support the video tag.
         </video>
       </Section>

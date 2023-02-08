@@ -35,24 +35,12 @@
   --red-1: #b84a39;
   --red-2: #fff4f5;
 
-  /* --background-footer: rgb(41, 141, 235);
-
-  --button-main: rgb(41, 141, 235);
-  --button-main-hover: rgb(93, 172, 247);
-  --button-main-text: rgb(243, 243, 243); */
-
-
-
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   --button-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.35);
   
   --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   --modal-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   --button-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-
-  /* --text-color: rgb(39, 39, 39);
-  --text-nav: rgb(41, 141, 235);
-  --text-info: rgb(74, 143, 77); */
 
   --borderRadius-button: 6px;
   --borderRadius-img: 2px;
@@ -106,7 +94,6 @@ body {
 
   text-align: justify;
 
-  /* padding-top: 70px; */
 }
 
 code {
@@ -128,6 +115,10 @@ h3 {
 img {
   box-shadow: var(--img-shadow);
   border-radius: var(--borderRadius-img);
+}
+
+video {
+  border-radius: var(--borderRadius-card);
 }
 
 /* Temporary */
