@@ -1,7 +1,7 @@
 import { catalogActions } from './catalog-slice';
 
 export const fetchCatalog = (userId, userToken) => {
-  return async dispatch => {
+  return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(
         `http://localhost:5000/api/products/user/${userId}`,
@@ -12,7 +12,7 @@ export const fetchCatalog = (userId, userToken) => {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + userToken,
           },
-        },
+        }
       );
 
       if (!response.ok) throw new Error('Could not fetch product catalog');
@@ -24,11 +24,12 @@ export const fetchCatalog = (userId, userToken) => {
 
     try {
       const catalogData = await fetchData();
+      console.log(catalogData);
 
       dispatch(
         catalogActions.replaceCatalog({
-          products: [...catalogData.products] || [],
-        }),
+          products: [...catalogData] || [],
+        })
       );
     } catch (err) {
       console.log(err);

@@ -15,9 +15,9 @@
   transition: all .2s;
 }
 
-.resourcesCards a:hover {
+/* .resourcesCards a:hover {
   transform: translateY(-3px) scale(1.01);
-}
+} */
 .resourcesCards a:hover div {
   background: var(--secondary-light);
 }

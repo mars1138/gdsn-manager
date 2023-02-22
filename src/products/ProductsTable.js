@@ -551,7 +551,8 @@ const ProductsTable = (props) => {
                           {cell.column.Header === 'Image' && (
                             <div className={classes.thumbnail}>
                               <img
-                                src={`${process.env.REACT_APP_BACKEND_URL}/${cell.value}`}
+                                // src={`${process.env.REACT_APP_BACKEND_URL}/${cell.value}`}
+                                src={cell.value}
                                 alt={cell.value}
                               />
                             </div>
