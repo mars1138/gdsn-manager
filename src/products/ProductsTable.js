@@ -365,7 +365,7 @@ const ProductsTable = (props) => {
 
       {isSubmitting && <LoadingSpinner />}
       <Modal
-        show={actionCompleted}
+        show={actionCompleted === null || !actionCompleted ? false : true}
         onClear={actionCompletedHandler}
         msgHeader={`Success!`}
       >

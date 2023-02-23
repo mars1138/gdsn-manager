@@ -81,17 +81,20 @@ const tabContent = [
 const sliderHome = [
   {
     title: 'Product Management',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: slide1,
   },
   {
     title: 'E-commerce Support',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: slide2,
   },
   {
     title: 'Powerful Analytics',
-    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
+    text:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus at error accusantium mollitia.  Voluptas qui, aperiam magnam quae exercitationem modi eveniet quia vel quisquam voluptatem quidem nostrum amet dolores quis?',
     imgUrl: slide3,
   },
 ];
@@ -124,13 +127,13 @@ const heroText =
 const HomePage = () => {
   const cardArray = [];
 
-  cardContent.forEach(card =>
+  cardContent.forEach((card) =>
     cardArray.push(
       <Card key={card.id} width="30">
         <h3>{card.cardTitle}</h3>
         <p>{card.cardText}</p>
-      </Card>,
-    ),
+      </Card>
+    )
   );
 
   return (
@@ -159,7 +162,6 @@ const HomePage = () => {
           height="360"
           src={video}
           type="/video/mp4"
-          autoplay
           muted
           controls
         >

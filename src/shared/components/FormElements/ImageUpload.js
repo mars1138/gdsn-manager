@@ -61,10 +61,7 @@ const ImageUpload = (props) => {
       >
         <div className={classes.preview}>
           {props.initialValue && !previewUrl && (
-            <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/${props.initialValue}`}
-              alt="Preview"
-            />
+            <img src={props.initialValue} alt="Preview" />
           )}
           {previewUrl && <img src={previewUrl} alt="Preview" />}
           {!props.initialValue && !previewUrl && <p>Please select an image.</p>}
