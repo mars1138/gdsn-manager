@@ -155,39 +155,44 @@ const ProductsTable = (props) => {
 
       let url;
 
-      const fetchData = async () => {
-        try {
-          console.log('exec replaceCatalog...');
-          url = process.env.REACT_APP_BACKEND_URL + `/api/products/${gtin}`;
+      const fetchData = (authToken) => {
+        const update = async (authToken) => {
+          try {
+            console.log('exec replaceCatalog...');
+            url = process.env.REACT_APP_BACKEND_URL + `/api/products/${gtin}`;
 
-          const formData = new FormData();
-          formData.append('name', existingProduct.name);
-          formData.append('description', existingProduct.description);
-          formData.append('gtin', existingProduct.gtin);
-          formData.append('category', existingProduct.category);
-          formData.append('type', existingProduct.type);
-          formData.append('image', existingProduct.image);
-          formData.append('subscribers', [
-            ...existingProduct.subscribers,
-            +formState.inputs.subscriber.value,
-          ]);
+            const formData = new FormData();
+            formData.append('name', existingProduct.name);
+            formData.append('description', existingProduct.description);
+            formData.append('gtin', existingProduct.gtin);
+            formData.append('category', existingProduct.category);
+            formData.append('type', existingProduct.type);
+            formData.append('image', existingProduct.image);
+            formData.append('subscribers', [
+              ...existingProduct.subscribers,
+              +formState.inputs.subscriber.value,
+            ]);
 
-          await sendRequest(url, 'PATCH', formData, {
-            Authorization: 'Bearer ' + authToken,
-          });
+            await sendRequest(url, 'PATCH', formData, {
+              Authorization: 'Bearer ' + authToken,
+            });
 
-          cancelPublishHandler();
-          cancelSubscriberHandler();
-          setActionCompleted('published.');
-        } catch (err) {
-          console.log(err);
-          cancelPublishHandler();
-          cancelSubscriberHandler();
-        }
+            cancelPublishHandler();
+            cancelSubscriberHandler();
+            setActionCompleted('published.');
+          } catch (err) {
+            console.log(err);
+            cancelPublishHandler();
+            cancelSubscriberHandler();
+          }
+        };
+
+        update(authToken);
+        return { type: 'publish', payload: null };
       };
 
       if (authToken && authUserId) {
-        dispatch(fetchData(authUserId, authToken));
+        dispatch(fetchData(authToken));
       }
 
       // console.log('Product Published!');
@@ -212,34 +217,39 @@ const ProductsTable = (props) => {
 
     let url;
 
-    const fetchData = async () => {
-      try {
-        console.log('activating product...');
-        url = process.env.REACT_APP_BACKEND_URL + `/api/products/${gtin}`;
+    const fetchData = (authToken) => {
+      const update = async (authToken) => {
+        try {
+          console.log('activating product...');
+          url = process.env.REACT_APP_BACKEND_URL + `/api/products/${gtin}`;
 
-        const formData = new FormData();
-        formData.append('name', existingProduct.name);
-        formData.append('description', existingProduct.description);
-        formData.append('gtin', existingProduct.gtin);
-        formData.append('subscribers', existingProduct.subscribers);
-        formData.append('dateInactive', dateInactive);
+          const formData = new FormData();
+          formData.append('name', existingProduct.name);
+          formData.append('description', existingProduct.description);
+          formData.append('gtin', existingProduct.gtin);
+          formData.append('subscribers', existingProduct.subscribers);
+          formData.append('dateInactive', dateInactive);
 
-        await sendRequest(url, 'PATCH', formData, {
-          Authorization: 'Bearer ' + authToken,
-        });
+          await sendRequest(url, 'PATCH', formData, {
+            Authorization: 'Bearer ' + authToken,
+          });
 
-        status === 'activate'
-          ? cancelActivateHandler()
-          : cancelDeactivateHandler();
-        const action = status === 'activate' ? 'activated' : 'deactivated';
-        setActionCompleted(action);
-      } catch (err) {
-        console.log(err);
-      }
+          status === 'activate'
+            ? cancelActivateHandler()
+            : cancelDeactivateHandler();
+          const action = status === 'activate' ? 'activated' : 'deactivated';
+          setActionCompleted(action);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      update(authToken);
+      return { type: 'status_update', payload: null };
     };
 
     if (authToken && authUserId) {
-      dispatch(fetchData(authUserId, authToken));
+      dispatch(fetchData(authToken));
     }
   };
 
