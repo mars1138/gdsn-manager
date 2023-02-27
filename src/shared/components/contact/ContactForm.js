@@ -56,19 +56,22 @@ const ContactForm = (props) => {
 
       console.log(process.env.REACT_APP_BACKEND_URL);
 
-      const response = await fetch(`http://localhost:5000/api/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formState.inputs.name.value,
-          company: formState.inputs.company.value,
-          email: formState.inputs.email.value,
-          phone: formState.inputs.phone.value,
-          comments: formState.inputs.comments.value,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/api/contact`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formState.inputs.name.value,
+            company: formState.inputs.company.value,
+            email: formState.inputs.email.value,
+            phone: formState.inputs.phone.value,
+            comments: formState.inputs.comments.value,
+          }),
+        }
+      );
 
       const responseData = await response.json();
 

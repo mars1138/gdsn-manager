@@ -4,7 +4,7 @@ export const fetchCatalog = (userId, userToken) => {
   return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:5000/api/products/user/${userId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/products/user/${userId}`,
         {
           method: 'GET',
           body: null,
