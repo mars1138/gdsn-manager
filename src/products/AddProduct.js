@@ -128,8 +128,8 @@ const AddProduct = () => {
 
   return (
     <Section>
-      <h1>Add Product</h1>
       <div className={classes['card-container']}>
+        <h1>Add Product</h1>
         <Card>
           <Modal
             show={error === undefined || null ? false : true}
