@@ -45,6 +45,7 @@
   --borderRadius-button: 6px;
   --borderRadius-img: 2px;
   --borderRadius-card: 4px;
+  --borderRadius-input: 3px;
 }
 
 *,
@@ -103,6 +104,8 @@ code {
 
 h1 {
   font-size: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h2 {

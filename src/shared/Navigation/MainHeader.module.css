@@ -57,9 +57,9 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .menu-btn {
+  /* .menu-btn {
     display: block;
-  }
+  } */
 
   .logo {
     order: 5;

@@ -9,11 +9,9 @@ import {
 
 import './App.css';
 import MainHeader from './shared/Navigation/MainHeader';
-import ScrollToTop from './shared/utilities/ScrollToTop';
 import Footer from './shared/components/footer/Footer';
 
 import HomePage from './home/HomePage';
-
 import ProductsPage from './products/ProductsPage';
 import UpdateProduct from './products/UpdateProduct';
 import ProductsList from './products/ProductsList';
@@ -22,13 +20,14 @@ import AboutPage from './about/AboutPage';
 import ResourcesPage from './resources/ResourcesPage';
 import Webinars from './resources/Webinars';
 import Training from './resources/Training';
+import ServicesPage from './services/ServicesPage';
+import PlansPage from './plans/PlansPage';
 import Support from './resources/Support';
+
 import { useHttpClient } from './shared/components/hooks/http-hook';
 import { authActions } from './store/auth-slice';
 import { fetchCatalog } from './store/catalog-functions';
-
-import ServicesPage from './services/ServicesPage';
-import PlansPage from './plans/PlansPage';
+import ScrollToTop from './shared/utilities/ScrollToTop';
 import Auth from './user/Auth';
 
 let logoutTimer;
@@ -45,8 +44,6 @@ function App() {
   let routes;
 
   useEffect(() => {
-    // console.log('authToken: ', authToken);
-    // console.log('authExpire: ', authExpire);
     if (authToken !== null && authExpire !== null) {
       const remainingTime = authExpire - new Date().getTime();
       logoutTimer = setTimeout(() => {

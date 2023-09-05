@@ -5,7 +5,7 @@ import Button from '../shared/UIElements/Button';
 
 import classes from './PlanCard.module.css';
 
-const PlanCard = props => {
+const PlanCard = (props) => {
   const features = [];
 
   props.plan.features.forEach((feature, index) => {
@@ -15,7 +15,7 @@ const PlanCard = props => {
           <ion-icon size="medium" src={feature.icon}></ion-icon>
         </div>
         <div className={classes['plan-detail']}>{feature.text}</div>
-      </li>,
+      </li>
     );
   });
 

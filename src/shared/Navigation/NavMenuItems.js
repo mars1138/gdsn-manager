@@ -48,7 +48,7 @@ const NavMenuItems = (props) => {
       onMouseLeave={mouseLeaveHandler}
       onClick={closeDropdownHandler}
     >
-      {items.submenu && items.url && (
+      {items.url && items.submenu && (
         <>
           <button
             type="button"

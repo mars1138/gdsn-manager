@@ -18,6 +18,14 @@ input {
   width: 30%;
 }
 
+.item-link a:link,
+.item-link a:active,
+.item-link a:visited,
+.item-link a:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
 .headers {
   font-size: 1.2rem;
   background-color: var(--secondary-light);
